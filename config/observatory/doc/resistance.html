@@ -1,0 +1,16 @@
+<title>Resistance</title>
+
+<h2>An example page showing maps of resistance</h2>
+
+(... dropdown here for drug/year)
+
+<h3>
+    <QueryResult table="samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"ARTresistant","CompValue":"Yes","isRoot":true,"Tpe":"="}' /> samples are resistant to Artemisinin
+</h3>
+<div style="height:500px">
+<Map zoom=3>
+    <TileLayer />
+    <TableMarkersLayer table="samples" markerColourProperty="ARTresistant"/>
+    <TileLayer url="/panoptes/Maps/Pf60/MODEL43.2015.inc.rate.PR.rmean.stable/tiles/{z}/{x}/{y}.png" maxNativeZoom=8 maxZoom=17 minZoom=0 opacity=0.6 tms="true" ext="png" zIndex=17 attribution="Malaria Atlas Project"/>
+</Map>
+</div>

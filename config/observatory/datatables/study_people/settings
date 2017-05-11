@@ -1,0 +1,47 @@
+nameSingle: person
+namePlural: people
+primKey: uid
+properties:
+- id: study
+  dataType: Text
+  relation:                         # This block defines a many-to-one foreign relation to a parent table
+    tableId: studies                 # Datatable id of the parent table
+    forwardName: member of             # Display name of the relation from child to parent
+    reverseName: contains            # Display name of the relation from parent to child 
+
+- id: jobTitle1
+  dataType: Text
+- id: jobTitle2
+  dataType: Text
+- id: jobTitle3
+  dataType: Text
+- id: uid
+  dataType: Text
+- id: researchGateURL
+  dataType: Text
+- id: scholarURL
+  dataType: Text
+- id: twitterURL
+  dataType: Text
+- id: malariagenUID
+  dataType: Text
+- id: oProfile1
+  dataType: Text
+- id: oProfile2
+  dataType: Text
+- id: oProfile3
+  dataType: Text
+- id: ORCID
+  dataType: Text
+- id: sn
+  dataType: Text
+- id: mail
+  dataType: Text
+- id: givenName
+  dataType: Text
+- id: o1
+  dataType: Text
+- id: o2
+  dataType: Text
+- id: o3
+  dataType: Text

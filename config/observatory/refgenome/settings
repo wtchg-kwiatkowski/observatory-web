@@ -1,0 +1,13 @@
+annotation:                                # Directives for parsing the annotation file (annotation.gff)
+  format: GFF                              # Format: GFF = Version 3 GFF file ; GTF = Version 2 GTF file
+  geneFeature: [gene, pseudogene]          # Feature id(s) used to identify genes
+  exonFeature: [CDS, pseudogenic_exon]     # Feature id(s) used to identify exons
+  geneNameAttribute: Name                  # Attribute id used to identify gene names
+  geneNameSetAttribute: [synonym, previous_systematic_id]      # Attribute id(s) used to identify gene name sets
+  geneDescriptionAttribute: [product.term]    # Attribute id(s) used to identify gene descriptions
+
+
+externalGeneLinks:
+- url: http://www.genedb.org/gene/{Id}
+  name: GeneDB
+

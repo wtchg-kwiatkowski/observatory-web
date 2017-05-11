@@ -1,0 +1,21 @@
+nameSingle: publication
+namePlural: publications
+primKey: pmid
+properties:
+- id: study
+  dataType: Text
+  relation:                         # This block defines a many-to-one foreign relation to a parent table
+   tableId: studies                 # Datatable id of the parent table
+   forwardName: citation of             # Display name of the relation from child to parent
+   reverseName: contains            # Display name of the relation from parent to child 
+
+- id: doi
+  dataType: Text
+- id: name
+  dataType: Text
+- id: title
+  dataType: Text
+- id: citation
+  dataType: Text
+- id: pmid
+  dataType: Text

@@ -1,0 +1,8 @@
+name: Pf Incidence - 2015
+description: Plasmodium falciparum incidence rate - 2015
+format: tile
+filePattern: tiles/{z}/{x}/{y}.png
+maxNativeZoom: 8
+attribution: Malaria Atlas Project
+opacity: 0.6
+tms: true
