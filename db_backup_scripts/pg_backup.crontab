@@ -1,0 +1,1 @@
+@daily /var/lib/postgresql/scripts/pg_backup_rotated.sh
