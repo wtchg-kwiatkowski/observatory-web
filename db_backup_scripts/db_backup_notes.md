@@ -28,11 +28,6 @@ sudo mkdir scripts backups
 sudo chown postgres:postgres scripts backups
 sudo cp ~/observatory-web/db_backup_scripts/{pg_backup.config,pg_backup_rotated.sh,pg_backup.crontab} scripts/
 sudo chown -R postgres:postgres scripts
-```
-
-
-To set up a nightly cron job, log in to the observatory-db machine and type:
-```
 sudo crontab -u postgres /var/lib/postgresql/scripts/pg_backup.crontab
 
 ```
