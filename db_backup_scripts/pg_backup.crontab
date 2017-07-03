@@ -1,1 +1,1 @@
-@daily /var/lib/postgresql/scripts/pg_backup_rotated.sh
+@daily /var/lib/postgresql/scripts/pg_backup_rotated.sh >> /var/lib/postgresql/scripts/pg_backup.log 2>&1
