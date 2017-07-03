@@ -26,7 +26,8 @@ To set up the backups, log in to the observatory-db machine and type:
 cd /var/lib/postgresql
 sudo mkdir scripts backups
 sudo chown postgres:postgres scripts backups
-cp ~/observatory-web/db_backup_scripts/{pg_backup.config,pg_backup_rotated.sh,pg_backup.crontab} scripts/
+sudo cp ~/observatory-web/db_backup_scripts/{pg_backup.config,pg_backup_rotated.sh,pg_backup.crontab} scripts/
+sudo chown -R postgres:postgres scripts
 ```
 
 
