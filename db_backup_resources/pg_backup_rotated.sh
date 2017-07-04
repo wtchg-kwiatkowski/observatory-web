@@ -168,6 +168,12 @@ function perform_backups()
 	done
  
 	echo -e "\nAll database backups complete!"
+  
+  if [ $ZIP_ALL_BACKUPS = "yes" ]
+  then
+    tar -czf "$FINAL_BACKUP_DIR".tar.gz $FINAL_BACKUP_DIR
+    echo -e "\nAll database backups have been compressed into one file."
+  fi
 }
  
 # MONTHLY BACKUPS
