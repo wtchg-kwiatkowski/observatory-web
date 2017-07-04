@@ -55,13 +55,14 @@ fi;
  
 function perform_backups()
 {
-	SUFFIX=$1
-	FINAL_BACKUP_DIR=$BACKUP_DIR"`date +\%Y-\%m-\%d`$SUFFIX/"
+	BACKUP_TYPE=$1 # daily, weekly, monthly
+  BACKUP_DIR_NAME="`date +\%Y-\%m-\%d`-$BACKUP_TYPE/"
+	BACKUP_DIR_PATH=$BACKUP_DIR"$BACKUP_DIR_NAME/"
  
-	echo "Making backup directory in $FINAL_BACKUP_DIR"
+	echo "Making backup directory in $BACKUP_DIR_PATH"
  
-	if ! mkdir -p $FINAL_BACKUP_DIR; then
-		echo "Cannot create backup directory in $FINAL_BACKUP_DIR. Go and fix it!" 1>&2
+	if ! mkdir -p $BACKUP_DIR_PATH; then
+		echo "Cannot create backup directory in $BACKUP_DIR_PATH. Go and fix it!" 1>&2
 		exit 1;
 	fi;
  
@@ -76,10 +77,10 @@ function perform_backups()
 	then
 		    echo "Globals backup"
  
-		    if ! pg_dumpall -g -U "$USERNAME" | gzip > $FINAL_BACKUP_DIR"globals".sql.gz.in_progress; then
+		    if ! pg_dumpall -g -U "$USERNAME" | gzip > $BACKUP_DIR_PATH"globals".sql.gz.in_progress; then
 		            echo "[!!ERROR!!] Failed to produce globals backup" 1>&2
 		    else
-		            mv $FINAL_BACKUP_DIR"globals".sql.gz.in_progress $FINAL_BACKUP_DIR"globals".sql.gz
+		            mv $BACKUP_DIR_PATH"globals".sql.gz.in_progress $BACKUP_DIR_PATH"globals".sql.gz
 		    fi
 	else
 		echo "None"
@@ -108,10 +109,10 @@ function perform_backups()
 	do
 	        echo "Schema-only backup of $DATABASE"
  
-	        if ! pg_dump -Fp -s -U "$USERNAME" "$DATABASE" | gzip > $FINAL_BACKUP_DIR"$DATABASE"_SCHEMA.sql.gz.in_progress; then
+	        if ! pg_dump -Fp -s -U "$USERNAME" "$DATABASE" | gzip > $BACKUP_DIR_PATH"$DATABASE"_SCHEMA.sql.gz.in_progress; then
 	                echo "[!!ERROR!!] Failed to backup database schema of $DATABASE" 1>&2
 	        else
-	                mv $FINAL_BACKUP_DIR"$DATABASE"_SCHEMA.sql.gz.in_progress $FINAL_BACKUP_DIR"$DATABASE"_SCHEMA.sql.gz
+	                mv $BACKUP_DIR_PATH"$DATABASE"_SCHEMA.sql.gz.in_progress $BACKUP_DIR_PATH"$DATABASE"_SCHEMA.sql.gz
 	        fi
 	done
  
@@ -136,10 +137,10 @@ function perform_backups()
 		then
 			echo "Plain backup of $DATABASE"
  
-			if ! pg_dump -Fp -U "$USERNAME" "$DATABASE" | gzip > $FINAL_BACKUP_DIR"$DATABASE".sql.gz.in_progress; then
+			if ! pg_dump -Fp -U "$USERNAME" "$DATABASE" | gzip > $BACKUP_DIR_PATH"$DATABASE".sql.gz.in_progress; then
 				echo "[!!ERROR!!] Failed to produce plain backup database $DATABASE" 1>&2
 			else
-				mv $FINAL_BACKUP_DIR"$DATABASE".sql.gz.in_progress $FINAL_BACKUP_DIR"$DATABASE".sql.gz
+				mv $BACKUP_DIR_PATH"$DATABASE".sql.gz.in_progress $BACKUP_DIR_PATH"$DATABASE".sql.gz
 			fi
 		fi
  
@@ -147,10 +148,10 @@ function perform_backups()
 		then
 			echo "Custom backup of $DATABASE"
  
-			if ! pg_dump -Fc -U "$USERNAME" "$DATABASE" -f $FINAL_BACKUP_DIR"$DATABASE".custom.in_progress; then
+			if ! pg_dump -Fc -U "$USERNAME" "$DATABASE" -f $BACKUP_DIR_PATH"$DATABASE".custom.in_progress; then
 				echo "[!!ERROR!!] Failed to produce custom backup database $DATABASE"
 			else
-				mv $FINAL_BACKUP_DIR"$DATABASE".custom.in_progress $FINAL_BACKUP_DIR"$DATABASE".custom
+				mv $BACKUP_DIR_PATH"$DATABASE".custom.in_progress $BACKUP_DIR_PATH"$DATABASE".custom
 			fi
 		fi
  
@@ -158,10 +159,10 @@ function perform_backups()
  		then
  			echo "Directory backup of $DATABASE"
   
- 			if ! pg_dump -Fd -U "$USERNAME" "$DATABASE" -f $FINAL_BACKUP_DIR"$DATABASE".directory.in_progress; then
+ 			if ! pg_dump -Fd -U "$USERNAME" "$DATABASE" -f $BACKUP_DIR_PATH"$DATABASE".directory.in_progress; then
  				echo "[!!ERROR!!] Failed to produce directory backup database $DATABASE"
  			else
- 				mv $FINAL_BACKUP_DIR"$DATABASE".directory.in_progress $FINAL_BACKUP_DIR"$DATABASE".directory
+ 				mv $BACKUP_DIR_PATH"$DATABASE".directory.in_progress $BACKUP_DIR_PATH"$DATABASE".directory
  			fi
  		fi
  
@@ -171,7 +172,7 @@ function perform_backups()
   
   if [ $ZIP_ALL_BACKUPS = "yes" ]
   then
-    tar -czf "$FINAL_BACKUP_DIR".tar.gz $FINAL_BACKUP_DIR
+    tar -czf "$BACKUP_DIR_NAME".tar.gz $BACKUP_DIR && rm -R $BACKUP_DIR
     echo -e "\nAll database backups have been compressed into one file."
   fi
 }
@@ -185,7 +186,7 @@ then
 	# Delete all expired monthly directories
 	find $BACKUP_DIR -maxdepth 1 -name "*-monthly" -exec rm -rf '{}' ';'
  
-	perform_backups "-monthly"
+	perform_backups "monthly"
  
 	exit 0;
 fi
@@ -200,7 +201,7 @@ then
 	# Delete all expired weekly directories
 	find $BACKUP_DIR -maxdepth 1 -mtime +$EXPIRED_DAYS -name "*-weekly" -exec rm -rf '{}' ';'
  
-	perform_backups "-weekly"
+	perform_backups "weekly"
  
 	exit 0;
 fi
@@ -210,4 +211,4 @@ fi
 # Delete daily backups 7 days old or more
 find $BACKUP_DIR -maxdepth 1 -mtime +$DAYS_TO_KEEP -name "*-daily" -exec rm -rf '{}' ';'
  
-perform_backups "-daily"
+perform_backups "daily"
