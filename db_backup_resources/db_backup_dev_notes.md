@@ -33,7 +33,7 @@ To set up the backups, log in to the observatory-db machine and type:
 cd /var/lib/postgresql
 sudo mkdir scripts backups
 sudo chown postgres:postgres scripts backups
-sudo cp ~/observatory-web/db_backup_scripts/{pg_backup.config,pg_backup_rotated.sh,pg_backup.crontab} scripts/
+sudo cp ~/observatory-web/db_backup_resources/{pg_backup.config,pg_backup_rotated.sh,pg_backup.crontab} scripts/
 sudo chown -R postgres:postgres scripts
 sudo chmod u+x scripts/pg_backup_rotated.sh
 sudo crontab -u postgres /var/lib/postgresql/scripts/pg_backup.crontab
@@ -65,6 +65,13 @@ Creating gs://observatory-db-backups/...
 AccessDeniedException: 403 Insufficient OAuth2 scope to perform this operation.
 Acceptable scopes: https://www.googleapis.com/auth/cloud-platform
 ```
+
+TODO: authenticate
+
+```
+gsutil -m cp -r /var/lib/postgresql/backups gs://observatory-db-backups
+```
+
 
 ## Checking the backups are valid.
 
