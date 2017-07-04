@@ -43,11 +43,7 @@ fi
 ###########################
 ### INITIALISE DEFAULTS ###
 ###########################
- 
-if [ ! $HOSTNAME ]; then
-	HOSTNAME="localhost"
-fi;
- 
+
 if [ ! $USERNAME ]; then
 	USERNAME="postgres"
 fi;
@@ -80,7 +76,7 @@ function perform_backups()
 	then
 		    echo "Globals backup"
  
-		    if ! pg_dumpall -g -h "$HOSTNAME" -U "$USERNAME" | gzip > $FINAL_BACKUP_DIR"globals".sql.gz.in_progress; then
+		    if ! pg_dumpall -g -U "$USERNAME" | gzip > $FINAL_BACKUP_DIR"globals".sql.gz.in_progress; then
 		            echo "[!!ERROR!!] Failed to produce globals backup" 1>&2
 		    else
 		            mv $FINAL_BACKUP_DIR"globals".sql.gz.in_progress $FINAL_BACKUP_DIR"globals".sql.gz
@@ -104,7 +100,7 @@ function perform_backups()
 	echo -e "\n\nPerforming schema-only backups"
 	echo -e "--------------------------------------------\n"
  
-	SCHEMA_ONLY_DB_LIST=`psql -h "$HOSTNAME" -U "$USERNAME" -At -c "$SCHEMA_ONLY_QUERY" postgres`
+	SCHEMA_ONLY_DB_LIST=`psql -U "$USERNAME" -At -c "$SCHEMA_ONLY_QUERY" postgres`
  
 	echo -e "The following databases were matched for schema-only backup:\n${SCHEMA_ONLY_DB_LIST}\n"
  
@@ -112,7 +108,7 @@ function perform_backups()
 	do
 	        echo "Schema-only backup of $DATABASE"
  
-	        if ! pg_dump -Fp -s -h "$HOSTNAME" -U "$USERNAME" "$DATABASE" | gzip > $FINAL_BACKUP_DIR"$DATABASE"_SCHEMA.sql.gz.in_progress; then
+	        if ! pg_dump -Fp -s -U "$USERNAME" "$DATABASE" | gzip > $FINAL_BACKUP_DIR"$DATABASE"_SCHEMA.sql.gz.in_progress; then
 	                echo "[!!ERROR!!] Failed to backup database schema of $DATABASE" 1>&2
 	        else
 	                mv $FINAL_BACKUP_DIR"$DATABASE"_SCHEMA.sql.gz.in_progress $FINAL_BACKUP_DIR"$DATABASE"_SCHEMA.sql.gz
@@ -134,13 +130,13 @@ function perform_backups()
 	echo -e "\n\nPerforming full backups"
 	echo -e "--------------------------------------------\n"
  
-	for DATABASE in `psql -h "$HOSTNAME" -U "$USERNAME" -At -c "$FULL_BACKUP_QUERY" postgres`
+	for DATABASE in `psql -U "$USERNAME" -At -c "$FULL_BACKUP_QUERY" postgres`
 	do
 		if [ $ENABLE_PLAIN_BACKUPS = "yes" ]
 		then
 			echo "Plain backup of $DATABASE"
  
-			if ! pg_dump -Fp -h "$HOSTNAME" -U "$USERNAME" "$DATABASE" | gzip > $FINAL_BACKUP_DIR"$DATABASE".sql.gz.in_progress; then
+			if ! pg_dump -Fp -U "$USERNAME" "$DATABASE" | gzip > $FINAL_BACKUP_DIR"$DATABASE".sql.gz.in_progress; then
 				echo "[!!ERROR!!] Failed to produce plain backup database $DATABASE" 1>&2
 			else
 				mv $FINAL_BACKUP_DIR"$DATABASE".sql.gz.in_progress $FINAL_BACKUP_DIR"$DATABASE".sql.gz
@@ -151,12 +147,23 @@ function perform_backups()
 		then
 			echo "Custom backup of $DATABASE"
  
-			if ! pg_dump -Fc -h "$HOSTNAME" -U "$USERNAME" "$DATABASE" -f $FINAL_BACKUP_DIR"$DATABASE".custom.in_progress; then
+			if ! pg_dump -Fc -U "$USERNAME" "$DATABASE" -f $FINAL_BACKUP_DIR"$DATABASE".custom.in_progress; then
 				echo "[!!ERROR!!] Failed to produce custom backup database $DATABASE"
 			else
 				mv $FINAL_BACKUP_DIR"$DATABASE".custom.in_progress $FINAL_BACKUP_DIR"$DATABASE".custom
 			fi
 		fi
+ 
+    if [ $ENABLE_DIRECTORY_BACKUPS = "yes" ]
+ 		then
+ 			echo "Directory backup of $DATABASE"
+  
+ 			if ! pg_dump -Fd -U "$USERNAME" "$DATABASE" -f $FINAL_BACKUP_DIR"$DATABASE".directory.in_progress; then
+ 				echo "[!!ERROR!!] Failed to produce directory backup database $DATABASE"
+ 			else
+ 				mv $FINAL_BACKUP_DIR"$DATABASE".directory.in_progress $FINAL_BACKUP_DIR"$DATABASE".directory
+ 			fi
+ 		fi
  
 	done
  
