@@ -55,14 +55,14 @@ fi;
  
 function perform_backups()
 {
-	BACKUP_TYPE=$1 # daily, weekly, monthly
-  BACKUP_DIR_NAME="`date +\%Y-\%m-\%d`-$BACKUP_TYPE"
-	BACKUP_DIR_PATH=$BACKUP_DIR"$BACKUP_DIR_NAME/"
+	THIS_BACKUP_TYPE=$1 # daily, weekly, monthly
+  THIS_BACKUP_DIR_NAME="`date +\%Y-\%m-\%d`-$THIS_BACKUP_TYPE"
+	THIS_BACKUP_DIR_PATH=$BACKUP_DIR"$THIS_BACKUP_DIR_NAME/"
  
-	echo "Making backup directory in $BACKUP_DIR_PATH"
+	echo "Making backup directory in $THIS_BACKUP_DIR_PATH"
  
-	if ! mkdir -p $BACKUP_DIR_PATH; then
-		echo "Cannot create backup directory in $BACKUP_DIR_PATH. Go and fix it!" 1>&2
+	if ! mkdir -p $THIS_BACKUP_DIR_PATH; then
+		echo "Cannot create backup directory in $THIS_BACKUP_DIR_PATH. Go and fix it!" 1>&2
 		exit 1;
 	fi;
  
@@ -77,10 +77,10 @@ function perform_backups()
 	then
 		    echo "Globals backup"
  
-		    if ! pg_dumpall -g -U "$USERNAME" | gzip > $BACKUP_DIR_PATH"globals".sql.gz.in_progress; then
+		    if ! pg_dumpall -g -U "$USERNAME" | gzip > $THIS_BACKUP_DIR_PATH"globals".sql.gz.in_progress; then
 		            echo "[!!ERROR!!] Failed to produce globals backup" 1>&2
 		    else
-		            mv $BACKUP_DIR_PATH"globals".sql.gz.in_progress $BACKUP_DIR_PATH"globals".sql.gz
+		            mv $THIS_BACKUP_DIR_PATH"globals".sql.gz.in_progress $THIS_BACKUP_DIR_PATH"globals".sql.gz
 		    fi
 	else
 		echo "None"
@@ -109,10 +109,10 @@ function perform_backups()
 	do
 	        echo "Schema-only backup of $DATABASE"
  
-	        if ! pg_dump -Fp -s -U "$USERNAME" "$DATABASE" | gzip > $BACKUP_DIR_PATH"$DATABASE"_SCHEMA.sql.gz.in_progress; then
+	        if ! pg_dump -Fp -s -U "$USERNAME" "$DATABASE" | gzip > $THIS_BACKUP_DIR_PATH"$DATABASE"_SCHEMA.sql.gz.in_progress; then
 	                echo "[!!ERROR!!] Failed to backup database schema of $DATABASE" 1>&2
 	        else
-	                mv $BACKUP_DIR_PATH"$DATABASE"_SCHEMA.sql.gz.in_progress $BACKUP_DIR_PATH"$DATABASE"_SCHEMA.sql.gz
+	                mv $THIS_BACKUP_DIR_PATH"$DATABASE"_SCHEMA.sql.gz.in_progress $THIS_BACKUP_DIR_PATH"$DATABASE"_SCHEMA.sql.gz
 	        fi
 	done
  
@@ -137,10 +137,10 @@ function perform_backups()
 		then
 			echo "Plain backup of $DATABASE"
  
-			if ! pg_dump -Fp -U "$USERNAME" "$DATABASE" | gzip > $BACKUP_DIR_PATH"$DATABASE".sql.gz.in_progress; then
+			if ! pg_dump -Fp -U "$USERNAME" "$DATABASE" | gzip > $THIS_BACKUP_DIR_PATH"$DATABASE".sql.gz.in_progress; then
 				echo "[!!ERROR!!] Failed to produce plain backup database $DATABASE" 1>&2
 			else
-				mv $BACKUP_DIR_PATH"$DATABASE".sql.gz.in_progress $BACKUP_DIR_PATH"$DATABASE".sql.gz
+				mv $THIS_BACKUP_DIR_PATH"$DATABASE".sql.gz.in_progress $THIS_BACKUP_DIR_PATH"$DATABASE".sql.gz
 			fi
 		fi
  
@@ -148,10 +148,10 @@ function perform_backups()
 		then
 			echo "Custom backup of $DATABASE"
  
-			if ! pg_dump -Fc -U "$USERNAME" "$DATABASE" -f $BACKUP_DIR_PATH"$DATABASE".custom.in_progress; then
+			if ! pg_dump -Fc -U "$USERNAME" "$DATABASE" -f $THIS_BACKUP_DIR_PATH"$DATABASE".custom.in_progress; then
 				echo "[!!ERROR!!] Failed to produce custom backup database $DATABASE"
 			else
-				mv $BACKUP_DIR_PATH"$DATABASE".custom.in_progress $BACKUP_DIR_PATH"$DATABASE".custom
+				mv $THIS_BACKUP_DIR_PATH"$DATABASE".custom.in_progress $THIS_BACKUP_DIR_PATH"$DATABASE".custom
 			fi
 		fi
  
@@ -159,10 +159,10 @@ function perform_backups()
  		then
  			echo "Directory backup of $DATABASE"
   
- 			if ! pg_dump -Fd -U "$USERNAME" "$DATABASE" -f $BACKUP_DIR_PATH"$DATABASE".directory.in_progress; then
+ 			if ! pg_dump -Fd -U "$USERNAME" "$DATABASE" -f $THIS_BACKUP_DIR_PATH"$DATABASE".directory.in_progress; then
  				echo "[!!ERROR!!] Failed to produce directory backup database $DATABASE"
  			else
- 				mv $BACKUP_DIR_PATH"$DATABASE".directory.in_progress $BACKUP_DIR_PATH"$DATABASE".directory
+ 				mv $THIS_BACKUP_DIR_PATH"$DATABASE".directory.in_progress $THIS_BACKUP_DIR_PATH"$DATABASE".directory
  			fi
  		fi
  
@@ -172,10 +172,10 @@ function perform_backups()
   
   if [ $ZIP_ALL_BACKUPS = "yes" ]
   then
-    if ! tar -czf "$BACKUP_DIR_NAME".tar.gz $BACKUP_DIR; then
+    if ! tar -czf "$THIS_BACKUP_DIR_NAME".tar.gz -C $BACKUP_DIR .; then
       echo "[!!ERROR!!] Failed to compress database backups into one file"
     else
-      rm -r $BACKUP_DIR
+      rm -r $THIS_BACKUP_DIR_PATH
       echo -e "\nAll database backups have been compressed into one file."
     fi
     

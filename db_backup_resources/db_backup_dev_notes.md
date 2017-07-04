@@ -56,6 +56,43 @@ https://cloud.google.com/storage/docs/quickstart-gsutil
 
 To check that gsutil is installed on the observatory-db machine, simply log in to the machine and type `gsutil`.
 
+TODO: authenticate
+
+If you try to configure the gsutil with `gsutil config`, you might see:
+```
+CommandException: OAuth2 is the preferred authentication mechanism with the Cloud SDK. Run "gcloud auth login" to configure authentication, unless you want to authenticate with an HMAC access key and secret, in which case run "gsutil config -a".
+```
+
+If you try to configure an authentication mechanism for the Google Cloud SDK using `gcloud auth login`, you might see:
+```
+You are running on a Google Compute Engine virtual machine.
+It is recommended that you use service accounts for authentication.
+```
+
+To use a service account for authentication (the `set account` step should have already been done):
+
+- Log in to the console and get the appropriate service account ID and key ID from https://console.cloud.google.com/iam-admin/serviceaccounts
+
+
+```
+sudo nano file_containing_key
+gcloud config set account 107470729430-compute@developer.gserviceaccount.com
+gcloud auth activate-service-account 107470729430-compute@developer.gserviceaccount.com --key-file file_containing_key
+sudo rm file_containing_key
+```
+
+```
+WARNING: .p12 service account keys are not recomended unless it is necessary for backwards compatability. Please switch to a newer .json service account key for this account.
+ERROR: (gcloud.auth.activate-service-account) PyOpenSSL is not available. If you have already installed PyOpenSSL, you will need to enable site packages by setting the environment variable CLOUDSDK_PYTHON_SITEPACKAGES to 1. If that does not work, see https://developers.google.com/cloud/sdk/crypto for details or consider using .json private key instead.
+
+```
+
+Check the auth list. It should say "ACTIVE" after the credentialed account.
+```
+gcloud auth list
+```
+
+
 To create a bucket for the backups:
 ```
 gsutil mb gs://observatory-db-backups/
@@ -68,7 +105,7 @@ AccessDeniedException: 403 Insufficient OAuth2 scope to perform this operation.
 Acceptable scopes: https://www.googleapis.com/auth/cloud-platform
 ```
 
-TODO: authenticate
+
 
 ```
 gsutil -m cp -r /var/lib/postgresql/backups gs://observatory-db-backups
