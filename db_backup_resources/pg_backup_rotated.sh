@@ -172,10 +172,11 @@ function perform_backups()
   
   if [ $ZIP_ALL_BACKUPS = "yes" ]
   then
-    if ! tar -czf "$THIS_BACKUP_DIR_NAME".tar.gz -C $BACKUP_DIR .; then
+    if ! tar -czf "$THIS_BACKUP_DIR_NAME".tar.gz -C $THIS_BACKUP_DIR_PATH .; then
       echo "[!!ERROR!!] Failed to compress database backups into one file"
     else
       rm -r $THIS_BACKUP_DIR_PATH
+      mv "$THIS_BACKUP_DIR_NAME".tar.gz $BACKUP_DIR
       echo -e "\nAll database backups have been compressed into one file."
     fi
     

@@ -54,9 +54,30 @@ As specified in the crontab, logs containing output from each cron job will save
 ## Copying the backups to a Google Cloud bucket.
 https://cloud.google.com/storage/docs/quickstart-gsutil
 
-To check that gsutil is installed on the observatory-db machine, simply log in to the machine and type `gsutil`.
+- Log in to the Google Cloud console and create a bucket for the backups from https://console.cloud.google.com/storage/browser
+- Name: observatory-db-backups
+- Default storage clas: Coldline
+- Coldline location: European Union (any region)
+- Press "Create"
 
-TODO: authenticate
+
+ - To check that gsutil is installed on the observatory-db machine, simply log in to the machine and type `gsutil`.
+
+
+```
+gsutil -m cp -r /var/lib/postgresql/backups gs://observatory-db-backups
+```
+
+```
+Copying file:///var/lib/postgresql/backups/test.txt [Content-Type=text/plain]...
+AccessDeniedException: 403 Insufficient OAuth2 scope to perform this operation. 
+Acceptable scopes: https://www.googleapis.com/auth/cloud-platform
+CommandException: 1 file/object could not be transferred.
+
+```
+
+
+### Aborted attempt to create a bucket from the observatory-db machine.
 
 If you try to configure the gsutil with `gsutil config`, you might see:
 ```
@@ -105,11 +126,6 @@ AccessDeniedException: 403 Insufficient OAuth2 scope to perform this operation.
 Acceptable scopes: https://www.googleapis.com/auth/cloud-platform
 ```
 
-
-
-```
-gsutil -m cp -r /var/lib/postgresql/backups gs://observatory-db-backups
-```
 
 
 ## Checking the backups are valid.
