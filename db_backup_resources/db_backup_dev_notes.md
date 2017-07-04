@@ -42,7 +42,9 @@ sudo crontab -u postgres /var/lib/postgresql/scripts/pg_backup.crontab
 
 To help check whether the cron job will run properly, you can run the job hourly instead of daily by directly modifying the crontab via `sudo crontab -u postgres -e`.
 
-Backups will be created in subdirectories of `/var/lib/postgresql/backups/`, e.g. `/var/lib/postgresql/backups/2017-07-04-daily/`
+If ZIP_ALL_BACKUPS is disabled, backups will be created in subdirectories of `/var/lib/postgresql/backups/`, e.g. `/var/lib/postgresql/backups/2017-07-04-daily/`
+
+If ZIP_ALL_BACKUPS is enabled, backups will be created as `.tar.gz` files in `/var/lib/postgresql/backups/`, e.g. `/var/lib/postgresql/backups/2017-07-04-daily.tar.gz`
 
 For more info on how and which backups are made, see `/var/lib/postgresql/scripts/pg_backup_rotated.sh`.
 
@@ -77,4 +79,10 @@ gsutil -m cp -r /var/lib/postgresql/backups gs://observatory-db-backups
 
 One basic check would be to install PostgreSQL on your local machine, download the latest backup, uncompress and execute the relevant SQL file (or pg_restore the custom-format archive) and inspect the results.
 
-
+```
+sudo apt-get update
+sudo apt-get install postgresql
+tar -xzfv 2017-07-04-daily.tar.gz
+tar -xzfv 2017-07-04-daily/observatory.sql.gz
+psql -U postgres -a -f 2017-07-04-daily/observatory.sql
+```

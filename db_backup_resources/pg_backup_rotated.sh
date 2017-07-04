@@ -56,7 +56,7 @@ fi;
 function perform_backups()
 {
 	BACKUP_TYPE=$1 # daily, weekly, monthly
-  BACKUP_DIR_NAME="`date +\%Y-\%m-\%d`-$BACKUP_TYPE/"
+  BACKUP_DIR_NAME="`date +\%Y-\%m-\%d`-$BACKUP_TYPE"
 	BACKUP_DIR_PATH=$BACKUP_DIR"$BACKUP_DIR_NAME/"
  
 	echo "Making backup directory in $BACKUP_DIR_PATH"
@@ -172,8 +172,13 @@ function perform_backups()
   
   if [ $ZIP_ALL_BACKUPS = "yes" ]
   then
-    tar -czf "$BACKUP_DIR_NAME".tar.gz $BACKUP_DIR && rm -R $BACKUP_DIR
-    echo -e "\nAll database backups have been compressed into one file."
+    if ! tar -czf "$BACKUP_DIR_NAME".tar.gz $BACKUP_DIR; then
+      echo "[!!ERROR!!] Failed to compress database backups into one file"
+    else
+      rm -r $BACKUP_DIR
+      echo -e "\nAll database backups have been compressed into one file."
+    fi
+    
   fi
 }
  
