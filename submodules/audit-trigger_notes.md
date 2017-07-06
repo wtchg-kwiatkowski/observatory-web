@@ -53,7 +53,7 @@ cd ~/observatory-web
 git submodule update --init --recursive
 sudo cp ~/observatory-web/submodules/audit-trigger/audit.sql /var/lib/postgresql/scripts/
 sudo chown postgres:postgres /var/lib/postgresql/scripts/audit.sql
-sudo -u postgres psql postgres
+sudo -u postgres psql observatory
 \i ~/scripts/audit.sql
 \dt audit.
 \q
