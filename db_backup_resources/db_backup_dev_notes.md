@@ -155,6 +155,7 @@ sudo -u postgres psql postgres
 \i globals.sql
 \i postgres.sql
 \i observatory.sql
+\i audit.sql
 \dn
 \dt
 \l
