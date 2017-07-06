@@ -134,10 +134,23 @@ CommandException: 1 file/object could not be transferred.
 
 One basic check would be to install PostgreSQL on your local machine, download the latest backup, uncompress and execute the relevant SQL file (or pg_restore the custom-format archive) and inspect the results.
 
+To install PostgreSQL locally on Ubuntu:
 ```
 sudo apt-get update
 sudo apt-get install postgresql
-tar -xzfv 2017-07-04-daily.tar.gz
-gunzip 2017-07-04-daily/observatory.sql.gz
-psql -U postgres -a -f 2017-07-04-daily/observatory.sql
+sudo -u postgres psql postgres
+\password 
+  Enter new password: specify_a_password_for_postgres_here
+  Enter it again: specify_a_password_for_postgres_here
+\q
 ```
+
+To extract and restore one of the backup files:
+```
+tar -xzfv 2017-07-04-daily.tgz
+gunzip 2017-07-04-daily/observatory.sql.gz
+source 2017-07-04-daily/observatory.sql
+```
+
+
+

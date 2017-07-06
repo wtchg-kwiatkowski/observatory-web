@@ -187,7 +187,7 @@ function perform_backups()
       mv "$THIS_BACKUP_DIR_NAME".tgz $BACKUPS_DIR
       echo -e "\nAll database backups have been compressed into one TGZ file."
       
-      if [ $COPY_BACKUP_TO_CLOUD_BUCKET = "yes" && $CLOUD_BUCKET_URI ]
+      if [ $COPY_BACKUP_TO_CLOUD_BUCKET = "yes" ] && [ $CLOUD_BUCKET_URI ]
       then
         if ! gsutil cp $BACKUPS_DIR/"$THIS_BACKUP_DIR_NAME".tgz $CLOUD_BUCKET_URI; then
           echo "[!!ERROR!!] Failed to copy TGZ file to $CLOUD_BUCKET_URI"
@@ -200,7 +200,7 @@ function perform_backups()
 
   else
 
-    if [ $COPY_BACKUP_TO_CLOUD_BUCKET = "yes" && $CLOUD_BUCKET_URI ]
+    if [ $COPY_BACKUP_TO_CLOUD_BUCKET = "yes" ] && [ $CLOUD_BUCKET_URI ]
     then
       if ! gsutil -m cp -r $THIS_BACKUP_DIR_PATH $CLOUD_BUCKET_URI; then
         echo "[!!ERROR!!] Failed to copy backup directory to $CLOUD_BUCKET_URI"
