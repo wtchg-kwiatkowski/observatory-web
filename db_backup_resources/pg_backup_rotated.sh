@@ -34,8 +34,8 @@ source "${CONFIG_FILE_PATH}"
 ###########################
  
 # Make sure we're running as the required backup user
-if [ "$BACKUP_USER" != "" -a "$(id -un)" != "$BACKUP_USER" ] ; then
-	echo "This script must be run as $BACKUP_USER. Exiting." 1>&2
+if [ "$RUN_AS_USER" != "" -a "$(id -un)" != "$RUN_AS_USER" ] ; then
+	echo "This script must be run as $RUN_AS_USER. Exiting." 1>&2
 	exit 1
 fi
  
@@ -44,8 +44,8 @@ fi
 ### INITIALISE DEFAULTS ###
 ###########################
 
-if [ ! $USERNAME ]; then
-	USERNAME="postgres"
+if [ ! $DB_USER ]; then
+	DB_USER="postgres"
 fi;
  
  
@@ -57,12 +57,12 @@ function perform_backups()
 {
 	THIS_BACKUP_TYPE=$1 # daily, weekly, monthly
   THIS_BACKUP_DIR_NAME="`date +\%Y-\%m-\%d`-$THIS_BACKUP_TYPE"
-	THIS_BACKUP_DIR_PATH=$BACKUP_DIR"$THIS_BACKUP_DIR_NAME/"
+	THIS_BACKUP_DIR_PATH=$BACKUPS_DIR"$THIS_BACKUP_DIR_NAME/"
  
 	echo "Making backup directory in $THIS_BACKUP_DIR_PATH"
  
 	if ! mkdir -p $THIS_BACKUP_DIR_PATH; then
-		echo "Cannot create backup directory in $THIS_BACKUP_DIR_PATH. Go and fix it!" 1>&2
+		echo "Cannot create backup directory in $THIS_BACKUP_DIR_PATH. Exiting." 1>&2
 		exit 1;
 	fi;
  
@@ -77,7 +77,7 @@ function perform_backups()
 	then
 		    echo "Globals backup"
  
-		    if ! pg_dumpall -g -U "$USERNAME" | gzip > $THIS_BACKUP_DIR_PATH"globals".sql.gz.in_progress; then
+		    if ! pg_dumpall -g -U "$DB_USER" | gzip > $THIS_BACKUP_DIR_PATH"globals".sql.gz.in_progress; then
 		            echo "[!!ERROR!!] Failed to produce globals backup" 1>&2
 		    else
 		            mv $THIS_BACKUP_DIR_PATH"globals".sql.gz.in_progress $THIS_BACKUP_DIR_PATH"globals".sql.gz
@@ -101,7 +101,7 @@ function perform_backups()
 	echo -e "\n\nPerforming schema-only backups"
 	echo -e "--------------------------------------------\n"
  
-	SCHEMA_ONLY_DB_LIST=`psql -U "$USERNAME" -At -c "$SCHEMA_ONLY_QUERY" postgres`
+	SCHEMA_ONLY_DB_LIST=`psql -U "$DB_USER" -At -c "$SCHEMA_ONLY_QUERY" postgres`
  
 	echo -e "The following databases were matched for schema-only backup:\n${SCHEMA_ONLY_DB_LIST}\n"
  
@@ -109,7 +109,7 @@ function perform_backups()
 	do
 	        echo "Schema-only backup of $DATABASE"
  
-	        if ! pg_dump -Fp -s -U "$USERNAME" "$DATABASE" | gzip > $THIS_BACKUP_DIR_PATH"$DATABASE"_SCHEMA.sql.gz.in_progress; then
+	        if ! pg_dump -Fp -s -U "$DB_USER" "$DATABASE" | gzip > $THIS_BACKUP_DIR_PATH"$DATABASE"_SCHEMA.sql.gz.in_progress; then
 	                echo "[!!ERROR!!] Failed to backup database schema of $DATABASE" 1>&2
 	        else
 	                mv $THIS_BACKUP_DIR_PATH"$DATABASE"_SCHEMA.sql.gz.in_progress $THIS_BACKUP_DIR_PATH"$DATABASE"_SCHEMA.sql.gz
@@ -131,13 +131,13 @@ function perform_backups()
 	echo -e "\n\nPerforming full backups"
 	echo -e "--------------------------------------------\n"
  
-	for DATABASE in `psql -U "$USERNAME" -At -c "$FULL_BACKUP_QUERY" postgres`
+	for DATABASE in `psql -U "$DB_USER" -At -c "$FULL_BACKUP_QUERY" postgres`
 	do
 		if [ $ENABLE_PLAIN_BACKUPS = "yes" ]
 		then
 			echo "Plain backup of $DATABASE"
  
-			if ! pg_dump -Fp -U "$USERNAME" "$DATABASE" | gzip > $THIS_BACKUP_DIR_PATH"$DATABASE".sql.gz.in_progress; then
+			if ! pg_dump -Fp -U "$DB_USER" "$DATABASE" | gzip > $THIS_BACKUP_DIR_PATH"$DATABASE".sql.gz.in_progress; then
 				echo "[!!ERROR!!] Failed to produce plain backup database $DATABASE" 1>&2
 			else
 				mv $THIS_BACKUP_DIR_PATH"$DATABASE".sql.gz.in_progress $THIS_BACKUP_DIR_PATH"$DATABASE".sql.gz
@@ -148,7 +148,7 @@ function perform_backups()
 		then
 			echo "Custom backup of $DATABASE"
  
-			if ! pg_dump -Fc -U "$USERNAME" "$DATABASE" -f $THIS_BACKUP_DIR_PATH"$DATABASE".custom.in_progress; then
+			if ! pg_dump -Fc -U "$DB_USER" "$DATABASE" -f $THIS_BACKUP_DIR_PATH"$DATABASE".custom.in_progress; then
 				echo "[!!ERROR!!] Failed to produce custom backup database $DATABASE"
 			else
 				mv $THIS_BACKUP_DIR_PATH"$DATABASE".custom.in_progress $THIS_BACKUP_DIR_PATH"$DATABASE".custom
@@ -159,7 +159,7 @@ function perform_backups()
  		then
  			echo "Directory backup of $DATABASE"
   
- 			if ! pg_dump -Fd -U "$USERNAME" "$DATABASE" -f $THIS_BACKUP_DIR_PATH"$DATABASE".directory.in_progress; then
+ 			if ! pg_dump -Fd -U "$DB_USER" "$DATABASE" -f $THIS_BACKUP_DIR_PATH"$DATABASE".directory.in_progress; then
  				echo "[!!ERROR!!] Failed to produce directory backup database $DATABASE"
  			else
  				mv $THIS_BACKUP_DIR_PATH"$DATABASE".directory.in_progress $THIS_BACKUP_DIR_PATH"$DATABASE".directory
@@ -169,18 +169,50 @@ function perform_backups()
 	done
  
 	echo -e "\nAll database backups complete!"
-  
-  if [ $ZIP_ALL_BACKUPS = "yes" ]
+
+
+  ###########################
+	###### .TGZ & CLOUD #######
+	###########################
+ 
+  echo -e "\n\nPerforming further actions"
+	echo -e "--------------------------------------------\n"
+
+  if [ $TGZ_EACH_SET_OF_BACKUPS = "yes" ]
   then
-    if ! tar -czf "$THIS_BACKUP_DIR_NAME".tar.gz -C $THIS_BACKUP_DIR_PATH .; then
-      echo "[!!ERROR!!] Failed to compress database backups into one file"
+    if ! tar -czf "$THIS_BACKUP_DIR_NAME".tgz -C $THIS_BACKUP_DIR_PATH .; then
+      echo "[!!ERROR!!] Failed to compress database backups into one TGZ file"
     else
       rm -r $THIS_BACKUP_DIR_PATH
-      mv "$THIS_BACKUP_DIR_NAME".tar.gz $BACKUP_DIR
-      echo -e "\nAll database backups have been compressed into one file."
+      mv "$THIS_BACKUP_DIR_NAME".tgz $BACKUPS_DIR
+      echo -e "\nAll database backups have been compressed into one TGZ file."
+      
+      if [ $COPY_BACKUP_TO_CLOUD_BUCKET = "yes" && $CLOUD_BUCKET_URI ]
+      then
+        if ! gsutil cp $BACKUPS_DIR/"$THIS_BACKUP_DIR_NAME".tgz $CLOUD_BUCKET_URI; then
+          echo "[!!ERROR!!] Failed to copy TGZ file to $CLOUD_BUCKET_URI"
+        else
+          echo -e "\nTGZ file has been copied to $CLOUD_BUCKET_URI"
+        fi
+      fi  
+      
     fi
-    
+
+  else
+
+    if [ $COPY_BACKUP_TO_CLOUD_BUCKET = "yes" && $CLOUD_BUCKET_URI ]
+    then
+      if ! gsutil -m cp -r $THIS_BACKUP_DIR_PATH $CLOUD_BUCKET_URI; then
+        echo "[!!ERROR!!] Failed to copy backup directory to $CLOUD_BUCKET_URI"
+      else
+        echo -e "\nBackup directory has been copied to $CLOUD_BUCKET_URI"
+      fi
+    fi  
+
   fi
+
+	echo -e "\nDone."
+  
 }
  
 # MONTHLY BACKUPS
@@ -190,7 +222,7 @@ DAY_OF_MONTH=`date +%d`
 if [ $DAY_OF_MONTH -eq 1 ];
 then
 	# Delete all expired monthly directories
-	find $BACKUP_DIR -maxdepth 1 -name "*-monthly" -exec rm -rf '{}' ';'
+	find $BACKUPS_DIR -maxdepth 1 -name "*-monthly" -exec rm -rf '{}' ';'
  
 	perform_backups "monthly"
  
@@ -202,10 +234,10 @@ fi
 DAY_OF_WEEK=`date +%u` #1-7 (Monday-Sunday)
 EXPIRED_DAYS=`expr $((($WEEKS_TO_KEEP * 7) + 1))`
  
-if [ $DAY_OF_WEEK = $DAY_OF_WEEK_TO_KEEP ];
+if [ $DAY_OF_WEEK = $DAY_TO_PERFORM_WEEKLY_BACKUP ];
 then
 	# Delete all expired weekly directories
-	find $BACKUP_DIR -maxdepth 1 -mtime +$EXPIRED_DAYS -name "*-weekly" -exec rm -rf '{}' ';'
+	find $BACKUPS_DIR -maxdepth 1 -mtime +$EXPIRED_DAYS -name "*-weekly" -exec rm -rf '{}' ';'
  
 	perform_backups "weekly"
  
@@ -215,6 +247,6 @@ fi
 # DAILY BACKUPS
  
 # Delete daily backups 7 days old or more
-find $BACKUP_DIR -maxdepth 1 -mtime +$DAYS_TO_KEEP -name "*-daily" -exec rm -rf '{}' ';'
+find $BACKUPS_DIR -maxdepth 1 -mtime +$DAYS_TO_KEEP -name "*-daily" -exec rm -rf '{}' ';'
  
 perform_backups "daily"

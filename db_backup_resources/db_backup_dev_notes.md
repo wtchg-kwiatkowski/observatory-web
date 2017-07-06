@@ -1,4 +1,6 @@
-https://wiki.postgresql.org/wiki/Automated_Backup_on_Linux
+# Notes on development of the automated db backups
+
+Used this web page as a starting point: https://wiki.postgresql.org/wiki/Automated_Backup_on_Linux
 ```
 Here are some scripts which will backup all databases in a cluster individually, optionally only backing up the schema for a set list. The reason one might wish to use this over pg_dumpall is that you may only wish to restore individual databases from a backup, whereas pg_dumpall dumps a plain SQL copy into a single file. This also provides the option of specifying which databases you only want the schema of. The idea is to run these in a nightly cron job.
 
@@ -7,14 +9,15 @@ Here are some scripts which will backup all databases in a cluster individually,
 - pg_backup_rotated.sh - The same as above except it will delete expired backups based on the configuration.
 ```
 
-https://wiki.postgresql.org/wiki/Talk:Automated_Backup_on_Linux
+Removed the $HOSTNAME to avoid specifying a password, as suggested here: https://wiki.postgresql.org/wiki/Talk:Automated_Backup_on_Linux
 ```
 With the default installation postgres user is allowed to access but via socket no via localhost. A quick fix is to remove
 -h "$HOSTNAME"
 from the psql commands.
 ```
 
-One way to get these config resources onto the observatory-db machine is to clone this config into your home directory.
+
+Got these config resources onto the observatory-db machine by cloning the repo into a home directory.
 
 To clone this repo into your home directory, log in to the observatory-db machine and type:
 ```
@@ -37,47 +40,26 @@ sudo cp ~/observatory-web/db_backup_resources/{pg_backup.config,pg_backup_rotate
 sudo chown -R postgres:postgres scripts
 sudo chmod u+x scripts/pg_backup_rotated.sh
 sudo crontab -u postgres /var/lib/postgresql/scripts/pg_backup.crontab
-
 ```
+
+For more info on how and which backups are made, see: 
+- `/var/lib/postgresql/scripts/pg_backup.config`
+- `/var/lib/postgresql/scripts/pg_backup_rotated.sh`
+- `/var/lib/postgresql/scripts/pg_backup.crontab`
 
 To help check whether the cron job will run properly, you can run the job hourly instead of daily by directly modifying the crontab via `sudo crontab -u postgres -e`.
 
-If ZIP_ALL_BACKUPS is disabled, backups will be created in subdirectories of `/var/lib/postgresql/backups/`, e.g. `/var/lib/postgresql/backups/2017-07-04-daily/`
 
-If ZIP_ALL_BACKUPS is enabled, backups will be created as `.tar.gz` files in `/var/lib/postgresql/backups/`, e.g. `/var/lib/postgresql/backups/2017-07-04-daily.tar.gz`
+## Notes on copying the backup files to a Google Cloud bucket
 
-For more info on how and which backups are made, see `/var/lib/postgresql/scripts/pg_backup_rotated.sh`.
+Used this web page as a starting point: https://cloud.google.com/storage/docs/quickstart-gsutil
 
-As specified in the crontab, logs containing output from each cron job will saved in the backups directory and named with a timestamp, e.g. `2017-07-04T100001.log`
+The observatory-db instance needs to have its Storage permission set to `Read Write` (not `Read Only`).
 
-
-## Copying the backups to a Google Cloud bucket.
-https://cloud.google.com/storage/docs/quickstart-gsutil
-
-- Log in to the Google Cloud console and create a bucket for the backups from https://console.cloud.google.com/storage/browser
-- Name: observatory-db-backups
-- Default storage clas: Coldline
-- Coldline location: European Union (any region)
-- Press "Create"
+Changes to access scope currently require the instance to be restarted with the new permissions, which changes the IP of the machine.
 
 
- - To check that gsutil is installed on the observatory-db machine, simply log in to the machine and type `gsutil`.
-
-
-```
-gsutil -m cp -r /var/lib/postgresql/backups gs://observatory-db-backups
-```
-
-```
-Copying file:///var/lib/postgresql/backups/test.txt [Content-Type=text/plain]...
-AccessDeniedException: 403 Insufficient OAuth2 scope to perform this operation. 
-Acceptable scopes: https://www.googleapis.com/auth/cloud-platform
-CommandException: 1 file/object could not be transferred.
-
-```
-
-
-### Aborted attempt to create a bucket from the observatory-db machine.
+### Notes on setting up a service account for authentication on the observatory-db machine.
 
 If you try to configure the gsutil with `gsutil config`, you might see:
 ```
@@ -90,11 +72,9 @@ You are running on a Google Compute Engine virtual machine.
 It is recommended that you use service accounts for authentication.
 ```
 
-To use a service account for authentication (the `set account` step should have already been done):
+To set up a service account for authentication, first log in to the [console](https://console.cloud.google.com/iam-admin/serviceaccounts) and get the appropriate service account ID and key ID.
 
-- Log in to the console and get the appropriate service account ID and key ID from https://console.cloud.google.com/iam-admin/serviceaccounts
-
-
+Temporarily provide the observatory-db machine with the key by pasting it into a temporary file (e.g. `file_containing_key`) and doing this:
 ```
 sudo nano file_containing_key
 gcloud config set account 107470729430-compute@developer.gserviceaccount.com
@@ -102,6 +82,7 @@ gcloud auth activate-service-account 107470729430-compute@developer.gserviceacco
 sudo rm file_containing_key
 ```
 
+This warning and error message was then shown.
 ```
 WARNING: .p12 service account keys are not recomended unless it is necessary for backwards compatability. Please switch to a newer .json service account key for this account.
 ERROR: (gcloud.auth.activate-service-account) PyOpenSSL is not available. If you have already installed PyOpenSSL, you will need to enable site packages by setting the environment variable CLOUDSDK_PYTHON_SITEPACKAGES to 1. If that does not work, see https://developers.google.com/cloud/sdk/crypto for details or consider using .json private key instead.
@@ -114,16 +95,37 @@ gcloud auth list
 ```
 
 
-To create a bucket for the backups:
+### Notes on creating a cloud bucket and copying files to it
+
+To create a cloud bucket via the web console:
+- Log in to the Google Cloud console and create a bucket for the backups from https://console.cloud.google.com/storage/browser
+- Name: observatory-db-backups
+- Default storage class: Coldline
+- Coldline location: European Union (any region)
+- Press "Create"
+
+To check that gsutil is installed on the observatory-db machine, simply log in to the machine and type `gsutil`.
+
+When the service account has been set up and the instance has `Read Write` permissions, you could also create a bucket by typing `gsutil mb gs://observatory-db-backups/`.
+
+For the relevant options to specify the class and location, etc., type `gsutil help mb`.
+
+
+To copy all of the backup files to the cloud bucket, log in to the observatory-db machine and type:
 ```
-gsutil mb gs://observatory-db-backups/
+gsutil -m cp -r /var/lib/postgresql/backups/* gs://observatory-db-backups
 ```
 
-Errors:
+
+The `pg_backup_rotated.sh` script only copies the current backup (either a .tgz or a directory) to the cloud bucket, which is specified in `pg_backup.config`.
+
+
+This sort of error message appears when either the service account on the `observatory-db` instance has not been set up properly, or the instance lacks Read Write storage permissions.
 ```
-Creating gs://observatory-db-backups/...
-AccessDeniedException: 403 Insufficient OAuth2 scope to perform this operation.
+Copying file:///var/lib/postgresql/backups/test.txt [Content-Type=text/plain]...
+AccessDeniedException: 403 Insufficient OAuth2 scope to perform this operation. 
 Acceptable scopes: https://www.googleapis.com/auth/cloud-platform
+CommandException: 1 file/object could not be transferred.
 ```
 
 
@@ -136,6 +138,6 @@ One basic check would be to install PostgreSQL on your local machine, download t
 sudo apt-get update
 sudo apt-get install postgresql
 tar -xzfv 2017-07-04-daily.tar.gz
-tar -xzfv 2017-07-04-daily/observatory.sql.gz
+gunzip 2017-07-04-daily/observatory.sql.gz
 psql -U postgres -a -f 2017-07-04-daily/observatory.sql
 ```
