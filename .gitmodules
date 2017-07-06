@@ -1,0 +1,4 @@
+[submodule "submodules/audit-trigger"]
+	path = submodules/audit-trigger
+	url = https://github.com/2ndQuadrant/audit-trigger.git
+	branch = master
