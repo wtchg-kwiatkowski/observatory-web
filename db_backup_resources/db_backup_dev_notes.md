@@ -147,9 +147,12 @@ sudo -u postgres psql postgres
 
 To extract and restore one of the backup files:
 ```
-tar -xzfv 2017-07-04-daily.tgz
-gunzip 2017-07-04-daily/observatory.sql.gz
-source 2017-07-04-daily/observatory.sql
+tar -xzf 2017-07-04-daily.tgz
+gunzip observatory.sql.gz
+sudo -u postgres psql postgres
+\i observatory.sql
+\list
+\q
 ```
 
 
