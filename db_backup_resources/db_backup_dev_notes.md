@@ -152,12 +152,14 @@ gunzip globals.sql.gz
 gunzip postgres.sql.gz
 gunzip observatory.sql.gz
 sudo -u postgres psql postgres
+CREATE DATABASE observatory;
+\c observatory
 \i globals.sql
 \i postgres.sql
 \i observatory.sql
 \i audit.sql
 \dn
-\dt
+\dt observatory.
 \l
 \q
 ```
