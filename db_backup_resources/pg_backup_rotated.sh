@@ -57,7 +57,7 @@ function perform_backups()
 {
 	THIS_BACKUP_TYPE=$1 # daily, weekly, monthly
   THIS_BACKUP_DIR_NAME="`date +\%Y-\%m-\%d`-$THIS_BACKUP_TYPE"
-	THIS_BACKUP_DIR_PATH=$BACKUPS_DIR"$THIS_BACKUP_DIR_NAME/"
+	THIS_BACKUP_DIR_PATH=$BACKUPS_DIR/"$THIS_BACKUP_DIR_NAME"/
  
 	echo "Making backup directory in $THIS_BACKUP_DIR_PATH"
  
