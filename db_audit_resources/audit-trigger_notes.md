@@ -97,6 +97,24 @@ SELECT audit.audit_table('countries');
 \df countries
 ```
 
+You should see a message like this:
+```
+NOTICE:  trigger "audit_trigger_row" for relation "observatory.countries" does not exist, skipping
+CONTEXT:  SQL statement "DROP TRIGGER IF EXISTS audit_trigger_row ON observatory.countries"
+PL/pgSQL function audit.audit_table(regclass,boolean,boolean,text[]) line 7 at EXECUTE
+NOTICE:  trigger "audit_trigger_stm" for relation "observatory.countries" does not exist, skipping
+CONTEXT:  SQL statement "DROP TRIGGER IF EXISTS audit_trigger_stm ON observatory.countries"
+PL/pgSQL function audit.audit_table(regclass,boolean,boolean,text[]) line 8 at EXECUTE
+NOTICE:  CREATE TRIGGER audit_trigger_row AFTER INSERT OR UPDATE OR DELETE ON observatory.countries FOR EACH ROW EXECUTE PROCEDURE audit.if_modified_func('true');
+NOTICE:  CREATE TRIGGER audit_trigger_stm AFTER TRUNCATE ON observatory.countries FOR EACH STATEMENT EXECUTE PROCEDURE audit.if_modified_func('true');
+ audit_table 
+-------------
+ 
+(1 row)
+
+```
+
+
 
 To set up auditing, log in to the observatory-db machine and type:
 ```
@@ -107,10 +125,30 @@ sudo chown postgres:postgres /var/lib/postgresql/scripts/audit.sql
 sudo -u postgres psql observatory
 \i ~/scripts/audit.sql
 \dt audit.
+\dt observatory.
 SELECT audit.audit_table('observatory.countries');
-
-\q
+SELECT audit.audit_table('observatory.features');
+SELECT audit.audit_table('observatory.featuretypes');
+SELECT audit.audit_table('observatory.identified_strains');
+SELECT audit.audit_table('observatory.identified_straintypes');
+SELECT audit.audit_table('observatory.regions');
+SELECT audit.audit_table('observatory.samples');
+SELECT audit.audit_table('observatory.sampletypes');
+SELECT audit.audit_table('observatory.sites');
 ```
 
-TODO: https://github.com/2ndQuadrant/audit-trigger/pull/20/files
+To see the list of active triggers (There should be a `_row` trigger and a statement `_stm` trigger for each table.) :
+```
+SELECT nspname, relname, tgname, proname from pg_trigger
+JOIN pg_proc ON pg_proc.oid = pg_trigger.tgfoid
+JOIN pg_class ON pg_class.oid = pg_trigger.tgrelid
+JOIN pg_namespace ON pg_namespace.oid = pg_class.relnamespace
+WHERE tgname LIKE 'audit_trigger_%';
+```
 
+To exit the psql CLI type `\q` and enter.
+
+To remove the audit and all logs for a schema (See above for dropping triggers.):
+```
+DROP SCHEMA audit CASCADE;
+```
