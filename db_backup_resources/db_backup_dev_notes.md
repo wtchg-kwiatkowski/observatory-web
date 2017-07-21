@@ -129,6 +129,13 @@ CommandException: 1 file/object could not be transferred.
 ```
 
 
+### Making an ad hoc backup of the observatory database
+
+```
+ssh 35.185.117.147
+pg_dump -Fp -U "lee" "observatory" | gzip > /home/lee/observatory.sql.gz
+```
+
 
 ## Checking the backups are valid.
 
@@ -145,13 +152,19 @@ sudo -u postgres psql postgres
 \q
 ```
 
+You can download backup files to your local home directory from https://console.cloud.google.com/storage/browser/observatory-db-backups
+
+I don't know (yet) why they download as `.tar` files, even though they are `.tgz` files.
+
 To extract and restore one of the backup files:
 ```
-sudo cp 2017-07-07-weekly.tgz /var/log/postgresql/
-cd /var/log/postgresql/
-sudo tar -xzf 2017-07-07-weekly.tgz
+sudo cp ~/2017-07-17-daily.tar /etc/postgresql/9.5/main/
+cd /etc/postgresql/9.5/main/
+sudo tar -xzf 2017-07-17-daily.tar
 sudo gunzip *.sql.gz
 sudo -u postgres psql postgres
+SET search_path TO observatory;
+DROP DATABASE observatory;
 CREATE DATABASE observatory;
 \c observatory
 \i audit.sql
@@ -164,6 +177,7 @@ CREATE DATABASE observatory;
 \l
 \q
 ```
+
 
 
 
