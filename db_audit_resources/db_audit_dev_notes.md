@@ -5,10 +5,14 @@ Used this web page as a starting point: https://wiki.postgresql.org/wiki/Audit_t
 A more powerful audit trigger for PostgreSQL 9.1+ only is available [at the Audit Trigger for PostgreSQL 9.1plus snippet page](https://wiki.postgresql.org/wiki/Audit_trigger_91plus).
 ```
 
-To see the version of PostgreSQL server installed, log into the machine and type:
-`/usr/lib/postgresql/9.6/bin/postgres -V`
+To see the version of PostgreSQL:
+```
+sudo -u postgres psql postgres
+SELECT version();
+\q
+```
 
-At time of writing: `postgres (PostgreSQL) 9.6.3`
+At time of writing: locally `9.5.7`; remotely `9.6.3`.
 
 Advice about configuring suitable roles: https://wiki.postgresql.org/wiki/Audit_trigger_91plus
 ```
