@@ -386,7 +386,17 @@ Tables from previously supplied data: variants.
 
 
 
+studies:
+```
+CREATE VIEW observatory.studies_view AS
+SELECT DISTINCT sa.study_id
+FROM observatory.samples sa
+;
 
+SELECT * FROM observatory.studies_view LIMIT 10;
+
+\dv observatory.
+```
 
 
 
