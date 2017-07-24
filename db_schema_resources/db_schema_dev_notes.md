@@ -368,6 +368,7 @@ SELECT sa.sample_id
  , sa.sampling_date
  , sa.process_type
  , sa.run_accessions
+ , sa.study_id
 FROM observatory.samples sa
 JOIN observatory.sites si ON si.site_id = sa.site_id
 JOIN observatory.countries co ON co.country_id = si.country_id
