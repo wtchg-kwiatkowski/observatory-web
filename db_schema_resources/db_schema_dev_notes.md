@@ -400,7 +400,34 @@ SELECT * FROM observatory.studies_view LIMIT 10;
 ```
 
 
-
+To replace a view (`ALTER VIEW` and `REPLACE VIEW` might not do what you expect):
+samples:
+```
+DROP VIEW observatory.samples_view;
+CREATE VIEW observatory.samples_view AS
+SELECT sa.sample_id
+ , si.site_id
+ , si.name AS site
+ , co.country_id
+ , co.name AS country
+ , re.region_id
+ , re.name AS region
+ , si.lat AS site_lat
+ , si.lng AS site_lng
+ , co.lat AS country_lat
+ , co.lng AS country_lng
+ , re.lat AS region_lat
+ , re.lng AS region_lng
+ , sa.sampling_date
+ , sa.process_type
+ , sa.run_accessions
+ , sa.study_id
+FROM observatory.samples sa
+JOIN observatory.sites si ON si.site_id = sa.site_id
+JOIN observatory.countries co ON co.country_id = si.country_id
+JOIN observatory.regions re ON re.region_id = si.region_id
+GROUP BY (sa.sample_id, si.site_id, co.country_id, re.region_id)
+;
 
 
 
