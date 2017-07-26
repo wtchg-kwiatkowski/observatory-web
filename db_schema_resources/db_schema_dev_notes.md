@@ -385,7 +385,7 @@ Tables from studies importer plugin: studies; study_people; study_publications.
 
 Tables from previously supplied data: variants.
 
-
+## Creating more views
 
 studies:
 ```
@@ -399,6 +399,23 @@ SELECT * FROM observatory.studies_view LIMIT 10;
 \dv observatory.
 ```
 
+
+featuretypes:
+```
+CREATE VIEW observatory.featuretypes_view AS
+SELECT ft.feature_id
+ , ft.type_id
+ , ft.description
+FROM observatory.featuretypes ft
+;
+
+SELECT * FROM observatory.featuretypes_view LIMIT 10;
+
+\dv observatory.
+```
+
+
+## Replacing a view
 
 To replace a view (`ALTER VIEW` and `REPLACE VIEW` might not do what you expect):
 samples:
