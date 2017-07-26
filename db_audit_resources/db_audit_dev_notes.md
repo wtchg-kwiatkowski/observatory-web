@@ -156,3 +156,21 @@ To remove the audit and all logs for a schema (See above for dropping triggers.)
 ```
 DROP SCHEMA audit CASCADE;
 ```
+
+
+
+## Testing that the audit triggers are working
+
+Log into a particular database as a particular user, e.g.:
+```
+psql -h localhost -d observatory_dev1 -U lee
+```
+
+Check to see what the audit logs currently look like, e.g.:
+```
+SELECT event_id, schema_name, table_name, session_user_name, client_query FROM audit.logged_actions LIMIT 10;
+```
+
+
+
+
