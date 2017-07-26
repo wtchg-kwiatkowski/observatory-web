@@ -34,7 +34,7 @@ source "${CONFIG_FILE_PATH}"
 ###########################
  
 # Make sure we're running as the required backup user
-if [ "$RUN_AS_USER" != "" -a "$(id -un)" != "$RUN_AS_USER" ] ; then
+if [ "$RUN_AS_USER" != "" -a "$(id -un)" != "$RUN_AS_USER" ]; then
 	echo "This script must be run as $RUN_AS_USER. Exiting." 1>&2
 	exit 1
 fi
@@ -46,7 +46,7 @@ fi
 
 if [ ! $DB_USER ]; then
 	DB_USER="postgres"
-fi;
+fi
  
  
 ###########################
@@ -56,15 +56,31 @@ fi;
 function perform_backups()
 {
 	THIS_BACKUP_TYPE=$1 # daily, weekly, monthly
+  
+  # The monthly naming scheme is the default.
   THIS_BACKUP_DIR_NAME="`date +\%Y-\%m-\%d`-$THIS_BACKUP_TYPE"
-	THIS_BACKUP_DIR_PATH=$BACKUPS_DIR/"$THIS_BACKUP_DIR_NAME"/
+  
+  WEEKNUMBER=$((($(date +%-d)-1)/7+1))
+  
+  if [ "$THIS_BACKUP_TYPE" = 'weekly' ]; then
+
+    THIS_BACKUP_DIR_NAME="`date +\%A`$WEEKNUMBER-$THIS_BACKUP_TYPE"
+
+  elif [ "$THIS_BACKUP_TYPE" = 'daily' ]; then
+
+    THIS_BACKUP_DIR_NAME="`date +\%d`-$THIS_BACKUP_TYPE"
+
+  fi
+  
+  
+	THIS_BACKUP_DIR_PATH="$BACKUPS_DIR/$THIS_BACKUP_DIR_NAME/"
  
 	echo "Making backup directory in $THIS_BACKUP_DIR_PATH"
  
 	if ! mkdir -p $THIS_BACKUP_DIR_PATH; then
 		echo "Cannot create backup directory in $THIS_BACKUP_DIR_PATH. Exiting." 1>&2
-		exit 1;
-	fi;
+		exit 1
+	fi
  
 	#######################
 	### GLOBALS BACKUPS ###
@@ -171,28 +187,28 @@ function perform_backups()
 	echo -e "\nAll database backups complete!"
 
 
-  ###########################
-	###### .TGZ & CLOUD #######
-	###########################
+  ##############################
+	###### .tar.gz & CLOUD #######
+	##############################
  
   echo -e "\n\nPerforming further actions"
 	echo -e "--------------------------------------------\n"
 
   if [ $TGZ_EACH_SET_OF_BACKUPS = "yes" ]
   then
-    if ! tar -czf "$THIS_BACKUP_DIR_NAME".tgz -C $THIS_BACKUP_DIR_PATH .; then
-      echo "[!!ERROR!!] Failed to compress database backups into one TGZ file"
+    if ! tar -czf "$THIS_BACKUP_DIR_NAME".tar.gz -C $THIS_BACKUP_DIR_PATH .; then
+      echo "[!!ERROR!!] Failed to compress database backups into one .tar.gz file"
     else
       rm -r $THIS_BACKUP_DIR_PATH
-      mv "$THIS_BACKUP_DIR_NAME".tgz $BACKUPS_DIR
-      echo -e "\nAll database backups have been compressed into one TGZ file."
+      mv "$THIS_BACKUP_DIR_NAME".tar.gz $BACKUPS_DIR
+      echo -e "\nAll database backups have been compressed into one .tar.gz file."
       
       if [ $COPY_BACKUP_TO_CLOUD_BUCKET = "yes" ] && [ $CLOUD_BUCKET_URI ]
       then
-        if ! gsutil cp $BACKUPS_DIR/"$THIS_BACKUP_DIR_NAME".tgz $CLOUD_BUCKET_URI; then
-          echo "[!!ERROR!!] Failed to copy TGZ file to $CLOUD_BUCKET_URI"
+        if ! gsutil cp $BACKUPS_DIR/"$THIS_BACKUP_DIR_NAME".tar.gz $CLOUD_BUCKET_URI; then
+          echo "[!!ERROR!!] Failed to copy .tar.gz file to $CLOUD_BUCKET_URI"
         else
-          echo -e "\nTGZ file has been copied to $CLOUD_BUCKET_URI"
+          echo -e "\The .tar.gz file has been copied to $CLOUD_BUCKET_URI"
         fi
       fi  
       
@@ -222,11 +238,11 @@ DAY_OF_MONTH=`date +%d`
 if [ $DAY_OF_MONTH -eq 1 ];
 then
 	# Delete all expired monthly directories
-	find $BACKUPS_DIR -maxdepth 1 -name "*-monthly" -exec rm -rf '{}' ';'
+	# find $BACKUPS_DIR -maxdepth 1 -name "*-monthly.tar.gz" -exec rm -rf '{}' ';'
  
 	perform_backups "monthly"
  
-	exit 0;
+	exit 0
 fi
  
 # WEEKLY BACKUPS
@@ -237,16 +253,16 @@ EXPIRED_DAYS=`expr $((($WEEKS_TO_KEEP * 7) + 1))`
 if [ $DAY_OF_WEEK = $DAY_TO_PERFORM_WEEKLY_BACKUP ];
 then
 	# Delete all expired weekly directories
-	find $BACKUPS_DIR -maxdepth 1 -mtime +$EXPIRED_DAYS -name "*-weekly" -exec rm -rf '{}' ';'
+	find $BACKUPS_DIR -maxdepth 1 -mtime +$EXPIRED_DAYS -name "*-weekly.tar.gz" -exec rm -rf '{}' ';'
  
 	perform_backups "weekly"
  
-	exit 0;
+	exit 0
 fi
  
 # DAILY BACKUPS
  
-# Delete daily backups 7 days old or more
-find $BACKUPS_DIR -maxdepth 1 -mtime +$DAYS_TO_KEEP -name "*-daily" -exec rm -rf '{}' ';'
+# Delete daily backups DAYS_TO_KEEP days old or more
+find $BACKUPS_DIR -maxdepth 1 -mtime +$DAYS_TO_KEEP -name "*-daily.tar.gz" -exec rm -rf '{}' ';'
  
 perform_backups "daily"
