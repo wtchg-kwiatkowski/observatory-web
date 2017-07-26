@@ -17,7 +17,9 @@ from the psql commands.
 ```
 
 
-Got these config resources onto the observatory-db machine by cloning the repo into a home directory.
+## Getting the backup script and resources onto the machine
+
+Get these config resources onto the observatory-db machine by cloning the repo into a home directory.
 
 To clone this repo into your home directory, log in to the observatory-db machine and type:
 ```
@@ -31,13 +33,14 @@ To find the home directory of the existing user `postgres`, log in to the observ
 
 At time of writing: `/var/lib/postgresql`
 
+## Setting up the backup script
+
 To set up the backups, log in to the observatory-db machine and type:
 ```
 cd /var/lib/postgresql
 sudo mkdir scripts backups
-sudo chown postgres:postgres scripts backups
 sudo cp ~/observatory-web/db_backup_resources/{pg_backup.config,pg_backup_rotated.sh,pg_backup.crontab} scripts/
-sudo chown -R postgres:postgres scripts
+sudo chown -R postgres:postgres scripts backups
 sudo chmod u+x scripts/pg_backup_rotated.sh
 sudo crontab -u postgres /var/lib/postgresql/scripts/pg_backup.crontab
 ```
@@ -50,7 +53,7 @@ For more info on how and which backups are made, see:
 To help check whether the cron job will run properly, you can run the job hourly instead of daily by directly modifying the crontab via `sudo crontab -u postgres -e`.
 
 
-## Notes on copying the backup files to a Google Cloud bucket
+## Copying the backup files to a Google Cloud bucket
 
 Used this web page as a starting point: https://cloud.google.com/storage/docs/quickstart-gsutil
 
@@ -59,7 +62,7 @@ The observatory-db instance needs to have its Storage permission set to `Read Wr
 Changes to access scope currently require the instance to be restarted with the new permissions, which changes the IP of the machine.
 
 
-### Notes on setting up a service account for authentication on the observatory-db machine.
+### Setting up a service account for authentication on the observatory-db machine.
 
 If you try to configure the gsutil with `gsutil config`, you might see:
 ```
@@ -95,7 +98,7 @@ gcloud auth list
 ```
 
 
-### Notes on creating a cloud bucket and copying files to it
+### Creating a cloud bucket and copying files to it
 
 To create a cloud bucket via the web console:
 - Log in to the Google Cloud console and create a bucket for the backups from https://console.cloud.google.com/storage/browser
@@ -177,6 +180,8 @@ CREATE DATABASE observatory;
 \l
 \q
 ```
+
+## Naming the backups so they rotate on the cloud
 
 
 
