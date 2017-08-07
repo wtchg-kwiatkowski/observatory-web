@@ -406,7 +406,9 @@ CREATE VIEW observatory.featuretypes_view AS
 SELECT ft.feature_id
  , ft.type_id
  , ft.description
+ , fe.name AS feature
 FROM observatory.featuretypes ft
+JOIN observatory.features fe ON fe.feature_id = ft.feature_id
 ;
 
 SELECT * FROM observatory.featuretypes_view LIMIT 10;
