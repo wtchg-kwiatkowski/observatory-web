@@ -447,17 +447,7 @@ JOIN observatory.countries co ON co.country_id = si.country_id
 JOIN observatory.regions re ON re.region_id = si.region_id
 GROUP BY (sa.sample_id, si.site_id, co.country_id, re.region_id)
 ;
-
-
-
-
-
-
-
-
-
-
-
+```
 
 
 
