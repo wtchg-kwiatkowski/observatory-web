@@ -146,8 +146,67 @@ DROP TABLE observatory.tmp_country_codes_and_geojson;
 ```
 
 
+## Loading colours into the regions table.
+
+Colours have been written to `region_web_colours.tsv` in this directory.
+
+Copy the file to the server:
+```
+scp region_web_colours.tsv lee@35.185.117.147:/home/lee/
+```
+
+Update the regions table and view:
+```
+\d observatory.regions
+ALTER TABLE observatory.regions ADD COLUMN web_colour varchar(25);
+\d observatory.regions
+```
+```
+DROP VIEW observatory.regions_view;
+CREATE VIEW observatory.regions_view AS 
+SELECT re.region_id
+ , re.lat
+ , re.lng
+ , re.name
+ , re.description
+ , re.web_colour
+ , COUNT(sa.sample_id) AS num_samples
+FROM observatory.regions re
+JOIN observatory.sites si ON si.region_id = re.region_id
+JOIN observatory.samples sa ON sa.site_id = si.site_id
+GROUP BY re.region_id
+;
+
+SELECT * FROM observatory.regions_view LIMIT 10;
+```
+
+Note on dropping a column (if you change your mind):
+```
+observatory_dev1=# ALTER TABLE observatory.regions DROP COLUMN web_colour CASCADE;
+NOTICE:  drop cascades to view observatory.regions_view
+ALTER TABLE
+```
 
 
+Import the data:
+```
+ssh 35.185.117.147
+sudo cp region_web_colours.tsv /var/lib/postgresql/
+sudo chown postgres:postgres /var/lib/postgresql/region_web_colours.tsv
+ll /var/lib/postgresql/
+psql --host=127.0.0.1 --port=5432 --dbname=observatory_dev1 --username=lee
+CREATE TABLE observatory.tmp_region_web_colours (region_id varchar(50), web_colour varchar(20));
+COPY observatory.tmp_region_web_colours(region_id, web_colour) FROM '/var/lib/postgresql/region_web_colours.tsv' DELIMITER E'\t' CSV HEADER NULL AS '';
+SELECT region_id, web_colour FROM observatory.tmp_region_web_colours;
+SELECT region_id, web_colour FROM observatory.regions_view;
+UPDATE observatory.regions AS r
+SET web_colour = rwc.web_colour
+FROM observatory.tmp_region_web_colours rwc
+WHERE r.region_id = rwc.region_id;
+SELECT region_id, web_colour FROM observatory.regions_view;
+DROP TABLE observatory.tmp_region_web_colours;
+\dt observatory.
+```
 
 
 
