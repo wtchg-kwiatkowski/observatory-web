@@ -157,26 +157,25 @@ sudo -u postgres psql postgres
 
 You can download backup files to your local home directory from https://console.cloud.google.com/storage/browser/observatory-db-backups
 
-I don't know (yet) why they download as `.tar` files, even though they are `.tgz` files.
+The files download as `.tar` files, even though they are `.tar.gz` or `.tgz` files, presumably because Google Cloud has typed them as `application/x-tar`.
 
 To extract and restore one of the backup files:
 ```
-sudo cp ~/2017-07-17-daily.tar /etc/postgresql/9.5/main/
+sudo cp ~/14-daily.tar /etc/postgresql/9.5/main/
 cd /etc/postgresql/9.5/main/
-sudo tar -xzf 2017-07-17-daily.tar
+sudo tar -xzf 14-daily.tar
 sudo gunzip *.sql.gz
 sudo -u postgres psql postgres
-SET search_path TO observatory;
-DROP DATABASE observatory;
-CREATE DATABASE observatory;
-\c observatory
-\i audit.sql
+SET search_path TO observatory_dev1;
+DROP DATABASE observatory_dev1;
+CREATE DATABASE observatory_dev1;
+\c observatory_dev1
 \i globals.sql
 \i postgres.sql
-\i observatory.sql
+\i observatory_dev1.sql
 \dn
 \dt observatory.
-\dt audit.
+\dv
 \l
 \q
 ```
