@@ -1,1 +1,0 @@
-cut -f 78,93,184 data.bak --complement | sed 's/	nan	/		/g' | sed 's/	nan$/	/g' > data

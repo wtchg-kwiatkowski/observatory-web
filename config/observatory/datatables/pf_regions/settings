@@ -1,0 +1,79 @@
+nameSingle: region
+namePlural: regions
+
+icon: fa-globe
+
+primKey: region_id
+isPositionOnGenome: false
+
+
+quickFindFields: region_id, name, description
+
+sortDefault: name
+
+listView: true
+
+itemTitle: <i style="color:{{web_colour}}" class="fa fa-square" aria-hidden="true"></i> {{name}}
+
+properties: 
+- id: region_id
+  dataType: Text
+- id: lat
+  dataType: Double
+- id: lng
+  dataType: Double
+- id: num_samples
+  dataType: Double
+- id: description
+  dataType: Text
+- id: name
+  name: Region
+  dataType: Text
+- id: geojson
+  dataType: GeoJSON
+  isCategorical: False
+- id: web_colour
+  dataType: Text
+
+dataItemViews:              # Lists the custom views that should appear in the popup for an individual data table item
+- type: Template                                       # Add a template based view
+  name: Details
+  content: |
+    <PageTemplate bgurl="mountains.jpg">
+    <BreadCrumb a="pf" b="geography"><span><i style="padding-right:3px;color:{{web_colour}}" class="fa fa-square" aria-hidden="true"></i> {{name}}</span></BreadCrumb>
+    <CardStack>
+    <Card>
+    <CardTitle title="Antimalarial drug resistance" subtitle="" /> <CardText> Estimated proportion of <em>P. falciparum</em> infections in <strong>{{name}}</strong> that have molecular markers for drug resistant
+    <ul>
+    {{#query 'drug_id' 'name' table='pf_drugs'}}
+        <li><strong>
+            <PercentMatching table="pf_samples" numQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{../region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"yes","Tpe":"="}],"Tpe":"AND"}' domQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{../region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"missing","Tpe":"<>"}],"Tpe":"AND"}'/>
+        </strong> are resistant to <ItemLink table="pf_drugs" primKey={{drug_id}}>{{name}}</ItemLink></li>
+    {{/query}}
+    </ul>
+    </Card>
+    <Card >
+    <CardTitle title="Countries in {{name}}" subtitle="" titleStyle='{"fontSize":"18px"}' /> <CardText> The Malaria Observatory has data on <strong><QueryResult table="pf_samples" expression='["count", [["distinct", ["country_id"]]]]' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong> countries with samples classed as <strong>{{name}}</strong></br> 
+    <p><SelectRow table="countries" queryTable="pf_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}'><p>
+    </CardText>
+    </Card>
+    <Card >
+    <CardTitle title="Sampling sites in {{name}}" subtitle=""  />
+    <CardText>
+    <p>The Malaria Observatory has <strong><QueryResult table="pf_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong> 
+    <em>P.falciparum</em> samples from <strong><QueryResult table="pf_samples" expression='["count", [["distinct", ["site_id"]]]]' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong> study sites classed as 
+    <strong>{{name}}</strong>. 
+    <div style="height:500px">
+    <Map zoom=3>
+    <TileLayer />
+    <TableGeoJSONsLayer showLegend="false" table="pf_regions" geoJsonProperty="geojson" colourProperty="web_colour" labelProperty="name" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' />
+    <TableMarkersLayer showLegend="false" table="pf_samples" markerColourProperty="country_id" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' />
+    </Map>
+    </div>
+    </CardText>
+    </Card>
+    </CardStack>
+    </PageTemplate>
+
+
+

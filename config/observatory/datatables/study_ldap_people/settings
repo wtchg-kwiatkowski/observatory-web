@@ -4,11 +4,10 @@ primKey: uid
 properties:
 - id: study
   dataType: Text
-  relation:                         # This block defines a many-to-one foreign relation to a parent table
-    tableId: studies                 # Datatable id of the parent table
-    forwardName: member of             # Display name of the relation from child to parent
-    reverseName: contains            # Display name of the relation from parent to child 
-
+  relation:
+    tableId: studies
+    forwardName: member of
+    reverseName: contains
 - id: jobTitle1
   dataType: Text
 - id: jobTitle2
@@ -45,3 +44,4 @@ properties:
   dataType: Text
 - id: o3
   dataType: Text
+

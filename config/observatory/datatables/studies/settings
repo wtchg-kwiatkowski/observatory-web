@@ -1,7 +1,7 @@
 nameSingle: study
 namePlural: studies
 description: Partner studies are comprised of researchers who are collaborating to address a unique scientific problem, and sharing the population-genetic data through this community project.
-primKey: study_number
+primKey: study
 
 listView: True
 icon: fa-users
@@ -25,7 +25,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
         <Card style="margin-bottom: 20px">
             <CardHeader title="Key People"/>
             <CardText>
-                {{#each study_people}}
+                {{#each alf_study_ldap_people}}
                   <p>
                    <div style="padding-bottom: 5px">{{{givenName}}} {{{sn}}}
                    {{#if mail}}
@@ -50,34 +50,29 @@ dataItemViews:              # Lists the custom views that should appear in the p
             <div style="height:300px;">
                 <Map zoom=3>
                     <TileLayer />
-                    <TableMarkersLayer table="samples" markerColourProperty="CountryName" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"AlfrescoStudyCode","CompValue":"{{study}}","isRoot":true,"Tpe":"="}'/>
+                    <TableMarkersLayer table="bbn_samples" markerColourProperty="Country_ID" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"AlfrescoStudyCode","CompValue":"{{study}}","isRoot":true,"Tpe":"="}'/>
                     <TileLayer url="/panoptes/Maps/Pf60/MODEL43.2015.inc.rate.PR.rmean.stable/tiles/{z}/{x}/{y}.png" maxNativeZoom=8 maxZoom=17 minZoom=0 opacity=0.6 tms="true" ext="png" zIndex=17 attribution="Malaria Atlas Project"/>
                 </Map>
             </div>
         </Card>
     </div>
-    <h2> Partner Study {{study_number}} - <QueryResult table="samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"AlfrescoStudyCode","CompValue":"{{study}}","isRoot":true,"Tpe":"="}'/> samples</h2>
+    <h2> Partner Study {{study_number}} - <QueryResult table="bbn_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"AlfrescoStudyCode","CompValue":"{{study}}","isRoot":true,"Tpe":"="}'/> samples</h2>
     <h3>{{{webTitle}}}</h3>
     <div style="text-align: justify;">{{{description}}}</div>
     <div style="padding-top:10px">
-      <PopupButton icon="{{config.tablesById.samples.icon}}" label="Samples from this study" target="tab">
-        <DataTableWithActions table="samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"AlfrescoStudyCode","CompValue":"{{study}}","isRoot":true,"Tpe":"="}'/>
-      </PopupButton>
-      <PopupButton icon="table" label="Genotypes " target="tab">
-        <GenomeBrowserWithActions>
-          <PerRowIndicatorChannel table="variants" colourProperty="is_snp" />
-          <GenotypesChannel table="genotypes" rowLabel="Site" rowSort="Site" rowQuery='{"whcClass":"comparefixed","isCompound":false,"ColName":"AlfrescoStudyCode","CompValue":"{{study}}","isRoot":true,"Tpe":"="}'/>
-        </GenomeBrowserWithActions>
+      <PopupButton icon="{{config.tablesById.bbn_samples.icon}}" label="Samples from this study" target="tab">
+        <DataTableWithActions table="bbn_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"AlfrescoStudyCode","CompValue":"{{study}}","isRoot":true,"Tpe":"="}'/>
       </PopupButton>
     </div>
     <div style="width:65%;height:200px;padding-top:10px;">
-    <PivotTableView style="width:65%;height:200px;padding-top:10px;" table="samples" columnProperty="Year" rowProperty="Site" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"AlfrescoStudyCode","CompValue":"{{study}}","isRoot":true,"Tpe":"="}'/>
+    <PivotTableView style="width:65%;height:200px;padding-top:10px;" table="obs_samples" columnProperty="sampling_date" rowProperty="site_id" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"study_id","CompValue":"{{study_number}}","isRoot":true,"Tpe":"="}'/>
     </div>
     <div style="text-align: justify;">
-    {{#if study_publications}}
+    {{#if alf_study_publications}}
         <h3>Publications from the partnership:</h3>
-        {{#each study_publications}}
+        {{#each alf_study_publications}}
            <div style="font-size: 12px"> {{{citation}}} <a href="http://dx.doi.org/{{doi}}">{{doi}}</a> <a href="http://www.ncbi.nlm.nih.gov/pubmed/{{pmid}}">{{pmid}}</a> </div>
     {{/each}}
     {{/if}}
     </div>
+

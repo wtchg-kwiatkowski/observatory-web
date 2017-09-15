@@ -1,19 +1,73 @@
 <title>Start</title>
-<div class="centering-container vertical stack" style="text-align: center">
-  <!--<h2 style="">-->
-      <!--{{{config.settings.nameBanner}}}-->
-  <!--</h2>-->
-  <h2>
-      Tracking malaria globally using full genome sequencing
-  </h2>
- <div className="horizontal stack">
-   <div className="vertical stack centering-container">
-       <h3>Latest Observations:</h3>
-       <Card style="width:500px;margin-bottom: 20px;">
-           <CardTitle title="Card title" subtitle="Card subtitle" />
-           <CardText> This text is on a mui card</CardText>
-       </Card>
-       <Card style="width:500px;margin-bottom: 20px;"><CardText> This text is on a mui card</CardText></Card>
-   </div>
-   <div className="vertical stack">Latest Observations:</div>
- <div>
+<PageTemplate bgurl="machines.jpg">
+    <div className="obs-leader">
+        The <span className="obs-highlight">Malaria Observatory</span> uses <span className="obs-highlight">open data and genome analytics</span>
+        to provide up to date information on the parasite and mosquito populations that cause malaria
+    </div>
+    <CardStack>
+        <Card>
+            <CardTitle title="Guidebooks" subtitle="explore and learn about our global malaria genome data"/>
+            <CardText>
+                <List>
+                    <ObsListItem href="pf.html" secondaryText="the most widespread and deadly species of malaria" secondaryTextLines="1">
+                        <Icon class="icon" name='bicycle'/>
+                        <em>Plasmodium falciparum</em>
+                    </ObsListItem>
+                    <ObsListItem href="pv.html" secondaryText="a less virulent form of malaria common in Asia" secondaryTextLines="1">
+                        <Icon class="icon" name='bicycle'/>
+                        <em>Plasmodium vivax</em>
+                    </ObsListItem>
+                    <ObsListItem href="ag.html" secondaryText="the main mosquito vector of malaria worldwide" secondaryTextLines="1">
+                        <Icon class="icon" name='bicycle'/>
+                        <em>Anopheles gambiae</em>
+                    </ObsListItem>
+                </List>
+            </CardText>
+        </Card>
+
+        <Card>
+            <CardTitle title="Lastest stories and analysis" subtitle="key insights and trends from the evolving global malaria genome"/>
+            <CardText>
+                <List>
+                    <ObsListItem href="blog1.html" secondaryText="How many independent origins of artemesinin resistance have
+                                there been?" secondaryTextLines="1">
+                        <Icon class="icon" name='newspaper-o'/>
+                        <div>Origins of artemesinin resistance</div>
+                    </ObsListItem>
+                    <ObsListItem href="blog2.html" secondaryText="RDTs can fail due to due to parasite gene deletions, how widespread is the problem?" secondaryTextLines="1">
+                        <Icon class="icon" name='newspaper-o'/>
+                        <div>Rapid Diagnostic Test failure</div>
+                    </ObsListItem>
+                    <ObsListItem href="news.html" secondaryText="view previous news and analysis" secondaryTextLines="1">
+                        <Icon class="icon" name='newspaper-o'/>
+                        <div>Archive</div>
+                    </ObsListItem>
+                </List>
+            </CardText>
+        </Card>
+        <Card>
+            <CardTitle title="Learn more about the Malaria Observatory"/>
+
+            <CardText>
+                <List>
+                    <ObsListItem href="about.html" secondaryText="secondary text" secondaryTextLines="1">
+                        <Icon class="icon" name='question-circle-o'/>
+                        <div>About the Observatory</div>
+                    </ObsListItem>
+                    <ObsListItem href="about.html" secondaryText="how you can contibute to the observatory" secondaryTextLines="1">
+                        <Icon class="icon" name='plus-square-o'/>
+                        <div>Contributing</div>
+                    </ObsListItem>
+                    <ObsListItem href="publications.html" secondaryText="scientific publications and technical reports" secondaryTextLines="1">
+                        <Icon class="icon" name='file-text-o'/>
+                        <div>Publications</div>
+                    </ObsListItem>
+                    <ObsListItem href="team.html" secondaryText="secondary text" secondaryTextLines="1">
+                        <Icon class="icon" name='user-o'/>
+                        <div>The team</div>
+                    </ObsListItem>
+                </List>
+            </CardText>
+        </Card>
+    </CardStack>
+</PageTemplate>

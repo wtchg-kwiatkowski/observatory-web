@@ -1,23 +1,18 @@
-# The displayed name of this dataset
-name: Observatory
-nameBanner: Observatory
+name: ''
+nameBanner: ''
 
-
-
-# Optional: a list of all the data table identifiers in the dataset
-# These names should correspond to the folder banes in [datatables]
-# The main reason for including this is to provide an explicit ordering of the data tables
 dataTables:
-- variants
-- samples
 - studies
-- study_people
+- study_ldap_people
 - study_publications
-- sites
+- pf_ffs_samples
 - countries
-#- populations
-#- genome
-
-#List the 2D datatables that should be exposed in the app.
-#twoD_DataTables:
-#- genotypes
+- pf_features
+- pf_regions
+- pf_samples
+- sites
+- pf_featuretypes
+- pf_drugs
+- pf_resgenes
+#- strains
+- variants

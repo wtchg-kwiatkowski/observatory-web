@@ -1,162 +1,38 @@
-# For more information about this file, see: http://panoptes.readthedocs.org/en/latest/importdata/importsettings/datatable.html
-nameSingle: country     # Display name referring to a table item (single, no capital)
-namePlural: countries    # Display name referring to a table item (plural, no capital)
-description: Explore the data by country     # A description of this data table
+nameSingle: country
+namePlural: countries
+
+description: Information about the countries where samples were collected     # A description of this data table
 
 icon: fa-globe
 
-# The primary key column ID for this table. This should correspond to a column in data containing a unique value for each record
-# Optionally, this parameter can be set to 'AutoKey' to instruct the software to automatically generate a primary key
-primKey: CountryCode
-isPositionOnGenome: false
-
-# The following list of properties will be used by some tools that allow the user to quickly find a (set of) item(s)
-quickFindFields: CountryCode, CountryName, SubContinentCode, SubContinentName
-
-# Defines the default property to sort the table
-sortDefault: CountryName
-
+primKey: country_id
+quickFindFields: country_id, name
+sortDefault: name
 listView: true
 
-itemTitle: "{{#isnt CountryCode 'Lab'}}<img style='width:20px; padding-right:5px' src='https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.8.0/flags/4x3/{{lowercase CountryCode}}.svg'/>{{CountryCode}} - {{/isnt}}{{CountryName}}"
+itemTitle: "{{#isnt country_id 'Lab'}}<img style='width:20px; padding-right:5px' src='https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.8.0/flags/4x3/{{lowercase country_id}}.svg'/>{{country_id}}, {{/isnt}}{{name}}"
 
-# The following lists all the columns in the data files, and tells Panoptes how to interpret them as properties of the data items
-# NOTE: Optionally, "AutoScanProperties=true" can be used to instruct Panoptes to automatically import all data table columns
-# Both mechanisms can be combined: further settings can still be specified for individual properties
-properties:
-- id: CountryCode, CountryName, SubContinentCode, SubContinentName
+
+properties: 
+- id: country_id
   dataType: Text
 
-- id: CountryCode
-  name: ISO Code
+- id: lat
+  dataType: Double
+- id: lng
+  dataType: Double
 
-- id: CountryName
-  name: Name
+- id: num_samples
+  dataType: Double
 
-- id: SubContinentCode
-  name: Sub-Continent Code
+- id: name
+  dataType: Text
 
-- id: SubContinentName
-  name: Sub-Continent Name
+- id: alpha_3_code
+  dataType: Text
 
-dataItemViews:              # Lists the custom views that should appear in the popup for an individual data table item
-- type: ObservatoryCountryView
-  name: Hello
-- type: Template                                       # Add a template based view
-  name: Details
-  content: |
-    <div style="float: right;width: 30%;margin-left:20px">
-        <Card style="height:300px;">
-            <div style="height:300px;">
-                <Map zoom=3>
-                    <TileLayer />
-                    <TableMarkersLayer table="samples" markerColourProperty="Site" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"CountryCode","CompValue":"{{CountryCode}}","isRoot":true,"Tpe":"="}'/>
-                    <TileLayer url="/panoptes/Maps/Pf60/MODEL43.2015.inc.rate.PR.rmean.stable/tiles/{z}/{x}/{y}.png" maxNativeZoom=8 maxZoom=17 minZoom=0 opacity=0.6 tms="true" ext="png" zIndex=17 attribution="Malaria Atlas Project"/>
-                </Map>
-            </div>
-        </Card>
-    </div>
-    <h2>{{#isnt CountryCode 'Lab'}}<img style='width:50px; padding-right:5px; vertical-align: middle' src='https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.8.0/flags/4x3/{{lowercase CountryCode}}.svg'/>{{/isnt}}
-      <span style="vertical-align: middle">{{#isnt CountryName 'Lab'}}{{CountryName}}{{else}}Laboratory Samples{{/isnt}} ({{CountryCode}})</span> - <QueryResult table="samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"CountryCode","CompValue":"{{CountryCode}}","isRoot":true,"Tpe":"="}'/> samples
-    </h2>
-    {{#isnt CountryCode 'Lab'}}
-        <h3>
-          {{SubContinentName}} ({{SubContinentCode}})
-        </h3>
-    {{/isnt}}
-        <div style="padding-top:10px">
-      <PopupButton icon="{{config.tablesById.samples.icon}}" label="Samples from this country" target="tab">
-        <DataTableWithActions table="samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"CountryCode","CompValue":"{{CountryCode}}","isRoot":true,"Tpe":"="}'/>
-      </PopupButton>
-      <PopupButton icon="table" label="Genotypes " target="tab">
-        <GenomeBrowserWithActions>
-          <PerRowIndicatorChannel table="variants" colourProperty="is_snp" />
-          <GenotypesChannel table="genotypes" rowLabel="Site" rowSort="Site" rowQuery='{"whcClass":"comparefixed","isCompound":false,"ColName":"CountryCode","CompValue":"{{CountryCode}}","isRoot":true,"Tpe":"="}'/>
-        </GenomeBrowserWithActions>
-      </PopupButton>
-    </div>
-    <h3>Samples:</h3>
-    <div style="max-width:60%">
-    <Tabs>
-      <Tab label="Year">
-        <PivotTableView table="samples" columnProperty="Year" rowProperty="Site" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"CountryCode","CompValue":"{{CountryCode}}","isRoot":true,"Tpe":"="}'/>
-      </Tab>
-      <Tab label="Species">
-        <PivotTableView table="samples" columnProperty="SampleClass" rowProperty="Site" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"CountryCode","CompValue":"{{CountryCode}}","isRoot":true,"Tpe":"="}'/>
-      </Tab>
-    </Tabs>
-    </div>
-    <div style="padding-top:20px">
-    <h3>Genome-determined resistance status:</h3>
-    <Tabs>
-      <Tab label="Chloroquine">
-        <PivotTableView display="percentAll" table="samples" columnProperty="Year" rowProperty="CQresistant" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"CountryCode","CompValue":"{{CountryCode}}","isRoot":true,"Tpe":"="}'/>
-                    <div style="margin-top:20px;height:400px;">
-                        <Map zoom=3>
-                            <TileLayer />
-                            <TableMarkersLayer table="samples" markerColourProperty="CQresistant" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"CountryCode","CompValue":"{{CountryCode}}","isRoot":true,"Tpe":"="}'/>
-                            <TileLayer url="/panoptes/Maps/Pf60/MODEL43.2015.inc.rate.PR.rmean.stable/tiles/{z}/{x}/{y}.png" maxNativeZoom=8 maxZoom=17 minZoom=0 opacity=0.6 tms="true" ext="png" zIndex=17 attribution="Malaria Atlas Project"/>
-                        </Map>
-                    </div>
+- id: geojson
+  dataType: Text
+  isCategorical: False
 
-      </Tab>
-      <Tab label="Pyrimethamine">
-        <PivotTableView table="samples" columnProperty="Year" rowProperty="PYRresistant" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"CountryCode","CompValue":"{{CountryCode}}","isRoot":true,"Tpe":"="}'/>
-                            <div style="margin-top:20px;height:400px;">
-                                <Map zoom=3>
-                                    <TileLayer />
-                                    <TableMarkersLayer table="samples" markerColourProperty="PYRresistant" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"CountryCode","CompValue":"{{CountryCode}}","isRoot":true,"Tpe":"="}'/>
-                                    <TileLayer url="/panoptes/Maps/Pf60/MODEL43.2015.inc.rate.PR.rmean.stable/tiles/{z}/{x}/{y}.png" maxNativeZoom=8 maxZoom=17 minZoom=0 opacity=0.6 tms="true" ext="png" zIndex=17 attribution="Malaria Atlas Project"/>
-                                </Map>
-                            </div>
-
-      </Tab>
-      <Tab label="Sulfadoxine">
-        <PivotTableView table="samples" columnProperty="Year" rowProperty="SDXresistant" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"CountryCode","CompValue":"{{CountryCode}}","isRoot":true,"Tpe":"="}'/>
-                            <div style="margin-top:20px;height:400px;">
-                                <Map zoom=3>
-                                    <TileLayer />
-                                    <TableMarkersLayer table="samples" markerColourProperty="SDXresistant" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"CountryCode","CompValue":"{{CountryCode}}","isRoot":true,"Tpe":"="}'/>
-                                    <TileLayer url="/panoptes/Maps/Pf60/MODEL43.2015.inc.rate.PR.rmean.stable/tiles/{z}/{x}/{y}.png" maxNativeZoom=8 maxZoom=17 minZoom=0 opacity=0.6 tms="true" ext="png" zIndex=17 attribution="Malaria Atlas Project"/>
-                                </Map>
-                            </div>
-
-      </Tab>
-      <Tab label="Mefloquine">
-        <PivotTableView table="samples" columnProperty="Year" rowProperty="MQresistant" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"CountryCode","CompValue":"{{CountryCode}}","isRoot":true,"Tpe":"="}'/>
-                            <div style="margin-top:20px;height:400px;">
-                                <Map zoom=3>
-                                    <TileLayer />
-                                    <TableMarkersLayer table="samples" markerColourProperty="MQresistant" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"CountryCode","CompValue":"{{CountryCode}}","isRoot":true,"Tpe":"="}'/>
-                                    <TileLayer url="/panoptes/Maps/Pf60/MODEL43.2015.inc.rate.PR.rmean.stable/tiles/{z}/{x}/{y}.png" maxNativeZoom=8 maxZoom=17 minZoom=0 opacity=0.6 tms="true" ext="png" zIndex=17 attribution="Malaria Atlas Project"/>
-                                </Map>
-                            </div>
-
-      </Tab>
-      <Tab label="Artemisinin">
-        <PivotTableView table="samples" columnProperty="Year" rowProperty="ARTresistant" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"CountryCode","CompValue":"{{CountryCode}}","isRoot":true,"Tpe":"="}'/>
-                            <div style="margin-top:20px;height:400px;">
-                                <Map zoom=3>
-                                    <TileLayer />
-                                    <TableMarkersLayer table="samples" markerColourProperty="ARTresistant" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"CountryCode","CompValue":"{{CountryCode}}","isRoot":true,"Tpe":"="}'/>
-                                    <TileLayer url="/panoptes/Maps/Pf60/MODEL43.2015.inc.rate.PR.rmean.stable/tiles/{z}/{x}/{y}.png" maxNativeZoom=8 maxZoom=17 minZoom=0 opacity=0.6 tms="true" ext="png" zIndex=17 attribution="Malaria Atlas Project"/>
-                                </Map>
-                            </div>
-
-      </Tab>
-      <Tab label="Piperaquine">
-        <PivotTableView table="samples" columnProperty="Year" rowProperty="PPQresistant" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"CountryCode","CompValue":"{{CountryCode}}","isRoot":true,"Tpe":"="}'/>
-                            <div style="margin-top:20px;height:400px;">
-                                <Map zoom=3>
-                                    <TileLayer />
-                                    <TableMarkersLayer table="samples" markerColourProperty="PPQresistant" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"CountryCode","CompValue":"{{CountryCode}}","isRoot":true,"Tpe":"="}'/>
-                                    <TileLayer url="/panoptes/Maps/Pf60/MODEL43.2015.inc.rate.PR.rmean.stable/tiles/{z}/{x}/{y}.png" maxNativeZoom=8 maxZoom=17 minZoom=0 opacity=0.6 tms="true" ext="png" zIndex=17 attribution="Malaria Atlas Project"/>
-                                </Map>
-                            </div>
-
-      </Tab>
-    </Tabs>
-    </div>
-
-
-
+primKey: country_id

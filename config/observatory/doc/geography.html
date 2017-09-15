@@ -1,0 +1,72 @@
+<PageTemplate bgurl="mountains.jpg">
+    <BreadCrumb a="pf" b="geography" />
+    <CardStack>
+        <Card >
+            <CardTitle title="Regions of the world" subtitle="" />
+            <CardText>
+                <p>Identifying sub-populations of parasites is important for malaria control. Understanding how
+                    parasites from different sites are related to each other by grouping them into populations lets us
+                    see how sites from different parts of the world are connected to each other, helping us to predict
+                    how drug resistance mutations might spread.</p>
+
+                <p>In the Observatory, we define regions using a combination of genetic relatedness and geographic
+                    proximity. For more information, check out our detailed metholodogy here.</p>
+
+                <p>We divide samples into <strong>
+                    <QueryResult table="pf_regions"/>
+                </strong> regions of the world, each of which has a distinctive sub-population of parasites.
+                </p>
+                <p>
+                    <SelectRow table="pf_regions"/>
+                </p>
+                <p>
+                    <PopupButton icon="arrow-right" label="Example Plot" target="tab">
+                        <ResistanceTimePlot table="pf_samples" yearColumn='year' drugColumns='["ARTresistant"]' >
+                            <CardTitle title="Example plot" subtitle=""/>
+                            <CardText>
+                                A plot which has some data in<br/>
+                            </CardText>
+                        </ResistanceTimePlot>
+                    </PopupButton>
+                </p>
+            </CardText>
+        </Card>
+
+        <Card >
+            <CardTitle title="Countries" subtitle="" />
+
+            <CardText>
+                The Malaria Observatory has genomic data on parasites from <strong>
+                <QueryResult table="countries"/>
+            </strong> countries. Choose a country below to understand more about malaria parasites and sampling sites
+                from a particular country.
+                <p>
+                    <SelectRow table="countries"/>
+                </p>
+            </CardText>
+        </Card>
+        <Card>
+            <CardTitle title="Sampling sites" />
+            <CardText>
+                <p>The Malaria Observatory contains <strong>
+                    <QueryResult table="pf_samples"/>
+                </strong> <em>P. falciparum</em> samples from <strong>60</strong> study sites. Click on a site below to
+                    view data from a study site.
+                </p>
+                <div style="height:300px">
+                    <Map>
+                        <TileLayer/>
+                        <TableGeoJSONsLayer table="pf_regions" geoJsonProperty="geojson" colourProperty="web_colour"
+                                            labelProperty="name"/>
+                        <TableMarkersLayer table="sites" clusterMarkers="false">
+                            <svg style="overflow: visible; width: 73px; height: 73px" viewBox="0 0 42 42">
+                                <circle cx="0" cy="0" r="1" strokeWidth="0" stroke="purple" fill="black" opacity="0.5"/>
+                            </svg>
+                        </TableMarkersLayer>
+                    </Map>
+                </div>
+            </CardText>
+        </Card>
+    </CardStack>
+
+

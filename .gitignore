@@ -1,4 +1,4 @@
 data
-data.*
-data_*
-!datatebles
+config/observatory/pre/malobs/client_secret.json
+config/observatory/pre/malobs/gsheets_credentials.json
+config/observatory/pre/malobs/settings
