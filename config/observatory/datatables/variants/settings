@@ -9,7 +9,7 @@ icon: fa-bookmark
 
 # The primary key column ID for this table. This should correspond to a column in data containing a unique value for each record
 # Optionally, this parameter can be set to 'AutoKey' to instruct the software to automatically generate a primary key
-primKey: AutoKey
+primKey: Position
 
 hdfPath: variants
 
@@ -35,20 +35,31 @@ propertyGroups:
 #  name: Selection
 
 properties:
-- id: AutoKey
-  dataType: Int32
-
+- id: Position
+  dataType: Text
+  name: Chromosome:Position
+  description: Position of this variant on the genome
+  valueColours:
+    _other_: rgb(255,255,255)
 - id: CHROM
+  name: Chromosome
+  description: Chromosome of this variant
   dataType: Text
 - id: POS
+  name: Position
   dataType: Int32
+  valueColours:
+    _other_: rgb(255,255,255)
 - id: VariantType
+  name: Type (SNP/Indel/Mix)
   dataType: Text
 - id: is_snp
   dataType: Boolean
 - id: num_alleles
+  name: No. alleles
   dataType: Int32
 - id: REF
+  name: Reference allele
   dataType: Text
 
 - id: AN
@@ -71,6 +82,8 @@ properties:
 - id: RegionType
   dataType: Text
 - id: CDS
+  name: Coding
+  description: Does this variant impact the protien produced by the gene?
   dataType: Boolean
 - id: VARIANT_TYPE
   dataType: Text
@@ -93,22 +106,70 @@ properties:
   dataType: Boolean
 
 - id: SNPEFF_AMINO_ACID_CHANGE
+  name: Change
   dataType: Text
+  description: The amino acid change (if any)
 - id: SNPEFF_CODON_CHANGE
   dataType: Text
 - id: SNPEFF_EFFECT
+  name: Effect
   dataType: Text
 - id: SNPEFF_EXON_ID
   dataType: Text
 - id: SNPEFF_FUNCTIONAL_CLASS
+  name: Change type
   dataType: Text
 - id: SNPEFF_GENE_NAME
+  name: Gene
   dataType: Text
 - id: SNPEFF_IMPACT
   dataType: Text
 - id: SNPEFF_TRANSCRIPT_ID
   dataType: Text
 
+- id: AF_all
+  dataType: Float
+  name: Global
+  description: The proportion of samples that have the non-reference form of this variant globally
+- id: AF_SAM
+  dataType: Float
+  name: SAM
+  description: The proportion of samples that have the non-reference form of this variant in South America
+- id: AF_WAF
+  dataType: Float
+  name: WAF
+  description: The proportion of samples that have the non-reference form of this variant in West Africa
+- id: AF_CAF
+  dataType: Float
+  name: CAF
+  description: The proportion of samples that have the non-reference form of this variant in Central Africa
+- id: AF_EAF
+  dataType: Float
+  name: EAF
+  description: The proportion of samples that have the non-reference form of this variant in East Africa
+- id: AF_SAS
+  dataType: Float
+  name: SAS
+  description: The proportion of samples that have the non-reference form of this variant in South Asia
+- id: AF_WSEA
+  dataType: Float
+  name: WSEA
+  description: The proportion of samples that have the non-reference form of this variant in West South-east Asia
+- id: AF_ESEA
+  dataType: Float
+  name: ESEA
+  description: The proportion of samples that have the non-reference form of this variant in East South-east Asia
+- id: AF_OCE
+  dataType: Float
+  name: OCE
+  description: The proportion of samples that have the non-reference form of this variant in Oceania
+
+#- id: Gene
+#  name: Gene Identifier
+#  dataType: Text
+
+- id: is_snp, AN, DP, FS, MQ, QD, QUAL, SOR, VQSLOD, RegionType, VARIANT_TYPE, MULTIALLELIC, FILTER_PASS, FILTER_Centromere, FILTER_InternalHypervariable, FILTER_Low_VQSLOD, FILTER_SubtelomericHypervariable, FILTER_SubtelomericRepeat, SNPEFF_AMINO_ACID_CHANGE, SNPEFF_CODON_CHANGE, SNPEFF_EFFECT, SNPEFF_EXON_ID, SNPEFF_FUNCTIONAL_CLASS, SNPEFF_GENE_NAME, SNPEFF_IMPACT, SNPEFF_TRANSCRIPT_ID
+  showInTable: false
 
 #dataItemViews:
 #- type: PropertyGroup

@@ -1,0 +1,12 @@
+nameSingle: obs_features
+namePlural: obs_features(s)
+properties: 
+- id: feature_id
+  dataType: Text
+- id: category
+  dataType: Text
+- id: description
+  dataType: Text
+- id: name
+  dataType: Text
+primKey: feature_id

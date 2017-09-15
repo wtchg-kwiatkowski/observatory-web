@@ -1,0 +1,19 @@
+<PageTemplate bgurl="drugs.jpg">
+    <BreadCrumb a="pf" b="drugs" />
+    <CardStack>
+        <Card>
+            <CardTitle title="Resistance to anti-malarial drugs" subtitle="seconadary text"> </CardTitle>
+            <CardText>
+                <List>
+                    {{#query 'drug_id' 'name' 'short_description' table='pf_drugs'}}
+                    <ObsListItem table="pf_drugs" primKey="{{drug_id}}" secondaryText="{{short_description}}" secondaryTextLines="2">
+                        <Icon class="icon" name='bicycle'/>
+                        <div>{{name}}</div>
+                    </ObsListItem>
+
+                    {{/query}}
+                </List>
+            </CardText>
+        </Card>
+    </CardStack>
+</PageTemplate>

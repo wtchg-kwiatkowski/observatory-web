@@ -1,0 +1,96 @@
+nameSingle: sample
+namePlural: samples
+
+description: Sample metadata including country and region of collection.
+icon: fa-flask
+primKey: sample_id
+
+externalLinks:
+- url: http://www.ebi.ac.uk/ena/data/view/{run_accessions}
+  name: European Nucleotide Archive
+
+properties: 
+- id: sample_id
+  dataType: Text
+  name: Sample ID                 
+  description: Sample identifier   
+  dataType: Text                   
+  search: StartPattern
+
+- id: site_id
+  name: Site
+  description: Identifier of the site the sample was collected from
+  dataType: Text
+  relation:                         # This block defines a many-to-one foreign relation to a parent table
+    tableId: sites          # Datatable id of the parent table
+    forwardName: is sampled from    # Display name of the relation from child to parent
+    reverseName: contains           # Display name of the relation from parent to child
+  
+- id: country_id
+  name: Country
+  dataType: Text
+  relation:                         # This block defines a many-to-one foreign relation to a parent table
+    tableId: countries         # Datatable id of the parent table
+    forwardName: is sampled from    # Display name of the relation from child to parent
+    reverseName: contains           # Display name of the relation from parent to child
+
+- id: region_id
+  name: Region
+  dataType: Text
+  relation:                         # This block defines a many-to-one foreign relation to a parent table
+    tableId: pf_regions         # Datatable id of the parent table
+    forwardName: is sampled from    # Display name of the relation from child to parent
+    reverseName: contains           # Display name of the relation from parent to child
+
+- id: study_id
+  name: Study
+  description: Identifier of the study that contributed the samples
+  dataType: Text
+  relation:                         # This block defines a many-to-one foreign relation to a parent table
+    tableId: studies           # Data table id of the parent table
+    forwardName: is contributed by  # Display name of the relation from child to parent
+    reverseName: contributed        # Display name of the relation from parent to child
+
+
+- id: run_accessions
+  name: ENA Run accession
+  dataType: Text
+
+- id: region
+  dataType: Text
+
+- id: site_lng
+  dataType: GeoLongitude
+- id: country_lat
+  dataType: Double
+- id: region_lng
+  dataType: Double
+- id: site
+  dataType: Text
+- id: site_lat
+  dataType: GeoLatitude
+- id: region_lat
+  dataType: Double
+- id: country
+  dataType: Text
+- id: country_lng
+  dataType: Double
+
+- id: year
+  name: Sampling Year
+  dataType: Text
+
+- id: CQresistant
+  dataType: Text
+- id: PYRresistant
+  dataType: Text
+- id: SDXresistant
+  dataType: Text
+- id: MQresistant
+  dataType: Text
+- id: ARTresistant
+  dataType: Text
+- id: PPQresistant
+  dataType: Text
+
+

@@ -1,0 +1,33 @@
+<PageTemplate bgurl="mapgenome.jpg">
+    <BreadCrumb a="pf" b="genes" />
+<!--<div class="vertical stack" style="max-width:650px;font-family: Roboto, Cochin, Georgia, serif; background-color: #d9d9d9"><span style="font-size: 18px;padding-bottom: 25px;padding-top: 25px; padding-left: 25px"> <strong>6</strong> genes are of key epidemiological importance as variants within them increase resistance to  particular antimalarial drugs. Scroll to the bottom to explore <em>any</em> gene.</span>-->
+<CardStack>
+    <Card>
+        <CardTitle title="Genes involved in drug resistance" subtitle="secondary text"> </CardTitle>
+        <CardText>
+            <List>
+                {{#query 'gene_id' 'name' 'short_description' table='pf_resgenes'}}
+                    <ObsListItem table="pf_resgenes" primKey="{{gene_id}}" secondaryText="{{short_description}}" secondaryTextLines="2">
+                        <Icon class="icon" name='bicycle'/>
+                        <div>{{name}}</div>
+                    </ObsListItem>
+                {{/query}}
+            </List>
+        </CardText>
+    </Card>
+
+<Card >
+
+<CardTitle title="Any gene" subtitle="Explore any gene with this viewer" />
+
+<CardText>
+
+<p>Use this viewer to look at variation at any variant in the Observatory dataset <em><DocLink href="anygene.html">ANY GENE</DocLink></em> </p>
+
+</CardText>
+
+
+</Card>
+</CardStack>
+
+

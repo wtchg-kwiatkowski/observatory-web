@@ -1,0 +1,17 @@
+nameSingle: obs_featuretypes
+namePlural: obs_featuretypes(s)
+properties: 
+- id: feature_id
+  dataType: Text
+  relation:
+   tableId: pf_features
+   forwardName: type of
+   reverseName: contains
+- id: type_id
+  dataType: Text  
+- id: description
+  dataType: Text
+- id: feature
+  dataType: Text
+  
+primKey: AutoKey

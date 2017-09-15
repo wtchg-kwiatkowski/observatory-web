@@ -1,0 +1,39 @@
+nameSingle: obs_samples
+namePlural: obs_samples(s)
+properties: 
+- id: region_id
+  dataType: Text
+- id: study_id
+  dataType: Text
+- id: sample_id
+  dataType: Text
+- id: country_id
+  dataType: Text
+- id: site_id
+  dataType: Text
+- id: run_accessions
+  dataType: Text
+- id: region
+  dataType: Text
+- id: site_lng
+  dataType: Double
+- id: process_type
+  dataType: Text
+- id: country_lat
+  dataType: Double
+- id: region_lng
+  dataType: Double
+- id: site
+  dataType: Text
+- id: site_lat
+  dataType: Double
+- id: region_lat
+  dataType: Double
+- id: country
+  dataType: Text
+- id: country_lng
+  dataType: Double
+- id: sampling_date
+  dataType: Text
+primKey: sample_id
+
