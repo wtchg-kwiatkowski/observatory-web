@@ -3,8 +3,13 @@
 <!--<div class="vertical stack" style="max-width:650px;font-family: Roboto, Cochin, Georgia, serif; background-color: #d9d9d9"><span style="font-size: 18px;padding-bottom: 25px;padding-top: 25px; padding-left: 25px"> <strong>6</strong> genes are of key epidemiological importance as variants within them increase resistance to  particular antimalarial drugs. Scroll to the bottom to explore <em>any</em> gene.</span>-->
 <CardStack>
     <Card>
-        <CardTitle title="Genes involved in drug resistance" subtitle="secondary text"> </CardTitle>
+        <CardTitle title="Investigate the genes involved in drug resistance" subtitle="Mutations in specific genes are known to cause resistance to anti-malarial drugs"> </CardTitle>
         <CardText>
+
+            <p>Recent research has shown that mutations in at least <strong><QueryResult table="pf_resgenes"/></strong> genes cause resistance to different anti-malarial drugs.</p>
+
+            <p>We analyse genomic data from the <strong><QueryResult table="pf_samples"/></strong> samples in the Malaria Observatory to describe the global distribution of specific genetic mutations and to understand where resistant parasites live.</p>
+
             <List>
                 {{#query 'gene_id' 'name' 'short_description' table='pf_resgenes'}}
                     <ObsListItem table="pf_resgenes" primKey="{{gene_id}}" secondaryText="{{short_description}}" secondaryTextLines="2">

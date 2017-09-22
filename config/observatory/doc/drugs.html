@@ -2,8 +2,16 @@
     <BreadCrumb a="pf" b="drugs" />
     <CardStack>
         <Card>
-            <CardTitle title="Resistance to anti-malarial drugs" subtitle="seconadary text"> </CardTitle>
+            <CardTitle title="Anti-malarial drug resistance" subtitle="Parasites are evolving resistance to all frontline anti-malarial drugs"> </CardTitle>
             <CardText>
+              <p>Medication has been used to treat malaria for hundreds of years. However, applying drugs to infected people, each of whom contains a large population of sexually reproducing parasites, provides the perfect conditions for resistance to evolve.</p>
+
+              <p>The generation of such a large amount genetic diversity within single human hosts goes some way to explaining how resistance evolves. Of the millions of new mutations that are generated over the course of infection, sooner or later one that gives a parasite resistance to the drug being used will occur.</p>
+
+              <p>If the parasite that has evolved resistance, or more likely its offspring, are present in the bloodstream when the infected host next gets bitten, then the drug resistant parasite will move between people and resistance will spread.</p>
+
+              <p>Below we investigate resistance to the <strong><QueryResult table="pf_drugs"/></strong> major anti-malarial drugs by identifying and describing known drug resistance mutations across the Malaria Observatory samples.</p>
+
                 <List>
                     {{#query 'drug_id' 'name' 'short_description' table='pf_drugs'}}
                     <ObsListItem table="pf_drugs" primKey="{{drug_id}}" secondaryText="{{short_description}}" secondaryTextLines="2">
