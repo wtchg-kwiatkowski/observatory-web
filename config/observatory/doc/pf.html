@@ -6,20 +6,27 @@
     <CardStack>
         <Card>
 
-            <CardTitle title="Explore malaria genomic data" subtitle="this guidebook something description"/> <CardText>
-            <List>
-                <ObsListItem href="geography.html" secondaryText="secondary text" secondaryTextLines="1">
+            <CardTitle title="Guidebook for Plasmodium falciparum malaria" subtitle="Reporting information extracted from our analyses of malaria parasite genomes"/> <CardText>
+           
+            <p>This Guidebook shows realtime analyses of <strong><QueryResult table="pf_samples"/> </strong> <em>P. falciparum</em> samples from <strong><QueryResult table="sites"/></strong> study sites in <strong><QueryResult table="countries"/></strong> countries worldwide, providing insight into the distribution and epidemiology of malaria.</p>
+
+            <p>Once you're in the Guidebook sections below you can get more a in-depth and interactive look at these data by switching to the <strong>Viewer</strong>.</p>
+
+            <p>All of the genome data used in the Malaria Observatory is open access. For details on how to download the data for your own analyses, see the <strong>Learn more</strong> section below.</p>
+
+                <List>
+                <ObsListItem href="geography.html" secondaryText="See how epidemiologically important metrics differ across the world" secondaryTextLines="1">
                     <Icon class="icon" name='globe'/>
-                    <div>Investigate a <b>geographical region</b></div>
+                    <div>Investigate a <strong>geographical region</strong></div>
                 </ObsListItem>
-                <ObsListItem href="drugs.html" secondaryText="secondary text" secondaryTextLines="1">
+                <ObsListItem href="drugs.html" secondaryText="Discover how parasites are evolving to beat the main tools we have to fight malaria" secondaryTextLines="1">
                     <Icon class="icon" name='bicycle'/>
-                    <div>Anti-malarial <b>drug resistance</b></div>
+                    <div>Anti-malarial <strong>drug resistance</strong></div>
                     <DocPage path="drugs.html"/>
                 </ObsListItem>
-                <ObsListItem href="genes.html" secondaryText="secondary text" secondaryTextLines="1">
+                <ObsListItem href="genes.html" secondaryText="Understand how gene frequencies vary across the world" secondaryTextLines="1">
                     <Icon class="icon" name='bicycle'/>
-                    <div>Investigate any <b>gene</b>, including those of epidemiological importance</b></div>
+                    <div>Investigate any <strong>gene</strong>, including those of epidemiological importance</b></div>
                     <DocPage path="genes.html"/>
                 </ObsListItem>
             </List>
@@ -27,14 +34,16 @@
         </Card>
 
         <Card >
-            <CardTitle title="Learn more" subtitle="secondary text" />
+            <CardTitle title="Learn more" subtitle="Detailed information on where our data comes from and how we analyse it" />
             <CardText>
-                <ObsListItem href="about.html" secondaryText="secondary text" secondaryTextLines="1">
+            <p>The Malaria Observatory builds on the work of the MalariaGEN network. A large and growing number of scientists and researchers from across the world have provided samples and analytical expertise to the project.</p>
+
+                <ObsListItem href="about.html" secondaryText="Our collaborators, datasets, and team" secondaryTextLines="1">
                     <Icon class="icon" name='bicycle'/>
                     <div>About the Malaria Observatory and its data</div>
                     <DocPage path="about.html"/>
                 </ObsListItem>
-                <ObsListItem href="about.html" secondaryText="secondary text" secondaryTextLines="1">
+                <ObsListItem href="about.html" secondaryText="Specialised reports on how we generate the information in the Guidebooks" secondaryTextLines="1">
                     <Icon class="icon" name='bicycle'/>
                     <div>Scientific publications and technical reports</div>
                     <DocPage path="about.html"/>
