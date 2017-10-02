@@ -29,11 +29,11 @@
                 </Typography>
 
                 <div style="height:300px">
-                    <Map>
-                        <TileLayer/>
-                        <TableGeoJSONsLayer table="pf_regions" geoJsonProperty="geojson" colourProperty="web_colour" labelProperty="name"/>
-                        <TableMarkersLayer table="sites" clusterMarkers="false">
-                            <svg style="overflow: visible; width: 73px; height: 73px" viewBox="0 0 42 42"> <circle cx="0" cy="0" r="1" strokeWidth="0" stroke="purple" fill="black" opacity="0.5"/> </svg>
+                    <Map disableInteraction>
+                        <TileLayer url="http://{s}.basemaps.cartocdn.com/{variant}/{z}/{x}/{y}.png" variant="light_nolabels" />
+                        <TableGeoJSONsLayer table="pf_regions" geoJsonProperty="geojson" colourProperty="web_colour" labelProperty="name" showLegend="false"/>
+                        <TableMarkersLayer disableOnClickMarker table="sites" clusterMarkers="false">
+                            <svg style="overflow: visible; width: 73px; height: 73px" viewBox="0 0 42 42"> <circle cx="0" cy="0" r=".5" strokeWidth="0" stroke="purple" fill="black" opacity="0.8"/> </svg>
                         </TableMarkersLayer>
                     </Map>
                 </div>
