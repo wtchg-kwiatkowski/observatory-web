@@ -25,52 +25,89 @@ dataItemViews:              # Lists the custom views that should appear in the p
   name: Details
   content: |
     <PageTemplate bgurl="mapgenome.jpg">
-    <BreadCrumb a="pf" b="genes"><span>{{name}}</span></BreadCrumb>
-    <CardStack>
-        <Card>
-            <CardTitle title="{{capitalizeAll long_name}} ({{name}})" subtitle="ID: {{gene_id}}" />
-            <CardText>
-            {{short_description}}
-            </CardText>
-        </Card>
-        {{#query 'drug_id' 'name' table='pf_drugs' query='{"whcClass":"comparefixed","isCompound":false,"isTrivial":false,"isRoot":true,"ColName":"drug_id","CompValue":"{{related_drug_id}}","Tpe":"="}'}}
+        <BreadCrumb a="pf" b="genes"><span>{{name}}</span></BreadCrumb>
+        <CardStack>
             <Card>
-            <CardTitle title="How {{../name}} is involved in {{name}} resistance" subtitle=""/>
-            <CardText>
-                {{../description}}
-            </CardText>
+                <CardContent>
+                    <Typography type="headline">
+                        {{capitalizeAll long_name}} ({{name}})
+                    </Typography>
+                    <Typography type="subheading" color="secondary">
+                        ID: {{gene_id}}
+                    </Typography>
+                    <Typography component="div">
+                        {{short_description}}
+                    </Typography>
+                </CardContent>
+            </Card>
+            {{#query 'drug_id' 'name' table='pf_drugs' query='{"whcClass":"comparefixed","isCompound":false,"isTrivial":false,"isRoot":true,"ColName":"drug_id","CompValue":"{{related_drug_id}}","Tpe":"="}'}}
+            <Card>
+                <CardContent>
+                    <Typography type="headline">
+                        How {{../name}} is involved in {{name}} resistance
+                    </Typography>
+                    <Typography type="subheading" color="secondary">
+
+                    </Typography>
+                    <Typography component="div">
+                        {{../description}}
+                    </Typography>
+                </CardContent>
             </Card>
             <Card>
-                    <CardTitle title="Frequency of {{name}} resistance" subtitle=""/>
-                    <CardText>
-                    <p>The proportion of <em>P. falciparum</em> samples with <strong><em>{{../marker_name}}</em></strong> markers of <strong>{{name}}</strong> resistance are:</p>
-                    <ul>
-                        {{#query 'region_id' 'name' table='pf_regions'}}
+                <CardContent>
+                    <Typography type="headline">
+                        Frequency of {{name}} resistance
+                    </Typography>
+                    <Typography type="subheading" color="secondary">
+
+                    </Typography>
+                    <Typography component="div">
+                        The proportion of <em>P. falciparum</em> samples with <strong><em>{{../marker_name}}</em></strong> markers of <strong>{{name}}</strong> resistance are:
+                        <ul>
+                            {{#query 'region_id' 'name' table='pf_regions'}}
                             <li><strong>
                                 <PercentMatching table="pf_samples" numQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{../drug_id}}resistant","CompValue":"yes","Tpe":"="}],"Tpe":"AND"}' domQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{../drug_id}}resistant","CompValue":"missing","Tpe":"<>"}],"Tpe":"AND"}'/>
                             </strong> in <ItemLink table="pf_regions" primKey="{{region_id}}" />{{name}}</ItemLink></li>
-                        {{/query}}
-                    </ul>
-                    </CardText>
+                            {{/query}}
+                        </ul>
+                    </Typography>
+                </CardContent>
             </Card>
-        {{/query}}
+            {{/query}}
 
 
-        <Card>
-            <CardTitle title="Variants in the {{name}} gene" subtitle="" />
-            <CardText>
-                <p>This viewer shows a list of variants in the <strong>{{name}}</strong> gene along with their prevalence in different populations.</p>
-                {{#query 'chromid' 'fstart' 'fstop' table='annotation' query='{"whcClass":"comparefixed","isCompond":false,"isTrivial":false,"isRoot":true,"ColName":"fid","CompValue":"{{gene_id}}","Tpe":"="}'}}
-                    <PopupButton icon="arrow-right" label="View allele frequencies" target="tab">
-                        <TableWithLegend table="variants" columns='["Position", "SNPEFF_AMINO_ACID_CHANGE", "AF_WAF", "AF_CAF","AF_EAF", "AF_WSEA", "AF_ESEA", "AF_SAS",  "AF_SAM", "AF_OCE" ]' order='[["desc", "SNPEFF_AMINO_ACID_CHANGE" ]]' query='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"CHROM","CompValue":"{{chromid}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"POS","CompValue":{{fstart}},"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"POS","CompValue":{{fstop}},"Tpe":"<="},{"whcClass":"comparefixed","isCompound":false,"ColName":"FILTER_PASS","CompValue":true,"Tpe":"="}],"Tpe":"AND"}'>
-                            <CardTitle title="Variants in {{../name}}" subtitle=""/>
-                            <CardText>
-                                Each row in this table is a variant found in the observatory samples. Only those that have passed quality filters and which are seen in greater than 10% of samples globally are listed. Click a column header to sort by that quantity, for example clicking "West African Frequency" twice will bring variants most common in West Africa to the top.<br/>
-                            </CardText>
-                        </TableWithLegend>
-                    </PopupButton>
-                {{/query}}
-            </CardText>
-        </Card>
-    </CardStack>
+            <Card>
+                <CardContent>
+                    <Typography type="headline">
+                        Variants in the {{name}} gene
+                    </Typography>
+                    <Typography type="subheading" color="secondary">
+
+                    </Typography>
+                    <Typography component="div">
+                        This viewer shows a list of variants in the <strong>{{name}}</strong> gene along with their prevalence in different populations.
+                    </Typography>
+                    <Typography component="div">
+                        {{#query 'chromid' 'fstart' 'fstop' table='annotation' query='{"whcClass":"comparefixed","isCompond":false,"isTrivial":false,"isRoot":true,"ColName":"fid","CompValue":"{{gene_id}}","Tpe":"="}'}}
+                            <PopupButton icon="arrow-right" label="View allele frequencies" target="tab">
+                                <TableWithLegend table="variants" columns='["Position", "SNPEFF_AMINO_ACID_CHANGE", "AF_WAF", "AF_CAF","AF_EAF", "AF_WSEA", "AF_ESEA", "AF_SAS",  "AF_SAM", "AF_OCE" ]' order='[["desc", "SNPEFF_AMINO_ACID_CHANGE" ]]' query='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"CHROM","CompValue":"{{chromid}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"POS","CompValue":{{fstart}},"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"POS","CompValue":{{fstop}},"Tpe":"<="},{"whcClass":"comparefixed","isCompound":false,"ColName":"FILTER_PASS","CompValue":true,"Tpe":"="}],"Tpe":"AND"}'>
+                                    <CardContent>
+                                        <Typography type="headline">
+                                            Variants in the {{../name}} gene
+                                        </Typography>
+                                        <Typography type="subheading" color="secondary">
+
+                                        </Typography>
+                                        <Typography component="div">
+                                            Each row in this table is a variant found in the observatory samples. Only those that have passed quality filters and which are seen in greater than 10% of samples globally are listed. Click a column header to sort by that quantity, for example clicking "West African Frequency" twice will bring variants most common in West Africa to the top.<br/>
+                                        </Typography>
+                                    </CardContent>
+                                </TableWithLegend>
+                            </PopupButton>
+                        {{/query}}
+                    </Typography>
+                </CardContent>
+            </Card>
+        </CardStack>
     </PageTemplate>

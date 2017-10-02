@@ -19,42 +19,65 @@ dataItemViews:              # Lists the custom views that should appear in the p
   name: Details
   content: |
     <PageTemplate bgurl="drugs.jpg">
-    <BreadCrumb a="pf" b="drugs"><span>{{name}}</span></BreadCrumb>
-    <CardStack>
-    <Card>
-    <CardTitle title="{{name}}" subtitle=""  />
-    <CardText>
-        {{description}}
-    </CardText>
-    </Card>
+        <BreadCrumb a="pf" b="drugs"><span>{{name}}</span></BreadCrumb>
+        <CardStack>
+            <Card>
+                <CardContent>
+                    <Typography type="headline">
+                        {{name}}
+                    </Typography>
+                    <Typography type="subheading" color="secondary">
+                        {{description}}
+                    </Typography>
+                </CardContent>
+            </Card>
+            <Card >
+                <CardContent>
+                    <Typography type="headline">
+                        Genetic markers of {{lowercase name}} resistance
+                    </Typography>
+                    <Typography type="subheading" color="secondary">
+                        Needs to be authored for {{lowercase name}}
+                    </Typography>
+                </CardContent>
+            </Card>
+            <Card>
+                <CardContent>
+                    <Typography type="headline">
+                        Frequency of {{lowercase name}} resistance
+                    </Typography>
+                    <Typography type="subheading" color="secondary">
 
-    <Card >
-    <CardTitle title="Genetic markers of {{lowercase name}} resistance" subtitle="" />
-    <CardText> 
-       Needs to be authored for {{lowercase name}}
-    </CardText>
-    </Card> 
-    <Card> <CardTitle title="Frequency of {{lowercase name}} resistance" subtitle="" />
-    <CardText>
-    <p>The proportion of <em>P. falciparum</em> samples with <strong><em>MARKER_NAME</em></strong> markers of <strong>{{lowercase name}}</strong> resistance are:</p>
-    <ul>
-    {{#query 'region_id' 'name' table='pf_regions'}}
-        <li><strong>
-            <PercentMatching table="pf_samples" numQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{../drug_id}}resistant","CompValue":"yes","Tpe":"="}],"Tpe":"AND"}' domQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{../drug_id}}resistant","CompValue":"missing","Tpe":"<>"}],"Tpe":"AND"}'/>
-        </strong> in <ItemLink table="pf_regions" primKey="{{region_id}}" />{{name}}</ItemLink></li>
-    {{/query}}
-    </ul>
-    </CardText>
-    </Card>
-    <Card> <CardTitle title="Exploring {{name}} resistance" subtitle="" />
-    <CardText>
-    <p>Here we can show some novel and innovative descriptions of <strong>{{lowercase name}}</strong> resistant parasites. For example:</p>
-    <ul>
-    <li><p>how many {{name}} parasites are also resistant for other drugs?</p></li>
-    <li><p>temporal change in {{name}} resistance</li></p>
-    <li><p>origins of {{name}} resistance</li></p>
-    <ul/>
-    </CardText>
-    </Card>
-    </CardStack>
+                    </Typography>
+                    <Typography component="div">
+                        The proportion of <em>P. falciparum</em> samples with <strong><em>MARKER_NAME</em></strong> markers of <strong>{{lowercase name}}</strong> resistance are:
+                        <ul>
+                            {{#query 'region_id' 'name' table='pf_regions'}}
+                            <li><strong>
+                                <PercentMatching table="pf_samples" numQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{../drug_id}}resistant","CompValue":"yes","Tpe":"="}],"Tpe":"AND"}' domQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{../drug_id}}resistant","CompValue":"missing","Tpe":"<>"}],"Tpe":"AND"}'/>
+                            </strong> in <ItemLink table="pf_regions" primKey="{{region_id}}" />{{name}}</ItemLink></li>
+                            {{/query}}
+                        </ul>
+                    </Typography>
+                </CardContent>
+            </Card>
+            <Card>
+                <CardContent>
+                    <Typography type="headline">
+                        Exploring {{name}} resistance
+                    </Typography>
+                    <Typography type="subheading" color="secondary">
+
+                    </Typography>
+                    <Typography component="div">
+                        <p>Here we can show some novel and innovative descriptions of <strong>{{lowercase name}}</strong> resistant parasites. For example:</p>
+                        <ul>
+                            <li><p>how many {{name}} parasites are also resistant for other drugs?</p></li>
+                            <li><p>temporal change in {{name}} resistance</li></p>
+                            <li><p>origins of {{name}} resistance</li></p>
+                        </ul>
+                    </Typography>
+                </CardContent>
+            </Card>
+        </CardStack>
     </PageTemplate>
