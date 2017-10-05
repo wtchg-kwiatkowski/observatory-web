@@ -37,8 +37,8 @@ propertyGroups:
 properties:
 - id: Position
   dataType: Text
-  name: Chromosome:Position
-  description: Position of this variant on the genome
+  name: Position
+  description: Chromosome and position of this variant on the genome
   valueColours:
     _other_: rgb(255,255,255)
 - id: CHROM
