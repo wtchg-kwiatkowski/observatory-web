@@ -62,18 +62,6 @@ dataItemViews:              # Lists the custom views that should appear in the p
             <Card>
                 <CardContent>
                     <Typography type="headline">
-                        Countries in {{name}}
-                    </Typography>
-                    <Typography type="subheading" color="secondary">
-
-                    </Typography>
-                    <Typography component="div">The Malaria Observatory has data on <strong><QueryResult table="pf_samples" expression='["count", [["distinct", ["country_id"]]]]' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong> countries with samples classed as <strong>{{name}}</strong></Typography>
-                    <Typography component="div"><SelectRow table="countries" queryTable="pf_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}'></SelectRow></Typography>
-                </CardContent>
-            </Card>
-            <Card>
-                <CardContent>
-                    <Typography type="headline">
                         Sampling sites in {{name}}
                     </Typography>
                     <Typography type="subheading" color="secondary">
