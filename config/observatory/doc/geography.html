@@ -24,10 +24,12 @@
                 <Typography component="p">
                     The <strong><QueryResult table="pf_samples"/> </strong> <em>P. falciparum</em> samples are divided into <strong> <QueryResult table="pf_regions"/></strong> regions of the world, each of which has a distinctive sub-population of parasites.
                 </Typography>
+                <Typography component="div">
+                  The Malaria Observatory has data on <strong><QueryResult table="pf_samples" expression='["count", [["distinct", ["country_id"]]]]' /></strong> countries.
+                </Typography>
                 <Typography component="p">
                     <em> Choose a region or click on the map below to view data from a region.</em><SelectRow table="pf_regions"/>
                 </Typography>
-
                <div style="height:300px">
                    <Map disableInteraction>
                        <TileLayer/>
