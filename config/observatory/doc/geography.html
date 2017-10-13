@@ -61,9 +61,9 @@
                         <CardTitle title="Legend" subtitle=""/>
                         <Map>
                             <TileLayer/>
+                            <TableMarkersLayer table="pf_samples" clusterMarkers="true" markerColourProperty="study_id" showLegend="false"/>
                             <TableGeoJSONsLayer table="pf_regions" geoJsonProperty="geojson" colourProperty="web_colour"
                                                 labelProperty="name"/>
-                            <TableMarkersLayer table="pf_samples" clusterMarkers="true" markerColourProperty="study_id" showLegend="false"/>
                         </Map>
                     </ComponentWithLegend>
                 </PopupButton>
