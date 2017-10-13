@@ -36,7 +36,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                         ID: {{gene_id}}
                     </Typography>
                     <Typography component="div">
-                        {{short_description}}
+                        {{{short_description}}}
                     </Typography>
                 </CardContent>
             </Card>
