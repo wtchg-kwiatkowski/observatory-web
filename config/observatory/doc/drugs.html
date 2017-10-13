@@ -29,7 +29,7 @@
 
                 <Typography component="p">Our <strong>Malariometrics</strong> build on the global scientific effort to identify the genetics markers (mutations) which are known to confer resistance to drugs and here we predict resistance on the basis of a parasite's genome. </Typography>
 
-                <Typography component="p">Below we investigate resistance to the <strong><QueryResult table="pf_drugs"/></strong> major anti-malarial drugs by identifying and describing known drug resistance mutations across the Malaria Observatory samples.</Typography>
+                <Typography component="div" className="paragraph">Below we investigate resistance to the <strong><QueryResult table="pf_drugs"/></strong> major anti-malarial drugs by identifying and describing known drug resistance mutations across the Malaria Observatory samples.</Typography>
 
                 <List>
                     {{#query 'drug_id' 'name' 'short_description' table='pf_drugs'}}
