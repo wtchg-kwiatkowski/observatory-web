@@ -10,9 +10,9 @@
             <Typography type="subheading" color="secondary">
                 Mutations in specific genes are known to cause resistance to anti-malarial drugs
             </Typography>
-            <Typography component="div">Recent research has shown that mutations in at least <strong><QueryResult table="pf_resgenes"/></strong> genes cause resistance to different anti-malarial drugs.</Typography>
+            <Typography component="p">Recent research has shown that mutations in at least <strong><QueryResult table="pf_resgenes"/></strong> genes cause resistance to different anti-malarial drugs.</Typography>
 
-            <Typography component="div">We analyse genomic data from the <strong><QueryResult table="pf_samples"/></strong> samples in the Malaria Observatory to describe the global distribution of specific genetic mutations and to understand where resistant parasites live.</Typography>
+            <Typography component="p">We analyse genomic data from the <strong><QueryResult table="pf_samples"/></strong> samples in the Malaria Observatory to describe the global distribution of specific genetic mutations and to understand where resistant parasites live.</Typography>
 
             <List>
                 {{#query 'gene_id' 'name' 'short_description' table='pf_resgenes'}}
@@ -35,13 +35,13 @@
             <Typography type="subheading" color="secondary">
                 Explore any gene with this Viewer
             </Typography>
-            <Typography component="div">Use this viewer to look at variation at any variant in the Observatory dataset <em><DocLink href="anygene.html">ANY GENE</DocLink></em> </Typography>
+            <Typography component="p">Use this viewer to look at variation at any variant in the Observatory dataset <em><DocLink href="anygene.html">ANY GENE</DocLink></em> </Typography>
         </CardContent>
     </Card>
 
 
     <Card>
         <CardContent> 
-            <Typography type="headline">                 Identifying genes by differention             </Typography> <Typography type="subheading" color="secondary">                 Explore any gene with this Viewer             </Typography> <Typography component="div">Use this viewer to look at variation at any variant in the Observatory dataset <em><DocLink href="anygene.html">ANY GENE</DocLink></em> </Typography> </CardContent> </Card>
+            <Typography type="headline">                 Identifying genes by differention             </Typography> <Typography type="subheading" color="secondary">                 Explore any gene with this Viewer             </Typography> <Typography component="p">Use this viewer to look at variation at any variant in the Observatory dataset <em><DocLink href="anygene.html">ANY GENE</DocLink></em> </Typography> </CardContent> </Card>
 </CardStack>
 </PageTemplate>
