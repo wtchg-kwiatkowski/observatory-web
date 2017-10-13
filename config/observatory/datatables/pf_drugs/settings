@@ -27,7 +27,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                         {{name}}
                     </Typography>
                     <Typography type="subheading" color="secondary">
-                        {{description}}
+                        {{{description}}}
                     </Typography>
                 </CardContent>
             </Card>
