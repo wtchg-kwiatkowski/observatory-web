@@ -50,7 +50,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
 
                     </Typography>
                     <Typography component="div">
-                        {{../description}}
+                        {{{../description}}}
                     </Typography>
                 </CardContent>
             </Card>
