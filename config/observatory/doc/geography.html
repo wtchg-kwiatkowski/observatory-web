@@ -21,13 +21,13 @@
                 <Typography component="p">
                     In the Malaria Observatory, we define regions using a combination of genetic relatedness and geographic proximity. For more information, check out our detailed metholodogy here.
                 </Typography>
-                <Typography component="p">
+                <Typography component="div" className="paragraph">
                     The <strong><QueryResult table="pf_samples"/> </strong> <em>P. falciparum</em> samples are divided into <strong> <QueryResult table="pf_regions"/></strong> regions of the world, each of which has a distinctive sub-population of parasites.
                 </Typography>
-                <Typography component="p">
+                <Typography component="div" className="paragraph">
                   The Malaria Observatory has data on <strong><QueryResult table="pf_samples" expression='["count", [["distinct", ["country_id"]]]]' /></strong> countries.
                 </Typography>
-                <Typography component="p">
+                <Typography component="div" className="paragraph">
                     <em> Choose a region or click on the map below to view data from a region.</em><SelectRow table="pf_regions"/>
                 </Typography>
                <div style="height:300px">
@@ -65,6 +65,12 @@
                             <TableGeoJSONsLayer table="pf_regions" geoJsonProperty="geojson" colourProperty="web_colour"
                                                 labelProperty="name"/>
                         </Map>
+                    </ComponentWithLegend>
+                </PopupButton>
+                <PopupButton icon="arrow-right" label="Example plot" target="tab">
+                    <ComponentWithLegend>
+                        <CardTitle title="Legend" subtitle=""/>
+                        <Plot />
                     </ComponentWithLegend>
                 </PopupButton>
             </CardText>
