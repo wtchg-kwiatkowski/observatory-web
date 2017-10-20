@@ -30,6 +30,9 @@
                 <Typography component="div" className="paragraph">
                     <em> Choose a region or click on the map below to view data from a region.</em><SelectRow table="pf_regions"/>
                 </Typography>
+                <PopupButton icon="arrow-right" label="Explore map in viewer" target="tab">
+                    <ResistanceMap/>
+                </PopupButton>
                 <div class="auto-half-height-container">
                    <div class="auto-height-inner">
                        <Map disableInteraction>
