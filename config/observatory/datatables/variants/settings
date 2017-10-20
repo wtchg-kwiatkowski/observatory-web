@@ -34,6 +34,12 @@ propertyGroups:
 #- id: Selection
 #  name: Selection
 
+- id: AF
+  name: Africa
+
+- id: AS
+  name: Asia
+
 properties:
 - id: Position
   dataType: Text
@@ -137,28 +143,34 @@ properties:
   description: The proportion of samples that have the non-reference form of this variant in South America
 - id: AF_WAF
   dataType: Float
-  name: WAF
+  name: West
   description: The proportion of samples that have the non-reference form of this variant in West Africa
+  groupId: AF
 - id: AF_CAF
   dataType: Float
-  name: CAF
+  name: Central
   description: The proportion of samples that have the non-reference form of this variant in Central Africa
+  groupId: AF
 - id: AF_EAF
   dataType: Float
-  name: EAF
+  name: East
   description: The proportion of samples that have the non-reference form of this variant in East Africa
+  groupId: AF
 - id: AF_SAS
   dataType: Float
-  name: SAS
+  name: South
   description: The proportion of samples that have the non-reference form of this variant in South Asia
+  groupId: AS
 - id: AF_WSEA
   dataType: Float
-  name: WSEA
+  name: West SE
   description: The proportion of samples that have the non-reference form of this variant in West South-east Asia
+  groupId: AS
 - id: AF_ESEA
   dataType: Float
-  name: ESEA
+  name: East SE
   description: The proportion of samples that have the non-reference form of this variant in East South-east Asia
+  groupId: AS
 - id: AF_OCE
   dataType: Float
   name: OCE
