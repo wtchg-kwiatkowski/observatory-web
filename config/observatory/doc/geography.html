@@ -35,10 +35,8 @@
                 </PopupButton>
                 <PopupButton icon="arrow-right" label="Plot of samples per region" target="tab">
                     <ComponentWithLegend>
-                        <CardContent>
-                            <CardHeader title="Sample regions" />
-                            <Typography component="p">Note that the number of samples from different regions greatly varies.</Typography>
-                        </CardContent>
+                        <CardHeader title="Sample regions" />
+                        <Typography component="p">Note that the number of samples from different regions greatly varies.</Typography>
                         <TablePlot plotType="histogram" table="pf_samples" horizontal="region" />
                     </ComponentWithLegend>
                 </PopupButton>
@@ -58,11 +56,9 @@
                 </div>
                 <PopupButton icon="arrow-right" label="Example plot" target="tab">
                                         <ComponentWithLegend>
-                                          <CardContent>
                                             <CardHeader title="This is the legend title" />
                                             <Typography component="p">This is the "legend" text for the plot below.</Typography>
-                                          </CardContent>
-                                          <TablePlot plotType="histogram" table="pf_samples" horizontal="year" />
+                                            <TablePlot plotType="histogram" table="pf_samples" horizontal="year" />
                                         </ComponentWithLegend>
                                     </PopupButton>
             </CardText>
