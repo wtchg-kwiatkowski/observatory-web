@@ -93,4 +93,15 @@ properties:
 - id: PPQresistant
   dataType: Text
 
+- id: CQresistant, PYRresistant, SDXresistant, MQresistant, ARTresistant, PPQresistant
+  valueDisplays:
+    "yes": Resistant
+    "no": Susceptible
+    maybe: Mixture
+    missing: No data
+  valueColours:
+    "yes": rgb(214, 39, 40)
+    "no": rgb(44, 160, 44)
+    maybe: rgb(255, 127, 14)
+    missing: #777777
 
