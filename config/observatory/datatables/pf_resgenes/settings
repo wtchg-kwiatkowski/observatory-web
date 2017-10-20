@@ -98,17 +98,15 @@ dataItemViews:              # Lists the custom views that should appear in the p
                                     order='[["desc", "SNPEFF_AMINO_ACID_CHANGE" ]]' 
                                     query='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"CHROM","CompValue":"{{chromid}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"POS","CompValue":{{fstart}},"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"POS","CompValue":{{fstop}},"Tpe":"<="},{"whcClass":"comparefixed","isCompound":false,"ColName":"FILTER_PASS","CompValue":true,"Tpe":"="},{"whcClass":"compound","isCompound":true,"isRoot":false,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"AF_WAF","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"AF_CAF","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"AF_EAF","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"AF_WSEA","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"AF_ESEA","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"AF_SAS","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"AF_SAM","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"AF_OCE","CompValue":0.01,"Tpe":">="}],"Tpe":"OR"}],"Tpe":"AND"}'
                                  >
-                                    <CardContent>
-                                        <Typography type="headline">
-                                            Variants in the {{../name}} gene
-                                        </Typography>
-                                        <Typography type="subheading" color="secondary">
-                                            Chromosome {{chromid}}
-                                        </Typography>
-                                        <Typography component="div">
-                                            Each row in this table is a variant found in the observatory samples. Only those that have passed quality filters and which are seen in greater than 10% of samples globally are listed. Click a column header to sort by that quantity, for example clicking "West African Frequency" twice will bring variants most common in West Africa to the top.<br/>
-                                        </Typography>
-                                    </CardContent>
+                                    <Typography type="headline">
+                                        Variants in the {{../name}} gene
+                                    </Typography>
+                                    <Typography type="subheading" color="secondary">
+                                        Chromosome {{chromid}}
+                                    </Typography>
+                                    <Typography component="div">
+                                        Each row in this table is a variant found in the observatory samples. Only those that have passed quality filters and which are seen in greater than 10% of samples globally are listed. Click a column header to sort by that quantity, for example clicking "West African Frequency" twice will bring variants most common in West Africa to the top.<br/>
+                                    </Typography>
                                 </TableWithLegend>
                             </PopupButton>
                         {{/query}}
