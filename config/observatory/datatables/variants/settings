@@ -210,3 +210,41 @@ properties:
 #  residualFractionName: Reference allele frequency     # Name of the residual fraction (if any)
 storedQueries: []
 defaultQuery: '{"whcClass":"comparefixed","isCompound":false,"isRoot":true,"ColName":"FILTER_PASS","CompValue":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"FILTER_PASS","CompValue":true,"Tpe":"="}],"Tpe":"="}'
+
+dataItemViews:              # Lists the custom views that should appear in the popup for an individual data table item
+- type: Template                                       # Add a template based view
+  name: Details
+  content: |
+    <PageTemplate bgurl="mapgenome.jpg">
+        <CardStack>
+            <Card>
+                <CardContent>
+                    <Typography type="headline">
+                        Variant {{SNPEFF_AMINO_ACID_CHANGE}}
+                    </Typography>
+                    <Typography type="subheading" color="secondary">
+                       Chromosome {{CHROM}} at {{POS}}
+                    </Typography>
+                    <Typography component="p">
+                        {{#query "fname" "ftype" table="annotation" query='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"fstart","CompValue":"{{POS}}","Tpe":"<="},{"whcClass":"comparefixed","isCompound":false,"ColName":"fstop","CompValue":"{{POS}}","Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"chromid","CompValue":"{{CHROM}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"ftype","CompValue":"gene","Tpe":"="}],"Tpe":"AND"}'}}
+                            This variant is in the {{fname}} gene
+                        {{else}}
+                            This variant is not in a gene
+                        {{/query}}
+                    </Typography>
+                    <Typography component="p">
+                        If this is a variant of note a section here will discuss it, linking to other areas.
+                    </Typography>
+                    <Typography component="p">
+                    A map of the variants geographic spread (WIP)
+                    <div class="auto-half-height-container">
+                       <div class="auto-height-inner">
+                           <Map disableInteraction>
+                               <TileLayer/>
+                           </Map>
+                        </div>
+                    </div>
+                    </Typography>
+
+        </CardStack>
+    </PageTemplate>
