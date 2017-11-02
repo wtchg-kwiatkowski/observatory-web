@@ -51,11 +51,21 @@ dataItemViews:              # Lists the custom views that should appear in the p
 
                     </Typography>
                     <Typography component="div">Estimated proportion of <em>P. falciparum</em> infections in <strong>{{name}}</strong> that have molecular markers for drug resistant
-                        {{#query 'drug_id' 'name' table='pf_drugs'}}
-                        <li><strong>
-                            <PercentMatching table="pf_samples" numQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{../region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"yes","Tpe":"="}],"Tpe":"AND"}' domQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{../region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"missing","Tpe":"<>"}],"Tpe":"AND"}'/>
-                        </strong> are resistant to <ItemLink table="pf_drugs" primKey={{drug_id}}>{{name}}</ItemLink></li>
-                        {{/query}}
+
+                        <div style="padding-top: 20px">
+                          {{#query 'drug_id' 'name' table='pf_drugs'}}
+                            <ItemLink table="pf_drugs" primKey="{{drug_id}}">
+                              <PercentMatching
+                                table="pf_samples"
+                                numQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{../region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"yes","Tpe":"="}],"Tpe":"AND"}' domQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{../region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"missing","Tpe":"<>"}],"Tpe":"AND"}'
+                                childNumeratorProp="numerator"
+                                childDenominatorProp="denominator"
+                              >
+                                <ProportionBar label="{{name}}" />
+                              </PercentMatching>
+                            </ItemLink>
+                          {{/query}}
+                        </div>
                     </Typography>
                 </CardContent>
             </Card>
