@@ -1,73 +1,73 @@
-<title>Start</title>
-<div class="centering-container">
-<div class="vertical stack" style="max-width:650px;font-family: Roboto, Cochin, Georgia, serif; background-color: #d9d9d9">
-<span style="font-size: 18px;padding-bottom: 25px;padding-top: 25px; padding-left: 25px"> 
+<PageTemplate bgurl="sporozoites.jpg" >
+    <BreadCrumb a="pf" b="about"/>
 
-About the Malaria Observatory</span>
+    <CardStack>
 
-<Card style="margin-bottom: 25px; margin-left: 5px; margin-right: 5px"> 
-<CardTitle title="About these data and analytics" subtitle="" titleStyle='{"fontSize":"18px"}'/> <CardText>
+        <Card>
+            <CardContent>
+                <Typography type="headline">
+                    What is the MalariaGEN Observatory?
+                </Typography>
+                <Typography type="subheading" color="secondary">
 
-<p>This is the <strong><em>P. falciparum</em> Malaria Observatory build 1.0 (PFAL 1.0)</strong>. It contains genome sequence data on <strong>6875</strong> samples of P. falciparum collected at <strong>60</strong> locations in <strong>32</strong> malaria-endemic countries.</p>
+                </Typography>
+                <Typography component="p">
+                  The Observatory has three main components.
+                  <ol>
+                  <li> Open access population genomic data on malaria parasites and vectors </li>
+                  <li> A set of metrics derived from these data that are informative about biology and epidemiology, both for populations and for individual samples </li>
+                  <li>A web application <strong>Malariometrics</strong> that translates this into useful information for malaria control and elimination </li>
+                </ol>
 
-<p>New features include reports on HRP2/3 deletions and additional samples from Laos.</p>
-<p>For more details see data release archive. </p>
+                </Typography>
+            </CardContent>
+        </Card>
 
-</CardText>
-</Card>
+        <Card>
+            <CardContent>
+                <Typography type="headline">
+                    What are Malariometrics?
+                </Typography>
+                <Typography type="subheading" color="secondary">
 
+                </Typography>
+                <Typography component="p">
+                    Malariometric indices traditionally include measurements like prevalence of malaria parasitaemia, spleen rate, and anaemia in defined risk groups. The purpose of this webapp is to provide measurements on parasites based on their genomes. For each individual parasite we will generate a number of different metrics, from presence/absence of particular alleles through to haplogroup assignation. Malariometrics presents these metrics in an intuitive and informative way by aggregating information across sites, countries, and regions.
+                </Typography>
+            </CardContent>
+        </Card>
 
-<Card style="margin-bottom: 25px; margin-left: 5px; margin-right: 5px">
-<CardTitle title="Using and citing these data" subtitle="" titleStyle='{"fontSize":"18px"}'/> <CardText>
+        <Card>
+            <CardContent>
+                <Typography type="headline">
+                    Who contributes samples and data to Malariometric?
+                </Typography>
+                <Typography type="subheading" color="secondary">
 
-<p>You are welcome to use these data in your own publications and other documents as long as you make it clear where the data come from. We ask you to:</p>
-<ul>
-<li> state that you used data from the <em>Plasmodium falciparum</em> Observatory Build <strong>1.0</strong></li>
-<li>give the URL of the Observatory website - www.malobs.org/pfal</li>
-<li>cite the key publication associated with this build: Bloggs, Smith, et al (2017) Malaria Journal 21, 122-7, doi:21.145.36</li>
-<li>cite an other releveant publications and technical reports by the team that built the Observatory and groups that provided samples or data (see below)</li>
-</ul>
-</CardText>
-</Card>
+                </Typography>
+                <Typography component="p">
+                    Current data has been contributed by the MalariaGEN network.
+                </Typography>
+            </CardContent>
+        </Card>
 
-<Card style="margin-bottom: 25px; margin-left: 5px; margin-right: 5px"> <CardTitle title="Who built the Observatory and who provided data?" subtitle="" titleStyle='{"fontSize":"18px"}'/>
-<CardText>
-<p>The Observatory was built by members of the Kwaitkowski research group at the Wellcome Trust Sanger Insitute in Cambridge and the Big Data Institute and Wellcome Trust Centre for Human Genetics at the University of Oxford. The project was built on foundations made by <a href="https://www.malariagen.net/"> MalariaGEN</a>. More information on the team behind the Observatory can be found <DocLink href="team.html">here</DocLink>.</p>
+        <Card>
+            <CardContent>
+                <Typography type="headline">
+                    Where can I find out more?
+                </Typography>
+                <Typography type="subheading" color="secondary">
 
-<p> Samples and epidemiological data were provided by various contributing groups ... For a full list of contributors and study sites can be found <DocLink href="samples.html">here</DocLink>.</p>
-
-<p>Genome sequencing data were provided by the Sanger Institute and other sequencing labs. Full information about which samples came from these labs can be found <DocLink href="samples.html">here</Doclink></p>
-</p>
-</CardText>
-</Card> 
-
-
-<Card style="margin-bottom: 25px; margin-left: 5px; margin-right: 5px"> <CardTitle title="Scientific publications and technical reports" subtitle="" titleStyle='{"fontSize":"18px"}'/>
-<CardText> 
-
-<p>The Observatory is built on our analyses of open genome datasets. The key scientific publications describing our methods and results are found on a dedicated <DocLink href="publications.html">publications pages</DocLink>. We have also provided a <DocLink href="publications.html">series of technical documents</DocLink> that describe these analyses.</p>
-
-</CardText>
-</Card> 
-
-
-<Card style="margin-bottom: 25px; margin-left: 5px; margin-right: 5px"> <CardTitle title="Contributing to the Malaria Observatory" subtitle="" titleStyle='{"fontSize":"18px"}'/>
-<CardText> 
-
-<p>Please get in touch if you have <em>Plasmodium falciparum samples</em> that you can contribute to the the Malaria Observatory</p>
-</CardText>
-</Card> 
-
-
-<Card style="margin-bottom: 25px; margin-left: 5px; margin-right: 5px"> <CardTitle title="Downloading data" subtitle="" titleStyle='{"fontSize":"18px"}'/>
-<CardText>
-
-You can obtain data as you browse of download it directly from www.malobs/data.
-
-</CardText>
-</Card> 
-
+                </Typography>
+                <Typography component="p">
+                  <ul>
+                 <li>Look <a href="https://www.malariagen.net/">here</a> for information  on MalariaGEN.</li>
+                 <li> Read our technical docs. </li>
+                </ul>
+                </Typography>
+            </CardContent>
+        </Card>
 
 
-</div>
-</div> 
+    </CardStack>
+</PageTemplate>
