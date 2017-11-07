@@ -54,13 +54,18 @@ dataItemViews:              # Lists the custom views that should appear in the p
                         <div style="padding-top: 20px">
                           {{#query 'region_id' 'name' table='pf_regions'}}
                             <ItemLink table="pf_regions" primKey="{{region_id}}">
-                              <PercentMatching
-                                table="pf_samples"
-                                numQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{../drug_id}}resistant","CompValue":"yes","Tpe":"="}],"Tpe":"AND"}' domQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{../drug_id}}resistant","CompValue":"missing","Tpe":"<>"}],"Tpe":"AND"}'
-                                childNumeratorProp="numerator"
-                                childDenominatorProp="denominator"
+                              <PercentMatching 
+                                table="pf_samples" 
+                                numQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{../drug_id}}resistant","CompValue":"yes","Tpe":"="}],"Tpe":"AND"}'
+                                domQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","Tpe":"="},{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"{{../drug_id}}resistant","CompValue":"yes","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{../drug_id}}resistant","CompValue":"no","Tpe":"="}],"Tpe":"OR"}],"Tpe":"AND"}'  
                               >
-                                <ProportionBar label="{{name}}" />
+                                <ProportionBar 
+                                  label="{{name}}" 
+                                  colourTable="pf_samples" 
+                                  colourProperty="{{../drug_id}}resistant" 
+                                  numeratorPropertyValue="yes"
+                                  remainderPropertyValue="no"
+                                />
                               </PercentMatching>
                             </ItemLink>
                           {{/query}}
