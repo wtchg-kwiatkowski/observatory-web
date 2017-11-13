@@ -42,6 +42,9 @@
 
     <Card>
         <CardContent> 
-            <Typography type="headline">                 Identifying genes by differention             </Typography> <Typography type="subheading" color="secondary">                 Explore any gene with this Viewer             </Typography> <Typography component="div" className="paragraph">Use this viewer to look at variation at any variant in the Observatory dataset <em><DocLink href="anygene.html">ANY GENE</DocLink></em> </Typography> </CardContent> </Card>
+            <Typography type="headline">                 Identifying genes by differention             </Typography> <Typography type="subheading" color="secondary">                 Explore any gene with this Viewer             </Typography>
+            <Typography component="div" className="paragraph">Use this viewer to look at variation at any variant in the Observatory dataset <em><DocLink href="anygene.html">ANY GENE</DocLink></em> </Typography>
+            <Typography component="div" className="paragraph"><MuiDataTableView table="pf_genes" startRowIndex="0" maxRowsPerPage="10" columns='["ID","Highly_differentiated_comparisons_population_n28"]' order='[["desc", "Highly_differentiated_comparisons_population_n28"]]'}/></Typography>
+        </CardContent> </Card>
 </CardStack>
 </PageTemplate>
