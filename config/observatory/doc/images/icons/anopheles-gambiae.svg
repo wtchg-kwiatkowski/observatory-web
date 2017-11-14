@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62.32 62.32">
+  <title>Asset 9</title>
+  <g>
+    <circle cx="31.16" cy="31.16" r="31.16" fill="#69b3e4"/>
+    <g>
+      <ellipse cx="31.16" cy="31.6" rx="1.32" ry="9.99" fill="#fff"/>
+      <g>
+        <circle cx="31.16" cy="42.12" r="1.14" fill="#fff" stroke="#fff" stroke-miterlimit="10" stroke-width="0.25"/>
+        <path d="M31.53,44.2c-.23,1.6-.36,11.47-.36,11.47s-.22-10-.44-11.55-1.19-2.92.44-2.92S31.79,42.5,31.53,44.2Z" fill="#fff" stroke="#fff" stroke-miterlimit="10" stroke-width="0.25"/>
+      </g>
+      <g>
+        <path d="M47.52,24.47c-5.21,5.32-16.36,10.7-16.36,10.7S36.1,24,41.11,18.63c2.83-3,7.58-6.43,10-4.16S50.41,21.52,47.52,24.47Z" fill="#fff"/>
+        <path d="M14.79,24.47c5.22,5.32,16.37,10.7,16.37,10.7S26.21,24,21.21,18.63c-2.84-3-7.58-6.43-10-4.16S11.9,21.52,14.79,24.47Z" fill="#fff"/>
+      </g>
+      <g>
+        <polyline points="31.08 36.96 36.18 34.37 41.57 38.41" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10"/>
+        <polyline points="31.08 36.96 26.34 34.37 20.95 38.41" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10"/>
+      </g>
+      <g>
+        <polyline points="31.16 38.95 36.08 36.45 42.29 44.14" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10"/>
+        <polyline points="31.16 38.95 26.24 36.45 20.16 44.14" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10"/>
+      </g>
+      <g>
+        <polyline points="31.08 41 35.6 39.51 40.01 53.16" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10"/>
+        <polyline points="31.16 40.98 26.77 38.95 22.58 53.16" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10"/>
+      </g>
+    </g>
+  </g>
+</svg>
