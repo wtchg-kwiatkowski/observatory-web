@@ -1,0 +1,33 @@
+nameSingle: gene    # Display name referring to a table item (single, no capital)
+namePlural: genes    # Display name referring to a table item (plural, no capital)
+
+description: Gene statistics
+
+icon: fa-table
+
+primKey: gene_id
+
+quickFindFields: gene_id
+
+
+properties:
+- id: gene_id, chrom
+  dataType: Text
+
+- id: start, end
+  dataType: Int32
+
+- id: Name
+  dataType: Text
+
+- id: Number_of_non-synonymous_positions, Number_of_synonymous_positions, N_S, Highly_differentiated_comparisons_population_n28, Highly_differentiated_comparisons_sites_in_WAF_n78, Highly_differentiated_comparisons_sites_in_EAF_n10, Highly_differentiated_comparisons_sites_in_WSEA_n6, Highly_differentiated_comparisons_sites_in_ESEA_n28, Highly_differentiated_comparisons_sites_in_OCE_n3
+  dataType: Float
+
+- id: Mutations_population_n28
+  dataType: Text
+
+- id: Mutations_sites_in_WAF_n78, Mutations_sites_in_EAF_n10, Mutations_sites_in_WSEA_n6, Mutations_sites_in_ESEA_n28, Mutations_sites_in_OCE_n3
+  dataType: Text
+
+- id: Mean_proportion_highly_differentiated_comparisons_population, Mean_proportion_highly_differentiated_comparisons_site
+  dataType: Float
