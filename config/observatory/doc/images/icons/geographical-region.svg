@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62.32 62.32">
+  <title>Asset 18</title>
+  <g>
+    <circle cx="31.16" cy="31.16" r="31.16" fill="#69b3e4"/>
+    <g>
+      <circle cx="31.16" cy="31.16" r="21.81" fill="#fff" stroke="#69b3e4" stroke-miterlimit="10" stroke-width="3"/>
+      <path d="M49.24,9.24a21.78,21.78,0,0,1-18.08,9.61,21.74,21.74,0,0,1-15.43-6.39" fill="none" stroke="#69b3e4" stroke-miterlimit="10" stroke-width="3"/>
+      <path d="M15.12,50.21a21.8,21.8,0,0,1,31.17-.92" fill="none" stroke="#69b3e4" stroke-miterlimit="10" stroke-width="3"/>
+      <ellipse cx="31.28" cy="31.16" rx="11.95" ry="21.81" fill="none" stroke="#69b3e4" stroke-miterlimit="10" stroke-width="3"/>
+      <line x1="9.35" y1="31.16" x2="52.97" y2="31.16" fill="none" stroke="#69b3e4" stroke-miterlimit="10" stroke-width="3"/>
+      <line x1="31.16" y1="56.33" x2="31.16" y2="5.99" fill="none" stroke="#69b3e4" stroke-miterlimit="10" stroke-width="3"/>
+    </g>
+  </g>
+</svg>
