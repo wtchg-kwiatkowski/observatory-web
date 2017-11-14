@@ -61,7 +61,13 @@ dataItemViews:              # Lists the custom views that should appear in the p
                                 childNumeratorProp="numerator"
                                 childDenominatorProp="denominator"
                               >
-                                <ProportionBar label="{{name}}" />
+                                <ProportionBar
+                                  label="{{name}}"
+                                  colourTable="pf_samples"
+                                  colourProperty="{{drug_id}}resistant"
+                                  numeratorPropertyValue="yes"
+                                  denominatorPropertyValue="no"
+                               />
                               </PercentMatching>
                             </ItemLink>
                           {{/query}}
