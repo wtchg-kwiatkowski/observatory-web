@@ -14,5 +14,6 @@ dataTables:
 - pf_featuretypes
 - pf_drugs
 - pf_resgenes
+- pf_genes
 #- strains
 - variants

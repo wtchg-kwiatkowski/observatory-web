@@ -18,17 +18,8 @@
                 <Typography component="p">
                     Understanding the connectedness of populations helps us to figure out routes of parasite <strong>transmission</strong>, where <strong>new infections</strong> have come from, and how drug resistance mutations might <strong>spread</strong>.
                 </Typography>
-                <Typography component="p">
-                    In the Malaria Observatory, we define regions using a combination of genetic relatedness and geographic proximity. For more information, check out our detailed metholodogy here.
-                </Typography>
-                <Typography component="div" className="paragraph">
-                    The <strong><QueryResult table="pf_samples"/> </strong> <em>P. falciparum</em> samples are divided into <strong> <QueryResult table="pf_regions"/></strong> regions of the world, each of which has a distinctive sub-population of parasites.
-                </Typography>
-                <Typography component="div" className="paragraph">
-                  The Malaria Observatory has data on <strong><QueryResult table="pf_samples" expression='["count", [["distinct", ["country_id"]]]]' /></strong> countries.
-                </Typography>
-                <Typography component="div" className="paragraph">
-                    <em> Choose a region or click on the map below to view data from a region.</em><SelectRow table="pf_regions"/>
+                 <Typography component="p">
+                  Current analytics are based on <strong><QueryResult table="pf_samples"/> </strong> <em>P. falciparum</em> samples from <strong><QueryResult table="pf_samples" expression='["count", [["distinct", ["country_id"]]]]' /></strong> countries split across <strong> <QueryResult table="pf_regions"/></strong> regions. We define regions using a combination of genetic relatedness and geographic proximity.
                 </Typography>
                 <PopupButton icon="arrow-right" label="Explore map in viewer" target="tab">
                     <ResistanceMap/>

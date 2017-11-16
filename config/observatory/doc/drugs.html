@@ -11,11 +11,8 @@
                     Parasites are evolving resistance to all frontline anti-malarial drugs
                 </Typography>
 
-                <Typography component="p">Our <strong>Malariometrics</strong> build on the global scientific effort to identify the genetics markers (mutations) which are known to confer resistance to drugs and here we predict resistance on the basis of a parasite's genome. </Typography>
-
-                <Typography component="div" className="paragraph">We investigate resistance to the <strong><QueryResult table="pf_drugs"/></strong> major anti-malarial drugs by identifying and describing known drug resistance mutations across the Malaria Observatory samples.</Typography>
-
-                <Typography component="div" className="paragraph">Find out more about how parasites become resistant to drugs <strong>below</strong>.</Typography>
+                <Typography component="p">
+                 We predict resistance to <strong><QueryResult table="pf_drugs"/></strong> major anti-malarial drugs based on the presence/absence of known drug resistance markers (mutations) across individuals in different populations. Find out more about how parasites become resistant to drugs <strong>below</strong>.</Typography>
 
                 <List>
                 {{#query 'drug_id' 'name' 'short_description' table='pf_drugs'}}
