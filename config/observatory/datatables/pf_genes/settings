@@ -20,8 +20,14 @@ properties:
 - id: Name
   dataType: Text
 
-- id: Number_of_non-synonymous_positions, Number_of_synonymous_positions, N_S, Highly_differentiated_comparisons_population_n28, Highly_differentiated_comparisons_sites_in_WAF_n78, Highly_differentiated_comparisons_sites_in_EAF_n10, Highly_differentiated_comparisons_sites_in_WSEA_n6, Highly_differentiated_comparisons_sites_in_ESEA_n28, Highly_differentiated_comparisons_sites_in_OCE_n3
+- id: Number_of_non-synonymous_positions, Number_of_synonymous_positions
+  dataType: Int32
+
+- id: N_S
   dataType: Float
+
+- id: Highly_differentiated_comparisons_population_n28, Highly_differentiated_comparisons_sites_in_WAF_n78, Highly_differentiated_comparisons_sites_in_EAF_n10, Highly_differentiated_comparisons_sites_in_WSEA_n6, Highly_differentiated_comparisons_sites_in_ESEA_n28, Highly_differentiated_comparisons_sites_in_OCE_n3
+  dataType: Int32
 
 - id: Mutations_population_n28
   dataType: Text
@@ -31,3 +37,16 @@ properties:
 
 - id: Mean_proportion_highly_differentiated_comparisons_population, Mean_proportion_highly_differentiated_comparisons_site
   dataType: Float
+  
+- id: Highly_differentiated_comparisons_population_n28
+  name: Global differentiation
+- id:  Highly_differentiated_comparisons_sites_in_WAF_n78
+  name: WAF
+- id: Highly_differentiated_comparisons_sites_in_EAF_n10
+  name: EAF
+- id: Highly_differentiated_comparisons_sites_in_WSEA_n6
+  name: WSEA
+- id: Highly_differentiated_comparisons_sites_in_ESEA_n28
+  name: ESEA
+- id: Highly_differentiated_comparisons_sites_in_OCE_n3
+  name: OCE
