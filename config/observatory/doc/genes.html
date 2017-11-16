@@ -44,7 +44,28 @@
         <CardContent> 
             <Typography type="headline">                 Identifying genes by differention             </Typography> <Typography type="subheading" color="secondary">Explore all genes based on how much they vary geographically</Typography>
             <Typography component="div" className="paragraph">Use this viewer to look at variation at any variant in the Observatory dataset <em><DocLink href="anygene.html">ANY GENE</DocLink></em> </Typography>
-            <Typography component="div" className="paragraph"><MuiDataTableView table="pf_genes" startRowIndex="0" maxRowsPerPage="10" columns='["Name", "gene_id","Highly_differentiated_comparisons_population_n28"]' order='[["desc", "Highly_differentiated_comparisons_population_n28"]]'}/></Typography>
+
+            <Typography component="div" className="paragraph">
+                <MuiDataTableView table="pf_genes" maxRowsPerPage="10" columns='["Name", "gene_id","Highly_differentiated_comparisons_population_n28"]' order='[["desc", "Highly_differentiated_comparisons_population_n28"]]'/>
+            </Typography>
+            <PopupButton icon="arrow-right" label="Open table in viewer" target="tab">
+                <TableWithLegend
+                        table="pf_genes"
+                        maxRowsPerPage="30"
+                        columns='["Name", "gene_id","Highly_differentiated_comparisons_population_n28", "Highly_differentiated_comparisons_sites_in_WAF_n78","Highly_differentiated_comparisons_sites_in_EAF_n10","Highly_differentiated_comparisons_sites_in_WSEA_n6","Highly_differentiated_comparisons_sites_in_ESEA_n28","Highly_differentiated_comparisons_sites_in_OCE_n3"]'
+                        order='[["desc", "Highly_differentiated_comparisons_population_n28"]]'
+                >
+                    <Typography type="headline">
+                        Gene differentiation
+                    </Typography>
+                    <Typography type="subheading" color="secondary">
+                        Which genes are most different across populations and sites within a population
+                    </Typography>
+                    <Typography component="div">
+                        Each row in this table is a gene in the <em>P. Faliciparum</em> genome. For global differentiation the figure is the number of populations where ?????? and for populations where ????. Click a column header to sort by that column. Note that when sorting globally vector interaction genes are found, whereas within populations resistance genes are found.<br/>
+                    </Typography>
+                </TableWithLegend>
+            </PopupButton>
         </CardContent> </Card>
 </CardStack>
 </PageTemplate>

@@ -119,7 +119,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                                         Chromosome {{chromid}}
                                     </Typography>
                                     <Typography component="div">
-                                        Each row in this table is a variant found in the observatory samples. Only those that have passed quality filters and which are seen in greater than 10% of samples globally are listed. Click a column header to sort by that quantity, for example clicking "West African Frequency" twice will bring variants most common in West Africa to the top.<br/>
+                                        Each row in this table is a variant found in the observatory samples. Only those that have passed quality filters and which are seen in greater than 1% of samples in any population. Click a column header to sort by that quantity, for example clicking "West African Frequency" twice will bring variants most common in West Africa to the top.<br/>
                                     </Typography>
                                 </TableWithLegend>
                             </PopupButton>
