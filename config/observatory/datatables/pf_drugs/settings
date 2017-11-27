@@ -64,7 +64,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                                   colourTable="pf_samples" 
                                   colourProperty="{{../drug_id}}resistant" 
                                   numeratorPropertyValue="yes"
-                                  remainderPropertyValue="no"
+                                  remainderPropertyValue="_TRANSPARENT_"
                                 />
                               </PercentMatching>
                             </ItemLink>

@@ -104,4 +104,5 @@ properties:
     "no": rgb(44, 160, 44)
     maybe: rgb(255, 127, 14)
     missing: #777777
+    _TRANSPARENT_: rgba(255,255,255,0.0)
 
