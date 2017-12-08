@@ -9,6 +9,11 @@ primKey: gene_id
 
 quickFindFields: gene_id
 
+propertyGroups:
+- id: AF
+  name: Africa
+- id: AS
+  name: Asia
 
 properties:
 - id: gene_id, chrom
@@ -41,12 +46,16 @@ properties:
 - id: Highly_differentiated_comparisons_population_n28
   name: Global differentiation
 - id:  Highly_differentiated_comparisons_sites_in_WAF_n78
-  name: WAF
+  name: West
+  groupId: AF
 - id: Highly_differentiated_comparisons_sites_in_EAF_n10
-  name: EAF
+  name: East
+  groupId: AF
 - id: Highly_differentiated_comparisons_sites_in_WSEA_n6
-  name: WSEA
+  name: West SE
+  groupId: AS
 - id: Highly_differentiated_comparisons_sites_in_ESEA_n28
-  name: ESEA
+  name: East SE
+  groupId: AS
 - id: Highly_differentiated_comparisons_sites_in_OCE_n3
   name: OCE
