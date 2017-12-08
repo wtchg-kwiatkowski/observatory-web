@@ -93,7 +93,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
 
             Some example content - we can of course add e.g. people, publications etc. or remove this.
             {{#query 'study_id' table='pf_samples' distinct='true' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}'}}
-                {{#query 'study_number' 'webTitle' 'description' table='studies' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"study","CompValue":"{{study_id}}","isRoot":true,"Tpe":"="}'}}
+                {{#query 'study' 'study_number' 'webTitle' 'description' table='studies' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"study","CompValue":"{{study_id}}","isRoot":true,"Tpe":"="}'}}
                     <!-- I NEED JOINS IN QUERIES!!! -->
                     <Card>
                         <CardContent>
@@ -105,6 +105,20 @@ dataItemViews:              # Lists the custom views that should appear in the p
                             </Typography>
                             <Typography component="div">
                                 {{{description}}}
+                            </Typography>
+                            <Typography component="p">
+                                Key people:
+                            </Typography>
+                            <Typography component="ul">
+                              {{#query 'givenName' 'sn' 'mail' table='study_ldap_people' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"study","CompValue":"{{study}}","isRoot":true,"Tpe":"="}'}}
+                                <Typography component="li">
+                                  {{{givenName}}} {{{sn}}}, {{{mail}}}
+                                </Typography>
+                              {{else}}
+                                <Typography component="li">
+                                  <em>None</em>
+                                </Typography>
+                              {{/query}}
                             </Typography>
                         </CardContent>
                     </Card>
