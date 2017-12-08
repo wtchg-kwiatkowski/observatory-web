@@ -51,7 +51,7 @@ properties:
   dataType: Float
   
 - id: Highly_differentiated_comparisons_population_n28
-  name: Global differentiation dcore
+  name: Global differentiation score
   description: A higher number for this metric indicates that the gene differs highly between regional populations
 - id:  Highly_differentiated_comparisons_sites_in_WAF_n78
   name: West
