@@ -16,6 +16,12 @@ propertyGroups:
   name: Asia
 
 properties:
+
+- id: gene_id
+  name: ID
+
+
+
 - id: gene_id, chrom
   dataType: Text
 
@@ -23,6 +29,7 @@ properties:
   dataType: Int32
 
 - id: Name
+  name: Gene Name
   dataType: Text
 
 - id: Number_of_non-synonymous_positions, Number_of_synonymous_positions
@@ -44,7 +51,7 @@ properties:
   dataType: Float
   
 - id: Highly_differentiated_comparisons_population_n28
-  name: Global differentiation
+  name: Global differentiation Score
 - id:  Highly_differentiated_comparisons_sites_in_WAF_n78
   name: West
   groupId: AF
