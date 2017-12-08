@@ -23,7 +23,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
   name: Details
   content: |
     <PageTemplate bgurl="mountains.jpg">
-        <BreadCrumb a="pf" b="geography"><span>{{name}}</span></BreadCrumb>
+        <BreadCrumb a="pf" b="geography"><span>##COUNTRY##</span><span>{{name}}</span></BreadCrumb>
         <CardStack>
             <Card>
                 <CardContent>
@@ -57,6 +57,40 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     </Typography>
                 </CardContent>
             </Card>
+            <Card>
+                <CardContent>
+                    <Typography type="headline">
+                        Antimalarial drug resistance
+                    </Typography>
+                    <Typography type="subheading" color="secondary">
+
+                    </Typography>
+                    <Typography component="div">Estimated proportion of <em>P. falciparum</em> infections in <strong>{{name}}</strong> that have molecular markers for drug resistant:
+
+                        <div style="padding-top: 20px">
+                          {{#query 'drug_id' 'name' table='pf_drugs'}}
+                            <ItemLink table="pf_drugs" primKey="{{drug_id}}">
+                              <PercentMatching
+                                table="pf_samples"
+                                numQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{../site_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"yes","Tpe":"="}],"Tpe":"AND"}' domQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{../site_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"missing","Tpe":"<>"}],"Tpe":"AND"}'
+                                childNumeratorProp="numerator"
+                                childDenominatorProp="denominator"
+                              >
+                                <ProportionBar
+                                  label="{{name}}"
+                                  colourTable="pf_samples"
+                                  colourProperty="{{drug_id}}resistant"
+                                  numeratorPropertyValue="yes"
+                                  remainderPropertyValue="_TRANSPARENT_"
+                               />
+                              </PercentMatching>
+                            </ItemLink>
+                          {{/query}}
+                        </div>
+                    </Typography>
+                </CardContent>
+            </Card>
+
             Some example content - we can of course add e.g. people, publications etc. or remove this.
             {{#query 'study_id' table='pf_samples' distinct='true' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}'}}
                 {{#query 'study_number' 'webTitle' 'description' table='studies' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"study","CompValue":"{{study_id}}","isRoot":true,"Tpe":"="}'}}

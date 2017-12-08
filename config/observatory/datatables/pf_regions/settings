@@ -45,6 +45,29 @@ dataItemViews:              # Lists the custom views that should appear in the p
             <Card>
                 <CardContent>
                     <Typography type="headline">
+                        Sampling sites in {{name}}
+                    </Typography>
+                    <Typography type="subheading" color="secondary">
+
+                    </Typography>
+                    <Typography component="div">The Malaria Observatory has <strong><QueryResult table="pf_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong>
+                        <em>P.falciparum</em> samples from <strong><QueryResult table="pf_samples" expression='["count", [["distinct", ["site_id"]]]]' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong> study sites classed as
+                            <strong>{{name}}</strong>.
+                        <div class="auto-half-height-container">
+                           <div class="auto-height-inner">
+                            <Map disableInteraction>
+                                <TileLayer />
+                                <TableGeoJSONsLayer showLegend="false" table="pf_regions" geoJsonProperty="geojson" colourProperty="web_colour" labelProperty="name" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' />
+                                <TableMarkersLayer clusterMarkers="false" showLegend="false" clickTable="sites" clickPrimaryKeyProperty="site_id" table="pf_samples" markerColourProperty="country_id" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' />
+                            </Map>
+                           </div>
+                        </div>
+                    </Typography>
+                </CardContent>
+            </Card>
+            <Card>
+                <CardContent>
+                    <Typography type="headline">
                         Antimalarial drug resistance
                     </Typography>
                     <Typography type="subheading" color="secondary">
@@ -71,29 +94,6 @@ dataItemViews:              # Lists the custom views that should appear in the p
                               </PercentMatching>
                             </ItemLink>
                           {{/query}}
-                        </div>
-                    </Typography>
-                </CardContent>
-            </Card>
-            <Card>
-                <CardContent>
-                    <Typography type="headline">
-                        Sampling sites in {{name}}
-                    </Typography>
-                    <Typography type="subheading" color="secondary">
-
-                    </Typography>
-                    <Typography component="div">The Malaria Observatory has <strong><QueryResult table="pf_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong>
-                        <em>P.falciparum</em> samples from <strong><QueryResult table="pf_samples" expression='["count", [["distinct", ["site_id"]]]]' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong> study sites classed as
-                            <strong>{{name}}</strong>.
-                        <div class="auto-half-height-container">
-                           <div class="auto-height-inner">
-                            <Map disableInteraction>
-                                <TileLayer />
-                                <TableGeoJSONsLayer showLegend="false" table="pf_regions" geoJsonProperty="geojson" colourProperty="web_colour" labelProperty="name" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' />
-                                <TableMarkersLayer clusterMarkers="false" showLegend="false" clickTable="sites" clickPrimaryKeyProperty="site_id" table="pf_samples" markerColourProperty="country_id" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' />
-                            </Map>
-                           </div>
                         </div>
                     </Typography>
                 </CardContent>
