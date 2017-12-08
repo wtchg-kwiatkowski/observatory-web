@@ -51,18 +51,24 @@ properties:
   dataType: Float
   
 - id: Highly_differentiated_comparisons_population_n28
-  name: Global differentiation Score
+  name: Global differentiation dcore
+  description: A higher number for this metric indicates that the gene differs highly between regional populations
 - id:  Highly_differentiated_comparisons_sites_in_WAF_n78
   name: West
+  description: A higher number for this metric indicates that the gene differs highly between sites in West Africa
   groupId: AF
 - id: Highly_differentiated_comparisons_sites_in_EAF_n10
   name: East
+  description: A higher number for this metric indicates that the gene differs highly between sites in East Africa
   groupId: AF
 - id: Highly_differentiated_comparisons_sites_in_WSEA_n6
   name: West SE
+  description: A higher number for this metric indicates that the gene differs highly between sites in West South-East Asia
   groupId: AS
 - id: Highly_differentiated_comparisons_sites_in_ESEA_n28
   name: East SE
+  description: A higher number for this metric indicates that the gene differs highly between sites in East South-East Asia
   groupId: AS
 - id: Highly_differentiated_comparisons_sites_in_OCE_n3
+  description: A higher number for this metric indicates that the gene differs highly between sites in Oceania
   name: OCE
