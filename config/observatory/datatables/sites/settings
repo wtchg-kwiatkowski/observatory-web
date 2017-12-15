@@ -43,7 +43,6 @@ dataItemViews:              # Lists the custom views that should appear in the p
                             <Map disableInteraction>
                                 <TileLayer />
                                 {{#query 'region_id' table='pf_samples' distinct='true' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}'}}
-                                    <TableGeoJSONsLayer disableClick showLegend="false" table="pf_regions" geoJsonProperty="geojson" colourProperty="web_colour" labelProperty="name" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' />
                                     <TableMarkersLayer clusterMarkers="false" showLegend="false" clickTable="sites" clickPrimaryKeyProperty="site_id" table="pf_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}'>
                                        <svg style="width: 4px; height: 4px; position: absolute; left: -2px; top: -2px;" viewBox="0 0 100 100">
                                            <circle cx="50" cy="50" r="50" strokeWidth="0" fill="black" opacity="0.5" />
