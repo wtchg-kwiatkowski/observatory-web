@@ -77,7 +77,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
 
                         <div style="padding-top: 20px">
                           {{#query 'drug_id' 'name' table='pf_drugs'}}
-                            <ItemLink table="pf_drugs" primKey="{{drug_id}}">
+                            <DocLink path="drug_region.html" drug_id="{{drug_id}}" region_id="{{../region_id}}">
                               <PercentMatching
                                 table="pf_samples"
                                 numQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{../region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"yes","Tpe":"="}],"Tpe":"AND"}' domQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{../region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"missing","Tpe":"<>"}],"Tpe":"AND"}'
@@ -92,7 +92,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                                   remainderPropertyValue="_TRANSPARENT_"
                                />
                               </PercentMatching>
-                            </ItemLink>
+                            </DocLink>
                           {{/query}}
                         </div>
                     </Typography>
