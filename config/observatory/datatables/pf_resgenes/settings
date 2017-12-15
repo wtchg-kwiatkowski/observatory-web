@@ -94,7 +94,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
             <Card>
                 <CardContent>
                     <Typography type="headline">
-                        Variants in the {{name}} gene
+                        Variants in the <em>{{name}}</em> 
                     </Typography>
                     <Typography type="subheading" color="secondary">
 
@@ -104,7 +104,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     </Typography>
                     <Typography component="div">
                         {{#query 'chromid' 'fstart' 'fstop' table='annotation' query='{"whcClass":"comparefixed","isCompond":false,"isTrivial":false,"isRoot":true,"ColName":"fid","CompValue":"{{gene_id}}","Tpe":"="}'}}
-                            <PopupButton icon="arrow-right" label="View allele frequencies" target="tab">
+                            <PopupButton icon="arrow-right" label="Explore allele frequencies in Viewer" target="tab">
                                 <TableWithLegend 
                                     disableMultipleColumnOrder="true" 
                                     table="variants" 
@@ -119,7 +119,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                                         Chromosome {{chromid}}
                                     </Typography>
                                     <Typography component="div">
-                                        Each row in this table is a variant found in the observatory samples. Only those that have passed quality filters and which are seen in greater than 1% of samples in any population. Click a column header to sort by that quantity, for example clicking "West African Frequency" twice will bring variants most common in West Africa to the top.<br/>
+                                        Each row represents a genetic variant in the <em>P. falciparum</em> genome from a restricted set of variants that includes only those that have passed quality filters and which are seen in more than 1% of samples in any population.<br/>
                                     </Typography>
                                 </TableWithLegend>
                             </PopupButton>

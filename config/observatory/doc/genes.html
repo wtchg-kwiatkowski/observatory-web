@@ -5,7 +5,7 @@
     <Card>
         <CardContent>
             <Typography type="headline">
-                Investigate the genes involved in drug resistance
+                Investigate genes involved in drug resistance
             </Typography>
             <Typography type="subheading" color="secondary">
                 Mutations in specific genes are known to cause resistance to anti-malarial drugs
@@ -30,39 +30,64 @@
     <Card>
         <CardContent>
             <Typography type="headline">
-                Any gene
+                Investigate any gene
             </Typography>
             <Typography type="subheading" color="secondary">
-                Explore any gene with this Viewer
+                Explore allele frequency differences across regions in any gene
             </Typography>
-            <Typography component="div" className="paragraph">Use this viewer to look at variation at any variant in the Observatory dataset <em><DocLink href="anygene.html">ANY GENE</DocLink></em> </Typography>
+            <Typography component="div" className="paragraph">
+            We have computed allele frequencies per region and population
+            </Typography>
+
+             <PopupButton icon="arrow-right" label="Explore allele frequency differences in any gene in Viewer" target="tab">
+              <TableWithLegend
+                         table="pf_genes"
+                         maxRowsPerPage="30"
+ 			 disableMultipleColumnOrder="true"
+                         columns='["Name", "gene_id","Highly_differentiated_comparisons_population_n28", "Highly_differentiated_comparisons_sites_in_WAF_n78","Highly_differentiated_comparisons_sites_in_EAF_n10","Highly_differentiated_comparisons_sites_in_WSEA_n6","Highly_differentiated_comparisons_sites_in_ESEA_n28","Highly_differentiated_comparisons_sites_in_OCE_n3"]'                         order='[["desc", "Highly_differentiated_comparisons_population_n28"]]'
+                 >
+                     <Typography type="headline">                         Allele frequency differences                    </Typography>
+                    <Typography type="subheading" color="secondary">                         Genes with varied allele frequencies in different places may be evolving                     
+                    </Typography>                     
+                    <Typography type = "p" component="div">
+                          !!!!!THIS IS CURRENTLY THE WRONG TABLE !!!!!
+                   </Typography> 
+               </TableWithLegend>            
+</PopupButton>
+
         </CardContent>
     </Card>
 
 
     <Card>
         <CardContent> 
-            <Typography type="headline">                 Identifying genes by differention             </Typography> <Typography type="subheading" color="secondary">Explore all genes based on how much they vary geographically</Typography>
-            <Typography component="div" className="paragraph">Use this viewer to look at variation at any variant in the Observatory dataset <em><DocLink href="anygene.html">ANY GENE</DocLink></em> </Typography>
+            <Typography type="headline">                 Identifying genes by differention             </Typography> <Typography type="subheading" color="secondary">Genes with varied allele frequencies in different places may be evolving </Typography>
+            <Typography component="div" className="paragraph">This list shows the top 10 most highly differentiated genes between regions, suggesting that they might potentially be involved in regionally-specific parasite adaptation </Typography>
 
             <Typography component="div" className="paragraph">
                 <MuiDataTableView table="pf_genes" maxRowsPerPage="10" columns='["Name", "gene_id","Highly_differentiated_comparisons_population_n28"]' order='[["desc", "Highly_differentiated_comparisons_population_n28"]]'/>
             </Typography>
-            <PopupButton icon="arrow-right" label="Open table in viewer" target="tab">
+            <PopupButton icon="arrow-right" label="Explore differentiation across all genes in Viewer" target="tab">
                 <TableWithLegend
                         table="pf_genes"
                         maxRowsPerPage="30"
+			disableMultipleColumnOrder="true"
                         columns='["Name", "gene_id","Highly_differentiated_comparisons_population_n28", "Highly_differentiated_comparisons_sites_in_WAF_n78","Highly_differentiated_comparisons_sites_in_EAF_n10","Highly_differentiated_comparisons_sites_in_WSEA_n6","Highly_differentiated_comparisons_sites_in_ESEA_n28","Highly_differentiated_comparisons_sites_in_OCE_n3"]'
                         order='[["desc", "Highly_differentiated_comparisons_population_n28"]]'
                 >
                     <Typography type="headline">
-                        Gene differentiation
+                        Genetic differentiation
                     </Typography>
                     <Typography type="subheading" color="secondary">
-                        Which genes are most different across populations and sites within a population
+                        Genes with varied allele frequencies in different places may be evolving
                     </Typography>
-                    <Typography component="div">
-                        Each row in this table is a gene in the <em>P. Faliciparum</em> genome. For global differentiation the figure is the number of populations where ?????? and for populations where ????. Click a column header to sort by that column. Note that when sorting globally vector interaction genes are found, whereas within populations resistance genes are found.<br/>
+                    <Typography type = "p" component="div">
+                         Differentiation is a measure of how varied allele frequencies are across populations. Such variation can be the result of natural selection working on specific populations to increase or decrease the frequency of a specific allele, so differentiation is a useful metric for identifying genes that are evolving.
+                    </Typography>
+                    <Typography type = "p" component="div"> Each row represents a gene in the <em>P. faliciparum</em> genome, for which a number of different within and between differentiation statistics have been generated.
+                    </Typography>
+                    <Typography type = "p" component="div"> 
+Interestingly, globally differentiated genes tend to be involved in parasite/vector interactions, whereas differentiation within populations in a region often involves known drug resistance genes.<br/>
                     </Typography>
                 </TableWithLegend>
             </PopupButton>

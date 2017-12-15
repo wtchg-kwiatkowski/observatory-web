@@ -50,7 +50,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
 
                     </Typography>
                     <Typography component="div">
-                        The proportion of <em>P. falciparum</em> samples with <strong><em>MARKER_NAME</em></strong> markers of <strong>{{lowercase name}}</strong> resistance are:
+                        The proportion of <em>P. falciparum</em> samples with markers of <strong>{{lowercase name}}</strong> resistance are:
                         <div style="padding-top: 20px">
                           {{#query 'region_id' 'name' table='pf_regions'}}
                             <ItemLink table="pf_regions" primKey="{{region_id}}">

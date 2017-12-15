@@ -7,20 +7,12 @@
         <Card>
             <CardContent>
                 <Typography type="headline">
-                    Guidebook for Plasmodium falciparum malaria
+                    Guidebook for <em>Plasmodium falciparum</em> malaria
                 </Typography>
                 <Typography type="subheading" color="secondary">
-                    Reporting information extracted from our analyses of malaria parasite genomes
+                    Analysis of <strong><QueryResult table="pf_samples"/> </strong> <em>P. falciparum</em> samples from <strong><QueryResult table="sites"/></strong> study sites in <strong><QueryResult table="countries"/></strong> countries worldwide
                 </Typography>
-                <Typography component="div" className="paragraph">
-                    This Guidebook shows realtime analyses of <strong><QueryResult table="pf_samples"/> </strong> <em>P. falciparum</em> samples from <strong><QueryResult table="sites"/></strong> study sites in <strong><QueryResult table="countries"/></strong> countries worldwide, providing insight into the distribution and epidemiology of malaria.
-                </Typography>
-                <Typography component="p">
-                    Once you're in the <strong>Guidebook</strong> sections below you can get more a in-depth and interactive look at these data by switching to the <strong>Viewer</strong>.
-                </Typography>
-                <Typography component="p">
-                    MalariaGen Analytics works with open access genome data. For details on how to download the data for your own analyses, see the <strong>Learn more</strong> section below.
-                </Typography>
+              
                 <List>
                     <ObsListItem href="geography.html">
                         <ListItemIcon><Icon class="icon" baseURL='/panoptes/Docs/observatory/images/icons/' name='image:geographical-region.svg' /></ListItemIcon>
@@ -43,7 +35,17 @@
                             <span>Understand how gene frequencies vary across the world</span>
                         </ListItemText>
                     </ObsListItem>
+
+                    <ObsListItem href="about.html">
+                      <ListItemIcon><Icon class="icon" baseURL='/panoptes/Docs/observatory/images/icons/' name='image:contributing02.svg' />
+</ListItemIcon> 
+                      <ListItemText>
+                      <span>Get current <strong>dataset</strong> [link to Pf6 data download?] </span>
+                         <span> Our analyses are built on open access genomic data</span>
+                      </ListItemText>
+                    </ObsListItem>
                 </List>
+
             </CardContent>
         </Card>
 
@@ -56,7 +58,7 @@
                     MalariaGEN Analytics is part of the MalariaGEN Observatory
                 </Typography>
                 <Typography component="p">
-                    The MalariaGEN Observatory is a repository of malaria genomics datasets. We also provide analytics on top of these data. A large and growing number of scientists and researchers from across the world have provided samples and analytical expertise to the project.
+                    The MalariaGEN Observatory is a repository of malaria genomics datasets. We also provide analytics on top of these data. A large and growing community of researchers from across the world have provided samples and analytical expertise to the project.
                 </Typography>
                 <List>
                     <ObsListItem href="about.html">
