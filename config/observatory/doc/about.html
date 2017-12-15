@@ -9,30 +9,41 @@
                     What is the MalariaGEN Observatory?
                 </Typography>
                 <Typography type="subheading" color="secondary">
+                  There are three main components that contribute to the MalariaGEN Observatory:
 
                 </Typography>
-                <Typography component="p">
-                  The Observatory has three main components.
-                  <ol>
-                  <li> Open access population genomic data on malaria parasites and vectors </li>
-                  <li> A set of metrics derived from these data that are informative about biology and epidemiology, both for populations and for individual samples </li>
-                  <li>A web application <strong>Malariometrics</strong> that translates this into useful information for malaria control and elimination </li>
-                </ol>
 
-                </Typography>
+                 <ObsListItem href="about.html"><ListItemIcon><Icon class="icon" baseURL='/panoptes/Docs/observatory/images/icons/' name='image:contributing02.svg' /></ListItemIcon>  <ListItemText>
+                 <span>Open access population genomic dataset on malaria parasites and vectors</span>  
+                 </ListItemText>
+                </ObsListItem>
+
+
+                 <ObsListItem href="technical.html"><ListItemIcon><Icon class="icon" baseURL='/panoptes/Docs/observatory/images/icons/' name='image:learn01.svg' /></ListItemIcon>  <ListItemText>
+                 <span>A set of metrics derived from these data that are informative about biology and epidemiology</span>  
+                 </ListItemText>
+                </ObsListItem>
+
+                 <ObsListItem href="pf.html"><ListItemIcon><Icon class="icon" baseURL='/panoptes/Docs/observatory/images/icons/' name='image:plot.svg' /></ListItemIcon>  <ListItemText>
+                 <span>The <span className="obs-highlight">MalariaGEN Analytics</span> web application that translates these metrics into information for malaria control and eliminations</span>  
+                 </ListItemText>
+                </ObsListItem>
+
+
+
             </CardContent>
         </Card>
 
         <Card>
             <CardContent>
                 <Typography type="headline">
-                    What are Malariometrics?
+                    What are MalariaGEN Analytics?
                 </Typography>
                 <Typography type="subheading" color="secondary">
 
                 </Typography>
                 <Typography component="p">
-                    Malariometric indices traditionally include measurements like prevalence of malaria parasitaemia, spleen rate, and anaemia in defined risk groups. The purpose of this webapp is to provide measurements on parasites based on their genomes. For each individual parasite we will generate a number of different metrics, from presence/absence of particular alleles through to haplogroup assignation. Malariometrics presents these metrics in an intuitive and informative way by aggregating information across sites, countries, and regions.
+                  For each individual parasite we generate a number of different metrics, from presence/absence of particular alleles to, in the case of drug resistance muations, our assignment of a specific lineage, or independent origin, to each alleles.  <span className="obs-highlight">MalariaGEN Analytics</span> presents these metrics in an intuitive and informative way by aggregating information across sites, countries, and regions.
                 </Typography>
             </CardContent>
         </Card>
@@ -46,7 +57,7 @@
 
                 </Typography>
                 <Typography component="p">
-                    Current data has been contributed by the MalariaGEN network.
+                    The current data has been contributed by the MalariaGEN network and forms the basis of the latest Pf6 release.
                 </Typography>
             </CardContent>
         </Card>
@@ -56,15 +67,23 @@
                 <Typography type="headline">
                     Where can I find out more?
                 </Typography>
-                <Typography type="subheading" color="secondary">
+              
+                <ObsListItem href="https://www.malariagen.net/"><ListItemIcon><Icon class="icon" baseURL='/panoptes/Docs/observatory/images/icons/' name='image:about01.svg' />
+                    </ListItemIcon>
+                     <ListItemText>
+<span>Further information on the Malaria Genomic Epidemiology Network </span>                    </ListItemText>
+                    </ObsListItem>  
 
-                </Typography>
-                <Typography component="p">
-                  <ul>
-                 <li>Look <a href="https://www.malariagen.net/">here</a> for information  on MalariaGEN.</li>
-                 <li> Read our technical docs. </li>
-                </ul>
-                </Typography>
+                   <ObsListItem href="technical.html"><ListItemIcon><Icon class="icon" baseURL='/panoptes/Docs/observatory/images/icons/' name='image:contributing02.svg' /></ListItemIcon>
+                     <ListItemText><span> Read our technical documentation and scientific publications</span> 
+                     </ListItemText>
+                   </ObsListItem>
+
+
+
+
+
+
             </CardContent>
         </Card>
 
