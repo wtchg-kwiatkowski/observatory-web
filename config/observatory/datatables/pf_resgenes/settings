@@ -66,25 +66,18 @@ dataItemViews:              # Lists the custom views that should appear in the p
                         The proportion of <em>P. falciparum</em> samples with <strong><em>{{../marker_name}}</em></strong> markers of <strong>{{name}}</strong> resistance are:
 
                         <div style="padding-top: 20px">
-                          {{#query 'region_id' 'name' table='pf_regions'}}
-                            <ItemLink table="pf_regions" primKey="{{region_id}}">
-                              <PercentMatching
-                                table="pf_samples"
-                                numQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{../drug_id}}resistant","CompValue":"yes","Tpe":"="}],"Tpe":"AND"}' domQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{../drug_id}}resistant","CompValue":"missing","Tpe":"<>"}],"Tpe":"AND"}'
-                                childNumeratorProp="numerator"
-                                childDenominatorProp="denominator"
-                              >
-                                <ProportionBar
-                                  label="{{name}}"
-                                  colourTable="pf_samples"
-                                  colourProperty="{{../drug_id}}resistant"
-                                  numeratorPropertyValue="yes"
-                                  remainderPropertyValue="_TRANSPARENT_"
-                               />
-                              </PercentMatching>
-                            </ItemLink>
-                          {{/query}}
+                          <ProportionBarChart
+                            rowTable="pf_regions"
+                            proportionTable="pf_samples"
+                            proportionTableColourColumn="{{drug_id}}resistant"
+                            proportionTableColourColumnNumeratorValue="yes"
+                            numeratorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"yes","Tpe":"="}],"Tpe":"AND"}'
+                            denominatorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"missing","Tpe":"<>"}],"Tpe":"AND"}'
+                            remainderTextColour="inherit"
+                            numberOfTickLabels="5"
+                          />
                         </div>
+                        
                     </Typography>
                 </CardContent>
             </Card>
