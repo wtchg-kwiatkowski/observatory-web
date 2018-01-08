@@ -40,7 +40,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
   name: Details
   content: |
     <PageTemplate bgurl="mountains.jpg">
-        <BreadCrumb a="pf" b="geography"><span><i style="padding-right:3px;color:{{web_colour}}" class="fa fa-square" aria-hidden="true"></i> {{name}}</span></BreadCrumb>
+        <BreadCrumb a="pf" b="regions"><span><i style="padding-right:3px;color:{{web_colour}}" class="fa fa-square" aria-hidden="true"></i> {{name}}</span></BreadCrumb>
         <CardStack>
             <Card>
                 <CardContent>
