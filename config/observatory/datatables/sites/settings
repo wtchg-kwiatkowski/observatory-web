@@ -23,7 +23,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
   name: Details
   content: |
     <PageTemplate bgurl="mountains.jpg">
-        <BreadCrumb a="pf" b="geography"><span>##COUNTRY##</span><span>{{name}}</span></BreadCrumb>
+        <BreadCrumb a="pf" b="regions"><span>##COUNTRY##</span><span>{{name}}</span></BreadCrumb>
         <CardStack>
             <Card>
                 <CardContent>
