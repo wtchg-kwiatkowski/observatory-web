@@ -1,0 +1,21 @@
+nameSingle: drug region
+namePlural: drug regions
+
+primKey: drug_region_id
+
+properties: 
+- id: drug_region_id
+  dataType: Text
+
+- id: drug_id
+  dataType: Text
+  relation:                         # This block defines a many-to-one foreign relation to a parent table
+      tableId: pf_drugs          # Datatable id of the parent table
+
+- id: region_id
+  relation:                         # This block defines a many-to-one foreign relation to a parent table
+      tableId: pf_regions          # Datatable id of the parent table
+  dataType: Text
+
+- id: text
+  dataType: Text
