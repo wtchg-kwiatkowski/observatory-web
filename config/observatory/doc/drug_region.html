@@ -1,5 +1,5 @@
 {{#query 'drug_id' 'name' table='pf_drugs' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"drug_id","CompValue":"{{drug_id}}","isRoot":true,"Tpe":"="}'}}
-{{#query 'region_id' 'name' 'web_colour' table='pf_regions' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"WAF","isRoot":true,"Tpe":"="}'}}
+{{#query 'region_id' 'name' 'web_colour' table='pf_regions' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{@root/region_id}}","isRoot":true,"Tpe":"="}'}}
 <PageTemplate bgurl="mountains.jpg">
     <BreadCrumb a="pf" b="regions"><ItemLink table="pf_regions" primKey="{{region_id}}"><span class="obs-breadcrumb-component"><i style="padding-right:3px;color:{{web_colour}}" class="fa fa-square" aria-hidden="true"></i><a>{{name}}</a></span></ItemLink><span>{{../name}} in {{name}}</span></BreadCrumb>
   <CardStack>
@@ -24,7 +24,7 @@
                                               clickPrimaryKeyProperty="site_id"
                                               table="pf_samples"
                                               clusterMarkers="true"
-                                              markerColourProperty="{{../../drug_id}}resistant" />
+                                              markerColourProperty="{{../drug_id}}resistant" />
               </Map>
             </div>
           </div>
