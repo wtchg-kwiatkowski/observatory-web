@@ -1,7 +1,7 @@
 <PageTemplate bgurl="mountains.jpg">
     <BreadCrumb a="pf" b="geography" />
     <CardStack>
-        <CardContent>
+          <Card>
             <CardContent>
                 <Typography type="headline">
                     Malaria across the world
@@ -13,13 +13,13 @@
                     <em>Plasmodium falciparum</em> malaria is found across the tropics in the Americas, Africa, and Asia.
                 </Typography>
                 <Typography component="p">
-                    We analyse the genomes of parasites from across these continents to understand how they are related to each other. Grouping parasites in this way allows us to see how samples from across the world are connected to each other.
+                    We analyse the genomes of parasites from across these continents to understand how they are related to each other. Grouping parasites like this allows us to see how samples from across the world are connected to each other.
                 </Typography>
                 <Typography component="p">
                     Understanding the connectedness of populations helps us to figure out routes of parasite <strong>transmission</strong>, where <strong>new infections</strong> have come from, and how drug resistance mutations might <strong>spread</strong>.
                 </Typography>
                  <Typography component="p">
-                  Current analytics are based on <strong><QueryResult table="pf_samples"/> </strong> <em>P. falciparum</em> samples from <strong><QueryResult table="pf_samples" expression='["count", [["distinct", ["country_id"]]]]' /></strong> countries split across <strong> <QueryResult table="pf_regions"/></strong> regions. We define regions using a combination of genetic relatedness and geographic proximity.
+                  Current analytics are based on <strong><QueryResult table="pf_samples"/> </strong> <em>P. falciparum</em> samples from <strong><QueryResult table="pf_samples" expression='["count", [["distinct", ["country_id"]]]]' /></strong> countries split across <strong> <QueryResult table="pf_regions"/></strong> regions, where regions are defined using a combination of genetic relatedness and geographic proximity.
                 </Typography>
                 <Typography component="div" className="paragraph">
                     <SelectRow table="pf_regions"/>
@@ -103,5 +103,4 @@
             </CardText>
         </Card>-->
     </CardStack>
-
 

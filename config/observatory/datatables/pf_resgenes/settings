@@ -113,13 +113,13 @@ dataItemViews:              # Lists the custom views that should appear in the p
                                     query='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"CHROM","CompValue":"{{chromid}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"POS","CompValue":{{fstart}},"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"POS","CompValue":{{fstop}},"Tpe":"<="},{"whcClass":"comparefixed","isCompound":false,"ColName":"FILTER_PASS","CompValue":true,"Tpe":"="},{"whcClass":"compound","isCompound":true,"isRoot":false,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"AF_WAF","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"AF_CAF","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"AF_EAF","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"AF_WSEA","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"AF_ESEA","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"AF_SAS","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"AF_SAM","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"AF_OCE","CompValue":0.01,"Tpe":">="}],"Tpe":"OR"}],"Tpe":"AND"}'
                                  >
                                     <Typography type="headline">
-                                        Variants in the {{../name}} gene
+                                        Genetic variants in {{../name}}
                                     </Typography>
                                     <Typography type="subheading" color="secondary">
                                         Chromosome {{chromid}}
                                     </Typography>
                                     <Typography component="div">
-                                        Each row represents a genetic variant in the <em>P. falciparum</em> genome from a restricted set of variants that includes only those that have passed quality filters and which are seen in more than 1% of samples in any population.<br/>
+                                    Each row shows global and regional differentiation at a genetic variant in the <em>P. falciparum</em> genome. For this analysis we use a restricted set of variants that includes only those that have passed quality filters and which are seen in more than 1% of samples in any population.<br/>
                                     </Typography>
                                 </TableWithLegend>
                             </PopupButton>
