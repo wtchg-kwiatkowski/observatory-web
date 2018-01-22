@@ -50,9 +50,8 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     <Typography type="subheading" color="secondary">
 
                     </Typography>
-                    <Typography component="div">The Malaria Observatory has <strong><QueryResult table="pf_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong>
-                        <em>P.falciparum</em> samples from <strong><QueryResult table="pf_samples" expression='["count", [["distinct", ["site_id"]]]]' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong> study sites classed as
-                            <strong>{{name}}</strong>.
+                    <Typography component="div">Analysis based on <strong><QueryResult table="pf_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong>
+                        <em>P.falciparum</em> samples from <strong><QueryResult table="pf_samples" expression='["count", [["distinct", ["site_id"]]]]' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong> study sites in <strong><QueryResult table="pf_samples" expression='["count", [["distinct", ["country_id"]]]]' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong> countries in                             <strong>{{name}}</strong>.
                         <div class="auto-half-height-container">
                            <div class="auto-height-inner">
                             <Map disableInteraction>
@@ -73,7 +72,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     <Typography type="subheading" color="secondary">
 
                     </Typography>
-                    <Typography component="div">Estimated proportion of <em>P. falciparum</em> infections in <strong>{{name}}</strong> that have molecular markers for drug resistant
+                    <Typography component="div">For each antimalarial drug we show the estimated proportion of <em>P. falciparum</em> infections in <strong>{{name}}</strong> with  molecular markers for drug resistance. Values on the right represent the total number of individuals in <strong>{{name}}</strong> where data was good enough for these markers to be typed.
 
                         <div style="padding-top: 20px">
                           {{#query 'drug_id' 'name' table='pf_drugs'}}
