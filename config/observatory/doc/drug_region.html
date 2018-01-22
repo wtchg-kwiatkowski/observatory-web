@@ -1,7 +1,7 @@
 {{#query 'drug_id' 'name' table='pf_drugs' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"drug_id","CompValue":"{{drug_id}}","isRoot":true,"Tpe":"="}'}}
-{{#query 'region_id' 'name' table='pf_regions' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"WAF","isRoot":true,"Tpe":"="}'}}
+{{#query 'region_id' 'name' 'web_colour' table='pf_regions' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{@root/region_id}}","isRoot":true,"Tpe":"="}'}}
 <PageTemplate bgurl="mountains.jpg">
-  <BreadCrumb a="pf" b="geography"><span><i style="padding-right:3px;color:{{web_colour}}" class="fa fa-square" aria-hidden="true"></i> {{name}}</span></BreadCrumb>
+    <BreadCrumb a="pf" b="regions"><ItemLink table="pf_regions" primKey="{{region_id}}"><span class="obs-breadcrumb-component"><i style="padding-right:3px;color:{{web_colour}}" class="fa fa-square" aria-hidden="true"></i><a>{{name}}</a></span></ItemLink><span>{{../name}} in {{name}}</span></BreadCrumb>
   <CardStack>
     <Card>
       <CardContent>
@@ -11,6 +11,15 @@
         <Typography type="subheading" color="secondary">
 
         </Typography>
+        <Typography omponent="div">
+          {{#query 'text' table='pf_drug_region' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"drug_region_id","CompValue":"{{../drug_id}}_{{region_id}}","isRoot":true,"Tpe":"="}'}}
+            {{text}}
+          {{/query}}
+        </Typography>
+      </CardContent>
+    </Card>
+    <Card>
+      <CardContent>
         <Typography component="div">The Malaria Observatory has <strong><QueryResult table="pf_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong>
           <em>P.falciparum</em> samples from <strong><QueryResult table="pf_samples" expression='["count", [["distinct", ["site_id"]]]]' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong> study sites classed as
           <strong>{{name}}</strong> of which <strong><QueryResult table="pf_samples" query='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{../drug_id}}resistant","CompValue":"yes","Tpe":"="}],"Tpe":"AND"}' /></strong> have markers for {{../name}} resistance.
@@ -24,7 +33,7 @@
                                               clickPrimaryKeyProperty="site_id"
                                               table="pf_samples"
                                               clusterMarkers="true"
-                                              markerColourProperty="{{../../drug_id}}resistant" />
+                                              markerColourProperty="{{../drug_id}}resistant" />
               </Map>
             </div>
           </div>

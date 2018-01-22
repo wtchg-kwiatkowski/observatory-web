@@ -40,7 +40,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
   name: Details
   content: |
     <PageTemplate bgurl="mountains.jpg">
-        <BreadCrumb a="pf" b="geography"><span><i style="padding-right:3px;color:{{web_colour}}" class="fa fa-square" aria-hidden="true"></i> {{name}}</span></BreadCrumb>
+        <BreadCrumb a="pf" b="regions"><span><i style="padding-right:3px;color:{{web_colour}}" class="fa fa-square" aria-hidden="true"></i> {{name}}</span></BreadCrumb>
         <CardStack>
             <Card>
                 <CardContent>
@@ -75,25 +75,27 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     <Typography component="div">For each antimalarial drug we show the estimated proportion of <em>P. falciparum</em> infections in <strong>{{name}}</strong> with  molecular markers for drug resistance. Values on the right represent the total number of individuals in <strong>{{name}}</strong> where data was good enough for these markers to be typed.
 
                         <div style="padding-top: 20px">
-                          {{#query 'drug_id' 'name' table='pf_drugs'}}
-                            <DocLink path="drug_region.html" drug_id="{{drug_id}}" region_id="{{../region_id}}">
-                              <PercentMatching
-                                table="pf_samples"
-                                numQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{../region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"yes","Tpe":"="}],"Tpe":"AND"}' domQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{../region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"missing","Tpe":"<>"}],"Tpe":"AND"}'
-                                childNumeratorProp="numerator"
-                                childDenominatorProp="denominator"
-                              >
-                                <ProportionBar
-                                  label="{{name}}"
-                                  colourTable="pf_samples"
-                                  colourProperty="{{drug_id}}resistant"
-                                  numeratorPropertyValue="yes"
-                                  remainderPropertyValue="_TRANSPARENT_"
-                               />
-                              </PercentMatching>
-                            </DocLink>
-                          {{/query}}
+                          <ProportionBarChartWrap
+                            numberOfTickLabels="5"
+                          >
+                            {{#query 'drug_id' 'name' table='pf_drugs'}}
+                              <ProportionBarChartRow
+                                rowTable="pf_drugs"
+                                rowPrimKeyValue="{{drug_id}}"
+                                rowLabel="{{name}}"
+                                proportionTable="pf_samples"
+                                proportionTableColourColumn="{{drug_id}}resistant"
+                                proportionTableColourColumnNumeratorValue="yes"
+                                numeratorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{../region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"yes","Tpe":"="}],"Tpe":"AND"}'
+                                denominatorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{../region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"missing","Tpe":"<>"}],"Tpe":"AND"}'
+                                remainderTextColour="inherit"
+                                onClickBehaviour="DocLink"
+                                docLinkHref="drug_region.html"  drug_id="{{drug_id}}" region_id="{{../region_id}}"
+                              />
+                            {{/query}}
+                          </ProportionBarChartWrap>
                         </div>
+
                     </Typography>
                 </CardContent>
             </Card>

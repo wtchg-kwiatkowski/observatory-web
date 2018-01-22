@@ -23,7 +23,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
   name: Details
   content: |
     <PageTemplate bgurl="mountains.jpg">
-        <BreadCrumb a="pf" b="geography"><span>##COUNTRY##</span><span>{{name}}</span></BreadCrumb>
+        <BreadCrumb a="pf" b="regions"><span>##COUNTRY##</span><span>{{name}}</span></BreadCrumb>
         <CardStack>
             <Card>
                 <CardContent>
@@ -43,6 +43,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                             <Map disableInteraction>
                                 <TileLayer />
                                 {{#query 'region_id' table='pf_samples' distinct='true' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}'}}
+                                    <TableGeoJSONsLayer disableClick showLegend="false" table="pf_regions" geoJsonProperty="geojson" colourProperty="web_colour" labelProperty="name" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' />
                                     <TableMarkersLayer clusterMarkers="false" showLegend="false" clickTable="sites" clickPrimaryKeyProperty="site_id" table="pf_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}'>
                                        <svg style="width: 4px; height: 4px; position: absolute; left: -2px; top: -2px;" viewBox="0 0 100 100">
                                            <circle cx="50" cy="50" r="50" strokeWidth="0" fill="black" opacity="0.5" />
@@ -67,25 +68,25 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     <Typography component="div">Estimated proportion of <em>P. falciparum</em> infections in <strong>{{name}}</strong> that have molecular markers for drug resistant:
 
                         <div style="padding-top: 20px">
-                          {{#query 'drug_id' 'name' table='pf_drugs'}}
-                            <ItemLink table="pf_drugs" primKey="{{drug_id}}">
-                              <PercentMatching
-                                table="pf_samples"
-                                numQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{../site_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"yes","Tpe":"="}],"Tpe":"AND"}' domQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{../site_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"missing","Tpe":"<>"}],"Tpe":"AND"}'
-                                childNumeratorProp="numerator"
-                                childDenominatorProp="denominator"
-                              >
-                                <ProportionBar
-                                  label="{{name}}"
-                                  colourTable="pf_samples"
-                                  colourProperty="{{drug_id}}resistant"
-                                  numeratorPropertyValue="yes"
-                                  remainderPropertyValue="_TRANSPARENT_"
-                               />
-                              </PercentMatching>
-                            </ItemLink>
-                          {{/query}}
+                          <ProportionBarChartWrap
+                            numberOfTickLabels="5"
+                          >
+                            {{#query 'drug_id' 'name' table='pf_drugs'}}
+                              <ProportionBarChartRow
+                                rowTable="pf_drugs"
+                                rowPrimKeyValue="{{drug_id}}"
+                                rowLabel="{{name}}"
+                                proportionTable="pf_samples"
+                                proportionTableColourColumn="{{drug_id}}resistant"
+                                proportionTableColourColumnNumeratorValue="yes"
+                                numeratorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{../site_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"yes","Tpe":"="}],"Tpe":"AND"}'
+                                denominatorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{../site_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"missing","Tpe":"<>"}],"Tpe":"AND"}'
+                                remainderTextColour="inherit"
+                              />
+                            {{/query}}
+                          </ProportionBarChartWrap>
                         </div>
+                        
                     </Typography>
                 </CardContent>
             </Card>
