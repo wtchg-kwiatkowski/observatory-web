@@ -15,5 +15,6 @@ dataTables:
 - pf_drugs
 - pf_resgenes
 - pf_genes
+- pf_drug_regions
 #- strains
 - variants
