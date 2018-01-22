@@ -12,7 +12,7 @@
 
         </Typography>
         <Typography omponent="div">
-          {{#query 'text' table='pf_drug_region' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"drug_region_id","CompValue":"{{../drug_id}}_{{region_id}}","isRoot":true,"Tpe":"="}'}}
+          {{#query 'text' table='pf_drug_regions' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"drug_region_id","CompValue":"{{@root/drug_id}}_{{region_id}}","isRoot":true,"Tpe":"="}'}}
             {{text}}
           {{/query}}
         </Typography>
