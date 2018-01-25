@@ -65,7 +65,15 @@
             <Typography component="div" className="paragraph">This list shows the top 10 most highly differentiated genes between regions, suggesting that they might potentially be involved in regionally-specific parasite adaptation </Typography>
 
             <Typography component="div" className="paragraph">
-                <MuiDataTableView table="pf_genes" maxRowsPerPage="10" columns='["Name", "gene_id","Highly_differentiated_comparisons_population_n28"]' order='[["desc", "Highly_differentiated_comparisons_population_n28"]]'/>
+                <MuiDataTableView
+                  table="pf_genes"
+                  maxRowsPerPage="10"
+                  columns='["Name", "gene_id","Highly_differentiated_comparisons_population_n28"]'
+                  order='[["desc", "Highly_differentiated_comparisons_population_n28"]]'
+                  onClickBehaviour='tab'
+                  onClickComponent='ItemTemplate'
+                  onClickComponentTemplateDocPath='templates/genesOnClickTab.html'
+                />
             </Typography>
             <PopupButton icon="arrow-right" label="Explore differentiation across all genes in Viewer" target="tab">
                 <TableWithLegend
