@@ -31,7 +31,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
   name: Details
   content: |
     <PageTemplate bgurl="mountains.jpg">
-        <BreadCrumb a="pf" b="regions"><span>##COUNTRY##</span><span>{{name}}</span></BreadCrumb>
+        <BreadCrumb a="pf" b="regions"><ItemLink table="pf_regions" primKey="{{pf_regions.region_id}}"><span class="obs-breadcrumb-component"><i style="padding-right:3px;color:{{pf_regions.web_colour}}" class="fa fa-square" aria-hidden="true"></i><a>{{pf_regions.name}}</a></span></ItemLink><span>{{name}}</span></BreadCrumb>
         <CardStack>
             <Card>
                 <CardContent>
@@ -50,14 +50,12 @@ dataItemViews:              # Lists the custom views that should appear in the p
                            <div class="auto-height-inner">
                             <Map disableInteraction>
                                 <TileLayer />
-                                {{#query 'region_id' table='pf_samples' distinct='true' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}'}}
-                                    <TableGeoJSONsLayer disableClick showLegend="false" table="pf_regions" geoJsonProperty="geojson" colourProperty="web_colour" labelProperty="name" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' />
-                                    <TableMarkersLayer clusterMarkers="false" showLegend="false" clickTable="sites" clickPrimaryKeyProperty="site_id" table="pf_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}'>
+                                    <TableGeoJSONsLayer disableClick showLegend="false" table="pf_regions" geoJsonProperty="geojson" colourProperty="web_colour" labelProperty="name" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{pf_regions.region_id}}","isRoot":true,"Tpe":"="}' />
+                                    <TableMarkersLayer clusterMarkers="false" showLegend="false" clickTable="sites" clickPrimaryKeyProperty="site_id" table="pf_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{pf_regions.region_id}}","isRoot":true,"Tpe":"="}'>
                                        <svg style="width: 4px; height: 4px; position: absolute; left: -2px; top: -2px;" viewBox="0 0 100 100">
                                            <circle cx="50" cy="50" r="50" strokeWidth="0" fill="black" opacity="0.5" />
                                        </svg>
                                     </TableMarkersLayer>
-                                {{/query}}
                                 <TableMarkersLayer clusterMarkers="false" table="sites" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}' />
                             </Map>
                            </div>
@@ -100,25 +98,23 @@ dataItemViews:              # Lists the custom views that should appear in the p
             </Card>
 
             Some example content - we can of course add e.g. people, publications etc. or remove this.
-            {{#query 'study_id' table='pf_samples' distinct='true' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}'}}
-                {{#query 'study' 'study_number' 'webTitle' 'description' table='studies' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"study","CompValue":"{{study_id}}","isRoot":true,"Tpe":"="}'}}
-                    <!-- I NEED JOINS IN QUERIES!!! -->
+            {{#query 'studies.study_number' 'studies.webTitle' 'studies.description' 'study_id' table='pf_samples' distinct='true' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}'}}
                     <Card>
                         <CardContent>
                             <Typography type="headline">
-                                <strong>{{study_number}}</strong>: {{{webTitle}}}
+                                <strong>{{studies.study_number}}</strong>:{{{studies.webTitle}}}
                             </Typography>
                             <Typography type="subheading" color="secondary">
-                                <strong><QueryResult table="pf_samples" query='{"whcClass":"compound","isCompound":true,"isRoot":false,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{../../site_id}}","isRoot":true,"Tpe":"="}, {"whcClass":"comparefixed","isCompound":false,"ColName":"study_id","CompValue":"{{../study_id}}","isRoot":true,"Tpe":"="}],"Tpe":"AND"}' /></strong> <em>P. Falciparum</em> samples from {{../../name}}
+                                <strong><QueryResult table="pf_samples" query='{"whcClass":"compound","isCompound":true,"isRoot":false,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{../site_id}}","isRoot":true,"Tpe":"="}, {"whcClass":"comparefixed","isCompound":false,"ColName":"study_id","CompValue":"{{study_id}}","isRoot":true,"Tpe":"="}],"Tpe":"AND"}' /></strong> <em>P. Falciparum</em> samples from {{../name}}
                             </Typography>
                             <Typography component="div">
-                                {{{description}}}
+                                {{{studies.description}}}
                             </Typography>
                             <Typography component="p">
                                 Key people:
                             </Typography>
                             <Typography component="ul">
-                              {{#query 'givenName' 'sn' 'mail' table='study_ldap_people' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"study","CompValue":"{{study}}","isRoot":true,"Tpe":"="}'}}
+                              {{#query 'givenName' 'sn' 'mail' table='study_ldap_people' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"study","CompValue":"{{study_id}}","isRoot":true,"Tpe":"="}'}}
                                 <Typography component="li">
                                   {{{givenName}}} {{{sn}}}, {{{mail}}}
                                 </Typography>
@@ -130,7 +126,6 @@ dataItemViews:              # Lists the custom views that should appear in the p
                             </Typography>
                         </CardContent>
                     </Card>
-                {{/query}}
             {{/query}}
 
         </CardStack>
