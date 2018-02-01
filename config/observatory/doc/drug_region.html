@@ -40,6 +40,36 @@
         </Typography>
       </CardContent>
     </Card>
+    <Card>
+      <CardContent>
+          <Typography type="headline">
+              Frequency of {{lowercase ../name}} resistance
+          </Typography>
+          <Typography type="subheading" color="secondary">
+
+          </Typography>
+          <Typography component="div">
+              The proportion of <em>P. falciparum</em> samples with markers of <strong>{{lowercase ../name}}</strong> resistance are:
+
+              <div style="padding-top: 20px">
+                <ProportionBarChart
+                  rowTable="sites"
+                  rowTableQuery='{"whcClass":"comparefixed","isCompound":false,"ColName":"pf_region_id","CompValue":"{{region_id}}","Tpe":"="}'
+                  proportionTable="pf_samples"
+                  proportionTableColourColumn="{{../drug_id}}resistant"
+                  proportionTableColourColumnNumeratorValue="yes"
+                  numeratorQuery='{"whcClass":"comparefixed","isCompound":false,"ColName":"{{../drug_id}}resistant","CompValue":"yes","Tpe":"="}'
+                  denominatorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"{{../drug_id}}resistant","CompValue":"yes","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{../drug_id}}resistant","CompValue":"no","Tpe":"="}],"Tpe":"OR"}'
+                  remainderTextColour="inherit"
+                  numberOfTickLabels="5"
+                  onClickBehaviour="ItemLink"
+                />
+              </div>
+
+          </Typography>
+      </CardContent>
+    </Card>
+
   </CardStack>
 </PageTemplate>
 {{/query}}
