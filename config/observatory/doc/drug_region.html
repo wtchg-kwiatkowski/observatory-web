@@ -28,13 +28,16 @@
               <Map disableInteraction>
                 <TileLayer />
                 <TableGeoJSONsLayer showLegend="false" table="pf_regions" geoJsonProperty="geojson" colourProperty="web_colour" labelProperty="name" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' />
-                <TableMarkersLayerCustomPopup showLegend="false"
-                                              query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}'
-                                              clickPrimaryKeyProperty="site_id"
-                                              table="pf_samples"
-                                              clusterMarkers="true"
-                                              markerColourProperty="{{../drug_id}}resistant" />
-              </Map>
+                <TableMarkersLayer
+                  showLegend="false"
+                  query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}'
+                  table="pf_samples"
+                  clusterMarkers="true"
+                  markerColourProperty="{{../drug_id}}resistant"
+                  onClickClusterBehaviour="tooltip"
+                  onClickClusterComponent="Template"
+                  onClickClusterComponentTemplateDocPath="templates/sitesInRegionOnClickClusterTooltip.html"
+                />
             </div>
           </div>
         </Typography>
