@@ -22,7 +22,14 @@ properties:
     tableId: pf_regions         # Datatable id of the parent table
     forwardName: is sampled from    # Display name of the relation from child to parent
     reverseName: contains           # Display name of the relation from parent to child
-
+- id: country_id
+  name: CountryCode
+  dataType: Text
+  relation:                         # This block defines a many-to-one foreign relation to a parent table
+    tableId: countries         # Datatable id of the parent table
+    forwardName: is in    # Display name of the relation from child to parent
+    reverseName: contains           # Display name of the relation from parent to child
+ 
 primKey: site_id
 
 
