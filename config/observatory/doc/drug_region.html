@@ -35,7 +35,8 @@
                   clusterMarkers="true"
                   markerColourProperty="{{../drug_id}}resistant"
                   onClickClusterBehaviour="tooltip"
-                  onClickClusterComponent="Template"
+                  onClickClusterComponent="HandlebarsWithComponents"
+                  onClickClusterComponentProps='{"drug_id":"{{../drug_id}}","drug_name":"{{../name}}"}'
                   onClickClusterComponentTemplateDocPath="templates/sitesInRegionOnClickClusterTooltip.html"
                 />
             </div>
