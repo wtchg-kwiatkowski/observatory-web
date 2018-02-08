@@ -1,0 +1,8 @@
+{{#query 'site_id' 'name' table='sites' query='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"lat","CompValue":"{{originalLat}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"lng","CompValue":"{{originalLng}}","Tpe":"="}],"Tpe":"AND"}'}}
+<div>
+  <div>{{@root/drug_name}} resistance in {{name}}</div>
+  {{#query '{{@root/drug_id}}resistant' expression='["count",["*"]]' table='pf_samples' groupBy='["{{@root/drug_id}}resistant"]' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","Tpe":"="}' orderBy='[["desc", "{{@root/drug_id}}resistant"]]'}}
+    <div><span style="text-transform:capitalize">{{lookup . (concat @root/drug_id 'resistant')}}</span>: <strong>{{expression}}</strong></div>
+  {{/query}}
+</div>
+{{/query}}
