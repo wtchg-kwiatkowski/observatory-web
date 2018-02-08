@@ -65,6 +65,9 @@ dataItemViews:              # Lists the custom views that should appear in the p
                                   table="pf_samples"
                                   markerColourProperty="country_id"
                                   query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}'
+                                  joins='[
+                                    {"type": "INNER", "foreignTable": "pf_regions", "foreignColumn": "region_id", "column": "region_id"}
+                                  ]'
                                 />
                             </Map>
                            </div>
