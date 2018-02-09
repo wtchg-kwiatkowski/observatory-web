@@ -56,7 +56,9 @@
               The proportion of <em>P. falciparum</em> samples with markers of <strong>{{lowercase ../name}}</strong> resistance are:
 
               <div style="padding-top: 20px">
-                <ProportionBarChartWrap>
+                <ProportionBarChartWrap
+                  numberOfTickLabels="5"
+                >
                 {{#query
                   'countries.country_id'
                   'alpha_3_code'
@@ -86,7 +88,6 @@
                       numeratorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"country_id","CompValue":"{{../countries.country_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{@root/drug_id}}resistant","CompValue":"yes","Tpe":"="}],"Tpe":"AND"}'
                       denominatorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"country_id","CompValue":"{{../countries.country_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","Tpe":"="},{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"{{@root/drug_id}}resistant","CompValue":"yes","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{@root/drug_id}}resistant","CompValue":"no","Tpe":"="}],"Tpe":"OR"}],"Tpe":"AND"}'
                       remainderTextColour="inherit"
-                      numberOfTickLabels="5"
                     />
                   {{/query}}
                 {{/query}}
