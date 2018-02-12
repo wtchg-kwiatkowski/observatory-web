@@ -57,7 +57,18 @@ dataItemViews:              # Lists the custom views that should appear in the p
                             <Map disableInteraction>
                                 <TileLayer />
                                 <TableGeoJSONsLayer showLegend="false" table="pf_regions" geoJsonProperty="geojson" colourProperty="web_colour" labelProperty="name" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' />
-                                <TableMarkersLayer clusterMarkers="false" showLegend="false" clickTable="sites" clickPrimaryKeyProperty="site_id" table="pf_samples" markerColourProperty="country_id" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' />
+                                <TableMarkersLayer
+                                  clusterMarkers="false"
+                                  showLegend="false"
+                                  clickTable="sites"
+                                  clickPrimaryKeyProperty="site_id"
+                                  table="pf_samples"
+                                  markerColourProperty="country_id"
+                                  query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}'
+                                  joins='[
+                                    {"type": "INNER", "foreignTable": "pf_regions", "foreignColumn": "region_id", "column": "region_id"}
+                                  ]'
+                                />
                             </Map>
                            </div>
                         </div>

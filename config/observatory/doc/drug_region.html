@@ -28,13 +28,17 @@
               <Map disableInteraction>
                 <TileLayer />
                 <TableGeoJSONsLayer showLegend="false" table="pf_regions" geoJsonProperty="geojson" colourProperty="web_colour" labelProperty="name" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' />
-                <TableMarkersLayerCustomPopup showLegend="false"
-                                              query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}'
-                                              clickPrimaryKeyProperty="site_id"
-                                              table="pf_samples"
-                                              clusterMarkers="true"
-                                              markerColourProperty="{{../drug_id}}resistant" />
-              </Map>
+                <TableMarkersLayer
+                  showLegend="false"
+                  query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}'
+                  table="pf_samples"
+                  clusterMarkers="true"
+                  markerColourProperty="{{../drug_id}}resistant"
+                  onClickClusterBehaviour="tooltip"
+                  onClickClusterComponent="HandlebarsWithComponents"
+                  onClickClusterComponentProps='{"drug_id":"{{../drug_id}}","drug_name":"{{../name}}"}'
+                  onClickClusterComponentTemplateDocPath="templates/drugResistanceInRegionSiteSamplesOnClickClusterTooltip.html"
+                />
             </div>
           </div>
         </Typography>
@@ -52,18 +56,42 @@
               The proportion of <em>P. falciparum</em> samples with markers of <strong>{{lowercase ../name}}</strong> resistance are:
 
               <div style="padding-top: 20px">
-                <ProportionBarChart
-                  rowTable="sites"
-                  rowTableQuery='{"whcClass":"comparefixed","isCompound":false,"ColName":"pf_region_id","CompValue":"{{region_id}}","Tpe":"="}'
-                  proportionTable="pf_samples"
-                  proportionTableColourColumn="{{../drug_id}}resistant"
-                  proportionTableColourColumnNumeratorValue="yes"
-                  numeratorQuery='{"whcClass":"comparefixed","isCompound":false,"ColName":"{{../drug_id}}resistant","CompValue":"yes","Tpe":"="}'
-                  denominatorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"{{../drug_id}}resistant","CompValue":"yes","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{../drug_id}}resistant","CompValue":"no","Tpe":"="}],"Tpe":"OR"}'
-                  remainderTextColour="inherit"
+                <ProportionBarChartWrap
                   numberOfTickLabels="5"
-                  onClickBehaviour="ItemLink"
-                />
+                >
+                {{#query
+                  'countries.country_id'
+                  'alpha_3_code'
+                  'countries.name'
+                  'num_samples'
+                  table='countries'
+                  joins='[{"type": "INNER", "foreignTable": "sites", "foreignColumn": "sites.country_id", "column": "countries.country_id"}]'
+                  query='{"whcClass":"comparefixed","isCompound":false,"ColName":"sites.pf_region_id","CompValue":"{{region_id}}","Tpe":"="}'
+                  distinct='true'
+                  orderBy='[["asc","countries.name"]]'
+                }}
+                  <tr><td>{{{countries.name}}} ({{alpha_3_code}})</td></tr>
+                  {{#query
+                    'site_id'
+                    'sites.name'
+                    table='sites'
+                    query='{"whcClass":"comparefixed","isCompound":false,"ColName":"country_id","CompValue":"{{countries.country_id}}","Tpe":"="}'
+                  }}
+                    <ProportionBarChartRow
+                      key="ProportionBarChartRow_{{site_id}}"
+                      rowTable="sites"
+                      rowPrimKeyValue="{{site_id}}"
+                      rowLabel="{{sites.name}}"
+                      proportionTable="pf_samples"
+                      proportionTableColourColumn="{{@root/drug_id}}resistant"
+                      proportionTableColourColumnNumeratorValue="yes"
+                      numeratorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"country_id","CompValue":"{{../countries.country_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{@root/drug_id}}resistant","CompValue":"yes","Tpe":"="}],"Tpe":"AND"}'
+                      denominatorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"country_id","CompValue":"{{../countries.country_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","Tpe":"="},{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"{{@root/drug_id}}resistant","CompValue":"yes","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{@root/drug_id}}resistant","CompValue":"no","Tpe":"="}],"Tpe":"OR"}],"Tpe":"AND"}'
+                      remainderTextColour="inherit"
+                    />
+                  {{/query}}
+                {{/query}}
+                </ProportionBarChartWrap>
               </div>
 
           </Typography>
