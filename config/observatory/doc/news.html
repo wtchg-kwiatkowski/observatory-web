@@ -1,29 +1,36 @@
-<title>Start</title> <div class="centering-container"> <div class="vertical stack" style="max-width:650px;font-family: Roboto, Cochin, Georgia, serif; background-color: #d9d9d9"> <span style="font-size: 18px;padding-bottom: 25px;padding-top: 25px; padding-left: 25px"> 
-News and data stories</span> 
+<PageTemplate bgurl="drugs.jpg">
+    <BreadCrumb a="news" />
+
+<div className="obs-leader">    We need to: (1) sort out the breadcrumb here (2) put in a header (3) have a "read more" expansion button (4) add images (5) add author/date and sort by date a al google news   </div>
 
 
-<Card style="margin-bottom: 25px; margin-left: 5px; margin-right: 5px"> 
-<CardTitle title="How many independent origins of artemisinin resistance have there been?" titleStyle='{"font-size":"18px"}' />
-<CardText >
+    <CardStack>
+        <Card>
+            <CardContent>
+                <Typography type="headline">
+                    How does antimalarial drug resistance happen?
+                </Typography>
+                <Typography type="subheading" color="secondary">
+                    Resistance is a result of evolution
+                </Typography>
+                <Typography component="p">Humans have been getting malaria for thousands of years. The only way that you can become infected with malaria is to be bitten by an infected mosquito. After this transmission from mosquito to human host, the parasite enters the bloodstream, travelling to and infecting the liver. At this point, a massive population expansion happens and the number of parasites within a person explodes, causing the body to raise its temperature in effort to boil the invader. Growth in parasite numbers is the result of many rounds of multiplication. Each round involves the duplication of each parasite's entire genome. As each parasite does this, one or two mistakes, known as mutations, can creep in.</Typography>
 
-<p><em>Some sort of image here or somewhere visible</em></p>
+                <Typography component="p">So the generation of so many new parasites creates novel genetic diversity. And, although the mutations underlying this diversity are normally benign or even detrimental to the parasite, very occasionally a mutation can give a parasite an advantage. </Typography>
 
-<p>Artemisinin is the new drug on the scene. Although it was discovered years ago, it has only been mass produced to fight malaria more recently. <em>Plasmodium falciparum</em> malaria has evolved resistance to every other drug that has been used against it, and now it appears that the same is the case for Artemisinin.</p>
+                <Typography type="subheading" color="secondary">New genetic diversity makes the evolution of drug resistance possible</Typography>
 
-<p>Understanding where and when this resistance has evolved is crucial to the future management of this most effective anti-malarial drug. We use the <b>Malaria Observatory data</b> to investigate how many times resistance to artemisinin has evolved.</p>
+                <Typography component="p">It is this churn in new genetic diversity that goes some way to explaining how drug resistance evolves. Millions of random mutations are generated over the course of an infection, and given that hundreds of millions of people are infected with malaria every year, sooner or later one that gives a parasite resistance to the drug being used will occur.</Typography>
 
-<p><DocLink href="blog1.html">Read more</DocLink></p>
+                <Typography component="p">Unlike other parasites in an infection, a parasite with a resistance mutation will be left unaffected by a drug, and rather than dying will continue to circulate around the human host.</Typography>
 
-</CardText> </Card>
+                <Typography component="p">If a parasite that has evolved resistance, or more likely its offspring, are present in the bloodstream when the infected host next gets bitten, then the drug resistant parasite has the potential to move between people and resistance can spread.</Typography>
 
-<Card style="margin-bottom: 25px; margin-left: 5px; margin-right: 5px"> 
-<CardTitle title="Under the radar: how genomics is helping us to understand rapid diagnostic test (RDT) failure in the field" titleStyle='{"font-size":"18px"}' />
-<CardText >
-<p><em>Some sort of image here or somewhere visible</em></p>
-<p>The ability to quickly test and diagnose malaria in the field is crucial. Control programs neither want to waste precious drugs on people who aren't infected nor use drugs when there's no need. Thereforen rapid diagnostic tests (RDTs) are an important component of malaria control.</p>
+                <Typography type="subheading" color="secondary">Linking a parasite's DNA to drug resistance with genetic markers</Typography>
 
-<p>However, recent research has uncovered a worrying issue. A genomic deletion in the XXX gene of the <em>Plasmodium falciparum</em> malaria genome causes the most common RDT to fail. We use the <b>Malaria Observatory data</b> to epxlore the distribution of the deletion and investigate the extent to which this mutation has the ability to hamper future eradication efforts.</p>
+                <Typography component="p">The best way to test whether a parasite is resistant to a drug is to challenge them with the drug and see how it responds. One common way of doing this is to administer a drug and then count the number of parasites in the blood stream measured every hour afterwards to see how long the drug takes to clear the parasite from the blood stream. Whilst this allows us to identify resistance in the first place, because it is time intensive and requires lab resources, it is impractical to do on a large-scale basis.</Typography>
 
-<p><DocLink href="blog1.html">Read more</DocLink></p> 
-
-</div>
+                <Typography component="p"> Because resistance is the result of changes to the genetic code, an effective way to look at resistance across many individuals it to look at their DNA. This is the approach that we have taken with  <span className="obs-highlight">MalariaGEN Analytics</span>. We can look at a parasite's DNA to see whether it has known resistance mutations and predict which antimalarial drugs it is resistance too. Analysis of DNA from many different parasites can also teach us about other characteristics, such as their geographical origins. Genomic analysis therefore has the potential to be a useful tool for future malaria control. </Typography>
+              </CardContent>
+            </Card>
+    </CardStack>
+</PageTemplate>

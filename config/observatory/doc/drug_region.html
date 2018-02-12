@@ -21,8 +21,8 @@
     <Card>
       <CardContent>
         <Typography component="div">The Malaria Observatory has <strong><QueryResult table="pf_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong>
-          <em>P.falciparum</em> samples from <strong><QueryResult table="pf_samples" expression='["count", [["distinct", ["site_id"]]]]' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong> study sites classed as
-          <strong>{{name}}</strong> of which <strong><QueryResult table="pf_samples" query='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{../drug_id}}resistant","CompValue":"yes","Tpe":"="}],"Tpe":"AND"}' /></strong> have markers for {{../name}} resistance.
+          <em>P.falciparum</em> samples from <strong><QueryResult table="pf_samples" expression='["count", [["distinct", ["site_id"]]]]' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong> study sites in
+          <strong>{{name}}</strong>. <strong><QueryResult table="pf_samples" query='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{../drug_id}}resistant","CompValue":"yes","Tpe":"="}],"Tpe":"AND"}' /></strong> out of <strong><QueryResult table="pf_samples" query='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","Tpe":"="}],"Tpe":"AND"}' /></strong> are resistant to {{../name}}.
           <div class="auto-half-height-container">
             <div class="auto-height-inner">
               <Map disableInteraction>
