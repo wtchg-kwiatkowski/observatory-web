@@ -11,9 +11,19 @@
         <Typography type="subheading" color="secondary">
 
         </Typography>
-        <Typography omponent="div">
-          {{#query 'text' table='pf_drug_regions' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"drug_region_id","CompValue":"{{@root/drug_id}}_{{region_id}}","isRoot":true,"Tpe":"="}'}}
-            {{{text}}}
+        <Typography component="div">
+          {{#query
+            'pf_regions.name'
+            'pf_drugs.name'
+            'text'
+            table='pf_drug_regions'
+            query='{"whcClass":"comparefixed","isCompound":false,"ColName":"drug_region_id","CompValue":"{{@root/drug_id}}_{{region_id}}","isRoot":true,"Tpe":"="}'
+            joins='[
+              {"type": "INNER", "foreignTable": "pf_regions", "foreignColumn": "pf_regions.region_id", "column": "pf_drug_regions.region_id"},
+              {"type": "INNER", "foreignTable": "pf_drugs", "foreignColumn": "pf_drugs.drug_id", "column": "pf_drug_regions.drug_id"}
+            ]'
+          }}
+            <div>{{eval text}}</div>
           {{/query}}
         </Typography>
       </CardContent>
