@@ -8,18 +8,18 @@
                 Investigate genes involved in drug resistance
             </Typography>
             <Typography type="subheading" color="secondary">
-                Mutations in specific genes are known to cause resistance to anti-malarial drugs
+              Variants in specific genes are known to cause antimalarial drug resistance
             </Typography>
-            <Typography component="div" className="paragraph">Recent research has shown that mutations in at least <strong><QueryResult table="pf_resgenes"/></strong> genes cause resistance to different anti-malarial drugs.</Typography>
+            <Typography component="div" className="paragraph">genetic mutations in at least <strong><QueryResult table="pf_resgenes"/></strong> genes cause resistance to different antimalarial drugs.</Typography>
 
-            <Typography component="div" className="paragraph">We analyse genomic data from the <strong><QueryResult table="pf_samples"/></strong> samples to describe the global distribution of specific genetic mutations and to understand where resistant parasites live.</Typography>
+            <Typography component="div" className="paragraph">We analyse genomic data from the <strong><QueryResult table="pf_samples"/></strong> samples to predict resistance and describe the global and regional distribution of specific genetic mutations.</Typography>
 
             <List>
                 {{#query 'gene_id' 'name' 'short_description' table='pf_resgenes'}}
                 <ObsListItem table="pf_resgenes" primKey="{{gene_id}}" >
                     <ListItemIcon><Icon class="icon" baseURL='/panoptes/Docs/observatory/images/icons/' name='image:gene02.svg' /></ListItemIcon>
                     <ListItemText>
-                        <div>{{{name}}}</div>
+                        <div><em>{{{name}}}</em></div>
                         <span>{{{short_description}}}</span>
                     </ListItemText>
                 </ObsListItem>

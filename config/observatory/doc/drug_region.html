@@ -6,12 +6,23 @@
     <Card>
       <CardContent>
         <Typography type="headline">
-          {{../name}} in {{name}}
+          {{../name}} resistance in {{name}}
         </Typography>
         <Typography type="subheading" color="secondary">
-
+          Summary
         </Typography>
-        <Typography component="div">
+
+        <Typography component="div" className="paragraph">
+          We predict
+          <strong><PercentMatching
+            numQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{../drug_id}}resistant","CompValue":"yes","Tpe":"="}],"Tpe":"AND"}'  domQuery='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' table='pf_samples'/></strong> {{lowercase ../name}} resistance in {{name}} based on <strong><QueryResult table="pf_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong> samples
+          </Typography>
+
+          <Typography type="subheading" color="secondary">
+            Current situation
+          </Typography>
+
+          <Typography component="div" className="paragraph">
           {{#query
             'pf_regions.name'
             'pf_drugs.name'
@@ -23,16 +34,15 @@
               {"type": "INNER", "foreignTable": "pf_drugs", "foreignColumn": "pf_drugs.drug_id", "column": "pf_drug_regions.drug_id"}
             ]'
           }}
-            <div>{{eval text}}</div>
+            <div>{{{eval text}}}</div>
           {{/query}}
         </Typography>
+       
       </CardContent>
     </Card>
     <Card>
       <CardContent>
-        <Typography component="div">The Malaria Observatory has <strong><QueryResult table="pf_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong>
-          <em>P.falciparum</em> samples from <strong><QueryResult table="pf_samples" expression='["count", [["distinct", ["site_id"]]]]' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong> study sites in
-          <strong>{{name}}</strong>. <strong><QueryResult table="pf_samples" query='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{../drug_id}}resistant","CompValue":"yes","Tpe":"="}],"Tpe":"AND"}' /></strong> out of <strong><QueryResult table="pf_samples" query='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","Tpe":"="}],"Tpe":"AND"}' /></strong> are resistant to {{../name}}.
+        <Typography component="div">
           <div class="auto-half-height-container">
             <div class="auto-height-inner">
               <Map disableInteraction>
@@ -57,13 +67,13 @@
     <Card>
       <CardContent>
           <Typography type="headline">
-              Frequency of {{lowercase ../name}} resistance
+              Proportion of {{lowercase ../name}} resistant parasites across sites in {{name}}
           </Typography>
           <Typography type="subheading" color="secondary">
 
           </Typography>
           <Typography component="div">
-              The proportion of <em>P. falciparum</em> samples with markers of <strong>{{lowercase ../name}}</strong> resistance are:
+              The count of parasites from a site shown on the right is a subset of all parasites from that site and includes only those where we're able to make a clear prediction of resistance (ie <em>yes</em> or <em>no</em> in the map above). This number therefore does not include those parasites where we're unsure of resistance status (ie the group labelled <em>maybe</em>).
 
               <div style="padding-top: 20px">
                 <ProportionBarChartWrap
@@ -80,7 +90,7 @@
                   distinct='true'
                   orderBy='[["asc","countries.name"]]'
                 }}
-                  <tr><td>{{{countries.name}}} ({{alpha_3_code}})</td></tr>
+                  <tr><th style="text-align: left;">{{{countries.name}}} ({{alpha_3_code}})</th></tr>
                   {{#query
                     'site_id'
                     'sites.name'
@@ -105,6 +115,7 @@
               </div>
 
           </Typography>
+ <Typography type="subheading" color="secondary">           Warning         </Typography>          <Typography component="div" className="paragraph">           The antimalarial drug resistance frequencies presented here are <em>predictions</em> based on our analyses of drug resistance genetic markers. We do not measure resistance directly. Actual levels of resistance are likely to differ from these predictions. For more information on how we predict resistance see our technical documentation.         </Typography>
       </CardContent>
     </Card>
 

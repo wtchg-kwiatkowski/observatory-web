@@ -5,14 +5,14 @@
         <Card>
             <CardContent>
                 <Typography type="headline">
-                    Anti-malarial drug resistance
+                  Antimalarial drug resistance
                 </Typography>
                 <Typography type="subheading" color="secondary">
-                    Parasites are evolving resistance to all frontline anti-malarial drugs
+                  Parasites are evolving resistance to all frontline antimalarial drugs
                 </Typography>
 
                 <Typography component="p">
-                 We predict resistance to <strong><QueryResult table="pf_drugs"/></strong> major anti-malarial drugs based on the presence/absence of known drug resistance markers (mutations) across individuals in different populations.</Typography>
+                 We predict resistance to <strong><QueryResult table="pf_drugs"/></strong> major antimalarial drugs based on the presence/absence of known drug resistance mutations across individuals in different populations.</Typography>
 
                 <List>
                 {{#query 'drug_id' 'name' 'short_description' table='pf_drugs'}}

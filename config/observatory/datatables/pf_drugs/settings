@@ -3,7 +3,7 @@ namePlural: drugs
 
 primKey: drug_id
 
-properties: 
+properties:
 - id: drug_id
   dataType: Text
 - id: short_description
@@ -12,8 +12,8 @@ properties:
   dataType: Text
 - id: name
   dataType: Text
-  
-  
+
+
 dataItemViews:              # Lists the custom views that should appear in the popup for an individual data table item
 - type: Template                                       # Add a template based view
   name: Details
@@ -26,32 +26,29 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     <Typography type="headline">
                         {{name}}
                     </Typography>
-                    <Typography type="subheading" color="secondary">
+                    <Typography component="p">
                         {{{description}}}
                     </Typography>
-                </CardContent>
-            </Card>
-            <Card >
-                <CardContent>
-                    <Typography type="headline">
-                        Genetic markers of {{lowercase name}} resistance
-                    </Typography>
-                    <Typography type="subheading" color="secondary">
-                        Needs to be authored for {{lowercase name}}
-                    </Typography>
+
                 </CardContent>
             </Card>
             <Card>
                 <CardContent>
                     <Typography type="headline">
-                        Frequency of {{lowercase name}} resistance
+                     Proportion of {{lowercase name}} resistant parasites by region
                     </Typography>
-                    <Typography type="subheading" color="secondary">
 
+                    <Typography component="div" className="paragraph">
+                    This plot shows the predicted number of drug resistant parasites across our <strong> <QueryResult table="pf_regions"/></strong> regions.
                     </Typography>
+
+                    <Typography component="div" className="paragraph">
+                    The count of parasites from a region, shown on the right, is a subset of all parasites from a region and includes only those where a confident prediction of resistance can be made. This number does not include those parasites where we're unsure of resistance status due to low quality genotyping data.
+                    </Typography>
+
+                    
                     <Typography component="div">
-                        The proportion of <em>P. falciparum</em> samples with markers of <strong>{{lowercase name}}</strong> resistance are:
-
+                      
                         <div style="padding-top: 20px">
                           <ProportionBarChart
                             rowTable="pf_regions"
@@ -66,27 +63,35 @@ dataItemViews:              # Lists the custom views that should appear in the p
                             docLinkHref="drug_region.html"  drug_id="{{drug_id}}"
                           />
                         </div>
-                        
-                    </Typography>
-                </CardContent>
-            </Card>
-            <Card>
-                <CardContent>
-                    <Typography type="headline">
-                        Exploring {{name}} resistance
-                    </Typography>
-                    <Typography type="subheading" color="secondary">
 
                     </Typography>
-                    <Typography component="div">
-                        <p>Here we can show some novel and innovative descriptions of <strong>{{lowercase name}}</strong> resistant parasites. For example:</p>
-                        <ul>
-                            <li><p>how many {{name}} parasites are also resistant for other drugs?</p></li>
-                            <li><p>temporal change in {{name}} resistance</li></p>
-                            <li><p>origins of {{name}} resistance</li></p>
-                        </ul>
+                    <Typography type="subheading" color="secondary">
+                      Warning
                     </Typography>
+
+                    <Typography component="div" className="paragraph">
+                      The antimalarial drug resistance proportions presented here are <em>predictions</em> based on our analyses of drug resistance genetic markers. We do not measure resistance directly. Actual levels of resistance are likely to differ from these predictions. For more information on how we predict resistance see our technical documentation below.
+                    </Typography>
+
+
                 </CardContent>
             </Card>
+            <Card >
+                <CardContent>
+                    <Typography type="headline">
+                        How we predict resistance
+                    </Typography>
+                    <List>
+                      <ObsListItem download href="downloads/Markers_to_phenotype_mapping_-_SOP_v1_1.pdf">
+                        <ListItemIcon><Icon class="icon" baseURL='/panoptes/Docs/observatory/images/icons/' name='image:publications-reports.svg' />
+                        </ListItemIcon>
+                          <ListItemText>
+                          <span>Our standard operating procedure for inferring antimalarial resistance from DNA</span>
+                        </ListItemText>
+                      </ObsListItem>
+                    </List>
+                </CardContent>
+            </Card>
+
         </CardStack>
     </PageTemplate>

@@ -10,16 +10,13 @@
                     Identifying sub-populations of parasites is important for malaria control
                 </Typography>
                 <Typography component="p">
-                    <em>Plasmodium falciparum</em> malaria is found across the tropics in the Americas, Africa, and Asia.
-                </Typography>
+                    <em>Plasmodium falciparum</em> malaria is found across the tropics in the Americas, Africa, and Asia. We analyse parasite genomes from across the world to identify which mutations they carry.
+               </Typography>
                 <Typography component="p">
-                    We analyse the genomes of parasites from across these continents to understand how they are related to each other. Grouping parasites like this allows us to see how samples from across the world are connected to each other.
-                </Typography>
-                <Typography component="p">
-                    Understanding the connectedness of populations helps us to figure out routes of parasite <strong>transmission</strong>, where <strong>new infections</strong> have come from, and how drug resistance mutations might <strong>spread</strong>.
+                   Understanding where different mutations occur helps us to work out the <strong>relationships</strong> between populations, routes of parasite <strong>transmission</strong>, where <strong>new infections</strong> have come from, and how drug resistance mutations might <strong>spread</strong>.
                 </Typography>
                  <Typography component="p">
-                  Current analytics are based on <strong><QueryResult table="pf_samples"/> </strong> <em>P. falciparum</em> samples from <strong><QueryResult table="pf_samples" expression='["count", [["distinct", ["country_id"]]]]' /></strong> countries split across <strong> <QueryResult table="pf_regions"/></strong> regions, where regions are defined using a combination of genetic relatedness and geographic proximity.
+                  Current analyses are based on the <em><strong>Pf6 dataset </strong></em> comprising <strong><QueryResult table="pf_samples"/> </strong> <em>P. falciparum</em> samples from <strong><QueryResult table="pf_samples" expression='["count", [["distinct", ["country_id"]]]]' /></strong> countries split across <strong> <QueryResult table="pf_regions"/></strong> major regions. We define these regions using a combination of genetic relatedness and geographic proximity.
                 </Typography>
                 <Typography component="div" className="paragraph">
                     <SelectRow table="pf_regions"/>
@@ -103,4 +100,3 @@
             </CardText>
         </Card>-->
     </CardStack>
-

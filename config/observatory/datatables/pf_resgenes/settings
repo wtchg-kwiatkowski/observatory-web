@@ -3,7 +3,7 @@ namePlural: genes
 
 primKey: gene_id
 
-properties: 
+properties:
 - id: gene_id
   dataType: Text
 - id: short_description
@@ -33,7 +33,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                         {{capitalizeAll long_name}} ({{name}})
                     </Typography>
                     <Typography type="subheading" color="secondary">
-                        ID: {{gene_id}}
+                        GENE ID: {{gene_id}}
                     </Typography>
                     <Typography component="div">
                         {{{short_description}}}
@@ -44,7 +44,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
             <Card>
                 <CardContent>
                     <Typography type="headline">
-                        How {{../name}} is involved in {{name}} resistance
+                        How is {{../name}} involved in {{lowercase name}} resistance
                     </Typography>
                     <Typography type="subheading" color="secondary">
 
@@ -57,30 +57,40 @@ dataItemViews:              # Lists the custom views that should appear in the p
             <Card>
                 <CardContent>
                     <Typography type="headline">
-                        Frequency of {{name}} resistance
+                    Proportion of {{lowercase name}} resistant parasites by region
                     </Typography>
-                    <Typography type="subheading" color="secondary">
+                    <Typography component="div" className="paragraph">
+                    This plot shows the predicted number of drug resistant parasites across our <strong> <QueryResult table="pf_regions"/></strong> regions.
+                    </Typography>
 
+                    <Typography component="div" className="paragraph">
+                    The count of parasites from a region, shown on the right, is a subset of all parasites from a region and includes only those where a confident prediction of resistance can be made. This number does not include those parasites where we're unsure of resistance status due to low quality genotyping data.
                     </Typography>
+
                     <Typography component="div">
-                        The proportion of <em>P. falciparum</em> samples with <strong><em>{{../marker_name}}</em></strong> markers of <strong>{{name}}</strong> resistance are:
-
                         <div style="padding-top: 20px">
                           <ProportionBarChart
                             rowTable="pf_regions"
                             proportionTable="pf_samples"
                             proportionTableColourColumn="{{drug_id}}resistant"
                             proportionTableColourColumnNumeratorValue="yes"
-                            numeratorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"yes","Tpe":"="}],"Tpe":"AND"}'
-                            denominatorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"missing","Tpe":"<>"}],"Tpe":"AND"}'
+                            numeratorQuery='{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"yes","Tpe":"="}'
+                            denominatorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"yes","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"no","Tpe":"="}],"Tpe":"OR"}'
                             remainderTextColour="inherit"
                             numberOfTickLabels="5"
                             onClickBehaviour="DocLink"
                             docLinkHref="drug_region.html"  drug_id="{{drug_id}}" region_id="{{../region_id}}"
                           />
                         </div>
-                        
                     </Typography>
+                    <Typography type="subheading" color="secondary">
+                      Warning
+                    </Typography>
+
+                    <Typography component="div" className="paragraph">
+                      The antimalarial drug resistance proportions presented here are <em>predictions</em> based on our analyses of drug resistance genetic markers. We do not measure resistance directly. Actual levels of resistance are likely to differ from these predictions. For more information on how we predict resistance see our technical documentation below.
+                    </Typography>
+
                 </CardContent>
             </Card>
             {{/query}}
@@ -89,7 +99,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
             <Card>
                 <CardContent>
                     <Typography type="headline">
-                        Variants in the <em>{{name}}</em> 
+                        Genetic variants in <em>{{name}}</em>
                     </Typography>
                     <Typography type="subheading" color="secondary">
 
@@ -100,11 +110,11 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     <Typography component="div">
                         {{#query 'chromid' 'fstart' 'fstop' table='annotation' query='{"whcClass":"comparefixed","isCompond":false,"isTrivial":false,"isRoot":true,"ColName":"fid","CompValue":"{{gene_id}}","Tpe":"="}'}}
                             <PopupButton icon="arrow-right" label="Explore allele frequencies in Viewer" target="tab">
-                                <TableWithLegend 
-                                    disableMultipleColumnOrder="true" 
-                                    table="variants" 
-                                    columns='["SNPEFF_AMINO_ACID_CHANGE", "POS", "AF_WAF", "AF_CAF","AF_EAF", "AF_WSEA", "AF_ESEA", "AF_SAS",  "AF_SAM", "AF_OCE" ]' 
-                                    order='[["desc", "SNPEFF_AMINO_ACID_CHANGE" ]]' 
+                                <TableWithLegend
+                                    disableMultipleColumnOrder="true"
+                                    table="variants"
+                                    columns='["SNPEFF_AMINO_ACID_CHANGE", "POS", "AF_WAF", "AF_CAF","AF_EAF", "AF_WSEA", "AF_ESEA", "AF_SAS",  "AF_SAM", "AF_OCE" ]'
+                                    order='[["desc", "SNPEFF_AMINO_ACID_CHANGE" ]]'
                                     query='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"CHROM","CompValue":"{{chromid}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"POS","CompValue":{{fstart}},"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"POS","CompValue":{{fstop}},"Tpe":"<="},{"whcClass":"comparefixed","isCompound":false,"ColName":"FILTER_PASS","CompValue":true,"Tpe":"="},{"whcClass":"compound","isCompound":true,"isRoot":false,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"AF_WAF","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"AF_CAF","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"AF_EAF","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"AF_WSEA","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"AF_ESEA","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"AF_SAS","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"AF_SAM","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"AF_OCE","CompValue":0.01,"Tpe":">="}],"Tpe":"OR"}],"Tpe":"AND"}'
                                     onClickBehaviour='tooltip'
                                     onClickComponent='ItemTemplate'

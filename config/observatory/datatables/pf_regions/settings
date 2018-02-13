@@ -15,7 +15,7 @@ listView: true
 
 itemTitle: <i style="color:{{web_colour}}" class="fa fa-square" aria-hidden="true"></i> {{name}}
 
-properties: 
+properties:
 - id: region_id
   dataType: Text
 - id: lat
@@ -45,13 +45,14 @@ dataItemViews:              # Lists the custom views that should appear in the p
             <Card>
                 <CardContent>
                     <Typography type="headline">
-                        Sampling sites in {{name}}
+                        Sample sites in {{name}}
                     </Typography>
                     <Typography type="subheading" color="secondary">
 
                     </Typography>
-                    <Typography component="div">Analysis based on <strong><QueryResult table="pf_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong>
-                        <em>P.falciparum</em> samples from <strong><QueryResult table="pf_samples" expression='["count", [["distinct", ["site_id"]]]]' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong> study sites in <strong><QueryResult table="pf_samples" expression='["count", [["distinct", ["country_id"]]]]' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong> countries in                             <strong>{{name}}</strong>.
+                    <Typography component="div">There are <strong><QueryResult table="pf_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong>
+                        <em>P.falciparum</em> samples from <QueryResult table="pf_samples" singular="study site" plural="study sites" expression='["count", [["distinct", ["site_id"]]]]' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /> in <QueryResult table="pf_samples" singular="country" plural="countries" expression='["count", [["distinct", ["country_id"]]]]' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /> in <strong>{{name}}</strong>
+
                         <div class="auto-half-height-container">
                            <div class="auto-height-inner">
                             <Map disableInteraction>
@@ -77,14 +78,19 @@ dataItemViews:              # Lists the custom views that should appear in the p
             </Card>
             <Card>
                 <CardContent>
-                    <Typography type="headline">
-                        Antimalarial drug resistance
-                    </Typography>
-                    <Typography type="subheading" color="secondary">
+                  <Typography type="headline">
+                   Proportion of antimalarial drug resistant parasites in {{name}}
+                  </Typography>
 
-                    </Typography>
-                    <Typography component="div">For each antimalarial drug we show the estimated proportion of <em>P. falciparum</em> infections in <strong>{{name}}</strong> with  molecular markers for drug resistance. Values on the right represent the total number of individuals in <strong>{{name}}</strong> where data was good enough for these markers to be typed.
+                  <Typography component="div" className="paragraph">
+                  This plot shows the predicted number of resistant parasites for <strong><QueryResult table="pf_drugs"/></strong> major anti-malarial drugs in {{name}}.
+                  </Typography>
 
+                  <Typography component="div" className="paragraph">
+                  The count of parasites shown on the right is a subset of all parasites from {{name}} and includes only those where a confident prediction of resistance can be made. This number is different across drugs because we have less confidence to predict resistance in parasites where genotyping quality is low. Genotyping data quality varies across the genomes of individual parasites.
+                  </Typography>
+
+                  <Typography component="div">
                         <div style="padding-top: 20px">
                           <ProportionBarChartWrap
                             numberOfTickLabels="5"
@@ -108,9 +114,32 @@ dataItemViews:              # Lists the custom views that should appear in the p
                         </div>
 
                     </Typography>
+                    <Typography type="subheading" color="secondary">
+                      Warning
+                    </Typography>
+
+                    <Typography component="div" className="paragraph">
+                      The antimalarial drug resistance proportions presented here are <em>predictions</em> based on our analyses of drug resistance genetic markers. We do not measure resistance directly. Actual levels of resistance are likely to differ from these predictions. For more information on how we predict resistance see our technical documentation below.
+                    </Typography>
+
                 </CardContent>
             </Card>
+            <Card >
+                <CardContent>
+                    <Typography type="headline">
+                        How we predict resistance
+                    </Typography>
+                    <List>
+                      <ObsListItem download href="downloads/Markers_to_phenotype_mapping_-_SOP_v1_1.pdf">
+                        <ListItemIcon><Icon class="icon" baseURL='/panoptes/Docs/observatory/images/icons/' name='image:publications-reports.svg' />
+                        </ListItemIcon>
+                          <ListItemText>
+                          <span>Our standard operating procedure for inferring antimalarial resistance from DNA</span>
+                        </ListItemText>
+                      </ObsListItem>
+                    </List>
+                </CardContent>
+            </Card>
+            
         </CardStack>
     </PageTemplate>
-
-
