@@ -26,8 +26,9 @@
       table="pf_samples"
       expression='["count", [["distinct", ["study_id"]]]]'
       query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}'
-    />
-  </strong> studies.
+      plural="studies"
+      singular="study"
+    /></strong>.
 </div>
 <div style="margin-top: 10px">
   <ItemLink table="sites" primKey="{{site_id}}"><Button color="primary" raised label="more"></PopupButton></ItemLink>
