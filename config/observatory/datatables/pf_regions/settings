@@ -69,6 +69,9 @@ dataItemViews:              # Lists the custom views that should appear in the p
                                   joins='[
                                     {"type": "INNER", "foreignTable": "pf_regions", "foreignColumn": "region_id", "column": "region_id"}
                                   ]'
+                                  onClickSingleBehaviour="tooltip"
+                                  onClickSingleComponent="ItemTemplate"
+                                  onClickSingleComponentTemplateDocPath="templates/ResistanceMapOnClickSingleTooltip.html"
                                 />
                             </Map>
                            </div>
