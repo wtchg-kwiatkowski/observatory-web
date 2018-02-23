@@ -133,7 +133,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                         How we predict resistance
                     </Typography>
                     <List>
-                      <ObsListItem download href="downloads/Markers_to_phenotype_mapping_-_SOP_v1_1.pdf">
+                      <ObsListItem download href="downloads/Markers_to_phenotype_mapping_-_SOP_v1_1.pdf" target="_blank">
                         <ListItemIcon><Icon class="icon" baseURL='/panoptes/Docs/observatory/images/icons/' name='image:publications-reports.svg' />
                         </ListItemIcon>
                           <ListItemText>
