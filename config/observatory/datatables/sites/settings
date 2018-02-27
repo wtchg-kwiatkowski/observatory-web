@@ -4,7 +4,7 @@ description: Information about the sites where samples were collected     # A de
 
 icon: fa-map-marker
 
-properties: 
+properties:
 - id: site_id
   dataType: Text
 - id: lat
@@ -29,7 +29,7 @@ properties:
     tableId: countries         # Datatable id of the parent table
     forwardName: is in    # Display name of the relation from child to parent
     reverseName: contains           # Display name of the relation from parent to child
- 
+
 primKey: site_id
 
 
@@ -49,8 +49,9 @@ dataItemViews:              # Lists the custom views that should appear in the p
                         A site in {{countries.name}}
                     </Typography>
                     <Typography component="div">
-                        The Malaria Observatory has <strong>{{num_samples}}</strong> <em>P. Falciparum</em> samples from {{name}},
-                        contributed by <strong><QueryResult table="pf_samples" expression='["count", [["distinct", ["study_id"]]]]' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}' /></strong> studies.
+                        There are <strong>{{num_samples}}</strong> samples from
+                        <strong><QueryResult table="pf_samples"
+                          singular="study" plural="studies"  expression='["count", [["distinct", ["study_id"]]]]' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}' /></strong> in {{name}}
                         <div class="auto-half-height-container">
                            <div class="auto-height-inner">
                             <Map disableInteraction>
@@ -71,12 +72,22 @@ dataItemViews:              # Lists the custom views that should appear in the p
             <Card>
                 <CardContent>
                     <Typography type="headline">
-                        Antimalarial drug resistance
+                        Proportion of antimalarial drug resistant parasites
                     </Typography>
                     <Typography type="subheading" color="secondary">
 
                     </Typography>
-                    <Typography component="div">Estimated proportion of <em>P. falciparum</em> infections in <strong>{{name}}</strong> that have molecular markers for drug resistant:
+
+                    <Typography component="div" className="paragraph">
+                    This plot shows the predicted number of resistant parasites for <strong><QueryResult table="pf_drugs"/></strong> major antimalarial drugs in {{name}}.
+                    </Typography>
+
+                    <Typography component="div" className="paragraph">
+                    The count of parasites shown on the right is a subset of all parasites from {{name}} and includes only those where a confident prediction of resistance can be made. This number is different across drugs because we have less confidence to predict resistance in parasites where genotyping quality is low. Genotyping data quality varies across the genomes of individual parasites.
+                    </Typography>
+
+
+                    <Typography component="div">
 
                         <div style="padding-top: 20px">
                           <ProportionBarChartWrap
@@ -99,12 +110,19 @@ dataItemViews:              # Lists the custom views that should appear in the p
                             {{/query}}
                           </ProportionBarChartWrap>
                         </div>
-                        
+
+                    </Typography>
+
+                    <Typography type="subheading" color="secondary">
+                      Warning
+                    </Typography>
+
+                    <Typography component="div" className="paragraph">
+                      The antimalarial drug resistance proportions presented here are <em>predictions</em> based on our analyses of drug resistance genetic markers. We do not measure resistance directly. Actual levels of resistance are likely to differ from these predictions. For more information on how we predict resistance see our technical documentation below.
                     </Typography>
                 </CardContent>
             </Card>
 
-            Some example content - we can of course add e.g. people, publications etc. or remove this.
             {{#query 'studies.study_number' 'studies.webTitle' 'studies.description' 'study_id' table='pf_samples' distinct='true' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}'}}
                     <Card>
                         <CardContent>
@@ -137,5 +155,3 @@ dataItemViews:              # Lists the custom views that should appear in the p
 
         </CardStack>
     </PageTemplate>
-
-
