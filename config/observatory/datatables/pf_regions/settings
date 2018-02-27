@@ -86,7 +86,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                   </Typography>
 
                   <Typography component="div" className="paragraph">
-                  This plot shows the predicted number of resistant parasites for <strong><QueryResult table="pf_drugs"/></strong> major anti-malarial drugs in {{name}}.
+                  This plot shows the predicted number of resistant parasites for <strong><QueryResult table="pf_drugs"/></strong> major antimalarial drugs in {{name}}.
                   </Typography>
 
                   <Typography component="div" className="paragraph">
@@ -143,6 +143,6 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     </List>
                 </CardContent>
             </Card>
-            
+
         </CardStack>
     </PageTemplate>
