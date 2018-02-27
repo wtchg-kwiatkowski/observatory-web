@@ -65,13 +65,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                         </div>
 
                     </Typography>
-                    <Typography type="subheading" color="secondary">
-                      Warning
-                    </Typography>
-
-                    <Typography component="div" className="paragraph">
-                      The antimalarial drug resistance proportions presented here are <em>predictions</em> based on our analyses of drug resistance genetic markers. We do not measure resistance directly. Actual levels of resistance are likely to differ from these predictions. For more information on how we predict resistance see our technical documentation below.
-                    </Typography>
+                    <DocTemplate path="templates/warningCardContent.html"/>
 
 
                 </CardContent>
@@ -82,7 +76,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                         How we predict resistance
                     </Typography>
                     <List>
-                      <ObsListItem download href="downloads/Markers_to_phenotype_mapping_-_SOP_v1_1.pdf">
+                      <ObsListItem download href="downloads/Markers_to_phenotype_mapping_-_SOP_v1_1.pdf" target="_blank">
                         <ListItemIcon><Icon class="icon" baseURL='/panoptes/Docs/observatory/images/icons/' name='image:publications-reports.svg' />
                         </ListItemIcon>
                           <ListItemText>
