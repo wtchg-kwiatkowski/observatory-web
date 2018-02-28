@@ -42,8 +42,18 @@
                        </Map>
                     </div>
                 </div>
-                <PopupButton icon="arrow-right" label="Explore map in Viewer" target="tab">
+                <PopupButton target="tab">
+                  <Label>
+                    <Icon
+                      baseURL="/panoptes/Docs/observatory/images/icons/"
+                      name="image:viewer.svg"
+                      style="margin-right: 0.5em;"
+                    />
+                    Explore in Viewer
+                  </Label>
+                  <Content>
                     <ResistanceMap/>
+                  </Content>
                 </PopupButton>
 
             </CardContent>
