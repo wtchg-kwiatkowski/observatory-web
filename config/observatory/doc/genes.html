@@ -39,7 +39,16 @@
             We have computed allele frequencies per region and population
             </Typography>
 
-             <PopupButton icon="arrow-right" label="Explore allele frequency differences in any gene in Viewer" target="tab">
+          <PopupButton target="tab">
+            <Label>
+              <Icon
+                baseURL="/panoptes/Docs/observatory/images/icons/"
+                name="image:viewer.svg"
+                style="margin-right: 0.5em;"
+              />
+              Explore in Viewer
+            </Label>
+            <Content>
               <TableWithLegend
                          table="pf_genes"
                          maxRowsPerPage="30"
@@ -52,8 +61,9 @@
                     <Typography type = "p" component="div">
                     WHAT TABLE DO WE PUT HERE? NOT THE FULL TABLE OF ALL SNPS, SO WE'D NEED SOME WAY OF FILTERING/CHOOSING WHICH VALUES TO PUT IN.
                    </Typography> 
-               </TableWithLegend>            
-</PopupButton>
+               </TableWithLegend>
+            </Content>
+          </PopupButton>
 
         </CardContent>
     </Card>
@@ -75,7 +85,16 @@
                   onClickComponentTemplateDocPath='templates/genesOnClickTab.html'
                 />
             </Typography>
-            <PopupButton icon="arrow-right" label="Explore differentiation across all genes in Viewer" target="tab">
+            <PopupButton target="tab">
+              <Label>
+                <Icon
+                  baseURL="/panoptes/Docs/observatory/images/icons/"
+                  name="image:viewer.svg"
+                  style="margin-right: 0.5em;"
+                />
+                Explore in Viewer
+              </Label>
+              <Content>
                 <TableWithLegend
                     table="pf_genes"
                     maxRowsPerPage="30"
@@ -101,6 +120,7 @@
 Interestingly, globally differentiated genes tend to be involved in parasite/vector interactions, whereas differentiation within populations in a region often involves known drug resistance genes.<br/>
                   </Typography>
                 </TableWithLegend>
+              </Content>
             </PopupButton>
         </CardContent> </Card>
 </CardStack>
