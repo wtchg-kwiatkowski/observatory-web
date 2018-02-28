@@ -38,6 +38,16 @@
           {{/query}}
         </Typography>
        
+        <PopupButton target="dataItemPopup" table="pf_drugs" primKey="{{../drug_id}}">
+          <Label>
+            <Icon
+              baseURL="/panoptes/Docs/observatory/images/icons/"
+              name="image:drug01.svg"
+              style="margin-right: 0.5em;"
+            />
+            {{../name}}
+          </Label>
+        </PopupButton>
       </CardContent>
     </Card>
     <Card>
