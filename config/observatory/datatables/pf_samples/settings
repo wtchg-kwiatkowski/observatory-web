@@ -95,14 +95,12 @@ properties:
 
 - id: CQresistant, PYRresistant, SDXresistant, MQresistant, ARTresistant, PPQresistant
   valueDisplays:
-    "yes": Resistant
-    "no": Susceptible
-    maybe: Mixture
-    missing: No data
+    resistant: Resistant
+    sensitive: Sensitive
+    undetermined: Undetermined
   valueColours:
-    "yes": rgb(214, 39, 40)
-    "no": rgb(44, 160, 44)
-    maybe: rgb(255, 127, 14)
-    missing: #777777
+    resistant: rgb(214, 39, 40)
+    sensitive: rgb(44, 160, 44)
+    undetermined: #777777
     _TRANSPARENT_: rgba(255,255,255,0.0)
 
