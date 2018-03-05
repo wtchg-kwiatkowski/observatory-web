@@ -15,60 +15,31 @@ propertyGroups:
 - id: AS
   name: Asia
 
+
 properties:
 
 - id: gene_id
   name: ID
 
-
-
-- id: gene_id, chrom
+- id: gene_id
   dataType: Text
 
+- id: chrom
+  dataType: Text
 - id: start, end
   dataType: Int32
 
-- id: Name
+- id: gene_name
   name: Gene Name
   dataType: Text
 
-- id: Number_of_non-synonymous_positions, Number_of_synonymous_positions
-  dataType: Int32
-
-- id: N_S
+- id: global_differentiation_score
+  name: Global Score
+  dataType: Float
+- id: local_differentiation_score
+  name: Local Score
+  dataType: Float
+- id: distance_to_higher_local_diff_score
+  name: Distance to higher local score
   dataType: Float
 
-- id: Highly_differentiated_comparisons_population_n28, Highly_differentiated_comparisons_sites_in_WAF_n78, Highly_differentiated_comparisons_sites_in_EAF_n10, Highly_differentiated_comparisons_sites_in_WSEA_n6, Highly_differentiated_comparisons_sites_in_ESEA_n28, Highly_differentiated_comparisons_sites_in_OCE_n3
-  dataType: Int32
-
-- id: Mutations_population_n28
-  dataType: Text
-
-- id: Mutations_sites_in_WAF_n78, Mutations_sites_in_EAF_n10, Mutations_sites_in_WSEA_n6, Mutations_sites_in_ESEA_n28, Mutations_sites_in_OCE_n3
-  dataType: Text
-
-- id: Mean_proportion_highly_differentiated_comparisons_population, Mean_proportion_highly_differentiated_comparisons_site
-  dataType: Float
-  
-- id: Highly_differentiated_comparisons_population_n28
-  name: Global score
-  description: A higher number for this metric indicates that the gene differs highly between regional populations
-- id:  Highly_differentiated_comparisons_sites_in_WAF_n78
-  name: West
-  description: A higher number for this metric indicates that the gene differs highly between sites in West Africa
-  groupId: AF
-- id: Highly_differentiated_comparisons_sites_in_EAF_n10
-  name: East
-  description: A higher number for this metric indicates that the gene differs highly between sites in East Africa
-  groupId: AF
-- id: Highly_differentiated_comparisons_sites_in_WSEA_n6
-  name: West SE
-  description: A higher number for this metric indicates that the gene differs highly between sites in West South-East Asia
-  groupId: AS
-- id: Highly_differentiated_comparisons_sites_in_ESEA_n28
-  name: East SE
-  description: A higher number for this metric indicates that the gene differs highly between sites in East South-East Asia
-  groupId: AS
-- id: Highly_differentiated_comparisons_sites_in_OCE_n3
-  description: A higher number for this metric indicates that the gene differs highly between sites in Oceania
-  name: OCE

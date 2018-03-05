@@ -43,8 +43,8 @@
               <TableWithLegend
                          table="pf_genes"
                          maxRowsPerPage="30"
- 			 disableMultipleColumnOrder="true"
-                         columns='["Name", "gene_id","Highly_differentiated_comparisons_population_n28", "Highly_differentiated_comparisons_sites_in_WAF_n78","Highly_differentiated_comparisons_sites_in_EAF_n10","Highly_differentiated_comparisons_sites_in_WSEA_n6","Highly_differentiated_comparisons_sites_in_ESEA_n28","Highly_differentiated_comparisons_sites_in_OCE_n3"]'                         order='[["desc", "Highly_differentiated_comparisons_population_n28"]]'
+             			 disableMultipleColumnOrder="true"
+                         columns='["gene_name", "gene_id","global_differentiation_score"]'
                  >
                      <Typography type="headline">                         Allele frequency differences                    </Typography>
                     <Typography type="subheading" color="secondary">                         Genes with variable allele frequencies in different places may be evolving                     
@@ -68,8 +68,8 @@
                 <MuiDataTableView
                   table="pf_genes"
                   maxRowsPerPage="10"
-                  columns='["Name", "gene_id","Highly_differentiated_comparisons_population_n28"]'
-                  order='[["desc", "Highly_differentiated_comparisons_population_n28"]]'
+                  columns='["gene_name", "gene_id","global_differentiation_score"]'
+                  order='[["desc", "global_differentiation_score"]]'
                   onClickBehaviour='tab'
                   onClickComponent='ItemTemplate'
                   onClickComponentTemplateDocPath='templates/genesOnClickTab.html'
@@ -80,8 +80,8 @@
                     table="pf_genes"
                     maxRowsPerPage="30"
                     disableMultipleColumnOrder="true"
-                    columns='["Name", "gene_id","Highly_differentiated_comparisons_population_n28", "Highly_differentiated_comparisons_sites_in_WAF_n78","Highly_differentiated_comparisons_sites_in_EAF_n10","Highly_differentiated_comparisons_sites_in_WSEA_n6","Highly_differentiated_comparisons_sites_in_ESEA_n28","Highly_differentiated_comparisons_sites_in_OCE_n3"]'
-                    order='[["desc", "Highly_differentiated_comparisons_population_n28"]]'
+                  columns='["gene_name", "gene_id","global_differentiation_score","local_differentiation_score","distance_to_higher_local_diff_score"]'
+                    order='[["desc", "global_differentiation_score"]]'
                     onClickBehaviour='tab'
                     onClickComponent='ItemTemplate'
                     onClickComponentTemplateDocPath='templates/genesOnClickTab.html'

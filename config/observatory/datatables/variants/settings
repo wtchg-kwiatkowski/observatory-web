@@ -9,14 +9,14 @@ icon: fa-bookmark
 
 # The primary key column ID for this table. This should correspond to a column in data containing a unique value for each record
 # Optionally, this parameter can be set to 'AutoKey' to instruct the software to automatically generate a primary key
-primKey: Position
+primKey: position
 
 hdfPath: variants
 
 # The following set of tags is used to define the items in this data table as positions on the genome
 isPositionOnGenome: true          # Tells Panoptes that this should be interpreted as genomic positions
-chromosome: CHROM            # Speficies the table column ID that contains the chromosome
-position: POS                # Specifies the table column ID that contains the position on the chromosome
+chromosome: chrom            # Speficies the table column ID that contains the chromosome
+position: pos                # Specifies the table column ID that contains the position on the chromosome
 
 propertyGroups:
 - id: Properties
@@ -41,147 +41,102 @@ propertyGroups:
   name: Asia
 
 properties:
-- id: Position
+- id: position
   dataType: Text
   name: Position
   description: Chromosome and position of this variant on the genome
   valueColours:
     _other_: rgb(255,255,255)
-- id: CHROM
+- id: chrom
   name: Chromosome
   description: Chromosome of this variant
   dataType: Text
-- id: POS
+- id: pos
   name: Position
   dataType: Int32
   valueColours:
     _other_: rgb(255,255,255)
-- id: VariantType
-  name: Type (SNP/Indel/Mix)
-  dataType: Text
-- id: is_snp
-  dataType: Boolean
-- id: num_alleles
-  name: No. alleles
-  dataType: Int32
-- id: REF
-  name: Reference allele
-  dataType: Text
-
-- id: AN
-  dataType: Int32
-- id: DP
-  dataType: Int32
-- id: FS
-  dataType: Float
-- id: MQ
-  dataType: Float
-- id: QD
-  dataType: Float
-- id: QUAL
-  dataType: Float
-- id: SOR
-  dataType: Float
-- id: VQSLOD
-  dataType: Float
-
-- id: RegionType
-  dataType: Text
-- id: CDS
-  name: Coding
-  description: Does this variant impact the protien produced by the gene?
-  dataType: Boolean
-- id: VARIANT_TYPE
-  dataType: Text
-- id: MULTIALLELIC
-  dataType: Text
 
 
-
-- id: FILTER_PASS
-  dataType: Boolean
-- id: FILTER_Centromere
-  dataType: Boolean
-- id: FILTER_InternalHypervariable
-  dataType: Boolean
-- id: FILTER_Low_VQSLOD
-  dataType: Boolean
-- id: FILTER_SubtelomericHypervariable
-  dataType: Boolean
-- id: FILTER_SubtelomericRepeat
-  dataType: Boolean
-
-- id: SNPEFF_AMINO_ACID_CHANGE
+- id: mutation
   name: Change
   dataType: Text
   description: The amino acid change (if any)
-- id: SNPEFF_CODON_CHANGE
-  dataType: Text
-- id: SNPEFF_EFFECT
-  name: Effect
-  dataType: Text
-- id: SNPEFF_EXON_ID
-  dataType: Text
-- id: SNPEFF_FUNCTIONAL_CLASS
-  name: Change type
-  dataType: Text
-- id: SNPEFF_GENE_NAME
-  name: Gene
-  dataType: Text
-- id: SNPEFF_IMPACT
-  dataType: Text
-- id: SNPEFF_TRANSCRIPT_ID
-  dataType: Text
 
-- id: AF_all
-  dataType: Float
-  name: Global
-  description: The proportion of samples that have the non-reference form of this variant globally
-- id: AF_SAM
+#- id: af_all
+#  dataType: Float
+#  name: Global
+#  description: The proportion of samples that have the non-reference form of this variant globally
+- id: af_SAM
   dataType: Float
   name: SAM
   description: The proportion of samples that have the non-reference form of this variant in South America
-- id: AF_WAF
+- id: af_WAF
   dataType: Float
   name: West
   description: The proportion of samples that have the non-reference form of this variant in West Africa
   groupId: AF
-- id: AF_CAF
+- id: af_CAF
   dataType: Float
   name: Central
   description: The proportion of samples that have the non-reference form of this variant in Central Africa
   groupId: AF
-- id: AF_EAF
+- id: af_EAF
   dataType: Float
   name: East
   description: The proportion of samples that have the non-reference form of this variant in East Africa
   groupId: AF
-- id: AF_SAS
+- id: af_SAS
   dataType: Float
   name: South
   description: The proportion of samples that have the non-reference form of this variant in South Asia
   groupId: AS
-- id: AF_WSEA
+- id: af_WSEA
   dataType: Float
   name: West SE
   description: The proportion of samples that have the non-reference form of this variant in West South-east Asia
   groupId: AS
-- id: AF_ESEA
+- id: af_ESEA
   dataType: Float
   name: East SE
   description: The proportion of samples that have the non-reference form of this variant in East South-east Asia
   groupId: AS
-- id: AF_OCE
+- id: af_OCE
   dataType: Float
   name: OCE
   description: The proportion of samples that have the non-reference form of this variant in Oceania
 
-#- id: Gene
-#  name: Gene Identifier
-#  dataType: Text
+- id: fst_global
+  dataType: Float
+  name: FST - Global
 
-- id: is_snp, AN, DP, FS, MQ, QD, QUAL, SOR, VQSLOD, RegionType, VARIANT_TYPE, MULTIALLELIC, FILTER_PASS, FILTER_Centromere, FILTER_InternalHypervariable, FILTER_Low_VQSLOD, FILTER_SubtelomericHypervariable, FILTER_SubtelomericRepeat, SNPEFF_AMINO_ACID_CHANGE, SNPEFF_CODON_CHANGE, SNPEFF_EFFECT, SNPEFF_EXON_ID, SNPEFF_FUNCTIONAL_CLASS, SNPEFF_GENE_NAME, SNPEFF_IMPACT, SNPEFF_TRANSCRIPT_ID
-  showInTable: false
+- id: fst_WAF
+  dataType: Float
+  name: FST - WAF
+
+- id: fst_EAF
+  dataType: Float
+  name: FST - EAF
+
+- id: fst_SAS
+  dataType: Float
+  name: FST - SAS
+
+- id: fst_WSEA
+  dataType: Float
+  name: FST - WSEA
+
+- id: fst_ESEA
+  dataType: Float
+  name: FST - ESEA
+
+- id: fst_OCE
+  dataType: Float
+  name: FST - OCE
+
+- id: gene_id
+  name: Gene Identifier
+  dataType: Text
 
 #dataItemViews:
 #- type: PropertyGroup
@@ -221,7 +176,6 @@ properties:
 #    color: rgb(128,28,0)                               # Color of the pie
 #  residualFractionName: Reference allele frequency     # Name of the residual fraction (if any)
 storedQueries: []
-defaultQuery: '{"whcClass":"comparefixed","isCompound":false,"isRoot":true,"ColName":"FILTER_PASS","CompValue":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"FILTER_PASS","CompValue":true,"Tpe":"="}],"Tpe":"="}'
 
 dataItemViews:              # Lists the custom views that should appear in the popup for an individual data table item
 - type: Template                                       # Add a template based view
@@ -232,13 +186,13 @@ dataItemViews:              # Lists the custom views that should appear in the p
             <Card>
                 <CardContent>
                     <Typography type="headline">
-                        Variant {{SNPEFF_AMINO_ACID_CHANGE}}
+                        Variant {{mutation}}
                     </Typography>
                     <Typography type="subheading" color="secondary">
-                       Chromosome {{CHROM}} at {{POS}}
+                       Chromosome {{chrom}} at {{pos}}
                     </Typography>
                     <Typography component="p">
-                        {{#query "fname" "ftype" table="annotation" query='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"fstart","CompValue":"{{POS}}","Tpe":"<="},{"whcClass":"comparefixed","isCompound":false,"ColName":"fstop","CompValue":"{{POS}}","Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"chromid","CompValue":"{{CHROM}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"ftype","CompValue":"gene","Tpe":"="}],"Tpe":"AND"}'}}
+                        {{#query "fname" "ftype" table="annotation" query='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"fstart","CompValue":"{{pos}}","Tpe":"<="},{"whcClass":"comparefixed","isCompound":false,"ColName":"fstop","CompValue":"{{pos}}","Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"chromid","CompValue":"{{chrom}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"ftype","CompValue":"gene","Tpe":"="}],"Tpe":"AND"}'}}
                             This variant is in the {{fname}} gene
                         {{else}}
                             This variant is not in a gene
