@@ -3,6 +3,8 @@ namePlural: genes
 
 primKey: gene_id
 
+icon: docimage:icons/gene02.svg
+
 properties:
 - id: gene_id
   dataType: Text
@@ -18,6 +20,10 @@ properties:
   dataType: Text
 - id: related_drug_id
   dataType: Text
+  relation:                         # This block defines a many-to-one foreign relation to a parent table
+      tableId: pf_drugs             # Datatable id of the parent table
+      forwardName: blank
+      reverseName: blank
 
 
 dataItemViews:              # Lists the custom views that should appear in the popup for an individual data table item
@@ -35,8 +41,11 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     <Typography type="subheading" color="secondary">
                         GENE ID: {{gene_id}}
                     </Typography>
-                    <Typography component="div">
+                    <Typography component="div" style="padding-bottom:8px">
                         {{{short_description}}}
+                    </Typography>
+                    <Typography component="div">
+                            <ItemLink table="pf_drugs" primKey="{{related_drug_id}}" button> {{pf_drugs.name}} </ItemLink>
                     </Typography>
                 </CardContent>
             </Card>
@@ -108,8 +117,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                         <PopupButton target="tab">
                           <Label>
                             <Icon
-                              baseURL="/panoptes/Docs/observatory/images/icons/"
-                              name="image:viewer.svg"
+                              name="docimage:icons/viewer.svg"
                               style="margin-right: 0.5em;"
                             />
                             Explore in Viewer
