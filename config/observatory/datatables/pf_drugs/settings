@@ -3,6 +3,8 @@ namePlural: drugs
 
 primKey: drug_id
 
+icon: docimage:icons/drug02.svg
+
 properties:
 - id: drug_id
   dataType: Text
@@ -26,10 +28,14 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     <Typography type="headline">
                         {{name}}
                     </Typography>
-                    <Typography component="p">
+                    <Typography component="p" style="padding-bottom:8px">
                         {{{description}}}
                     </Typography>
-
+                    <Typography component="div">
+                        {{#each pf_resgenes}}
+                            <ItemLink table="pf_resgenes" primKey="{{gene_id}}" button> {{name}} </ItemLink>
+                        {{/each}}
+                    </Typography>
                 </CardContent>
             </Card>
             <Card>
@@ -77,7 +83,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     </Typography>
                     <List>
                       <ObsListItem download href="downloads/Markers_to_phenotype_mapping_-_SOP_v1_1.pdf" target="_blank">
-                        <ListItemIcon><Icon class="icon" baseURL='/panoptes/Docs/observatory/images/icons/' name='image:publications-reports.svg' />
+                        <ListItemIcon><Icon class="icon" name='docimage:icons/publications-reports.svg' />
                         </ListItemIcon>
                           <ListItemText>
                           <span>Our standard operating procedure for inferring antimalarial resistance from DNA</span>

@@ -17,7 +17,7 @@
                 <List>
                 {{#query 'drug_id' 'name' 'short_description' table='pf_drugs'}}
                 <ObsListItem table="pf_drugs" primKey="{{drug_id}}">
-                    <ListItemIcon><Icon class="icon" baseURL='/panoptes/Docs/observatory/images/icons/' name='image:drug02.svg' /></ListItemIcon>
+                    <ListItemIcon><Icon class="icon" name='docimage:icons/drug02.svg'/></ListItemIcon>
                     <ListItemText>
                       <div>{{name}}</div>
                       <span>{{{short_description}}}</span>
