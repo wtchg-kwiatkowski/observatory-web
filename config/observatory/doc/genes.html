@@ -17,7 +17,7 @@
             <List>
                 {{#query 'gene_id' 'name' 'short_description' table='pf_resgenes'}}
                 <ObsListItem table="pf_resgenes" primKey="{{gene_id}}" >
-                    <ListItemIcon><Icon class="icon" baseURL='/panoptes/Docs/observatory/images/icons/' name='image:gene02.svg' /></ListItemIcon>
+                    <ListItemIcon><Icon class="icon" name='docimage:icons/gene02.svg' /></ListItemIcon>
                     <ListItemText>
                         <div><em>{{{name}}}</em></div>
                         <span>{{{short_description}}}</span>
@@ -42,8 +42,7 @@
           <PopupButton target="tab">
             <Label>
               <Icon
-                baseURL="/panoptes/Docs/observatory/images/icons/"
-                name="image:viewer.svg"
+                name="docimage:icons/viewer.svg"
                 style="margin-right: 0.5em;"
               />
               Explore in Viewer
@@ -88,8 +87,7 @@
             <PopupButton target="tab">
               <Label>
                 <Icon
-                  baseURL="/panoptes/Docs/observatory/images/icons/"
-                  name="image:viewer.svg"
+                  name="docimage:icons/viewer.svg"
                   style="margin-right: 0.5em;"
                 />
                 Explore in Viewer
