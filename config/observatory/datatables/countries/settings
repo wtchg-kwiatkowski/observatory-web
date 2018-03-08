@@ -35,4 +35,17 @@ properties:
   dataType: Text
   isCategorical: False
 
+- id: CQresistance
+  dataType: Float
+- id: PYRresistance
+  dataType: Float
+- id: SDXresistance
+  dataType: Float
+- id: MQresistance
+  dataType: Float
+- id: ARTresistance
+  dataType: Float
+- id: PPQresistance
+  dataType: Float
+
 primKey: country_id
