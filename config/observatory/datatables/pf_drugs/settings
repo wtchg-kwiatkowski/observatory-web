@@ -41,20 +41,12 @@ dataItemViews:              # Lists the custom views that should appear in the p
             <Card>
                 <CardContent>
                     <Typography type="headline">
-                     Proportion of {{lowercase name}} resistant parasites by region
+                     {{name}} resistance by region
                     </Typography>
 
-                    <Typography component="div" className="paragraph">
-                    This plot shows the predicted number of drug resistant parasites across our <strong> <QueryResult table="pf_regions"/></strong> regions.
-                    </Typography>
-
-                    <Typography component="div" className="paragraph">
-                    The count of parasites from a region, shown on the right, is a subset of all parasites from a region and includes only those where a confident prediction of resistance can be made. This number does not include those parasites where we're unsure of resistance status due to low quality genotyping data.
-                    </Typography>
-
-                    
+                    <DocTemplate path="templates/proportionPlotLegend.html"/>
                     <Typography component="div">
-                      
+
                         <div style="padding-top: 20px">
                           <ProportionBarChart
                             rowTable="pf_regions"
@@ -72,9 +64,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                         </div>
 
                     </Typography>
-                    <DocTemplate path="templates/warningCardContent.html"/>
-
-
+                
                 </CardContent>
             </Card>
             <Card >

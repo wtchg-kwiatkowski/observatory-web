@@ -36,13 +36,13 @@ dataItemViews:              # Lists the custom views that should appear in the p
             <Card>
                 <CardContent>
                     <Typography type="headline">
-                        {{capitalizeAll long_name}} ({{name}})
-                    </Typography>
-                    <Typography type="subheading" color="secondary">
-                        GENE ID: {{gene_id}}
+                     <em>{{name}}</em> - {{capitalizeAll long_name}}
                     </Typography>
                     <Typography component="div" style="padding-bottom:8px">
                         {{{short_description}}}
+                    </Typography>
+                    <Typography type="subheading" color="secondary">
+                      Plasmodium reference genome gene ID: {{gene_id}}
                     </Typography>
                     <Typography component="div">
                             <ItemLink table="pf_drugs" primKey="{{related_drug_id}}" button> {{pf_drugs.name}} </ItemLink>
@@ -53,7 +53,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
             <Card>
                 <CardContent>
                     <Typography type="headline">
-                        How is {{../name}} involved in {{lowercase name}} resistance
+                        How is <em>{{../name}}</em> involved in {{lowercase name}} resistance
                     </Typography>
                     <Typography type="subheading" color="secondary">
 
@@ -66,16 +66,9 @@ dataItemViews:              # Lists the custom views that should appear in the p
             <Card>
                 <CardContent>
                     <Typography type="headline">
-                    Proportion of {{lowercase name}} resistant parasites by region
+                    Predicted {{lowercase name}} resistance by region
                     </Typography>
-                    <Typography component="div" className="paragraph">
-                    This plot shows the predicted number of drug resistant parasites across our <strong> <QueryResult table="pf_regions"/></strong> regions.
-                    </Typography>
-
-                    <Typography component="div" className="paragraph">
-                    The count of parasites from a region, shown on the right, is a subset of all parasites from a region and includes only those where a confident prediction of resistance can be made. This number does not include those parasites where we're unsure of resistance status due to low quality genotyping data.
-                    </Typography>
-
+                    <DocTemplate path="templates/proportionPlotLegend.html"/>
                     <Typography component="div">
                         <div style="padding-top: 20px">
                           <ProportionBarChart
@@ -93,8 +86,6 @@ dataItemViews:              # Lists the custom views that should appear in the p
                           />
                         </div>
                     </Typography>
-                    <DocTemplate path="templates/warningCardContent.html"/>
-
                 </CardContent>
             </Card>
             {{/query}}
@@ -113,8 +104,6 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     </Typography>
                     <Typography component="div">
                         {{#query 'chromid' 'fstart' 'fstop' table='annotation' query='{"whcClass":"comparefixed","isCompond":false,"isTrivial":false,"isRoot":true,"ColName":"fid","CompValue":"{{gene_id}}","Tpe":"="}'}}
-
-
                         <PopupButton target="tab">
                           <Label>
                             <Icon
@@ -127,7 +116,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                             <TableWithLegend
                                 disableMultipleColumnOrder="true"
                                 table="variants"
-                                columns='["mutation", "pos", "af_WAF", "af_CAF","af_EAF", "af_WSEA", "af_ESEA", "af_SAS",  "af_SAM", "af_OCE" ]'
+                                columns='["mutation", "position", "af_WAF", "af_CAF","af_EAF", "af_WSEA", "af_ESEA", "af_SAS",  "af_SAM", "af_OCE" ]'
                                 order='[["desc", "mutation" ]]'
                                 query='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"chrom","CompValue":"{{chromid}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"pos","CompValue":{{fstart}},"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"pos","CompValue":{{fstop}},"Tpe":"<="},{"whcClass":"compound","isCompound":true,"isRoot":false,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"af_WAF","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"af_CAF","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"af_EAF","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"af_WSEA","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"af_ESEA","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"af_SAS","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"af_SAM","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"af_OCE","CompValue":0.01,"Tpe":">="}],"Tpe":"OR"}],"Tpe":"AND"}'
                                 onClickBehaviour='tooltip'
