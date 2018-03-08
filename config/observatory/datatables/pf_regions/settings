@@ -64,8 +64,8 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     <Typography type="subheading" color="secondary">
 
                     </Typography>
-                    <Typography component="div">There are <strong><QueryResult table="pf_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong>
-                        <em>P.falciparum</em> samples from <QueryResult table="pf_samples" singular="study site" plural="study sites" expression='["count", [["distinct", ["site_id"]]]]' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /> in <QueryResult table="pf_samples" singular="country" plural="countries" expression='["count", [["distinct", ["country_id"]]]]' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /> in <strong>{{name}}</strong>
+                    <Typography component="div">
+                      There are <strong><QueryResult table="pf_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong> <em>P.falciparum</em> samples from <QueryResult table="pf_samples" singular="study site" plural="study sites" expression='["count", [["distinct", ["site_id"]]]]' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /> in <QueryResult table="pf_samples" singular="country" plural="countries" expression='["count", [["distinct", ["country_id"]]]]' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /> in <strong>{{name}}</strong>
 
                         <div class="auto-half-height-container">
                            <div class="auto-height-inner">
@@ -96,18 +96,10 @@ dataItemViews:              # Lists the custom views that should appear in the p
             <Card>
                 <CardContent>
                   <Typography type="headline">
-                   Proportion of antimalarial drug resistant parasites in {{name}}
+                   Drug resistance predictions
                   </Typography>
-
-                  <Typography component="div" className="paragraph">
-                  This plot shows the predicted number of resistant parasites for <strong><QueryResult table="pf_drugs"/></strong> major antimalarial drugs in {{name}}.
-                  </Typography>
-
-                  <Typography component="div" className="paragraph">
-                  The count of parasites shown on the right is a subset of all parasites from {{name}} and includes only those where a confident prediction of resistance can be made. This number is different across drugs because we have less confidence to predict resistance in parasites where genotyping quality is low. Genotyping data quality varies across the genomes of individual parasites.
-                  </Typography>
-
-                  <Typography component="div">
+                  <DocTemplate path="templates/proportionPlotLegend.html"/>
+                    <Typography component="div">
                         <div style="padding-top: 20px">
                           <ProportionBarChartWrap
                             numberOfTickLabels="5"
@@ -130,9 +122,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                             {{/query}}
                           </ProportionBarChartWrap>
                         </div>
-
-                    </Typography>
-                    <DocTemplate path="templates/warningCardContent.html"/>
+                      </Typography>
                 </CardContent>
             </Card>
             <Card >
