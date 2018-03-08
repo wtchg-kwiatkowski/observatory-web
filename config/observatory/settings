@@ -1,5 +1,6 @@
 name: ''
 nameBanner: ''
+version: 'Pf6.0'
 
 dataTables:
 - studies
