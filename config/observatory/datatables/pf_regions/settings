@@ -35,6 +35,20 @@ properties:
 - id: web_colour
   dataType: Text
 
+- id: CQresistance
+  dataType: Float
+- id: PYRresistance
+  dataType: Float
+- id: SDXresistance
+  dataType: Float
+- id: MQresistance
+  dataType: Float
+- id: ARTresistance
+  dataType: Float
+- id: PPQresistance
+  dataType: Float
+
+
 dataItemViews:              # Lists the custom views that should appear in the popup for an individual data table item
 - type: Template                                       # Add a template based view
   name: Details
