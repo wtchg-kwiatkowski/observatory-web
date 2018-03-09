@@ -35,18 +35,22 @@ properties:
 - id: web_colour
   dataType: Text
 
+- id: CQresistance, SDXresistance, PYRresistance, MQresistance, ARTresistance, PPQresistance
+  dataType: Float
+  isCategorical: False
+
 - id: CQresistance
-  dataType: Float
+  name: "% Chloroquine Resistance"
 - id: PYRresistance
-  dataType: Float
+  name: "% Pyrimethamine Resistance"
 - id: SDXresistance
-  dataType: Float
+  name: "% Sulfadoxine Resistance"
 - id: MQresistance
-  dataType: Float
+  name: "% Mefloquine Resistance"
 - id: ARTresistance
-  dataType: Float
+  name: "% Artemisinin Resistance"
 - id: PPQresistance
-  dataType: Float
+  name: "% Piperaquine Resistance"
 
 
 dataItemViews:              # Lists the custom views that should appear in the popup for an individual data table item
