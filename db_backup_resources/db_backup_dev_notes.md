@@ -141,7 +141,7 @@ pg_dump -Fp -U "lee" "observatory_dev1" | gzip > /home/lee/observatory_dev1.sql.
 ```
 
 
-## Checking the backups are valid.
+## Checking the backups are valid / Restoring a backup
 
 One basic check would be to install PostgreSQL on your local machine, download the latest backup, uncompress and execute the relevant SQL file (or pg_restore the custom-format archive) and inspect the results.
 
@@ -183,10 +183,6 @@ CREATE DATABASE observatory_dev1;
 
 ## Naming the backups so they rotate on the cloud
 
-Daily backups rotate monthly and are named according to the day of the month, 02-daily.tar.gz to 31-daily.tar.gz, and won't exist when a weekly or monthly backup occurred instead. (Monthly backups always occur on the 1st day of the month.)
-
-Weekly backups rotate monthly and are named according to the day of the week and the week of the month, Saturday1-weekly.tar.gz to Saturday5-weekly.tar.gz, and won't exist when a monthly backup occurred instead.
+Daily backups rotate monthly and are named according to the day of the month, 02-daily.tar.gz to 31-daily.tar.gz, and won't exist when a monthly backup occurred instead. (Monthly backups always occur on the 1st day of the month.)
 
 Monthly backups are named according to the date of the first day on the month, e.g. 2017-02-01-monthly.tar.gz.
-
-Perhaps there is no sense in having rotating weekly backups, when we have rotating daily backups...? (They're not incremental.)
