@@ -36,7 +36,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                             <ItemLink table="pf_resgenes" primKey="{{gene_id}}" button> {{name}} </ItemLink>
                         {{/each}}
                     </Typography>
-                <div class="auto-half-height-container">
+                <div class="auto-half-height-container" style="padding-top:10px; padding-bottom:10px">
                    <div class="auto-height-inner">
                         <Map disableInteraction>
                            <TileLayer/>
@@ -81,7 +81,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                         </div>
 
                     </Typography>
-                
+
                 </CardContent>
             </Card>
             <Card >
