@@ -266,6 +266,7 @@ fi
 find $BACKUPS_DIR -maxdepth 1 -mtime +$DAYS_TO_KEEP -name "*-daily.tar.gz" -exec rm -rf '{}' ';'
 
 # Delete log files DAYS_TO_KEEP days old or more
-find $BACKUPS_DIR -maxdepth 1 -mtime +$DAYS_TO_KEEP -name "*.log" -exec rm -rf '{}' ';'
+# Disabled, because the log files are only 1kB, and this would also remove logs for monthly backups.
+#find $BACKUPS_DIR -maxdepth 1 -mtime +$DAYS_TO_KEEP -name "*.log" -exec rm -rf '{}' ';'
  
 perform_backups "daily"
