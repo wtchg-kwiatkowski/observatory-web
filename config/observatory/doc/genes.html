@@ -39,6 +39,7 @@
             We have computed allele frequencies per region and population
             </Typography>
 
+        <Typography component="div" align="right">
           <PopupButton target="tab">
             <Label>
               <Icon
@@ -49,29 +50,39 @@
             </Label>
             <Content>
               <TableWithLegend
-                         table="pf_genes"
-                         maxRowsPerPage="30"
-             			 disableMultipleColumnOrder="true"
-                         columns='["gene_name", "gene_id","global_differentiation_score"]'
-                 >
+                  disableMultipleColumnOrder="true"
+                  table="variants"
+                  columns='["mutation", "position", "af_WAF", "af_CAF","af_EAF", "af_WSEA", "af_ESEA", "af_SAS",  "af_SAM", "af_OCE" ]'
+                  order='[["desc", "mutation" ]]'
+                  query='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"compound","isCompound":true,"isRoot":false,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"af_WAF","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"af_CAF","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"af_EAF","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"af_WSEA","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"af_ESEA","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"af_SAS","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"af_SAM","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"af_OCE","CompValue":0.01,"Tpe":">="}],"Tpe":"OR"}],"Tpe":"AND"}'
+                  onClickBehaviour='tooltip'
+                  onClickComponent='ItemTemplate'
+                  onClickComponentTemplateDocPath='templates/variantsOnClickTooltip.html'
+                  maxRowsPerPage="10"
+               >
                      <Typography type="headline">                         Allele frequency differences                    </Typography>
-                    <Typography type="subheading" color="secondary">                         Genes with variable allele frequencies in different places may be evolving                     
-                    </Typography>                     
+                    <Typography type="subheading" color="secondary">
+                      Genes with variable allele frequencies in different places may be evolving
+                    </Typography>
                     <Typography type = "p" component="div">
-                    WHAT TABLE DO WE PUT HERE? NOT THE FULL TABLE OF ALL SNPS, SO WE'D NEED SOME WAY OF FILTERING/CHOOSING WHICH VALUES TO PUT IN.
-                   </Typography> 
+                    WHAT TABLE DO WE PUT HERE? We're only selecting some variants at the moment, we can't put the whole table here.
+                   </Typography>
                </TableWithLegend>
             </Content>
           </PopupButton>
+</Typography>
 
         </CardContent>
     </Card>
 
 
     <Card>
-        <CardContent> 
-            <Typography type="headline">                 Identifying genes by differention             </Typography> <Typography type="subheading" color="secondary">Genes with varied allele frequencies in different places may be evolving </Typography>
-            <Typography component="div" className="paragraph">This list shows the top 10 most highly differentiated genes between regions, suggesting that they might potentially be involved in regionally-specific parasite adaptation </Typography>
+        <CardContent>
+            <Typography type="headline"> Identifying genes by differention
+            </Typography>
+            <Typography type="subheading" color="secondary">Genes with varied allele frequencies in different places may be evolving </Typography>
+
+            <Typography component="div" className="paragraph">The top 10 most highly differentiated genes across the globe are shown below. These genes are likely to be involved in regionally-specific parasite adaptation.</Typography>
 
             <Typography component="div" className="paragraph">
                 <MuiDataTableView
@@ -84,6 +95,7 @@
                   onClickComponentTemplateDocPath='templates/genesOnClickTab.html'
                 />
             </Typography>
+            <Typography component="div" align="right">
             <PopupButton target="tab">
               <Label>
                 <Icon
@@ -106,20 +118,25 @@
                   <Typography type="headline">
                       Genetic differentiation
                   </Typography>
-                  <Typography type="subheading" color="secondary">
-                    
+                  <Typography type="subheading" color="secondary">Genes with varied allele frequencies in different places may be evolving </Typography>
+
+                  <Typography component="div" className="paragraph">
+                  Differentiation is a measure of how varied allele frequencies are across populations. Such variation can be the result of natural selection working on specific populations to increase or decrease the frequency of a specific allele, so differentiation is a useful metric for identifying genes that are evolving.
                   </Typography>
-                  <Typography type = "body1" component="div">
-                    Differentiation is a measure of how varied allele frequencies are across populations. Such variation can be the result of natural selection working on specific populations to increase or decrease the frequency of a specific allele, so differentiation is a useful metric for identifying genes that are evolving.
+
+                  <Typography component="div" className="paragraph"> Each row represents a gene in the <em>P. faliciparum</em> genome. We have computed two differentiation statistics for each gene indicating how much variation there is across parasites either <strong>globally</strong> or <strong>locally</strong>.
                   </Typography>
-                  <Typography type = "body1" component="div"> Each row represents a gene in the <em>P. faliciparum</em> genome, for which a number of different within and between differentiation statistics have been generated.
+
+                  <Typography component="div" className="paragraph">
+                  Because natural selection at a gene causes nearby unselected to genes to appear differentiated, we have also estimated the <strong>Distance to higher local score</strong>.
                   </Typography>
-                  <Typography type = "body1" component="div"> 
-Interestingly, globally differentiated genes tend to be involved in parasite/vector interactions, whereas differentiation within populations in a region often involves known drug resistance genes.<br/>
+
+                  <Typography component="div" className="paragraph">Globally differentiated genes tend to be involved in parasite/vector interactions, whereas differentiation within populations in a region often involves known drug resistance genes.
                   </Typography>
                 </TableWithLegend>
               </Content>
             </PopupButton>
+          </Typography>
         </CardContent> </Card>
 </CardStack>
 </PageTemplate>
