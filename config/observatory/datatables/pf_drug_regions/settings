@@ -85,7 +85,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
               <Typography type="headline">
                   Resistance across sample sites
               </Typography>
-              <DocTemplate path="templates/pieMapTitle.html"/>
+              <DocTemplate path="templates/pieMapLegend.html"/>
               <Typography component="div">
                 <div class="auto-half-height-container">
                   <div class="auto-height-inner">
