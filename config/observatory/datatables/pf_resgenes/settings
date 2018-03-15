@@ -75,7 +75,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                            </Map>
                         </div>
                     </div>
-                    
+
                 </CardContent>
             </Card>
             <Card>
@@ -83,7 +83,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     <Typography type="headline">
                     Predicted {{lowercase name}} resistance by region
                     </Typography>
-                    <DocTemplate path="templates/proportionPlotLegend.html"/>
+                    <DocTemplate path="templates/proportionPlotTitle.html"/>
                     <Typography component="div">
                         <div style="padding-top: 20px">
                           <ProportionBarChart
@@ -102,6 +102,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                           />
                         </div>
                     </Typography>
+                    <DocTemplate path="templates/proportionPlotLegend.html"/>
                 </CardContent>
             </Card>
             {{/query}}

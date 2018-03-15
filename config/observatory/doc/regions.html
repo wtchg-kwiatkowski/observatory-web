@@ -6,15 +6,20 @@
                 <Typography type="headline">
                     Malaria across the world
                 </Typography>
+<!--
                 <Typography type="subheading" color="secondary">
                     Identifying sub-populations of parasites is important for malaria control
                 </Typography>
+-->
                 <Typography component="p">
                     <em>Plasmodium falciparum</em> malaria is found across the tropics in the Americas, Africa, and Asia. By analysing parasite genomes from across the world we can identify the mutations they carry.
                </Typography>
+<!--
                 <Typography component="p">
                    Understanding where different mutations occur helps us to work out the <strong>relationships</strong> between populations, routes of parasite <strong>transmission</strong>, where <strong>new infections</strong> have come from, and how drug resistance mutations might <strong>spread</strong>.
                 </Typography>
+-->
+
                  <Typography component="p">
                   Current analyses are based on the <em><strong>MalariaGEN Pf6.0</strong></em> dataset comprising <big><strong><QueryResult table="pf_samples"/> </strong></big> <em>P. falciparum</em> samples from <big><strong><QueryResult table="pf_samples" expression='["count", [["distinct", ["country_id"]]]]' /></strong></big> countries split across <big><strong> <QueryResult table="pf_regions"/></strong></big> major regions. We define these regions using a combination of genetic relatedness and geographic proximity.
                 </Typography>
@@ -31,7 +36,7 @@
 
                 <div class="auto-half-height-container">
                    <div class="auto-height-inner">
-                       <Map disableInteraction>
+                       <Map>
                            <TileLayer/>
                            <TableGeoJSONsLayer table="pf_regions" geoJsonProperty="geojson" colourProperty="web_colour" labelProperty="name" showLegend="false"/>
                            <TableMarkersLayer disableOnClickMarker table="sites" clusterMarkers="false">
