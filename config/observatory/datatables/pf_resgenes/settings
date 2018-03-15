@@ -96,8 +96,9 @@ dataItemViews:              # Lists the custom views that should appear in the p
                             denominatorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"resistant","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"sensitive","Tpe":"="}],"Tpe":"OR"}'
                             remainderTextColour="inherit"
                             numberOfTickLabels="5"
-                            onClickBehaviour="DocLink"
-                            docLinkHref="drug_region.html"  drug_id="{{drug_id}}" region_id="{{../region_id}}"
+                            onClickBehaviour="ItemLink"
+                            onClickTable="pf_drug_regions"
+                            onClickPrimKey="{{drug_id}}_{}"
                           />
                         </div>
                     </Typography>
