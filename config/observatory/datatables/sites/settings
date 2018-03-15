@@ -4,6 +4,8 @@ description: Information about the sites where samples were collected     # A de
 
 icon: fa-map-marker
 
+listView: true
+
 properties:
 - id: site_id
   dataType: Text
@@ -72,20 +74,10 @@ dataItemViews:              # Lists the custom views that should appear in the p
             <Card>
                 <CardContent>
                     <Typography type="headline">
-                        Proportion of antimalarial drug resistant parasites
-                    </Typography>
-                    <Typography type="subheading" color="secondary">
-
+                    Predicted antimalarial drug resistance
                     </Typography>
 
-                    <Typography component="div" className="paragraph">
-                    This plot shows the predicted number of resistant parasites for <strong><QueryResult table="pf_drugs"/></strong> major antimalarial drugs in {{name}}.
-                    </Typography>
-
-                    <Typography component="div" className="paragraph">
-                    The count of parasites shown on the right is a subset of all parasites from {{name}} and includes only those where a confident prediction of resistance can be made. This number is different across drugs because we have less confidence to predict resistance in parasites where genotyping quality is low. Genotyping data quality varies across the genomes of individual parasites.
-                    </Typography>
-
+                    <DocTemplate path="templates/proportionPlotLegend.html"/>
 
                     <Typography component="div">
 
@@ -105,8 +97,9 @@ dataItemViews:              # Lists the custom views that should appear in the p
                                 numeratorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{../site_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"resistant","Tpe":"="}],"Tpe":"AND"}'
                                 denominatorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{../site_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"missing","Tpe":"<>"}],"Tpe":"AND"}'
                                 remainderTextColour="inherit"
-                                onClickBehaviour="DocLink"
-                                docLinkHref="drug_region.html"  drug_id="{{drug_id}}" region_id="{{../pf_regions.region_id}}"
+                                onClickBehaviour="ItemLink"
+                                onClickTable="pf_drug_regions"
+                                onClickPrimKey="{}_{{../pf_regions.region_id}}"
                               />
                             {{/query}}
                           </ProportionBarChartWrap>
@@ -114,45 +107,38 @@ dataItemViews:              # Lists the custom views that should appear in the p
 
                     </Typography>
 
-                    <Typography type="subheading" color="secondary">
-                      Warning
-                    </Typography>
-
-                    <Typography component="div" className="paragraph">
-                      The antimalarial drug resistance proportions presented here are <em>predictions</em> based on our analyses of drug resistance genetic markers. We do not measure resistance directly. Actual levels of resistance are likely to differ from these predictions. For more information on how we predict resistance see our technical documentation below.
-                    </Typography>
                 </CardContent>
             </Card>
 
+
+            <Card>
+              <CardContent>
+
+            <Typography type="headline">
+               Where the {{name}} samples come from
+            </Typography>
+
+
             {{#query 'studies.study_number' 'studies.webTitle' 'studies.description' 'study_id' table='pf_samples' distinct='true' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}'}}
-                    <Card>
-                        <CardContent>
+
+                          <!--
                             <Typography type="headline">
                                 <strong>{{studies.study_number}}</strong>:{{{studies.webTitle}}}
                             </Typography>
-                            <Typography type="subheading" color="secondary">
-                                <strong><QueryResult table="pf_samples" query='{"whcClass":"compound","isCompound":true,"isRoot":false,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{../site_id}}","isRoot":true,"Tpe":"="}, {"whcClass":"comparefixed","isCompound":false,"ColName":"study_id","CompValue":"{{study_id}}","isRoot":true,"Tpe":"="}],"Tpe":"AND"}' /></strong> <em>P. Falciparum</em> samples from {{../name}}
-                            </Typography>
+                          -->
+
                             <Typography component="div">
-                                {{{studies.description}}}
-                            </Typography>
-                            <Typography component="p">
-                                Key people:
-                            </Typography>
-                            <Typography component="ul">
+                                <big><QueryResult table="pf_samples" query='{"whcClass":"compound","isCompound":true,"isRoot":false,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{../site_id}}","isRoot":true,"Tpe":"="}, {"whcClass":"comparefixed","isCompound":false,"ColName":"study_id","CompValue":"{{study_id}}","isRoot":true,"Tpe":"="}],"Tpe":"AND"}' /></big> samples from MalariaGEN study ID:{{{studies.study_number}}} "<em>{{{studies.webTitle}}}</em>"
+                                  by
                               {{#query 'givenName' 'sn' 'mail' table='study_ldap_people' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"study","CompValue":"{{study_id}}","isRoot":true,"Tpe":"="}'}}
-                                <Typography component="li">
-                                  {{{givenName}}} {{{sn}}}, {{{mail}}}
-                                </Typography>
+                                  {{{givenName}}} {{{sn}}};
                               {{else}}
-                                <Typography component="li">
-                                  <em>None</em>
-                                </Typography>
+                              no specified researchers
                               {{/query}}
                             </Typography>
-                        </CardContent>
-                    </Card>
-            {{/query}}
+                        {{/query}}
+                </CardContent>
+            </Card>
 
         </CardStack>
     </PageTemplate>

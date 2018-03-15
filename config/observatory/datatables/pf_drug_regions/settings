@@ -3,6 +3,8 @@ namePlural: drug regions
 
 primKey: drug_region_id
 
+listView: True
+
 properties: 
 - id: drug_region_id
   dataType: Text
@@ -23,3 +25,134 @@ properties:
 
 - id: text
   dataType: Text
+
+- id: resistance
+  dataType: Float
+
+
+dataItemViews:              # Lists the custom views that should appear in the popup for an individual data table item
+- type: Template                                       # Add a template based view
+  name: Details
+  content: |
+    <PageTemplate bgurl="mountains.jpg">
+        <BreadCrumb a="pf" b="regions"><ItemLink table="pf_regions" primKey="{{region_id}}"><span class="obs-breadcrumb-component"><i style="padding-right:3px;color:{{web_colour}}" class="fa fa-square" aria-hidden="true"></i><a>{{name}}</a></span></ItemLink><span>{{pf_drugs.name}} in {{name}}</span></BreadCrumb>
+      <CardStack>
+        <Card>
+          <CardContent>
+            <Typography type="headline">
+              {{pf_drugs.name}} resistance prediction in {{pf_regions.name}}
+            </Typography>
+            <Typography type="subheading" color="secondary">
+              Summary
+            </Typography>
+
+            <Typography component="div" className="paragraph">
+              We predict
+              <big><strong>{{toInt resistance}}%</strong></big> {{lowercase pf_drugs.name}} resistance in {{pf_regions.name}} based on <big><strong><QueryResult table="pf_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong></big> samples
+              </Typography>
+
+              <Typography type="subheading" color="secondary">
+                Current situation
+              </Typography>
+
+              <Typography component="div" className="paragraph">
+              {{#lte resistance 0}}
+                There is currently no resistance to <strong>{{lowercase pf_drugs.name}}</strong> in {{pf_regions.name}}.
+              {{else lte resistance 15}}
+                There is very little resistance to <strong>{{lowercase pf_drugs.name}}</strong> in {{pf_regions.name}}.
+              {{else lte resistance 50}}
+                There are low levels of resistance to <strong>{{lowercase pf_drugs.name}}</strong> in {{pf_regions.name}}.
+              {{else lte resistance 85}}
+                <strong>{{pf_drugs.name}}</strong> resistance is widespread in {{pf_regions.name}}
+              {{else lte resistance 99}}
+                There is almost complete resistance to <strong>{{lowercase pf_drugs.name}}</strong> in {{pf_regions.name}}.
+              {{else lte resistance 100}}
+                There is complete resistance to <strong>{{lowercase pf_drugs.name}}</strong> in {{pf_regions.name}}.
+              {{/lte}}
+              {{#if text}}
+                <div>{{{eval text}}}</div>
+              {{/if}}
+            </Typography>
+            <Typography component="div" className="paragraph" align="right">
+              <ItemLink button table="pf_drugs" primKey="{{drug_id}}">{{pf_drugs.name}}</ItemLink>
+            </Typography>
+
+
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent>
+              <Typography type="headline">
+                  Resistance by sample site
+              </Typography>
+              <DocTemplate path="templates/pieMapLegend.html"/>
+              <Typography component="div">
+                <div class="auto-half-height-container">
+                  <div class="auto-height-inner">
+                    <Map disableInteraction>
+                      <TileLayer />
+                      <TableGeoJSONsLayer showLegend="false" table="pf_regions" geoJsonProperty="geojson" colourProperty="web_colour" labelProperty="name" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' />
+                      <TableMarkersLayer
+                        showLegend="false"
+                        query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}'
+                        table="pf_samples"
+                        clusterMarkers="true"
+                        markerColourProperty="{{drug_id}}resistant"
+                        onClickClusterBehaviour="tooltip"
+                        onClickClusterComponent="HandlebarsWithComponents"
+                        onClickClusterComponentProps='{"drug_id":"{{drug_id}}","drug_name":"{{pf_drugs.name}}"}'
+                        onClickClusterComponentTemplateDocPath="templates/drugResistanceInRegionSiteSamplesOnClickClusterTooltip.html"
+                      />
+                  </div>
+                </div>
+              </Typography>
+              <DocTemplate path="templates/proportionPlotLegend.html"/>
+              <Typography component="div">
+
+                  <div style="padding-top: 20px">
+                    <ProportionBarChartWrap
+                      numberOfTickLabels="5"
+                    >
+                    {{#query
+                      'countries.country_id'
+                      'alpha_3_code'
+                      'countries.name'
+                      'num_samples'
+                      table='countries'
+                      joins='[{"type": "INNER", "foreignTable": "sites", "foreignColumn": "sites.country_id", "column": "countries.country_id"}]'
+                      query='{"whcClass":"comparefixed","isCompound":false,"ColName":"sites.pf_region_id","CompValue":"{{region_id}}","Tpe":"="}'
+                      distinct='true'
+                      orderBy='[["asc","countries.name"]]'
+                    }}
+                      <tr><th style="text-align: left;">{{{countries.name}}} ({{alpha_3_code}})</th></tr>
+                      {{#query
+                        'site_id'
+                        'sites.name'
+                        table='sites'
+                        query='{"whcClass":"comparefixed","isCompound":false,"ColName":"country_id","CompValue":"{{countries.country_id}}","Tpe":"="}'
+                      }}
+                        <ProportionBarChartRow
+                          key="ProportionBarChartRow_{{site_id}}"
+                          rowTable="sites"
+                          rowPrimKeyValue="{{site_id}}"
+                          rowLabel="{{sites.name}}"
+                          rowLabelStyle='{"paddingLeft": "8px"}'
+                          proportionTable="pf_samples"
+                          proportionTableColourColumn="{{../drug_id}}resistant"
+                          proportionTableColourColumnNumeratorValue="resistant"
+                          numeratorBarColour="#69B3E4"
+                          numeratorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"country_id","CompValue":"{{../countries.country_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{../../drug_id}}resistant","CompValue":"resistant","Tpe":"="}],"Tpe":"AND"}'
+                          denominatorQuery='{"whcClass":"comparefixed","isCompound":false,"ColName":"country_id","CompValue":"{{../countries.country_id}}","Tpe":"="}'
+                          remainderTextColour="inherit"
+                        />
+                      {{/query}}
+                    {{/query}}
+                    </ProportionBarChartWrap>
+                  </div>
+                </Typography>
+
+          </CardContent>
+        </Card>
+
+      </CardStack>
+    </PageTemplate>
