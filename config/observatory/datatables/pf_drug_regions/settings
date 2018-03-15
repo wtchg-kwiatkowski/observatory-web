@@ -5,7 +5,7 @@ primKey: drug_region_id
 
 listView: True
 
-properties: 
+properties:
 - id: drug_region_id
   dataType: Text
 
@@ -83,9 +83,9 @@ dataItemViews:              # Lists the custom views that should appear in the p
         <Card>
           <CardContent>
               <Typography type="headline">
-                  Resistance by sample site
+                  Resistance across sample sites
               </Typography>
-              <DocTemplate path="templates/pieMapLegend.html"/>
+              <DocTemplate path="templates/pieMapTitle.html"/>
               <Typography component="div">
                 <div class="auto-half-height-container">
                   <div class="auto-height-inner">
@@ -150,6 +150,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     </ProportionBarChartWrap>
                   </div>
                 </Typography>
+                <DocTemplate path="templates/proportionPlotLegend.html"/>
 
           </CardContent>
         </Card>

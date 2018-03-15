@@ -70,7 +70,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     </Typography>
                     <Typography component="div">
                       There are <strong><QueryResult table="pf_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong> <em>P.falciparum</em> samples from <QueryResult table="pf_samples" singular="study site" plural="study sites" expression='["count", [["distinct", ["site_id"]]]]' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /> in <QueryResult table="pf_samples" singular="country" plural="countries" expression='["count", [["distinct", ["country_id"]]]]' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /> in <strong>{{name}}</strong>
-
+                       </Typography>
                         <div class="auto-half-height-container">
                            <div class="auto-height-inner">
                             <Map disableInteraction>
@@ -94,7 +94,6 @@ dataItemViews:              # Lists the custom views that should appear in the p
                             </Map>
                            </div>
                         </div>
-                    </Typography>
                 </CardContent>
             </Card>
             <Card>
@@ -102,7 +101,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                   <Typography type="headline">
                    Drug resistance predictions
                   </Typography>
-                  <DocTemplate path="templates/proportionPlotLegend.html"/>
+                  <DocTemplate path="templates/proportionPlotTitle.html"/>
                     <Typography component="div">
                         <div style="padding-top: 20px">
                           <ProportionBarChartWrap
@@ -128,6 +127,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                           </ProportionBarChartWrap>
                         </div>
                       </Typography>
+                      <DocTemplate path="templates/proportionPlotLegend.html"/>
                 </CardContent>
             </Card>
             <Card >
