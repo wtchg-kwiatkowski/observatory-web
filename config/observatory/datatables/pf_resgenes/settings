@@ -44,7 +44,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     <Typography type="subheading" color="secondary">
                       Plasmodium reference genome gene ID: {{gene_id}}
                     </Typography>
-                    <Typography component="div">
+                    <Typography component="div" align="right">
                             <ItemLink table="pf_drugs" primKey="{{related_drug_id}}" button> {{pf_drugs.name}} </ItemLink>
                     </Typography>
                 </CardContent>
@@ -61,6 +61,21 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     <Typography component="div">
                         {{{../description}}}
                     </Typography>
+
+                    <div class="auto-half-height-container" style="padding-top:10px;">
+                       <div class="auto-height-inner">
+                            <Map disableInteraction>
+                               <TileLayer/>
+                               <TableGeoJSONsLayer disableClick table="countries" geoJsonProperty="geojson" colourProperty="{{drug_id}}resistance" max=100 min=0 showLegend="true"/>
+                               <TableMarkersLayer disableOnClickMarker table="sites" clusterMarkers="false">
+                               <svg style="pointer-events:none; width: 4px; height: 4px; position: absolute; left: -2px; top: -2px;" viewBox="0 0 100 100">
+                               <circle cx="50" cy="50" r="50" strokeWidth="0" fill="black" opacity="0.5" />
+                                   </svg>
+                               </TableMarkersLayer>
+                           </Map>
+                        </div>
+                    </div>
+                    
                 </CardContent>
             </Card>
             <Card>
@@ -102,9 +117,9 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     <Typography component="div">
                         This viewer shows a list of variants in the <strong>{{name}}</strong> gene along with their prevalence in different populations.
                     </Typography>
-                    <Typography component="div">
+                    <Typography component="div" align="right">
                         {{#query 'chromid' 'fstart' 'fstop' table='annotation' query='{"whcClass":"comparefixed","isCompond":false,"isTrivial":false,"isRoot":true,"ColName":"fid","CompValue":"{{gene_id}}","Tpe":"="}'}}
-                        <PopupButton target="tab">
+                        <PopupButton target="tab" >
                           <Label>
                             <Icon
                               name="docimage:icons/viewer.svg"
@@ -122,6 +137,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                                 onClickBehaviour='tooltip'
                                 onClickComponent='ItemTemplate'
                                 onClickComponentTemplateDocPath='templates/variantsOnClickTooltip.html'
+
                              >
                                 <Typography type="headline">
                                     Genetic variants in {{../name}}
