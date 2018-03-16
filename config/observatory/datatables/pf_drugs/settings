@@ -40,7 +40,9 @@ dataItemViews:              # Lists the custom views that should appear in the p
                    <div class="auto-height-inner">
                         <Map disableInteraction>
                            <TileLayer/>
-                           <TableGeoJSONsLayer disableClick table="pf_regions" geoJsonProperty="geojson" colourProperty="{{drug_id}}resistance" max=70 min=0 showLegend="false"/>
+                           <TableGeoJSONsLayer onClickBehaviour="tooltip" onClickComponent="DocPage"
+                                               onClickComponentProps='{"drug_id":"{{drug_id}}","drug_name":"{{name}}","dynamicSize":"true", "path":"templates/regionCloroplethTooltip.html"}'
+                                               table="pf_regions" geoJsonProperty="geojson" colourProperty="{{drug_id}}resistance" max=70 min=0 showLegend="false"/>
                        </Map>
                     </div>
                 </div>
