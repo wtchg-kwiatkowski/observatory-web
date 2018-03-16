@@ -45,7 +45,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                       Plasmodium reference genome gene ID: {{gene_id}}
                     </Typography>
                     <Typography component="div" align="right">
-                            <ItemLink table="pf_drugs" primKey="{{related_drug_id}}" button> {{pf_drugs.name}} </ItemLink>
+                            <ItemLink table="pf_drugs" primKey="{{related_drug_id}}" button> Drug: {{pf_drugs.name}} </ItemLink>
                     </Typography>
                 </CardContent>
             </Card>
@@ -66,12 +66,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                        <div class="auto-height-inner">
                             <Map disableInteraction>
                                <TileLayer/>
-                               <TableGeoJSONsLayer disableClick table="countries" geoJsonProperty="geojson" colourProperty="{{drug_id}}resistance" max=100 min=0 showLegend="true"/>
-                               <TableMarkersLayer disableOnClickMarker table="sites" clusterMarkers="false">
-                               <svg style="pointer-events:none; width: 4px; height: 4px; position: absolute; left: -2px; top: -2px;" viewBox="0 0 100 100">
-                               <circle cx="50" cy="50" r="50" strokeWidth="0" fill="black" opacity="0.5" />
-                                   </svg>
-                               </TableMarkersLayer>
+                               <TableGeoJSONsLayer disableClick table="pf_regions" geoJsonProperty="geojson" colourProperty="{{drug_id}}resistance" max=100 min=0 showLegend="false"/>
                            </Map>
                         </div>
                     </div>

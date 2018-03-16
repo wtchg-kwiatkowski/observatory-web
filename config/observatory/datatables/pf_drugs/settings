@@ -33,19 +33,14 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     </Typography>
                     <Typography component="div" align="right">
                         {{#each pf_resgenes}}
-                            <ItemLink table="pf_resgenes" primKey="{{gene_id}}" button> {{name}} </ItemLink>
+                            <ItemLink table="pf_resgenes" primKey="{{gene_id}}" button> Gene: {{name}} </ItemLink>
                         {{/each}}
                     </Typography>
                 <div class="auto-half-height-container" style="padding-top:10px;">
                    <div class="auto-height-inner">
                         <Map disableInteraction>
                            <TileLayer/>
-                           <TableGeoJSONsLayer disableClick table="countries" geoJsonProperty="geojson" colourProperty="{{drug_id}}resistance" max=100 min=0 showLegend="true"/>
-                           <TableMarkersLayer disableOnClickMarker table="sites" clusterMarkers="false">
-                           <svg style="pointer-events:none; width: 4px; height: 4px; position: absolute; left: -2px; top: -2px;" viewBox="0 0 100 100">
-                           <circle cx="50" cy="50" r="50" strokeWidth="0" fill="black" opacity="0.5" />
-                               </svg>
-                           </TableMarkersLayer>
+                           <TableGeoJSONsLayer disableClick table="pf_regions" geoJsonProperty="geojson" colourProperty="{{drug_id}}resistance" max=70 min=0 showLegend="false"/>
                        </Map>
                     </div>
                 </div>
