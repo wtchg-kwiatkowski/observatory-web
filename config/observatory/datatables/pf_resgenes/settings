@@ -49,11 +49,10 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     </Typography>
                 </CardContent>
             </Card>
-            {{#query 'drug_id' 'name' table='pf_drugs' query='{"whcClass":"comparefixed","isCompound":false,"isTrivial":false,"isRoot":true,"ColName":"drug_id","CompValue":"{{related_drug_id}}","Tpe":"="}'}}
             <Card>
                 <CardContent>
                     <Typography type="headline">
-                        How is <em>{{../name}}</em> involved in {{lowercase name}} resistance
+                        How is <em>{{../name}}</em> involved in {{lowercase pf_drugs.name}} resistance
                     </Typography>
                     <Typography type="subheading" color="secondary">
 
@@ -66,7 +65,10 @@ dataItemViews:              # Lists the custom views that should appear in the p
                        <div class="auto-height-inner">
                             <Map disableInteraction>
                                <TileLayer/>
-                               <TableGeoJSONsLayer disableClick table="pf_regions" geoJsonProperty="geojson" colourProperty="{{drug_id}}resistance" max=100 min=0 showLegend="false"/>
+                               <TableGeoJSONsLayer onClickBehaviour="tooltip" onClickComponent="DocPage"
+                                               onClickComponentProps='{"drug_id":"{{pf_drugs.drug_id}}","drug_name":"{{pf_drugs.name}}","dynamicSize":"true", "path":"templates/regionCloroplethTooltip.html"}'
+                                               table="pf_regions" geoJsonProperty="geojson" colourProperty="{{pf_drugs.drug_id}}resistance" max=70 min=0 showLegend="false"/>
+
                            </Map>
                         </div>
                     </div>
@@ -76,7 +78,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
             <Card>
                 <CardContent>
                     <Typography type="headline">
-                    Predicted {{lowercase name}} resistance by region
+                    Predicted {{lowercase pf_drugs.name}} resistance by region
                     </Typography>
                     <DocTemplate path="templates/proportionPlotTitle.html"/>
                     <Typography component="div">
@@ -84,23 +86,22 @@ dataItemViews:              # Lists the custom views that should appear in the p
                           <ProportionBarChart
                             rowTable="pf_regions"
                             proportionTable="pf_samples"
-                            proportionTableColourColumn="{{drug_id}}resistant"
+                            proportionTableColourColumn="{{pf_drugs.drug_id}}resistant"
                             proportionTableColourColumnNumeratorValue="resistant"
                             numeratorBarColour="#69B3E4"
-                            numeratorQuery='{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"resistant","Tpe":"="}'
-                            denominatorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"resistant","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"sensitive","Tpe":"="}],"Tpe":"OR"}'
+                            numeratorQuery='{"whcClass":"comparefixed","isCompound":false,"ColName":"{{pf_drugs.drug_id}}resistant","CompValue":"resistant","Tpe":"="}'
+                            denominatorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"{{pf_drugs.drug_id}}resistant","CompValue":"resistant","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{pf_drugs.drug_id}}resistant","CompValue":"sensitive","Tpe":"="}],"Tpe":"OR"}'
                             remainderTextColour="inherit"
                             numberOfTickLabels="5"
                             onClickBehaviour="ItemLink"
                             onClickTable="pf_drug_regions"
-                            onClickPrimKey="{{drug_id}}_{}"
+                            onClickPrimKey="{{pf_drugs.drug_id}}_{}"
                           />
                         </div>
                     </Typography>
                     <DocTemplate path="templates/proportionPlotLegend.html"/>
                 </CardContent>
             </Card>
-            {{/query}}
 
 
             <Card>
