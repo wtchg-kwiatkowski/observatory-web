@@ -77,7 +77,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     Predicted antimalarial drug resistance
                     </Typography>
 
-                    <DocTemplate path="templates/proportionPlotLegend.html"/>
+                    <DocTemplate path="templates/proportionPlotTitle.html"/>
 
                     <Typography component="div">
 
@@ -104,9 +104,8 @@ dataItemViews:              # Lists the custom views that should appear in the p
                             {{/query}}
                           </ProportionBarChartWrap>
                         </div>
-
                     </Typography>
-
+                    <DocTemplate path="templates/proportionPlotLegend.html"/>
                 </CardContent>
             </Card>
 
@@ -128,13 +127,16 @@ dataItemViews:              # Lists the custom views that should appear in the p
                           -->
 
                             <Typography component="div">
-                                <big><QueryResult table="pf_samples" query='{"whcClass":"compound","isCompound":true,"isRoot":false,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{../site_id}}","isRoot":true,"Tpe":"="}, {"whcClass":"comparefixed","isCompound":false,"ColName":"study_id","CompValue":"{{study_id}}","isRoot":true,"Tpe":"="}],"Tpe":"AND"}' /></big> samples from MalariaGEN study ID:{{{studies.study_number}}} "<em>{{{studies.webTitle}}}</em>"
-                                  by
-                              {{#query 'givenName' 'sn' 'mail' table='study_ldap_people' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"study","CompValue":"{{study_id}}","isRoot":true,"Tpe":"="}'}}
-                                  {{{givenName}}} {{{sn}}};
-                              {{else}}
-                              no specified researchers
-                              {{/query}}
+                                <big><QueryResult table="pf_samples" query='{"whcClass":"compound","isCompound":true,"isRoot":false,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{../site_id}}","isRoot":true,"Tpe":"="}, {"whcClass":"comparefixed","isCompound":false,"ColName":"study_id","CompValue":"{{study_id}}","isRoot":true,"Tpe":"="}],"Tpe":"AND"}' /></big> samples collected in YEAR or YEAR RANGE
+                                by
+                                {{#query 'givenName' 'sn' 'mail' table='study_ldap_people' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"study","CompValue":"{{study_id}}","isRoot":true,"Tpe":"="}'}}
+                                  {{{givenName}}} {{{sn}}},
+                                {{else}}
+
+                                {{/query}}
+
+                                for MalariaGEN study ID:{{{studies.study_number}}} "<em>{{{studies.webTitle}}}</em>"
+
                             </Typography>
                         {{/query}}
                 </CardContent>
