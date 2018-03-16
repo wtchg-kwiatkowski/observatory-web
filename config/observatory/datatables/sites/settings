@@ -40,7 +40,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
   name: Details
   content: |
     <PageTemplate bgurl="mountains.jpg">
-        <BreadCrumb a="pf" b="regions"><ItemLink table="pf_regions" primKey="{{pf_regions.region_id}}"><span class="obs-breadcrumb-component"><i style="padding-right:3px;color:{{pf_regions.web_colour}}" class="fa fa-square" aria-hidden="true"></i><a>{{pf_regions.name}}</a></span></ItemLink><span>{{name}}</span></BreadCrumb>
+        <BreadCrumb a="pf" b="regions"><ItemLink table="pf_regions" primKey="{{pf_regions.region_id}}"><span class="obs-breadcrumb-component"><a>{{pf_regions.name}}</a></span></ItemLink><span>{{name}}</span></BreadCrumb>
         <CardStack>
             <Card>
                 <CardContent>
