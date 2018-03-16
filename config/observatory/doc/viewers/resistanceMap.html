@@ -1,0 +1,114 @@
+<PageTemplate bgurl="mountains.jpg">
+    <BreadCrumb a="pf" b="regions" />
+    <CardStack>
+          <Card>
+            <CardContent>
+                <Typography type="headline">
+                    Malaria across the world
+                </Typography>
+                <Typography type="subheading" color="secondary">
+                    Identifying sub-populations of parasites is important for malaria control
+                </Typography>
+                <Typography component="p">
+                    <em>Plasmodium falciparum</em> malaria is found across the tropics in the Americas, Africa, and Asia. By analysing parasite genomes from across the world we can identify the mutations they carry.
+               </Typography>
+                <Typography component="p">
+                   Understanding where different mutations occur helps us to work out the <strong>relationships</strong> between populations, routes of parasite <strong>transmission</strong>, where <strong>new infections</strong> have come from, and how drug resistance mutations might <strong>spread</strong>.
+                </Typography>
+                 <Typography component="p">
+                  Current analyses are based on the <em><strong>MalariaGEN Pf6.0</strong></em> dataset comprising <big><strong><QueryResult table="pf_samples"/> </strong></big> <em>P. falciparum</em> samples from <big><strong><QueryResult table="pf_samples" expression='["count", [["distinct", ["country_id"]]]]' /></strong></big> countries split across <big><strong> <QueryResult table="pf_regions"/></strong></big> major regions. We define these regions using a combination of genetic relatedness and geographic proximity.
+                </Typography>
+                <Typography component="div" className="paragraph">
+                    <SelectRow table="pf_regions"/>
+                </Typography>
+                <!--<PopupButton icon="arrow-right" label="Plot of samples per region" target="tab">-->
+                    <!--<ComponentWithLegend>-->
+                        <!--<CardHeader title="Sample regions" />-->
+                        <!--<Typography component="p">Note that the number of samples from different regions greatly varies.</Typography>-->
+                        <!--<TablePlot plotType="histogram" table="pf_samples" horizontal="region" />-->
+                    <!--</ComponentWithLegend>-->
+                <!--</PopupButton>-->
+
+                <div class="auto-half-height-container">
+                   <div class="auto-height-inner">
+                       <Map disableInteraction>
+                           <TileLayer/>
+                           <TableGeoJSONsLayer table="pf_regions" geoJsonProperty="geojson" colourProperty="web_colour" labelProperty="name" showLegend="false"/>
+                           <TableMarkersLayer disableOnClickMarker table="sites" clusterMarkers="false">
+                               <svg style="pointer-events:none; width: 4px; height: 4px; position: absolute; left: -2px; top: -2px;" viewBox="0 0 100 100">
+                                   <circle cx="50" cy="50" r="50" strokeWidth="0" fill="black" opacity="0.5" />
+                               </svg>
+                           </TableMarkersLayer>
+                       </Map>
+                    </div>
+                </div>
+                <Typography component="div" align="right">
+                <PopupButton target="tab">
+                  <Label>
+                    <Icon
+                      baseURL="/panoptes/Docs/observatory/images/icons/"
+                      name="image:viewer.svg"
+                      style="margin-right: 0.5em;"
+                    />
+                    Explore in Viewer
+                  </Label>
+                  <Content>
+                    <ResistanceMap/>
+                  </Content>
+                </PopupButton>
+              </Typography>
+            </CardContent>
+        </Card>
+
+        <!--<Card >
+            <CardTitle title="Countries" subtitle="" />
+
+            <CardText>
+                The Malaria Observatory has genomic data on parasites from <strong>
+                <QueryResult table="countries"/>
+            </strong> countries. Choose a country below to understand more about malaria parasites and sampling sites
+                from a particular country.
+                <p>
+                    <SelectRow table="countries"/>
+                </p>
+            </CardText>
+        </Card>
+        <Card>
+            <CardTitle title="Sampling sites" />
+            <CardText>
+                <p>The Malaria Observatory contains <strong>
+                    <QueryResult table="pf_samples"/>
+                </strong> <em>P. falciparum</em> samples from <strong>60</strong> study sites. Click on a site below to
+                    view data from a study site.
+                </p>
+                <div style="height:300px">
+                    <Map disableInteraction>
+                        <TileLayer/>
+                        <TableGeoJSONsLayer table="pf_regions" geoJsonProperty="geojson" colourProperty="web_colour"
+                                            labelProperty="name" showLegend="false"/>
+                        <TableMarkersLayer table="sites" clusterMarkers="false">
+                            <svg style="overflow: visible; width: 73px; height: 73px" viewBox="0 0 42 42">
+                                <circle cx="0" cy="0" r="1" strokeWidth="0" stroke="purple" fill="black" opacity="0.5"/>
+                            </svg>
+                        </TableMarkersLayer>
+                    </Map>
+                </div>
+                <PopupButton icon="arrow-right" label="View map" target="tab">
+                    <ComponentWithLegend table="variants" columns='["position", "mutation", "af_WAF", "af_CAF","af_EAF", "af_WSEA", "af_ESEA", "af_SAS",  "af_SAM", "af_OCE" ]' order='[["desc", "mutation" ]]' query='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"chrom","CompValue":"{{chromid}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"pos","CompValue":{{fstart}},"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"pos","CompValue":{{fstop}},"Tpe":"<="}],"Tpe":"AND"}'>
+                        <div>Legend here</div>
+                        <Map>
+                            <TileLayer/>
+                            <TableGeoJSONsLayer table="pf_regions" geoJsonProperty="geojson" colourProperty="web_colour"
+                                                labelProperty="name"/>
+                            <TableMarkersLayer table="sites" clusterMarkers="false">
+                                <svg style="overflow: visible; width: 73px; height: 73px" viewBox="0 0 42 42">
+                                    <circle cx="0" cy="0" r="1" strokeWidth="0" stroke="purple" fill="black" opacity="0.5"/>
+                                </svg>
+                            </TableMarkersLayer>
+                        </Map>
+                    </ComponentWithLegend>
+                </PopupButton>
+            </CardText>
+        </Card>-->
+    </CardStack>
+</PageTemplate>
