@@ -35,7 +35,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
   name: Details
   content: |
     <PageTemplate bgurl="mountains.jpg">
-        <BreadCrumb a="pf" b="regions"><ItemLink table="pf_regions" primKey="{{region_id}}"><span class="obs-breadcrumb-component"><i style="padding-right:3px;color:{{web_colour}}" class="fa fa-square" aria-hidden="true"></i><a>{{name}}</a></span></ItemLink><span>{{pf_drugs.name}} in {{name}}</span></BreadCrumb>
+        <BreadCrumb a="pf" b="regions"><ItemLink table="pf_regions" primKey="{{region_id}}"><span class="obs-breadcrumb-component"><i style="padding-right:3px;color:{{pf_regions.web_colour}}" class="fa fa-square" aria-hidden="true"></i><a>{{name}}</a></span></ItemLink><span>{{pf_drugs.name}} in {{pf_regions.name}}</span></BreadCrumb>
       <CardStack>
         <Card>
           <CardContent>
@@ -106,7 +106,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                   </div>
                 </div>
               </Typography>
-              <DocTemplate path="templates/proportionPlotLegend.html"/>
+              <DocTemplate path="templates/proportionPlotTitle.html"/>
               <Typography component="div">
 
                   <div style="padding-top: 20px">
