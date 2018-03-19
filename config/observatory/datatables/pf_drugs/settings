@@ -57,7 +57,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     Explore in Viewer
                   </Label>
                   <Content>
-                    <ResistanceMap/>
+                    <ResistanceMap initialDrug="{{drug_id}}" />
                   </Content>
                 </PopupButton>
                 </Typography>
