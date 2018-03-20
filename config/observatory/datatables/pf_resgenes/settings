@@ -117,38 +117,20 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     </Typography>
                     <Typography component="div" align="right">
                         {{#query 'chromid' 'fstart' 'fstop' table='annotation' query='{"whcClass":"comparefixed","isCompond":false,"isTrivial":false,"isRoot":true,"ColName":"fid","CompValue":"{{gene_id}}","Tpe":"="}'}}
-                        <PopupButton target="tab" >
-                          <Label>
-                            <Icon
-                              name="docimage:icons/viewer.svg"
-                              style="margin-right: 0.5em;"
-                            />
-                            Explore in Viewer
-                          </Label>
-                          <Content>
-                            <TableWithLegend
-                                disableMultipleColumnOrder="true"
-                                table="variants"
-                                columns='["mutation", "position", "af_WAF", "af_CAF","af_EAF", "af_WSEA", "af_ESEA", "af_SAS",  "af_SAM", "af_OCE" ]'
-                                order='[["desc", "mutation" ]]'
-                                query='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"chrom","CompValue":"{{chromid}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"pos","CompValue":{{fstart}},"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"pos","CompValue":{{fstop}},"Tpe":"<="},{"whcClass":"compound","isCompound":true,"isRoot":false,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"af_WAF","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"af_CAF","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"af_EAF","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"af_WSEA","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"af_ESEA","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"af_SAS","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"af_SAM","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"af_OCE","CompValue":0.01,"Tpe":">="}],"Tpe":"OR"}],"Tpe":"AND"}'
-                                onClickBehaviour='tooltip'
-                                onClickComponent='ItemTemplate'
-                                onClickComponentTemplateDocPath='templates/variantsOnClickTooltip.html'
-
-                             >
-                                <Typography type="headline">
-                                    Genetic variants in {{../name}}
-                                </Typography>
-                                <Typography type="subheading" color="secondary">
-                                    Chromosome {{chromid}}
-                                </Typography>
-                                <Typography component="div">
-                                Each row shows global and regional differentiation at a genetic variant in the <em>P. falciparum</em> genome. For this analysis we use a restricted set of variants that includes only those that have passed quality filters and which are seen in more than 1% of samples in any population.<br/>
-                                </Typography>
-                            </TableWithLegend>
-                          </Content>
-                        </PopupButton>
+                        <DocLink
+                          button
+                          href="viewers/GeneticVariants.html"
+                          chromid="{{chromid}}"
+                          fstart="{{fstart}}"
+                          fstop="{{fstop}}"
+                          name="{{../name}}"
+                        >
+                          <Icon
+                            name="docimage:icons/viewer.svg"
+                            style="margin-right: 0.5em;"
+                          />
+                          Explore in Viewer
+                        </DocLink>
                         {{/query}}
                     </Typography>
                 </CardContent>
