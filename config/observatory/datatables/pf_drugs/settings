@@ -25,42 +25,36 @@ dataItemViews:              # Lists the custom views that should appear in the p
         <CardStack>
             <Card>
                 <CardContent>
-                    <Typography type="headline">
-                        {{name}}
-                    </Typography>
-                    <Typography component="p" style="padding-bottom:8px">
-                        {{{description}}}
-                    </Typography>
-                    <Typography component="div" align="right">
-                        {{#each pf_resgenes}}
-                            <ItemLink table="pf_resgenes" primKey="{{gene_id}}" button> Gene: {{name}} </ItemLink>
-                        {{/each}}
-                    </Typography>
-                <div class="auto-half-height-container" style="padding-top:10px;">
-                   <div class="auto-height-inner">
-                        <Map disableInteraction>
-                           <TileLayer/>
-                           <TableGeoJSONsLayer onClickBehaviour="tooltip" onClickComponent="DocPage"
-                                               onClickComponentProps='{"drug_id":"{{drug_id}}","drug_name":"{{name}}","dynamicSize":"true", "path":"templates/regionCloroplethTooltip.html"}'
-                                               table="pf_regions" geoJsonProperty="geojson" colourProperty="{{drug_id}}resistance" max=70 min=0 showLegend="false"/>
-                       </Map>
-                    </div>
-                </div>
-                <Typography component="div" align="right" style="padding-top:10px;">
-                <PopupButton target="tab">
-                  <Label>
-                    <Icon
-                      baseURL="/panoptes/Docs/observatory/images/icons/"
-                      name="image:viewer.svg"
-                      style="margin-right: 0.5em"
-                    />
-                    Explore in Viewer
-                  </Label>
-                  <Content>
-                    <ResistanceMap initialDrug="{{drug_id}}" />
-                  </Content>
-                </PopupButton>
-                </Typography>
+                  <Typography type="headline">
+                      {{name}}
+                  </Typography>
+                  <Typography component="p" style="padding-bottom:8px">
+                      {{{description}}}
+                  </Typography>
+                  <Typography component="div" align="right">
+                      {{#each pf_resgenes}}
+                          <ItemLink table="pf_resgenes" primKey="{{gene_id}}" button> Gene: {{name}} </ItemLink>
+                      {{/each}}
+                  </Typography>
+                  <div class="auto-half-height-container" style="padding-top:10px;">
+                     <div class="auto-height-inner">
+                          <Map disableInteraction>
+                             <TileLayer/>
+                             <TableGeoJSONsLayer onClickBehaviour="tooltip" onClickComponent="DocPage"
+                                                 onClickComponentProps='{"drug_id":"{{drug_id}}","drug_name":"{{name}}","dynamicSize":"true", "path":"templates/regionCloroplethTooltip.html"}'
+                                                 table="pf_regions" geoJsonProperty="geojson" colourProperty="{{drug_id}}resistance" max=70 min=0 showLegend="false"/>
+                         </Map>
+                      </div>
+                  </div>
+                  <Typography component="div" align="right" style="padding-top:10px;">
+                    <DocLink button href="viewers/ResistanceMap.html" initialDrug="{{drug_id}}">
+                      <Icon
+                        name="docimage:icons/viewer.svg"
+                        style="margin-right: 0.5em;"
+                      />
+                      Explore in Viewer
+                    </DocLink>
+                  </Typography>
                 </CardContent>
             </Card>
             <Card>
