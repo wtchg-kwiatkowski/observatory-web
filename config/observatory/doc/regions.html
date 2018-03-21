@@ -35,17 +35,23 @@
                 <!--</PopupButton>-->
 
                 <div class="auto-half-height-container">
-                   <div class="auto-height-inner">
-                       <Map disableInteraction>
-                           <TileLayer/>
-                           <TableGeoJSONsLayer table="pf_regions" geoJsonProperty="geojson" colourProperty="web_colour" labelProperty="name" showLegend="false"/>
-                           <TableMarkersLayer disableOnClickMarker table="sites" clusterMarkers="false">
-                               <svg style="pointer-events:none; width: 4px; height: 4px; position: absolute; left: -2px; top: -2px;" viewBox="0 0 100 100">
-                                   <circle cx="50" cy="50" r="50" strokeWidth="0" fill="black" opacity="0.5" />
-                               </svg>
-                           </TableMarkersLayer>
-                       </Map>
-                    </div>
+                  <div class="auto-height-inner">
+                    <Map disableInteraction>
+                      <TileLayer/>
+                      <TableGeoJSONsLayer
+                        table="pf_regions"
+                        geoJsonProperty="geojson"
+                        labelProperty="name"
+                        showLegend="false"
+                        colour="{{colour 'mapPolygon'}}"
+                      />
+                      <TableMarkersLayer disableOnClickMarker table="sites" clusterMarkers="false">
+                        <svg style="pointer-events:none; width: 4px; height: 4px; position: absolute; left: -2px; top: -2px;" viewBox="0 0 100 100">
+                          <circle cx="50" cy="50" r="50" strokeWidth="0" fill="black" opacity="0.5" />
+                        </svg>
+                      </TableMarkersLayer>
+                    </Map>
+                  </div>
                 </div>
                 <Typography component="div" align="right">
                 <PopupButton target="tab">
