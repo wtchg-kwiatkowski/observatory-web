@@ -19,3 +19,11 @@ dataTables:
 - pf_drug_regions
 #- strains
 - variants
+
+colours:
+- id: numeratorBar
+  value: '#CCCCCC'
+- id: appBar
+  value: '#FFFFFF'
+- id: mapPolygon
+  value: '#666666'
