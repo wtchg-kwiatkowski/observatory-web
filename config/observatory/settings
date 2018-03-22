@@ -20,6 +20,8 @@ dataTables:
 #- strains
 - variants
 
+topLevelComponent: Observatory
+
 colours:
 - id: numeratorBar
   value: '#CCCCCC'
