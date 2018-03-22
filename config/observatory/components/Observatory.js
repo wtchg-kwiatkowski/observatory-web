@@ -14,7 +14,7 @@ import StoreWatchMixin from 'mixins/StoreWatchMixin';
 // Panoptes
 import Modal from 'ui/Modal';
 import SessionComponent from 'panoptes/SessionComponent';
-import Header from 'Header';
+import ObservatoryHeader from 'custom/observatory/ObservatoryHeader';
 
 // Material UI
 import createPalette from 'material-ui/styles/createPalette';
@@ -64,8 +64,8 @@ const muiTheme = createMuiTheme({
   },
 });
 
-let Panoptes = createReactClass({
-  displayName: 'Panoptes',
+let Observatory = createReactClass({
+  displayName: 'Observatory',
 
   mixins: [
     FluxMixin,
@@ -179,7 +179,7 @@ let Panoptes = createReactClass({
               <div className="spinner" />
             </div>
             <div className="page">
-              <Header
+              <ObservatoryHeader
                 dataset={config.dataset}
                 name={config.settings.nameBanner}
                 version={config.settings.version}
@@ -216,4 +216,4 @@ let Panoptes = createReactClass({
   },
 });
 
-export default withTheme()(Panoptes);
+export default withTheme()(Observatory);

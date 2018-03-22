@@ -52,8 +52,8 @@ const styles = (theme) => ({
   },
 });
 
-let Header = createReactClass({
-  displayName: 'Header',
+let ObservatoryHeader = createReactClass({
+  displayName: 'ObservatoryHeader',
 
   mixins: [
     PureRenderMixin,
@@ -242,4 +242,4 @@ let Header = createReactClass({
   },
 });
 
-export default withStyles(styles)(Header);
+export default withStyles(styles)(ObservatoryHeader);
