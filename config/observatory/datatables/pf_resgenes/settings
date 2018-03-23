@@ -39,41 +39,19 @@ dataItemViews:              # Lists the custom views that should appear in the p
                      <em>{{name}}</em> - {{capitalizeAll long_name}}
                     </Typography>
                     <Typography component="div" style="padding-bottom:8px">
-                        {{{short_description}}}
+                        {{{short_description}}}. <em>{{name}}</em> is also known as {{gene_id}}.
                     </Typography>
-                    <Typography type="subheading" color="secondary">
-                      Plasmodium reference genome gene ID: {{gene_id}}
-                    </Typography>
-                    <Typography component="div" align="right">
+                    <Typography component="div" align="center" style="padding-bottom: 10px">
                             <ItemLink table="pf_drugs" primKey="{{related_drug_id}}" button> Drug: {{pf_drugs.name}} </ItemLink>
                     </Typography>
+                    <Typography component="p">
+                      {{{description}}}
+                    </Typography>
+
                 </CardContent>
             </Card>
             <Card>
-                <CardContent>
-                    <Typography type="headline">
-                        How is <em>{{../name}}</em> involved in {{lowercase pf_drugs.name}} resistance
-                    </Typography>
-                    <Typography type="subheading" color="secondary">
 
-                    </Typography>
-                    <Typography component="div">
-                        {{{../description}}}
-                    </Typography>
-
-                    <div class="auto-half-height-container" style="padding-top:10px;">
-                       <div class="auto-height-inner">
-                            <Map disableInteraction>
-                               <TileLayer/>
-                               <TableGeoJSONsLayer onClickBehaviour="tooltip" onClickComponent="DocPage"
-                                               onClickComponentProps='{"drug_id":"{{pf_drugs.drug_id}}","drug_name":"{{pf_drugs.name}}","dynamicSize":"true", "path":"templates/regionCloroplethTooltip.html"}'
-                                               table="pf_regions" geoJsonProperty="geojson" colourProperty="{{pf_drugs.drug_id}}resistance" max=70 min=0 showLegend="false"/>
-
-                           </Map>
-                        </div>
-                    </div>
-
-                </CardContent>
             </Card>
             <Card>
                 <CardContent>
@@ -107,15 +85,19 @@ dataItemViews:              # Lists the custom views that should appear in the p
             <Card>
                 <CardContent>
                     <Typography type="headline">
-                        Genetic variants in <em>{{name}}</em>
+                        Variation within the <em>{{name}}</em> gene
                     </Typography>
                     <Typography type="subheading" color="secondary">
 
                     </Typography>
-                    <Typography component="div">
-                        This viewer shows a list of variants in the <strong>{{name}}</strong> gene along with their prevalence in different populations.
+                    <Typography component="p">
+                        A gene is a sequence of DNA within a genome that codes for a molecule with a particular function. This means that changes in the DNA <em>within</em> a gene lead to changes in the function of that gene. Most genes code for proteins, which are made up of amino acids, and it is the DNA sequence directly that codes for these amino acids.
                     </Typography>
-                    <Typography component="div" align="right">
+                    <Typography component="p">
+                        Geneticists look for changes to DNA, or mutations, that cause changes to the amino acids that are coded by genes. These so-called <em>non-synonymous</em> mutations hint at underlying differences in the biology between groups with different versions of the mutation, and so are good candidates for the target of natural selection.
+                    </Typography>
+                    <Typography component="div" align="center">
+
                         {{#query 'chromid' 'fstart' 'fstop' table='annotation' query='{"whcClass":"comparefixed","isCompond":false,"isTrivial":false,"isRoot":true,"ColName":"fid","CompValue":"{{gene_id}}","Tpe":"="}'}}
                         <DocLink
                           button
@@ -129,7 +111,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                             name="docimage:icons/viewer.svg"
                             style="margin-right: 0.5em;"
                           />
-                          Explore in Viewer
+                          Explore variation in {{../name}}
                         </DocLink>
                         {{/query}}
                     </Typography>

@@ -144,7 +144,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                         How we predict resistance
                     </Typography>
                     <List>
-                      <ObsListItem download href="downloads/Markers_to_phenotype_mapping_-_SOP_v1_1.pdf" target="_blank">
+                      <ObsListItem download href="downloads/Markers_to_phenotype_mapping_-_SOP_v1_2.pdf" target="_blank">
                         <ListItemIcon><Icon class="icon" name='docimage:icons/publications-reports.svg' />
                         </ListItemIcon>
                           <ListItemText>
