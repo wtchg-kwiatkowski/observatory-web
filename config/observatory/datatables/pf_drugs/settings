@@ -31,7 +31,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                   <Typography component="p" style="padding-bottom:8px">
                       {{{description}}}
                   </Typography>
-                  <Typography component="div" align="right">
+                  <Typography component="div" align="center">
                       {{#each pf_resgenes}}
                           <ItemLink table="pf_resgenes" primKey="{{gene_id}}" button> Gene: {{name}} </ItemLink>
                       {{/each}}
@@ -46,7 +46,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                          </Map>
                       </div>
                   </div>
-                  <Typography component="div" align="right" style="padding-top:10px;">
+                  <Typography component="div" align="center" style="padding-top:10px;">
                     <DocLink button href="viewers/ResistanceMap.html" initialDrug="{{drug_id}}">
                       <Icon
                         name="docimage:icons/viewer.svg"
@@ -94,7 +94,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                         How we predict resistance
                     </Typography>
                     <List>
-                      <ObsListItem download href="downloads/Markers_to_phenotype_mapping_-_SOP_v1_1.pdf" target="_blank">
+                      <ObsListItem download href="downloads/Markers_to_phenotype_mapping_-_SOP_v1_2.pdf" target="_blank">
                         <ListItemIcon><Icon class="icon" name='docimage:icons/publications-reports.svg' />
                         </ListItemIcon>
                           <ListItemText>

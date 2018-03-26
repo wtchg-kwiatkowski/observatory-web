@@ -48,7 +48,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
 
             <Typography component="div" className="paragraph">
               We predict
-              <big><strong>{{toInt resistance}}%</strong></big> {{lowercase pf_drugs.name}} resistance in {{pf_regions.name}} based on <big><strong><QueryResult table="pf_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong></big> samples collected in YEAR or between YEAR RANGE
+              <big>{{toInt resistance}}%</big> {{lowercase pf_drugs.name}} resistance in {{pf_regions.name}} based on <big><QueryResult table="pf_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></big> samples collected in YEAR or between YEAR RANGE
               </Typography>
 
               <Typography type="subheading" color="secondary">
@@ -56,16 +56,16 @@ dataItemViews:              # Lists the custom views that should appear in the p
               </Typography>
 
               <Typography component="div" className="paragraph">
-              {{#lte resistance 0}}
+              {{#lte resistance 2}}
                 There is currently no resistance to <strong>{{lowercase pf_drugs.name}}</strong> in {{pf_regions.name}}.
               {{else lte resistance 15}}
-                There is very little resistance to <strong>{{lowercase pf_drugs.name}}</strong> in {{pf_regions.name}}.
-              {{else lte resistance 50}}
                 There are low levels of resistance to <strong>{{lowercase pf_drugs.name}}</strong> in {{pf_regions.name}}.
-              {{else lte resistance 85}}
-                <strong>{{pf_drugs.name}}</strong> resistance is widespread in {{pf_regions.name}}
-              {{else lte resistance 99}}
-                There is almost complete resistance to <strong>{{lowercase pf_drugs.name}}</strong> in {{pf_regions.name}}.
+              {{else lte resistance 50}}
+                There are significant levels of resistance to <strong>{{lowercase pf_drugs.name}}</strong> in {{pf_regions.name}}.
+              {{else lte resistance 75}}
+                  There is widespread resistance to <strong>{{lowercase pf_drugs.name}}</strong> in {{pf_regions.name}}
+              {{else lte resistance 90}}
+                There is almost complete resistance to <strong>{{lowercase pf_drugs.name}}</strong> in {{pf_regions.name}}
               {{else lte resistance 100}}
                 There is complete resistance to <strong>{{lowercase pf_drugs.name}}</strong> in {{pf_regions.name}}.
               {{/lte}}
@@ -73,8 +73,8 @@ dataItemViews:              # Lists the custom views that should appear in the p
                 <div>{{{eval text}}}</div>
               {{/if}}
             </Typography>
-            <Typography component="div" className="paragraph" align="right">
-              <ItemLink button table="pf_drugs" primKey="{{drug_id}}">{{pf_drugs.name}}</ItemLink>
+            <Typography component="div" className="paragraph" align="center">
+              <ItemLink button table="pf_drugs" primKey="{{drug_id}}"> DRUG: {{pf_drugs.name}}</ItemLink>
             </Typography>
 
 
