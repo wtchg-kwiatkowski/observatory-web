@@ -46,15 +46,15 @@
                         colour="{{colour 'mapPolygon'}}"
                       />
                       <TableMarkersLayer disableOnClickMarker table="sites" clusterMarkers="false">
-                        <svg style="pointer-events:none; width: 4px; height: 4px; position: absolute; left: -2px; top: -2px;" viewBox="0 0 100 100">
-                          <circle cx="50" cy="50" r="50" strokeWidth="0" fill="black" opacity="0.5" />
+                        <svg style="pointer-events:none; width: 2px; height: 2px; position: absolute; left: -1px; top: -1px;" viewBox="0 0 100 100">
+                          <circle cx="50" cy="50" r="50" strokeWidth="0" fill="black" opacity="0.75" />
                         </svg>
                       </TableMarkersLayer>
                     </Map>
                   </div>
                 </div>
-                <Typography component="div" align="right">
-                <DocLink button href="viewers/ResistanceMap.html">
+                <Typography component="div" align="center">
+                <DocLink button href="viewers/ResistanceMap.html" initialDrug="sites">
                   <Icon
                     name="docimage:icons/viewer.svg"
                     style="margin-right: 0.5em;"
