@@ -41,11 +41,12 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     <Typography component="div" style="padding-bottom:8px">
                         {{{short_description}}}. <em>{{name}}</em> is also known as {{gene_id}}.
                     </Typography>
-                    <Typography component="div" align="center" style="padding-bottom: 10px">
-                            <ItemLink table="pf_drugs" primKey="{{related_drug_id}}" button> Drug: {{pf_drugs.name}} </ItemLink>
-                    </Typography>
                     <Typography component="p">
                       {{{description}}}
+                    </Typography>
+
+                    <Typography component="div" align="center" style="padding-bottom: 10px; padding-top: 10px">
+                            <ItemLink table="pf_drugs" primKey="{{related_drug_id}}" button> Drug: {{pf_drugs.name}} </ItemLink>
                     </Typography>
 
                 </CardContent>
