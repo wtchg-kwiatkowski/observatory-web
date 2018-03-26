@@ -51,9 +51,9 @@ dataItemViews:              # Lists the custom views that should appear in the p
                         A site in {{countries.name}}
                     </Typography>
                     <Typography component="div">
-                        There are <strong>{{num_samples}}</strong> samples from
-                        <strong><QueryResult table="pf_samples"
-                          singular="study" plural="studies"  expression='["count", [["distinct", ["study_id"]]]]' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}' /></strong> in {{name}}
+                        There are <strong>{{num_samples}}</strong> <em>P.falciparum</em> samples collected <TextRange table="pf_samples" property="year" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}' /> from
+                        <QueryResult table="pf_samples"
+                          singular="study" plural="studies"  expression='["count", [["distinct", ["study_id"]]]]' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}' /> in {{name}}
                         <div class="auto-half-height-container">
                            <div class="auto-height-inner">
                             <Map disableInteraction>
@@ -135,7 +135,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                           -->
 
                             <Typography component="p">
-                                <big><QueryResult table="pf_samples" query='{"whcClass":"compound","isCompound":true,"isRoot":false,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{../site_id}}","isRoot":true,"Tpe":"="}, {"whcClass":"comparefixed","isCompound":false,"ColName":"study_id","CompValue":"{{study_id}}","isRoot":true,"Tpe":"="}],"Tpe":"AND"}' /></big> samples collected in YEAR or YEAR RANGE
+                                <big><QueryResult table="pf_samples" query='{"whcClass":"compound","isCompound":true,"isRoot":false,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{../site_id}}","isRoot":true,"Tpe":"="}, {"whcClass":"comparefixed","isCompound":false,"ColName":"study_id","CompValue":"{{study_id}}","isRoot":true,"Tpe":"="}],"Tpe":"AND"}' /></big> samples collected <TextRange table="pf_samples" property="year" query='{"whcClass":"compound","isCompound":true,"isRoot":false,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{../site_id}}","isRoot":true,"Tpe":"="}, {"whcClass":"comparefixed","isCompound":false,"ColName":"study_id","CompValue":"{{study_id}}","isRoot":true,"Tpe":"="}],"Tpe":"AND"}' />
                                 by
                                 {{#query 'givenName' 'sn' 'mail' table='study_ldap_people' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"study","CompValue":"{{study_id}}","isRoot":true,"Tpe":"="}'}}
                                   {{{givenName}}} {{{sn}}}{{#if @last}}{{else if @penultimate}} and {{else}}, {{/if}}
