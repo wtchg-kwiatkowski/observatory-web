@@ -48,7 +48,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                         {{name}}
                     </Typography>
                     <Typography type="subheading" color="secondary">
-                        A site in {{countries.name}}
+                        A site in {{{countries.name}}}
                     </Typography>
                     <Typography component="div">
                         There are <strong>{{num_samples}}</strong> <em>P.falciparum</em> samples collected <TextRange table="pf_samples" property="year" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}' /> from

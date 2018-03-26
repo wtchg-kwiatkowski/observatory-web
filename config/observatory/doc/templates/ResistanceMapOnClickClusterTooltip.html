@@ -1,24 +1,13 @@
 {{#query
   'site_id'
   'name'
+  'countries.name'
   table='sites'
   distinct='true'
-  query='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"lat","CompValue":"{{originalLat}}","isRoot":true,"Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"lng","CompValue":"{{originalLng}}","isRoot":true,"Tpe":"="}],"Tpe":"AND"}'
+  query='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"sites.lat","CompValue":"{{originalLat}}","isRoot":true,"Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"sites.lng","CompValue":"{{originalLng}}","isRoot":true,"Tpe":"="}],"Tpe":"AND"}'
 }}
 <div>
-  {{name}} -
-  {{#query
-    'country_id'
-    table='pf_samples'
-    distinct='true'
-    query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}'
-  }}
-    <QueryResult
-      table="countries"
-      expression='"name"'
-      query='{"whcClass":"comparefixed","isCompound":false,"ColName":"country_id","CompValue":"{{country_id}}","isRoot":true,"Tpe":"="}'
-    />
-  {{/query}}
+  {{name}} - {{{countries.name}}}
 </div>
 <div>
   <strong>
