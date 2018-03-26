@@ -78,7 +78,7 @@ properties:
 
 - id: year
   name: Sampling Year
-  dataType: Text
+  dataType: Int16
 
 - id: CQresistant
   dataType: Text
