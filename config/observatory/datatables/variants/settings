@@ -70,41 +70,41 @@ properties:
 - id: af_SAM
   dataType: Float
   name: SAM
-  description: The proportion of samples that have the non-reference form of this variant in South America
+#  description: The proportion of samples that have the non-reference form of this variant in South America
 - id: af_WAF
   dataType: Float
   name: West
-  description: The proportion of samples that have the non-reference form of this variant in West Africa
+#  description: The proportion of samples that have the non-reference form of this variant in West Africa
   groupId: AF
 - id: af_CAF
   dataType: Float
   name: Central
-  description: The proportion of samples that have the non-reference form of this variant in Central Africa
+#  description: The proportion of samples that have the non-reference form of this variant in Central Africa
   groupId: AF
 - id: af_EAF
   dataType: Float
   name: East
-  description: The proportion of samples that have the non-reference form of this variant in East Africa
+#  description: The proportion of samples that have the non-reference form of this variant in East Africa
   groupId: AF
 - id: af_SAS
   dataType: Float
   name: South
-  description: The proportion of samples that have the non-reference form of this variant in South Asia
+#  description: The proportion of samples that have the non-reference form of this variant in South Asia
   groupId: AS
 - id: af_WSEA
   dataType: Float
   name: West SE
-  description: The proportion of samples that have the non-reference form of this variant in West South-east Asia
+#  description: The proportion of samples that have the non-reference form of this variant in West South-east Asia
   groupId: AS
 - id: af_ESEA
   dataType: Float
   name: East SE
-  description: The proportion of samples that have the non-reference form of this variant in East South-east Asia
+#  description: The proportion of samples that have the non-reference form of this variant in East South-east Asia
   groupId: AS
 - id: af_OCE
   dataType: Float
   name: OCE
-  description: The proportion of samples that have the non-reference form of this variant in Oceania
+#  description: The proportion of samples that have the non-reference form of this variant in Oceania
 
 - id: fst_global
   dataType: Float
