@@ -14,7 +14,7 @@ import StoreWatchMixin from 'mixins/StoreWatchMixin';
 // Panoptes
 import Modal from 'ui/Modal';
 import SessionComponent from 'panoptes/SessionComponent';
-import ObservatoryHeader from 'custom/observatory/ObservatoryHeader';
+import ObservatoryHeader from './ObservatoryHeader';
 
 // Material UI
 import createPalette from 'material-ui/styles/createPalette';
