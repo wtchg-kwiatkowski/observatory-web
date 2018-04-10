@@ -36,16 +36,34 @@ dataItemViews:              # Lists the custom views that should appear in the p
                           <ItemLink table="pf_resgenes" primKey="{{gene_id}}" button> Gene: {{name}} </ItemLink>
                       {{/each}}
                   </Typography>
-                  <div class="auto-half-height-container" style="padding-top:10px;">
-                     <div class="auto-height-inner">
-                          <Map disableInteraction>
-                             <TileLayer/>
-                             <TableGeoJSONsLayer onClickBehaviour="tooltip" onClickComponent="DocPage"
-                                                 onClickComponentProps='{"drug_id":"{{drug_id}}","drug_name":"{{name}}","dynamicSize":"true", "path":"templates/regionCloroplethTooltip.html"}'
-                                                 table="pf_regions" geoJsonProperty="geojson" colourProperty="{{drug_id}}resistance" max=70 min=0 showLegend="false"/>
-                         </Map>
+                  <div style="padding-top:10px;">
+                    <div class="auto-half-height-container">
+                       <div class="auto-height-inner">
+                        <Map disableInteraction>
+                          <TileLayer/>
+                          <TableGeoJSONsLayer
+                            onClickBehaviour="tooltip"
+                            onClickComponent="DocPage"
+                            onClickComponentProps='{"drug_id":"{{drug_id}}","drug_name":"{{name}}","dynamicSize":"true", "path":"templates/regionCloroplethTooltip.html"}'
+                            table="pf_regions"
+                            geoJsonProperty="geojson"
+                            colourProperty="{{drug_id}}resistance"
+                            max="70"
+                            min="0"
+                            showLegend="false"
+                          />
+                        </Map>
                       </div>
+                    </div>
                   </div>
+                  <Typography component="div">
+                    <ColourPropertyLegend
+                      colourProperty="{{drug_id}}resistance"
+                      table="pf_regions"
+                      max="70"
+                      min="0"
+                    />
+                  </Typography>
                   <Typography component="div" align="center" style="padding-top:20px;">
                     <DocLink button href="viewers/ResistanceMap.html" initialDrug="{{drug_id}}">
                       <Icon
