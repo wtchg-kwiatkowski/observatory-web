@@ -22,6 +22,8 @@ dataTables:
 
 topLevelComponent: Observatory
 
+# TODO: `colours` will need to be replaced with `constants`, and renamed
+# Likewise, handlebars `{{colour 'numeratorBar'}}` to become `{{constant 'numeratorBarColour'}}`
 colours:
 - id: numeratorBar
   value: '#CCCCCC'
@@ -29,6 +31,14 @@ colours:
   value: '#FFFFFF'
 - id: mapPolygon
   value: '#666666'
+- id: mapRangeMin
+  value: 'yellow'
+- id: mapRangeMax
+  value: 'red'
+- id: mapRangeZero
+  value: 'green'
+- id: mapNoData
+  value: '#F2EFE9'
 
 feeds:
 - id: test
