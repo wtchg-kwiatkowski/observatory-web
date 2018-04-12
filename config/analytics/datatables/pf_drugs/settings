@@ -48,20 +48,30 @@ dataItemViews:              # Lists the custom views that should appear in the p
                             table="pf_regions"
                             geoJsonProperty="geojson"
                             colourProperty="{{drug_id}}resistance"
-                            max="70"
+                            max="100"
                             min="0"
                             showLegend="false"
+                            numberOfBins="5"
+                            colourRange='["{{colour 'mapRangeMin'}}", "{{colour 'mapRangeMax'}}"]'
+                            zeroColour="{{colour 'mapRangeZero'}}"
                           />
                         </Map>
                       </div>
                     </div>
                   </div>
-                  <Typography component="div">
+                  <Typography component="div" style="padding-top: 10px">
                     <ColourPropertyLegend
                       colourProperty="{{drug_id}}resistance"
                       table="pf_regions"
-                      max="70"
+                      max="100"
                       min="0"
+                      numberOfBins="5"
+                      colourRange='["{{colour 'mapRangeMin'}}", "{{colour 'mapRangeMax'}}"]'
+                      hideLegendTitle
+                      noDataColour="{{colour 'mapNoData'}}"
+                      zeroColour="{{colour 'mapRangeZero'}}"
+                      layout="values-outside-colours"
+                      valueSuffix="%"
                     />
                   </Typography>
                   <Typography component="div" align="center" style="padding-top:20px;">
