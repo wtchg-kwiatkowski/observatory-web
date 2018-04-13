@@ -54,6 +54,9 @@ dataItemViews:              # Lists the custom views that should appear in the p
                             numberOfBins="5"
                             colourRange='["{{colour 'mapRangeMin'}}", "{{colour 'mapRangeMax'}}"]'
                             zeroColour="{{colour 'mapRangeZero'}}"
+                            noDataColour="{{colour 'mapNoData'}}"
+                            geoJsonStrokeOpacity="1"
+                            geoJsonFillOpacity="1"
                           />
                         </Map>
                       </div>
@@ -72,6 +75,8 @@ dataItemViews:              # Lists the custom views that should appear in the p
                       zeroColour="{{colour 'mapRangeZero'}}"
                       layout="values-outside-colours"
                       valueSuffix="%"
+                      colourFillOpacity="1"
+                      colourBackgroundColour="{{colour 'mapNoData'}}"
                     />
                   </Typography>
                   <Typography component="div" align="center" style="padding-top:20px;">
@@ -100,7 +105,6 @@ dataItemViews:              # Lists the custom views that should appear in the p
                             proportionTable="pf_samples"
                             proportionTableColourColumn="{{drug_id}}resistant"
                             proportionTableColourColumnNumeratorValue="resistant"
-                            numeratorBarColour="{{colour 'numeratorBar'}}"
                             numeratorQuery='{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"resistant","Tpe":"="}'
                             denominatorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"resistant","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"sensitive","Tpe":"="}],"Tpe":"OR"}'
                             remainderTextColour="inherit"
@@ -108,6 +112,8 @@ dataItemViews:              # Lists the custom views that should appear in the p
                             onClickBehaviour="ItemLink"
                             onClickTable="pf_drug_regions"
                             onClickPrimKey="{{drug_id}}_{}"
+                            numberOfBins="5"
+                            colourRange='["{{colour 'mapRangeMin'}}", "{{colour 'mapRangeMax'}}"]'
                           />
                         </div>
 
