@@ -29,3 +29,11 @@ colours:
   value: '#FFFFFF'
 - id: mapPolygon
   value: '#666666'
+
+feeds:
+- id: test
+  url: https://malariagenanalytics.wordpress.com/feed
+- id: faq
+  url: https://malariagenanalyticsfaq.wordpress.com/feed
+- id: blog
+  url: https://malariagenanalyticsblog.wordpress.com/feed
