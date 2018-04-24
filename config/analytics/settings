@@ -6,7 +6,6 @@ dataTables:
 - studies
 - study_ldap_people
 - study_publications
-- pf_ffs_samples
 - countries
 - pf_features
 - pf_regions
