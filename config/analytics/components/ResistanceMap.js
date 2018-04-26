@@ -6,9 +6,11 @@ import Typography from 'material-ui/Typography';
 import Map from 'components/Map/Map';
 import TileLayer from 'components/Map/TileLayer';
 import TableMarkersLayer from 'components/Map/TableMarkersLayer';
+import TableGeoJSONsLayer from 'components/Map/TableGeoJSONsLayer';
 import {FormControl, FormControlLabel} from 'material-ui/Form';
 import Radio, {RadioGroup} from 'material-ui/Radio';
 import FluxMixin from 'mixins/FluxMixin';
+import HideLayerAtZoom from 'components/Map/HideLayerAtZoom';
 
 let ResistanceMap = createReactClass({
   displayName: 'ResistanceMap',
@@ -68,27 +70,43 @@ let ResistanceMap = createReactClass({
               <Map>
                 <TileLayer/>
                 {drug !== 'sites' ?
-                  <TableMarkersLayer
-                    showLegend={true}
-                    clickPrimaryKeyProperty="site_id"
-                    table="pf_samples"
-                    clusterMarkers={true}
-                    markerColourProperty={`${drug}resistant`}
-                    knownLegendValues={['yes', 'no', 'maybe']}
-                    legendPropertyName="Resistance type"
-                    onClickClusterBehaviour="tooltip"
-                    onClickClusterComponent="HandlebarsWithComponents"
-                    onClickClusterComponentTemplateDocPath="templates/ResistanceMapOnClickClusterTooltip.html"
-                  />
+                    <TableGeoJSONsLayer
+                      onClickBehaviour="tooltip"
+                      onClickComponent="DocPage"
+                      onClickComponentProps={`{"drug_id":"${drug}","drug_name":"{{name}}","dynamicSize":"true", "path":"templates/regionCloroplethTooltip.html"}`}
+                      table="pf_regions"
+                      geoJsonProperty="geojson"
+                      colourProperty={`${drug}resistance`}
+                      max="100"
+                      min="0"
+                      showLegend="false"
+                      numberOfBins="5"
+                      geoJsonStrokeOpacity="1"
+                      geoJsonFillOpacity="1"
+                    />
+                    <HideLayerAtZoom below={4}>
+                      <TableMarkersLayer
+                        showLegend={true}
+                        clickPrimaryKeyProperty="site_id"
+                        table="pf_samples"
+                        clusterMarkers={true}
+                        markerColourProperty={`${drug}resistant`}
+                        knownLegendValues={['yes', 'no', 'maybe']}
+                        legendPropertyName="Resistance type"
+                        onClickClusterBehaviour="tooltip"
+                        onClickClusterComponent="HandlebarsWithComponents"
+                        onClickClusterComponentTemplateDocPath="templates/ResistanceMapOnClickClusterTooltip.html"
+                      />
+                    </HideLayerAtZoom>
                   :
-                  <TableMarkersLayer
-                    clickPrimaryKeyProperty="site_id"
-                    table="sites"
-                    clusterMarkers={false}
-                    onClickSingleBehaviour="tooltip"
-                    onClickSingleComponent="ItemTemplate"
-                    onClickSingleComponentTemplateDocPath="templates/ResistanceMapOnClickSingleTooltip.html"
-                  />
+                    <TableMarkersLayer
+                      clickPrimaryKeyProperty="site_id"
+                      table="sites"
+                      clusterMarkers={false}
+                      onClickSingleBehaviour="tooltip"
+                      onClickSingleComponent="ItemTemplate"
+                      onClickSingleComponentTemplateDocPath="templates/ResistanceMapOnClickSingleTooltip.html"
+                    />
                 }
 
               </Map>
@@ -100,3 +118,7 @@ let ResistanceMap = createReactClass({
 });
 
 export default ResistanceMap;
+
+// colourRange='["{{colour 'mapRangeMin'}}", "{{colour 'mapRangeMax'}}"]'
+// zeroColour="{{colour 'mapRangeZero'}}"
+// noDataColour="{{colour 'mapNoData'}}"
