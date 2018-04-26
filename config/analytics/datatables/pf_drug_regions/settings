@@ -138,7 +138,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                           rowLabel="{{sites.name}}"
                           rowLabelStyle='{"paddingLeft": "8px"}'
                           proportionTable="pf_samples"
-                          proportionTableColourColumn="{{../drug_id}}resistant"
+                          proportionTableColourColumn="{{../../drug_id}}resistant"
                           proportionTableColourColumnNumeratorValue="resistant"
                           numeratorBarColour="{{colour 'numeratorBar'}}"
                           numeratorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"country_id","CompValue":"{{../countries.country_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{../../drug_id}}resistant","CompValue":"resistant","Tpe":"="}],"Tpe":"AND"}'
