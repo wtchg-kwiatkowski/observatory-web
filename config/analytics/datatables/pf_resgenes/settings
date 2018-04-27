@@ -67,7 +67,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                             proportionTable="pf_samples"
                             proportionTableColourColumn="{{pf_drugs.drug_id}}resistant"
                             proportionTableColourColumnNumeratorValue="resistant"
-                            numeratorBarColour="{{colour 'numeratorBar'}}"
+                            numeratorBarColour="{{constant 'numeratorBar'}}"
                             numeratorQuery='{"whcClass":"comparefixed","isCompound":false,"ColName":"{{pf_drugs.drug_id}}resistant","CompValue":"resistant","Tpe":"="}'
                             denominatorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"{{pf_drugs.drug_id}}resistant","CompValue":"resistant","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{pf_drugs.drug_id}}resistant","CompValue":"sensitive","Tpe":"="}],"Tpe":"OR"}'
                             remainderTextColour="inherit"

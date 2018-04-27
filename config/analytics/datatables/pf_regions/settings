@@ -82,7 +82,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                                   geoJsonProperty="geojson"
                                   labelProperty="name"
                                   query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}'
-                                  colour="{{colour 'mapPolygon'}}"
+                                  colour="{{constant 'mapPolygon'}}"
                                 />
                                 <TableMarkersLayer
                                   clusterMarkers="false"
@@ -123,7 +123,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                                 proportionTable="pf_samples"
                                 proportionTableColourColumn="{{drug_id}}resistant"
                                 proportionTableColourColumnNumeratorValue="resistant"
-                                numeratorBarColour="{{colour 'numeratorBar'}}"
+                                numeratorBarColour="{{constant 'numeratorBar'}}"
                                 numeratorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{../region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"resistant","Tpe":"="}],"Tpe":"AND"}'
                                 denominatorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{../region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"missing","Tpe":"<>"}],"Tpe":"AND"}'
                                 remainderTextColour="inherit"

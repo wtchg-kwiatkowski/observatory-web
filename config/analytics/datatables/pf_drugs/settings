@@ -52,9 +52,9 @@ dataItemViews:              # Lists the custom views that should appear in the p
                             min="0"
                             showLegend="false"
                             numberOfBins="5"
-                            colourRange='["{{colour 'mapRangeMin'}}", "{{colour 'mapRangeMax'}}"]'
-                            zeroColour="{{colour 'mapRangeZero'}}"
-                            noDataColour="{{colour 'mapNoData'}}"
+                            colourRange='["{{constant 'mapRangeMin'}}", "{{constant 'mapRangeMax'}}"]'
+                            zeroColour="{{constant 'mapRangeZero'}}"
+                            noDataColour="{{constant 'mapNoData'}}"
                             geoJsonStrokeOpacity="1"
                             geoJsonFillOpacity="1"
                           />
@@ -69,14 +69,14 @@ dataItemViews:              # Lists the custom views that should appear in the p
                       max="100"
                       min="0"
                       numberOfBins="5"
-                      colourRange='["{{colour 'mapRangeMin'}}", "{{colour 'mapRangeMax'}}"]'
+                      colourRange='["{{constant 'mapRangeMin'}}", "{{constant 'mapRangeMax'}}"]'
                       hideLegendTitle
-                      noDataColour="{{colour 'mapNoData'}}"
-                      zeroColour="{{colour 'mapRangeZero'}}"
+                      noDataColour="{{constant 'mapNoData'}}"
+                      zeroColour="{{constant 'mapRangeZero'}}"
                       layout="values-outside-colours"
                       valueSuffix="%"
                       colourFillOpacity="1"
-                      colourBackgroundColour="{{colour 'mapNoData'}}"
+                      colourBackgroundColour="{{constant 'mapNoData'}}"
                     />
                   </Typography>
                   <Typography component="div" align="center" style="padding-top:20px;">
@@ -113,7 +113,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                             onClickTable="pf_drug_regions"
                             onClickPrimKey="{{drug_id}}_{}"
                             numberOfBins="5"
-                            colourRange='["{{colour 'mapRangeMin'}}", "{{colour 'mapRangeMax'}}"]'
+                            colourRange='["{{constant 'mapRangeMin'}}", "{{constant 'mapRangeMax'}}"]'
                           />
                         </div>
 
