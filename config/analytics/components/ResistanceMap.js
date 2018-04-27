@@ -10,13 +10,16 @@ import TableGeoJSONsLayer from 'components/Map/TableGeoJSONsLayer';
 import {FormControl, FormControlLabel} from 'material-ui/Form';
 import Radio, {RadioGroup} from 'material-ui/Radio';
 import FluxMixin from 'mixins/FluxMixin';
+import ConfigMixin from 'mixins/ConfigMixin';
 import HideLayerAtZoom from 'components/Map/HideLayerAtZoom';
+import FeatureGroup from 'components/Map/FeatureGroup';
 
 let ResistanceMap = createReactClass({
   displayName: 'ResistanceMap',
 
   mixins: [
     FluxMixin,
+    ConfigMixin,
   ],
 
   propTypes: {
@@ -42,12 +45,16 @@ let ResistanceMap = createReactClass({
 
   render() {
     let {drug} = this.state;
+    let {constants} = this.config;
     return (
       <div className="centering-container">
         <Card>
           <CardContent>
-            <CardHeader title={<span>Sites with <em>P. falciparum</em> samples</span>} />
-            <Typography component="p">This map shows the location of sites providing samples in this data set. Clicking a site will lead to information about that site. <br/> To view the proportion of resistant samples as a pie chart at each site, select a drug below. The number in each pie is the number of samples from that site.</Typography>
+            <CardHeader title={<span>Sites with <em>P. falciparum</em> samples</span>}/>
+            <Typography component="p">This map shows the location of sites providing samples in this data set. Clicking
+              a site will lead to information about that site. <br/> To view the proportion of resistant samples as a
+              pie chart at each site, select a drug below. The number in each pie is the number of samples from that
+              site.</Typography>
             <FormControl component="fieldset">
               <RadioGroup
                 aria-label="drug"
@@ -57,33 +64,58 @@ let ResistanceMap = createReactClass({
                 onChange={this.handleChange}
                 style={{flexDirection: 'row'}}
               >
-                <FormControlLabel value="sites" control={<Radio />} label="Sites" />
-                <FormControlLabel value="ART" control={<Radio />} label="Artemisinin" />
-                <FormControlLabel value="CQ" control={<Radio />} label="Chloroquine" />
-                <FormControlLabel value="MQ" control={<Radio />} label="Mefloquine" />
-                <FormControlLabel value="PPQ" control={<Radio />} label="Piperaquine" />
-                <FormControlLabel value="PYR" control={<Radio />} label="Pyrimethamine" />
-                <FormControlLabel value="SDX" control={<Radio />} label="Sulfadoxine" />
+                <FormControlLabel value="sites" control={<Radio/>} label="Sites"/>
+                <FormControlLabel value="ART" control={<Radio/>} label="Artemisinin"/>
+                <FormControlLabel value="CQ" control={<Radio/>} label="Chloroquine"/>
+                <FormControlLabel value="MQ" control={<Radio/>} label="Mefloquine"/>
+                <FormControlLabel value="PPQ" control={<Radio/>} label="Piperaquine"/>
+                <FormControlLabel value="PYR" control={<Radio/>} label="Pyrimethamine"/>
+                <FormControlLabel value="SDX" control={<Radio/>} label="Sulfadoxine"/>
               </RadioGroup>
             </FormControl>
             <div style={{width: '80vw', height: '60vh'}}>
               <Map>
                 <TileLayer/>
                 {drug !== 'sites' ?
-                    <TableGeoJSONsLayer
-                      onClickBehaviour="tooltip"
-                      onClickComponent="DocPage"
-                      onClickComponentProps={`{"drug_id":"${drug}","drug_name":"{{name}}","dynamicSize":"true", "path":"templates/regionCloroplethTooltip.html"}`}
-                      table="pf_regions"
-                      geoJsonProperty="geojson"
-                      colourProperty={`${drug}resistance`}
-                      max="100"
-                      min="0"
-                      showLegend="false"
-                      numberOfBins="5"
-                      geoJsonStrokeOpacity="1"
-                      geoJsonFillOpacity="1"
-                    />
+                  <FeatureGroup>
+                    <HideLayerAtZoom above={4}>
+                      <TableGeoJSONsLayer
+                        onClickBehaviour="tooltip"
+                        onClickComponent="DocPage"
+                        onClickComponentProps={`{"drug_id":"${drug}","drug_name":"{{name}}","dynamicSize":"true", "path":"templates/regionCloroplethTooltip.html"}`}
+                        table="pf_regions"
+                        geoJsonProperty="geojson"
+                        colourProperty={`${drug}resistance`}
+                        max={100}
+                        min={0}
+                        showLegend={false}
+                        numberOfBins={5}
+                        geoJsonStrokeOpacity={1}
+                        geoJsonFillOpacity={1}
+                        colourRange={[constants.mapRangeMin, constants.mapRangeMax]}
+                        zeroColour={constants.mapRangeZero}
+                        noDataColour={constants.mapNoData}
+                      />
+                    </HideLayerAtZoom>
+                    <HideLayerAtZoom below={4}>
+                      <TableGeoJSONsLayer
+                        onClickBehaviour="tooltip"
+                        onClickComponent="DocPage"
+                        onClickComponentProps={`{"drug_id":"${drug}","drug_name":"{{name}}","dynamicSize":"true", "path":"templates/regionCloroplethTooltip.html"}`}
+                        table="pf_regions"
+                        geoJsonProperty="geojson"
+                        colourProperty={`${drug}resistance`}
+                        max={100}
+                        min={0}
+                        showLegend={false}
+                        numberOfBins={5}
+                        geoJsonStrokeOpacity={0.5}
+                        geoJsonFillOpacity={0.5}
+                        colourRange={[constants.mapRangeMin, constants.mapRangeMax]}
+                        zeroColour={constants.mapRangeZero}
+                        noDataColour={constants.mapNoData}
+                      />
+                    </HideLayerAtZoom>
                     <HideLayerAtZoom below={4}>
                       <TableMarkersLayer
                         showLegend={true}
@@ -98,15 +130,16 @@ let ResistanceMap = createReactClass({
                         onClickClusterComponentTemplateDocPath="templates/ResistanceMapOnClickClusterTooltip.html"
                       />
                     </HideLayerAtZoom>
+                  </FeatureGroup>
                   :
-                    <TableMarkersLayer
-                      clickPrimaryKeyProperty="site_id"
-                      table="sites"
-                      clusterMarkers={false}
-                      onClickSingleBehaviour="tooltip"
-                      onClickSingleComponent="ItemTemplate"
-                      onClickSingleComponentTemplateDocPath="templates/ResistanceMapOnClickSingleTooltip.html"
-                    />
+                  <TableMarkersLayer
+                    clickPrimaryKeyProperty="site_id"
+                    table="sites"
+                    clusterMarkers={false}
+                    onClickSingleBehaviour="tooltip"
+                    onClickSingleComponent="ItemTemplate"
+                    onClickSingleComponentTemplateDocPath="templates/ResistanceMapOnClickSingleTooltip.html"
+                  />
                 }
 
               </Map>
@@ -118,7 +151,3 @@ let ResistanceMap = createReactClass({
 });
 
 export default ResistanceMap;
-
-// colourRange='["{{colour 'mapRangeMin'}}", "{{colour 'mapRangeMax'}}"]'
-// zeroColour="{{colour 'mapRangeZero'}}"
-// noDataColour="{{colour 'mapNoData'}}"
