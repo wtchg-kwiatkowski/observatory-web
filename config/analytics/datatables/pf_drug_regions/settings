@@ -91,7 +91,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                   <div class="auto-height-inner">
                     <Map disableInteraction>
                       <TileLayer />
-                      <TableGeoJSONsLayer showLegend="false" table="pf_regions" geoJsonProperty="geojson" colour="{{colour 'mapPolygon'}}" labelProperty="name" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' />
+                      <TableGeoJSONsLayer showLegend="false" table="pf_regions" geoJsonProperty="geojson" colour="{{constant 'mapPolygon'}}" labelProperty="name" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' />
                       <TableMarkersLayer
                         showLegend="false"
                         query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}'
@@ -140,7 +140,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                           proportionTable="pf_samples"
                           proportionTableColourColumn="{{../../drug_id}}resistant"
                           proportionTableColourColumnNumeratorValue="resistant"
-                          numeratorBarColour="{{colour 'numeratorBar'}}"
+                          numeratorBarColour="{{constant 'numeratorBar'}}"
                           numeratorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"country_id","CompValue":"{{../countries.country_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{../../drug_id}}resistant","CompValue":"resistant","Tpe":"="}],"Tpe":"AND"}'
                           denominatorQuery='{"whcClass":"comparefixed","isCompound":false,"ColName":"country_id","CompValue":"{{../countries.country_id}}","Tpe":"="}'
                           remainderTextColour="inherit"
