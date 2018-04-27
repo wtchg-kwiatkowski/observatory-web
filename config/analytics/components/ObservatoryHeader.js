@@ -97,7 +97,7 @@ let ObservatoryHeader = createReactClass({
     let actions = this.getFlux().actions;
     const {drawerIsOpen, guidebooksIsExpanded, pfIsExpanded} = this.state;
     return (
-      <AppBar position="static" style={{backgroundColor: this.config.colours.appBar}}>
+      <AppBar position="static" style={{backgroundColor: this.config.constants.appBar}}>
         <Toolbar disableGutters={true} style={{marginLeft: '12px', marginRight: '12px'}}>
           <IconButton
             style={{color: '#36454F'}}
