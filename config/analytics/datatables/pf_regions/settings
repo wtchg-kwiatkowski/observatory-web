@@ -38,6 +38,11 @@ properties:
 - id: CQresistance, SDXresistance, PYRresistance, MQresistance, ARTresistance, PPQresistance
   dataType: Float
   isCategorical: False
+  scaleColours:
+    thresholds: [0, 5, 20, 40, 60, 80, 100]
+    colours: ["green", "rgb(255, 237, 0)", "...", "...", "...", "red"]
+    nullColour: "#F2EFE9"
+    interpolate: False
 
 - id: CQresistance
   name: "% Chloroquine Resistance"
@@ -74,7 +79,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                        </Typography>
                         <div class="auto-half-height-container">
                            <div class="auto-height-inner">
-                            <Map disableInteraction>
+                            <Map>
                                 <TileLayer />
                                 <TableGeoJSONsLayer
                                   showLegend="false"
@@ -121,8 +126,6 @@ dataItemViews:              # Lists the custom views that should appear in the p
                                 rowPrimKeyValue="{{drug_id}}"
                                 rowLabel="{{name}}"
                                 proportionTable="pf_samples"
-                                proportionTableColourColumn="{{drug_id}}resistant"
-                                proportionTableColourColumnNumeratorValue="resistant"
                                 numeratorBarColour="{{constant 'numeratorBar'}}"
                                 numeratorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{../region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"resistant","Tpe":"="}],"Tpe":"AND"}'
                                 denominatorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{../region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"missing","Tpe":"<>"}],"Tpe":"AND"}'
@@ -130,6 +133,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                                 onClickBehaviour="ItemLink"
                                 onClickTable="pf_drug_regions"
                                 onClickPrimKey="{}_{{../region_id}}"
+                                colourProperty="pf_regions.{{drug_id}}resistance"
                               />
                             {{/query}}
                           </ProportionBarChartWrap>
