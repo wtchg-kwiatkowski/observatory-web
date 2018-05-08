@@ -36,6 +36,7 @@ properties:
 - id: global_differentiation_score
   name: Global Score
   dataType: Float
+
 - id: local_differentiation_score
   name: Local Score
   dataType: Float

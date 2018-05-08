@@ -65,9 +65,6 @@ dataItemViews:              # Lists the custom views that should appear in the p
                           <ProportionBarChart
                             rowTable="pf_regions"
                             proportionTable="pf_samples"
-                            proportionTableColourColumn="{{pf_drugs.drug_id}}resistant"
-                            proportionTableColourColumnNumeratorValue="resistant"
-                            numeratorBarColour="{{constant 'numeratorBar'}}"
                             numeratorQuery='{"whcClass":"comparefixed","isCompound":false,"ColName":"{{pf_drugs.drug_id}}resistant","CompValue":"resistant","Tpe":"="}'
                             denominatorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"{{pf_drugs.drug_id}}resistant","CompValue":"resistant","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{pf_drugs.drug_id}}resistant","CompValue":"sensitive","Tpe":"="}],"Tpe":"OR"}'
                             remainderTextColour="inherit"
@@ -75,6 +72,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                             onClickBehaviour="ItemLink"
                             onClickTable="pf_drug_regions"
                             onClickPrimKey="{{pf_drugs.drug_id}}_{}"
+                            colourProperty="pf_regions.{{drug_id}}resistance"
                           />
                         </div>
                     </Typography>

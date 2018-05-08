@@ -13,6 +13,7 @@ import FluxMixin from 'mixins/FluxMixin';
 import ConfigMixin from 'mixins/ConfigMixin';
 import HideLayerAtZoom from 'components/Map/HideLayerAtZoom';
 import FeatureGroup from 'components/Map/FeatureGroup';
+import DocTemplate from 'panoptes/DocTemplate';
 
 let ResistanceMap = createReactClass({
   displayName: 'ResistanceMap',
@@ -97,6 +98,13 @@ let ResistanceMap = createReactClass({
                         noDataColour={constants.mapNoData}
                       />
                     </HideLayerAtZoom>
+                    <HideLayerAtZoom above={4}>
+                      <TableMarkersLayer disableOnClickMarker table="sites" clusterMarkers={false}>
+                        <svg style={{pointerEvents:"none", width: "6px", height: "6px", position: "absolute", left: "-3px", top: "-3px"}} viewBox="0 0 100 100">
+                          <circle cx={50} cy={50} r={50} strokeWidth={0} fill="black" opacity={0.75} />
+                        </svg>
+                      </TableMarkersLayer>
+                    </HideLayerAtZoom>
                     <HideLayerAtZoom below={4}>
                       <TableGeoJSONsLayer
                         onClickBehaviour="tooltip"
@@ -144,6 +152,7 @@ let ResistanceMap = createReactClass({
 
               </Map>
             </div>
+            <DocTemplate path="templates/resistanceMapLegend.html"/>
           </CardContent>
         </Card>
       </div>);
