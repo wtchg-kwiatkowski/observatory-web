@@ -1,32 +1,99 @@
-{{#query
-  'site_id'
-  'name'
-  'countries.name'
-  table='sites'
-  distinct='true'
-  query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}'
-}}
-<div>
-  {{name}} - {{{countries.name}}}
-</div>
-<div>
-  <strong>
-    <QueryResult
-      table="pf_samples"
-      query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}'
-    />
-  </strong>
-  <em>P. falciparum</em> samples from {{name}}, contributed by
-  <strong>
-    <QueryResult
-      table="pf_samples"
-      expression='["count", [["distinct", ["study_id"]]]]'
-      query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}'
-      plural="studies"
-      singular="study"
-    /></strong>.
-</div>
-<div style="margin-top: 10px">
-  <ItemLink table="sites" primKey="{{site_id}}"><Button color="primary" raised label="more"/></ItemLink>
-</div>
-{{/query}}
+<div style="width: 200px">
+  {{#query
+    'site_id'
+    'name'
+    'countries.name'
+    table='sites'
+    distinct='true'
+    query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}'
+  }}
+  <div style="font-size: 20px">
+    <strong>{{name}}</strong> - {{{countries.name}}}
+  </div>
+  <div>
+    <strong>
+      <QueryResult
+        table="pf_samples"
+        query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}'
+      />
+    </strong>
+    <em>P. falciparum</em> samples from {{name}}, contributed by
+    <strong>
+      <QueryResult
+        table="pf_samples"
+        expression='["count", [["distinct", ["study_id"]]]]'
+        query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}'
+        plural="studies"
+        singular="study"
+      /></strong>.
+  </div>
+  <div style="padding-top: 10px">
+    <div style="display: inline-block;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                text-align: center;
+                vertical-align: middle;
+                line-height: 50px;
+                font-size: 20px;
+                color: {{visibleColour "sites" "ARTresistance" ../ARTresistance}};
+                background: {{colour "sites" "ARTresistance" ../ARTresistance}};">ART</div>
+    <div style="display: inline-block;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                text-align: center;
+                vertical-align: middle;
+                line-height: 50px;
+                font-size: 20px;
+                color: {{visibleColour "sites" "ARTresistance" ../CQresistance}};
+                background: {{colour "sites" "ARTresistance" ../CQresistance}};">CQ</div>
+    <div style="display: inline-block;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                text-align: center;
+                vertical-align: middle;
+                line-height: 50px;
+                font-size: 20px;
+                color: {{visibleColour "sites" "ARTresistance" ../MQresistance}};
+                background: {{colour "sites" "ARTresistance" ../MQresistance}};">MQ</div></br>
+    <div style="display: inline-block;
+                width: 50px;
+                height: 50px;
+                margin-top: 2px;
+                border-radius: 50%;
+                text-align: center;
+                vertical-align: middle;
+                line-height: 50px;
+                font-size: 20px;
+                color: {{visibleColour "sites" "ARTresistance" ../PPQresistance}};
+                background: {{colour "sites" "ARTresistance" ../PPQresistance}};">PPQ</div>
+    <div style="display: inline-block;
+                  width: 50px;
+                  height: 50px;
+                  margin-top: 2px;
+                  border-radius: 50%;
+                  text-align: center;
+                  vertical-align: middle;
+                  line-height: 50px;
+                  font-size: 20px;
+                  color: {{visibleColour "sites" "ARTresistance" ../PYRresistance}};
+                  background: {{colour "sites" "ARTresistance" ../PYRresistance}};">PYR</div>
+    <div style="display: inline-block;
+                  width: 50px;
+                  height: 50px;
+                  margin-top: 2px;
+                  border-radius: 50%;
+                  text-align: center;
+                  vertical-align: middle;
+                  line-height: 50px;
+                  font-size: 20px;
+                  color: {{visibleColour "sites" "ARTresistance" ../SDXresistance}};
+                  background: {{colour "sites" "ARTresistance" ../SDXresistance}};">SDX</div>
+  </div>
+  <div style="margin-top: 10px">
+    <ItemLink table="sites" primKey="{{site_id}}"><Button color="primary" raised label="more"/></ItemLink>
+  </div>
+  {{/query}}
+</div
