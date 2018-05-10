@@ -72,7 +72,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                             onClickBehaviour="ItemLink"
                             onClickTable="pf_drug_regions"
                             onClickPrimKey="{{pf_drugs.drug_id}}_{}"
-                            colourProperty="pf_regions.{{drug_id}}resistance"
+                            colourProperty="pf_regions.{{pf_drugs.drug_id}}resistance"
                           />
                         </div>
                     </Typography>
