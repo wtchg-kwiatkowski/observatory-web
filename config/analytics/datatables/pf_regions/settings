@@ -13,7 +13,7 @@ sortDefault: name
 
 listView: true
 
-itemTitle: <i style="color:{{web_colour}}" class="fa fa-square" aria-hidden="true"></i> {{name}}
+itemTitle: "{{name}}"
 
 properties:
 - id: region_id
@@ -40,7 +40,7 @@ properties:
   isCategorical: False
   scaleColours:
     thresholds: [0, 5, 20, 40, 60, 80, 100]
-    colours: ["green", "rgb(255, 237, 0)", "...", "...", "...", "red"]
+    colours: ["green", "rgb(247, 230, 0)", "...", "...", "...", "rgb(212, 41, 41)"]
     nullColour: "#F2EFE9"
     interpolate: False
 
