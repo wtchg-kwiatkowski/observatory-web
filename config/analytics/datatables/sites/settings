@@ -6,6 +6,8 @@ icon: fa-map-marker
 
 listView: true
 
+primKey: site_id
+
 properties:
 - id: site_id
   dataType: Text
@@ -32,7 +34,28 @@ properties:
     forwardName: is in    # Display name of the relation from child to parent
     reverseName: contains           # Display name of the relation from parent to child
 
-primKey: site_id
+- id: CQresistance, SDXresistance, PYRresistance, MQresistance, ARTresistance, PPQresistance
+  dataType: Float
+  isCategorical: False
+  scaleColours:
+    thresholds: [0, 5, 20, 40, 60, 80, 100]
+    colours: ["green", "rgb(247, 230, 0)", "...", "...", "...", "rgb(212, 41, 41)"]
+    nullColour: "#F2EFE9"
+    interpolate: False
+
+- id: CQresistance
+  name: "% Chloroquine Resistance"
+- id: PYRresistance
+  name: "% Pyrimethamine Resistance"
+- id: SDXresistance
+  name: "% Sulfadoxine Resistance"
+- id: MQresistance
+  name: "% Mefloquine Resistance"
+- id: ARTresistance
+  name: "% Artemisinin Resistance"
+- id: PPQresistance
+  name: "% Piperaquine Resistance"
+
 
 
 dataItemViews:              # Lists the custom views that should appear in the popup for an individual data table item
