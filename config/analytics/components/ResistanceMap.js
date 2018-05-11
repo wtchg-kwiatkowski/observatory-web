@@ -208,7 +208,7 @@ let ResistanceMap = createReactClass({
 
               </Map>
             </div>
-            <div><DocTemplate path="templates/resistanceMapLegend.html"/></CardContent>
+            <div style={{maxWidth: "500px"}}><DocTemplate path="templates/resistanceMapLegend.html"/></div>
           </CardContent>
         </Card>
       </div>);
