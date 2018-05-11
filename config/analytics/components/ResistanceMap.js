@@ -144,14 +144,12 @@ let ResistanceMap = createReactClass({
                       <TableGeoJSONsLayer
                         onClickBehaviour="tooltip"
                         onClickComponent="DocPage"
-                        onClickComponentProps={`{"drug_id":"${drug}","drug_name":"{{name}}","dynamicSize":"true", "path":"templates/regionCloroplethTooltip.html"}`}
+                        onClickComponentProps={{drug_id:drug, dynamicSize: true, path: "templates/regionCloroplethTooltip.html"}}
                         table="pf_regions"
                         geoJsonProperty="geojson"
-                        colourProperty={`${drug}resistance`}
                         max={100}
                         min={0}
                         showLegend={false}
-                        numberOfBins={5}
                         geoJsonStrokeOpacity={0.7}
                         geoJsonFillOpacity={0.7}
                         colourProperty={`${drug}resistance`}
@@ -168,17 +166,15 @@ let ResistanceMap = createReactClass({
                       <TableGeoJSONsLayer
                         onClickBehaviour="tooltip"
                         onClickComponent="DocPage"
-                        onClickComponentProps={`{"drug_id":"${drug}","drug_name":"{{name}}","dynamicSize":"true", "path":"templates/regionCloroplethTooltip.html"}`}
+                        onClickComponentProps={{drug_id:drug, dynamicSize: true, path: "templates/regionCloroplethTooltip.html"}}
                         table="pf_regions"
                         geoJsonProperty="geojson"
                         colourProperty={`${drug}resistance`}
                         max={100}
                         min={0}
                         showLegend={false}
-                        numberOfBins={5}
                         geoJsonStrokeOpacity={0.5}
                         geoJsonFillOpacity={0.5}
-                        colourProperty={`${drug}resistance`}
                       />
                     </HideLayerAtZoom>
                     <HideLayerAtZoom below={4}>
@@ -212,7 +208,7 @@ let ResistanceMap = createReactClass({
 
               </Map>
             </div>
-            <DocTemplate path="templates/resistanceMapLegend.html"/>
+            <div><DocTemplate path="templates/resistanceMapLegend.html"/></CardContent>
           </CardContent>
         </Card>
       </div>);
