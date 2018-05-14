@@ -39,7 +39,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                   <div style="padding-top:10px;">
                     <div class="auto-half-height-container">
                        <div class="auto-height-inner">
-                        <Map disableInteraction>
+                        <Map>
                           <TileLayer/>
                           <TableGeoJSONsLayer
                             onClickBehaviour="tooltip"
@@ -83,13 +83,14 @@ dataItemViews:              # Lists the custom views that should appear in the p
                             rowTableOrder='[["asc", "region_id"]]'
                             proportionTable="pf_samples"
                             numeratorQuery='{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"resistant","Tpe":"="}'
-                            denominatorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"resistant","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"sensitive","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"undetermined","Tpe":"="}],"Tpe":"OR"}'
+                            denominatorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"resistant","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"sensitive","Tpe":"="}],"Tpe":"OR"}'
                             remainderTextColour="inherit"
                             numberOfTickLabels="5"
                             onClickBehaviour="ItemLink"
                             onClickTable="pf_drug_regions"
                             onClickPrimKey="{{drug_id}}_{}"
                             colourProperty="pf_regions.{{drug_id}}resistance"
+                            rawNumerator="true"
                           />
                         </div>
 
