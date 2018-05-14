@@ -74,7 +74,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
 
                     </Typography>
                     <Typography component="div">
-                      Analysis based on <strong><QueryResult table="pf_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong> <em>P.falciparum</em> samples
+                      Our analysis in {{name}} is based on <strong><QueryResult table="pf_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></strong> <em>P.falciparum</em> samples
                       collected <TextRange table="pf_samples" property="year" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' from <QueryResult table="pf_samples" singular="study site" plural="study sites" expression='["count", [["distinct", ["site_id"]]]]' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /> in <QueryResult table="pf_samples" singular="country" plural="countries" expression='["count", [["distinct", ["country_id"]]]]' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /> in <strong>{{name}}</strong>
                        </Typography>
                         <div class="auto-half-height-container">
@@ -88,18 +88,16 @@ dataItemViews:              # Lists the custom views that should appear in the p
                                   labelProperty="name"
                                   query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}'
                                   colour="{{constant 'mapPolygon'}}"
+                                  disableClick
                                 />
                                 <TableMarkersLayer
                                   clusterMarkers="false"
                                   showLegend="false"
                                   clickTable="sites"
                                   clickPrimaryKeyProperty="site_id"
-                                  table="pf_samples"
-                                  markerColourProperty="country_id"
-                                  query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}'
-                                  joins='[
-                                    {"type": "INNER", "foreignTable": "pf_regions", "foreignColumn": "region_id", "column": "region_id"}
-                                  ]'
+                                  table="sites"
+                                  childDataColumns='["ARTresistance", "CQresistance", "MQresistance", "PPQresistance", "PYRresistance", "SDXresistance"]'
+                                  query='{"whcClass":"comparefixed","isCompound":false,"ColName":"pf_region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}'
                                   onClickSingleBehaviour="tooltip"
                                   onClickSingleComponent="ItemTemplate"
                                   onClickSingleComponentTemplateDocPath="templates/ResistanceMapOnClickSingleTooltip.html"
@@ -112,7 +110,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
             <Card>
                 <CardContent>
                   <Typography type="headline">
-                   Drug resistance predictions
+                   Drug resistance predictions in {{name}}
                   </Typography>
                   <DocTemplate path="templates/proportionPlotTitle.html"/>
                     <Typography component="div">
@@ -128,12 +126,13 @@ dataItemViews:              # Lists the custom views that should appear in the p
                                 proportionTable="pf_samples"
                                 numeratorBarColour="{{constant 'numeratorBar'}}"
                                 numeratorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{../region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"resistant","Tpe":"="}],"Tpe":"AND"}'
-                                denominatorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{../region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"missing","Tpe":"<>"}],"Tpe":"AND"}'
+                                denominatorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{../region_id}}","Tpe":"="},{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"resistant","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"sensitive","Tpe":"="}],"Tpe":"OR"}],"Tpe":"AND"}'
                                 remainderTextColour="inherit"
                                 onClickBehaviour="ItemLink"
                                 onClickTable="pf_drug_regions"
                                 onClickPrimKey="{}_{{../region_id}}"
                                 colourProperty="pf_regions.{{drug_id}}resistance"
+                                rawNumerator="true"
                               />
                             {{/query}}
                           </ProportionBarChartWrap>

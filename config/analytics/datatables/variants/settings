@@ -205,7 +205,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     A map of the variants geographic spread (WIP)
                     <div class="auto-half-height-container">
                        <div class="auto-height-inner">
-                           <Map disableInteraction>
+                           <Map>
                                <TileLayer/>
                            </Map>
                         </div>
