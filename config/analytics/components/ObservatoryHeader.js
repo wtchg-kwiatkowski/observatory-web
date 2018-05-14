@@ -221,7 +221,10 @@ let ObservatoryHeader = createReactClass({
           <div
             style={{flex: '1', marginLeft: '21px', height: '64px', textAlign: 'center'}}
           >
-            <img onClick={() => actions.session.tabSwitch('FirstTab')} src={logo} style={{cursor: 'pointer', maxWidth: '100%', height: 'calc(100% - 12px)', marginTop: '12px', marginBottom: '12px'}}/>
+            <div style={{display: 'inline-block', overflow: 'hidden', transform: 'translateZ(0)'}}>
+              <img onClick={() => actions.session.tabSwitch('FirstTab')} src={logo} style={{cursor: 'pointer', maxWidth: '100%', height: 'calc(100% - 12px)', marginTop: '12px', marginBottom: '12px'}}/>
+              <div onClick={() => actions.session.tabSwitch('FirstTab')} style={{cursor: 'pointer', display: 'inline-block', position: 'absolute', right: '7px', top: '38px', padding: '0 3px', fontSize: '8px', textTransform: 'uppercase', backgroundColor: '#e64a19', color: 'white'}}>beta</div>
+            </div>
           </div>
           <div style={{fontSize: '11px', color: '#36454F', textAlign: 'center', marginRight: '12px', marginLeft: '12px'}}>data&#160;version<br/>{version}&#160;beta</div>
         </Toolbar>
