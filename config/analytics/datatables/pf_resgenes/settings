@@ -118,5 +118,6 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     </Typography>
                 </CardContent>
             </Card>
+            <DocTemplate path="templates/sop.html"/>
         </CardStack>
     </PageTemplate>
