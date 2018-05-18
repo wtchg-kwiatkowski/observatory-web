@@ -13,6 +13,8 @@ sortDefault: name
 
 listView: true
 
+cacheTableInConfig: true
+
 itemTitle: "{{name}}"
 
 properties:
