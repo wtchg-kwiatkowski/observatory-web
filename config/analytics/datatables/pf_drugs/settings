@@ -57,15 +57,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     </div>
                   </div>
                   <DocTemplate path="templates/resistanceMapLegend.html"/>
-                  <Typography component="div" align="center" style="padding-top:20px;">
-                    <DocLink button href="viewers/ResistanceMap.html" initialDrug="{{drug_id}}">
-                      <Icon
-                        name="docimage:icons/viewer.svg"
-                        style="margin-right: 0.5em;"
-                      />
-                      Explore resistance
-                    </DocLink>
-                  </Typography>
+                  <DocTemplate path="templates/resistanceMapButton.html"/>
                 </CardContent>
             </Card>
             <Card>
