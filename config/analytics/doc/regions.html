@@ -12,7 +12,7 @@
                 </Typography>
 -->
                 <Typography component="p">
-                    <em>Plasmodium falciparum</em> malaria is found across the tropics in the Americas, Africa, and Asia. By analysing parasite genomes from across the world we can identify the mutations they carry.
+                    <em>Plasmodium falciparum</em> malaria is found across the tropics in the Americas, Africa, and Asia. By analysing the DNA in parasite genomes from across the world we can identify the mutations they carry, and from this their drug resistnace status.
                </Typography>
 <!--
                 <Typography component="p">
@@ -21,7 +21,7 @@
 -->
 
                  <Typography component="p">
-                  Current analyses are based on the <em><strong>MalariaGEN Pf6.0</strong></em> dataset comprising <big><strong><QueryResult table="pf_samples"/></big> <em>P. falciparum</em> samples </strong> collected <TextRange table="pf_samples" property="year"/> from <big><strong><QueryResult table="pf_samples" expression='["count", [["distinct", ["country_id"]]]]' /></strong></big> countries in <big><strong> <QueryResult table="pf_regions"/></strong></big> major regions. We define these regions using a combination of genetic relatedness and geographic proximity.
+                  Our current analyses are based on the <em><strong>MalariaGEN Pf6.0</strong></em> dataset comprising <strong><QueryResult table="pf_samples"/> <em>P. falciparum</em> samples </strong> collected <TextRange table="pf_samples" property="year"/> from <strong><QueryResult table="pf_samples" expression='["count", [["distinct", ["country_id"]]]]' /></strong> countries in <strong> <QueryResult table="pf_regions"/></strong> major regions. We define these regions using a combination of genetic relatedness and geographic proximity.
                 </Typography>
                 <Typography component="div" className="paragraph">
                     <SelectRow table="pf_regions"/>
