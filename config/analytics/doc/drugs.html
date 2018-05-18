@@ -12,8 +12,7 @@
                 </Typography>
 
                 <Typography component="p">
-                 We predict resistance to <strong><QueryResult table="pf_drugs"/></strong> major antimalarial drugs based on the presence/absence of known drug resistance mutations across individuals in different populations.</Typography>
-
+                 We predict the resistance status of <strong><QueryResult table="pf_drugs"/></strong> major antimalarial drugs based on the presence of genetic mutations in parasite samples.</Typography>
                 <List>
                 {{#query 'drug_id' 'name' 'short_description' table='pf_drugs'}}
                 <ObsListItem table="pf_drugs" primKey="{{drug_id}}">

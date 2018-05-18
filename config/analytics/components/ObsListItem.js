@@ -22,6 +22,7 @@ let ObsListItem = createReactClass({
     target: PropTypes.string,
     children: PropTypes.node,
     disableGutters: PropTypes.bool,
+    disabled: PropTypes.bool
   },
 
   getDefaultProps() {
