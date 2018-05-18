@@ -148,22 +148,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                       <DocTemplate path="templates/proportionPlotLegend.html"/>
                 </CardContent>
             </Card>
-            <Card >
-                <CardContent>
-                    <Typography type="headline">
-                        How we predict resistance
-                    </Typography>
-                    <List>
-                      <ObsListItem download href="downloads/Markers_to_phenotype_mapping_-_SOP_v1_2.pdf" target="_blank">
-                        <ListItemIcon><Icon class="icon" name='docimage:icons/publications-reports.svg' />
-                        </ListItemIcon>
-                          <ListItemText>
-                          <span>Our standard operating procedure for inferring antimalarial resistance from DNA</span>
-                        </ListItemText>
-                      </ObsListItem>
-                    </List>
-                </CardContent>
-            </Card>
+            <DocTemplate path="templates/sop.html"/>
 
         </CardStack>
     </PageTemplate>
