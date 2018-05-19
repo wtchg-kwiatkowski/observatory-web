@@ -1,6 +1,8 @@
 nameSingle: drug
 namePlural: drugs
 
+cacheTableInConfig: true
+
 primKey: drug_id
 
 icon: docimage:icons/drug02.svg
