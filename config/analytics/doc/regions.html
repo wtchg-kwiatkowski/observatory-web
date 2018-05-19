@@ -12,7 +12,7 @@
                 </Typography>
 -->
                 <Typography component="p">
-                    <em>Plasmodium falciparum</em> malaria is found across the tropics in the Americas, Africa, and Asia. By analysing the DNA in parasite genomes from across the world we can identify the mutations they carry, and from this their drug resistnace status.
+                    <em>Plasmodium falciparum</em> malaria is found across the tropics in the Americas, Africa, and Asia. By analysing the DNA in parasite genomes from across the world we can identify the mutations they carry, and from this their drug resistance status.
                </Typography>
 <!--
                 <Typography component="p">
@@ -56,7 +56,19 @@
                 <DocTemplate path="templates/resistanceMapButton.html"/>
             </CardContent>
         </Card>
-
+        <Card>
+            <CardContent>
+                <Typography type="headline">
+                    Resistance status
+                </Typography>
+                <Typography type="subheading" color="secondary">
+                    Click a circle for details
+                </Typography>
+                <Typography component="div" className="paragraph">
+                    <HotspotGrid/>
+                </Typography>
+            </CardContent>
+        </Card>
         <!--<Card >
             <CardTitle title="Countries" subtitle="" />
 
