@@ -48,7 +48,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
 
             <Typography component="div" className="paragraph">
               We predict
-              <big>{{toInt resistance}}%</big> {{lowercase pf_drugs.name}} resistance in {{pf_regions.name}} based on <big><QueryResult table="pf_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></big> <em>P.falciparum</em> samples collected <TextRange table="pf_samples" property="year" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' />
+              <big>{{round resistance}}%</big> {{lowercase pf_drugs.name}} resistance in {{pf_regions.name}} based on <big><QueryResult table="pf_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></big> <em>P.falciparum</em> samples collected <TextRange table="pf_samples" property="year" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' />
               </Typography>
 
               <Typography type="subheading" color="secondary">
