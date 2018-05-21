@@ -59,8 +59,9 @@ let HotspotGrid = createReactClass({
               {
                 regions.map(({region_id, name}) =>
                   <TableCell
+                    title="SAY WHAT2"
                     className="hover"
-                    onClick={(e) => this.handleClick(e, 'pf_drugs', `${region_id}`)}
+                    onClick={(e) => this.handleClick(e, 'pf_regions', `${region_id}`)}
                     style={{
                       cursor: 'pointer',
                       width: '5px',height:'130px',
@@ -73,8 +74,9 @@ let HotspotGrid = createReactClass({
           </TableHead>
           <TableBody>
             {
-              drugs.sort(({drug_id}, b) => drug_id > b.drug_id).map(({drug_id, name}) =>
-                <TableRow key={drug_id}>
+              drugs.sort(({drug_id}, b) => drug_id > b.drug_id).map(({drug_id, name}) => {
+                let drug_name = name;
+                return <TableRow key={drug_id}>
                   <TableCell
                     padding="dense"
                     className="hover"
@@ -82,12 +84,13 @@ let HotspotGrid = createReactClass({
                       width: '10px',
                       cursor: 'pointer'
                     }}
-                    onClick={(e) => this.handleClick(e, 'pf_drug', `${drug_id}`)}
+                    onClick={(e) => this.handleClick(e, 'pf_drugs', `${drug_id}`)}
                   >
                     {name}
                   </TableCell>
-                  {regions.map(({region_id, ...data}) =>
+                  {regions.map(({region_id, name, ...data}) =>
                     <TableCell
+                      title={`${Math.round(data[drug_id + 'resistance'])}% ${drug_name} resistance in ${name}`}
                       className="hover"
                       style={{
                         cursor: 'pointer',
@@ -96,15 +99,15 @@ let HotspotGrid = createReactClass({
                       onClick={(e) => this.handleClick(e, 'pf_drug_regions', `${drug_id}_${region_id}`)}
                       padding="dense" key={region_id}>
                       <div style={{
-                        width: "25px",
-                        height: "25px",
-                        borderRadius: "50%",
-                        background: colourFunc(data[drug_id+'resistance'])
+                          width: "25px",
+                          height: "25px",
+                          borderRadius: "50%",
+                          background: colourFunc(data[drug_id+'resistance'])
                       }}/>
                     </TableCell>
                   )
                   }
-                </TableRow>)
+                </TableRow>;})
             }
           </TableBody>
         </Table>
@@ -131,8 +134,9 @@ let HotspotGrid = createReactClass({
           </TableHead>
           <TableBody>
             {
-              regions.sort(({region_id}, b) => region_id > b.region_id).map(({region_id, name, ...data}) =>
-                <TableRow key={region_id}>
+              regions.sort(({region_id}, b) => region_id > b.region_id).map(({region_id, name, ...data}) => {
+                let region_name = name;
+                return <TableRow key={region_id}>
                   <TableCell
                     padding="dense"
                     className="hover"
@@ -144,8 +148,9 @@ let HotspotGrid = createReactClass({
                   >
                     {name}
                   </TableCell>
-                  {drugs.map(({drug_id}) =>
+                  {drugs.map(({drug_id, name}) =>
                     <TableCell
+                      title={`${Math.round(data[drug_id + 'resistance'])}% ${name} resistance in ${region_name}`}
                       className="hover"
                       style={{
                         cursor: 'pointer'
@@ -161,7 +166,7 @@ let HotspotGrid = createReactClass({
                     </TableCell>
                   )
                   }
-                </TableRow>)
+                </TableRow>;})
             }
 
 
