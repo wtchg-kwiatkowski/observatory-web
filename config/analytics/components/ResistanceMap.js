@@ -89,7 +89,7 @@ let ResistanceMap = createReactClass({
                     <HideLayerAtZoom above={4}>
                       <TableGeoJSONsLayer
                         onClickBehaviour="tooltip"
-                        onClickComponent="DocPage"
+                        onClickComponent="DocTemplate"
                         onClickComponentProps={{drug_id:drug, dynamicSize: true, path: "templates/regionCloroplethTooltip.html"}}
                         table="pf_regions"
                         geoJsonProperty="geojson"
@@ -111,7 +111,7 @@ let ResistanceMap = createReactClass({
                     <HideLayerAtZoom below={4}>
                       <TableGeoJSONsLayer
                         onClickBehaviour="tooltip"
-                        onClickComponent="DocPage"
+                        onClickComponent="DocTemplate"
                         onClickComponentProps={{drug_id:drug, dynamicSize: true, path: "templates/regionCloroplethTooltip.html"}}
                         table="pf_regions"
                         geoJsonProperty="geojson"
