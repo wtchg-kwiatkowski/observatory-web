@@ -27,7 +27,8 @@ let HotspotGrid = createReactClass({
   ],
 
   propTypes: {
-    transpose: PropTypes.bool
+    transpose: PropTypes.bool,
+    regionsOrder: PropTypes.array, // Array of string
   },
 
   getDefaultProps() {
@@ -44,9 +45,10 @@ let HotspotGrid = createReactClass({
   },
 
   render() {
-    const {transpose} = this.props;
-    let drugs = this.config.cachedTables['pf_drugs'];
-    let regions = this.config.cachedTables['pf_regions'];
+    const {transpose, regionsOrder} = this.props;
+    const drugs = this.config.cachedTables['pf_drugs'];
+    const regions = this.config.cachedTables['pf_regions'];
+    const regionsInOrder = regionsOrder !== undefined ? regionsOrder.map((region_id) => regions.filter((region) => region.region_id === region_id)[0]) : regions.sort(({region_id}, b) => region_id > b.region_id);
     let colourFunc = propertyColour(this.config.tablesById['sites'].propertiesById['ARTresistance']);
     if (transpose) {
       return <div style={{overflowX: "auto", overflowY: "hidden",  position: 'relative'}}>
@@ -57,9 +59,8 @@ let HotspotGrid = createReactClass({
                 padding="dense"
               />
               {
-                regions.map(({region_id, name}) =>
+                regionsInOrder.map(({region_id, name}) =>
                   <TableCell
-                    title="SAY WHAT2"
                     className="hover"
                     onClick={(e) => this.handleClick(e, 'pf_regions', `${region_id}`)}
                     style={{
@@ -134,7 +135,7 @@ let HotspotGrid = createReactClass({
           </TableHead>
           <TableBody>
             {
-              regions.sort(({region_id}, b) => region_id > b.region_id).map(({region_id, name, ...data}) => {
+              regionsInOrder.map(({region_id, name, ...data}) => {
                 let region_name = name;
                 return <TableRow key={region_id}>
                   <TableCell
