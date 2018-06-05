@@ -89,7 +89,7 @@ let HotspotGrid = createReactClass({
                   >
                     {name}
                   </TableCell>
-                  {regions.map(({region_id, name, ...data}) =>
+                  {regionsInOrder.map(({region_id, name, ...data}) =>
                     <TableCell
                       title={`${Math.round(data[drug_id + 'resistance'])}% ${drug_name} resistance in ${name}`}
                       className="hover"
