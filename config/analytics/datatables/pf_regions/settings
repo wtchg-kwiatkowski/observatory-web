@@ -94,7 +94,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                                 />
                                 <TableMarkersLayer
                                   clusterMarkers="false"
-                                  showLegend="false"
+                                  showLegend="true"
                                   clickTable="sites"
                                   clickPrimaryKeyProperty="site_id"
                                   table="sites"
@@ -103,6 +103,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                                   onClickSingleBehaviour="tooltip"
                                   onClickSingleComponent="ItemTemplate"
                                   onClickSingleComponentTemplateDocPath="templates/ResistanceMapOnClickSingleTooltip.html"
+                                  legendTemplateDocPath="templates/drugLegend.html"
                                 >
                                   <SiteMarker/>
                                 </TableMarkersLayer>
