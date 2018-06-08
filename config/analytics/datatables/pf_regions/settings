@@ -111,7 +111,6 @@ dataItemViews:              # Lists the custom views that should appear in the p
                            </div>
                         </div>
                         <div class="horizontal stack">
-                          <div style="padding-top: 7px"><DocTemplate path="templates/resistanceMapKey.html"/></div>
                           <div class="grow"><DocTemplate path="templates/resistanceMapLegend.html"/></div>
                         </div>
                         <DocTemplate path="templates/resistanceMapButton.html"/>
