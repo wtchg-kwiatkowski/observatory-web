@@ -31,29 +31,19 @@ let ResistanceMap = createReactClass({
   ],
 
   propTypes: {
-    initialDrug: PropTypes.string,
-  },
-
-  getDefaultProps() {
-    return {
-      initialDrug: 'sites',
-    };
-  },
-
-  getInitialState() {
-    const {initialDrug} = this.props;
-    return {
-      drug: (initialDrug !== undefined && initialDrug !== null && this.props.initialDrug !== '') ? this.props.initialDrug : 'sites',
-    };
+    drug: PropTypes.string,
+    setProps: PropTypes.func.isRequired,
   },
 
   handleChange(e, drug) {
-    this.setState({drug});
+    this.props.setProps({drug});
   },
 
   render() {
-    let {drug} = this.state;
-    let {constants} = this.config;
+    let {drug} = this.props;
+
+    // getDefaultProps doesn't handle empty string
+    drug = drug === undefined || drug === '' ? 'sites' : drug;
     return (
       <div className="centering-container">
         <Card>
@@ -72,7 +62,7 @@ let ResistanceMap = createReactClass({
                 aria-label="drug"
                 name="drug"
                 // className={classes.group}
-                value={this.state.drug}
+                value={drug}
                 onChange={this.handleChange}
                 style={{flexDirection: 'row'}}
               >
