@@ -97,7 +97,11 @@ $usual-text-size: 14px;
   background-color: #F7F7F7;
 }
 
-
+.site-marker {
+  width: 34px;
+  height: 27px;
+  transform: translate(-17px,-27px);
+}
 
 li {
   padding-bottom: 5px;
