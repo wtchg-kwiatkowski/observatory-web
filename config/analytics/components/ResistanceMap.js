@@ -16,7 +16,11 @@ import DocTemplate from 'panoptes/DocTemplate';
 import {propertyColour}  from 'util/Colours';
 import SiteMarker from './SiteMarker';
 import Typography from 'material-ui/Typography';
-
+import TableData from 'components/Map/TableData';
+import AttributeToColour from 'components/AttributeToColour';
+import MarkerLayer from 'components/Map/MarkerLayer';
+import MarkerLayerMarker from 'components/Map/MarkerLayerMarker';
+import MarkerLayerPopup from 'components/Map/MarkerLayerPopup';
 
 let ResistanceMap = createReactClass({
   displayName: 'ResistanceMap',
@@ -124,18 +128,27 @@ let ResistanceMap = createReactClass({
                       />
                     </HideLayerAtZoom>
                     <HideLayerAtZoom below={4}>
-                      <TableMarkersLayer
-                        showLegend={true}
-                        clickPrimaryKeyProperty="site_id"
-                        table="pf_samples"
-                        clusterMarkers={true}
-                        markerColourProperty={`${drug}resistant`}
-                        knownLegendValues={['resistant', 'sensitive', 'undetermined']}
-                        legendPropertyName="Resistance type"
-                        onClickClusterBehaviour="tooltip"
-                        onClickClusterComponent="HandlebarsWithComponents"
-                        onClickClusterComponentTemplateDocPath="templates/ResistanceMapOnClickClusterTooltip.html"
-                      />
+                      <TableData
+                        table="sites"
+                        area={["sql_max",[200,["*", [6, "num_samples"]]]]}
+                        name="name"
+                        lat="lat"
+                        lng="lng"
+                        colour={`${drug}resistance`}
+                        resistance={`${drug}resistance`}
+                        primKey="site_id"
+                      >
+                        <AttributeToColour table="sites" property={`${drug}resistance`}>
+                          <MarkerLayer>
+                            <MarkerLayerMarker>
+                              <DocTemplate hideEditButton path="templates/circleMapMarker.html"/>
+                            </MarkerLayerMarker>
+                            <MarkerLayerPopup>
+                              <DocTemplate hideEditButton path="templates/drugResistanceInRegionSiteSamplesOnClickClusterTooltip.html"/>
+                            </MarkerLayerPopup>
+                          </MarkerLayer>
+                        </AttributeToColour>
+                      </TableData>
                     </HideLayerAtZoom>
                   </FeatureGroup>
                   :
@@ -154,7 +167,7 @@ let ResistanceMap = createReactClass({
 
               </Map>
             </div>
-            <div class="horizontal stack">
+            <div className="horizontal stack">
               <div style={{paddingTop: "7px"}}><DocTemplate path="templates/resistanceMapKey.html"/></div>
               <div style={{maxWidth: "500px"}}><DocTemplate path="templates/resistanceMapLegend.html"/></div>
             </div>
