@@ -85,26 +85,39 @@ dataItemViews:              # Lists the custom views that should appear in the p
               <Typography type="headline">
                   Resistance across sample sites
               </Typography>
-              <DocTemplate path="templates/pieMapLegend.html"/>
               <Typography component="div">
                 <div class="auto-half-height-container">
                   <div class="auto-height-inner">
                     <Map>
                       <TileLayer />
-                      <TableGeoJSONsLayer showLegend="false" table="pf_regions" geoJsonProperty="geojson" colour="{{constant 'mapPolygon'}}" labelProperty="name" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' />
-                      <TableMarkersLayer
-                        showLegend="false"
-                        query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}'
-                        table="pf_samples"
-                        clusterMarkers="true"
-                        markerColourProperty="{{drug_id}}resistant"
-                        onClickClusterBehaviour="tooltip"
-                        onClickClusterComponent="HandlebarsWithComponents"
-                        onClickClusterComponentProps='{"drug_id":"{{drug_id}}","drug_name":"{{pf_drugs.name}}"}'
-                        onClickClusterComponentTemplateDocPath="templates/drugResistanceInRegionSiteSamplesOnClickClusterTooltip.html"
-                      />
+                      <TableGeoJSONsLayer disableClick showLegend="false" table="pf_regions" geoJsonProperty="geojson" colour="{{constant 'mapPolygon'}}" labelProperty="name" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' />
+                      <TableData
+                              query='{"whcClass":"comparefixed","isCompound":false,"ColName":"pf_region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}'
+                              table="sites"
+                              area='["sql_max",[200,["*", [6, "num_samples"]]]]'
+                              name="name"
+                              lat="lat"
+                              lng="lng"
+                              colour="{{drug_id}}resistance"
+                              resistance="{{drug_id}}resistance"
+                              primKey="site_id"
+                      >
+                        <AttributeToColour table="sites" property="{{drug_id}}resistance">
+                          <MarkerLayer>
+                            <MarkerLayerMarker>
+                              <DocTemplate hideEditButton path="templates/circleMapMarker.html"/>
+                            </MarkerLayerMarker>
+                            <MarkerLayerPopup>
+                              <DocTemplate hideEditButton path="templates/drugResistanceInRegionSiteSamplesOnClickClusterTooltip.html"/>
+                            </MarkerLayerPopup>
+
+                          </MarkerLayer>
+                        </AttributeToColour>
+                      </TableData>
+                    </Map>
                   </div>
                 </div>
+                <DocTemplate path="templates/resistanceMapLegend.html"/>
               </Typography>
               <DocTemplate path="templates/proportionPlotTitle.html"/>
               <Typography component="div">
