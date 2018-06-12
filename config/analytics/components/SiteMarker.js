@@ -22,7 +22,7 @@ let SiteMarker = createReactClass({
     } = this.props;
     const colourFunc = propertyColour(this.config.tablesById['sites'].propertiesById['ARTresistance']);
     return (
-      <svg style={{width: "34px", height:"27px", transform: "translate(-17px,-27px)"}}>
+      <svg className="site-marker">
         <g>
           <rect x="0" y="0" width="34" height="24" rx="5" ry="5" style={{fill: 'black'}}/>
           <rect x="1" y="1" width="32" height="22" rx="4" ry="4" style={{fill: 'white'}}/>
