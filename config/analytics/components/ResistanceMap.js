@@ -51,8 +51,11 @@ let ResistanceMap = createReactClass({
             <CardHeader title={<span>Global resistance status</span>}/>
             {drug !== 'sites' ?
               <Typography component="p">
-                Regions are shaded by resistance status, zoom in to see individual sites.
-              </Typography>:
+                Regions are shaded by resistance status. 
+                Zoom in to see the individual sites.
+                The size of the circle indicates the number of samples collected for that site (also shown).
+              </Typography>
+              :
               <Typography component="p">
                 Each marker is a site, with the coloured circles representing the resistance status of 6 key antimalarial drugs. Click a site for more details.
               </Typography>
@@ -127,6 +130,7 @@ let ResistanceMap = createReactClass({
                         colour={`${drug}resistance`}
                         resistance={`${drug}resistance`}
                         primKey="site_id"
+                        num_samples="num_samples"
                       >
                         <AttributeToColour table="sites" property={`${drug}resistance`}>
                           <MarkerLayer>
