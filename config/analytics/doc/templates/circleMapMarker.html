@@ -1,3 +1,6 @@
-    <svg style="overflow: visible; position: absolute" width={{radius}} height={{radius}}>
-        <circle r={{radius}} fill="{{./colour}}"/>
-    </svg>
+<svg style="overflow: visible; position: absolute" width={{radius}} height={{radius}}>
+  <g>
+    <circle r={{radius}} fill="{{./colour}}"/>
+    <text className="site-marker-contrast-text" x="0" y="0" textAnchor="middle" alignmentBaseline="middle">{{num_samples}}</text>
+  </g>
+</svg>
