@@ -103,6 +103,18 @@ $usual-text-size: 14px;
   transform: translate(-17px,-27px);
 }
 
+
+.site-marker-contrast-text {
+  font-size: 10px;
+  paint-order: stroke;
+  stroke: white;
+  stroke-width: 2px;
+  stroke-opacity: 0.4;
+  stroke-linecap: butt;
+  stroke-linejoin: miter;
+  font-weight: bold;
+}
+
 li {
   padding-bottom: 5px;
 }
