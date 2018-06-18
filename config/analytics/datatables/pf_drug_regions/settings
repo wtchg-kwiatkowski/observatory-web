@@ -85,7 +85,10 @@ dataItemViews:              # Lists the custom views that should appear in the p
               <Typography type="headline">
                   Resistance across sample sites
               </Typography>
-              <Typography component="div">
+              <Typography component="p">
+                The size of the circle indicates the number of samples collected for that site (also shown).
+              </Typography>
+              <Typography component="div" style="margin-top: 10px;">
                 <div class="auto-half-height-container">
                   <div class="auto-height-inner">
                     <Map>
@@ -101,6 +104,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                               colour="{{drug_id}}resistance"
                               resistance="{{drug_id}}resistance"
                               primKey="site_id"
+                              num_samples="num_samples"
                       >
                         <AttributeToColour table="sites" property="{{drug_id}}resistance">
                           <MarkerLayer>
