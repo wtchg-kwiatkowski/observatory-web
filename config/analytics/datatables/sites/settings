@@ -77,25 +77,40 @@ dataItemViews:              # Lists the custom views that should appear in the p
                         There are <strong>{{num_samples}}</strong> <em>P.falciparum</em> samples collected <TextRange table="pf_samples" property="year" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}' /> from
                         <QueryResult table="pf_samples"
                           singular="study" plural="studies"  expression='["count", [["distinct", ["study_id"]]]]' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}' /> in {{name}}
-                        <div class="auto-half-height-container">
+                        <div class="auto-half-height-container" style="margin-top: 10px;">
                            <div class="auto-height-inner">
                             <Map>
-                                <TileLayer />
-                                    <TableGeoJSONsLayer
-                                      disableClick
-                                      showLegend="false"
-                                      table="pf_regions"
-                                      geoJsonProperty="geojson"
-                                      labelProperty="name"
-                                      query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{pf_regions.region_id}}","isRoot":true,"Tpe":"="}'
-                                      colour="{{constant 'mapPolygon'}}"
-                                    />
-                                    <TableMarkersLayer clusterMarkers="false" showLegend="false" clickTable="sites" clickPrimaryKeyProperty="site_id" table="pf_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{pf_regions.region_id}}","isRoot":true,"Tpe":"="}'>
-                                       <svg style="width: 4px; height: 4px; position: absolute; left: -2px; top: -2px;" viewBox="0 0 100 100">
-                                           <circle cx="50" cy="50" r="50" strokeWidth="0" fill="black" opacity="0.5" />
-                                       </svg>
-                                    </TableMarkersLayer>
-                                <TableMarkersLayer clusterMarkers="false" table="sites" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}' />
+                              <TileLayer />
+                              <TableGeoJSONsLayer
+                                disableClick
+                                showLegend="false"
+                                table="pf_regions"
+                                geoJsonProperty="geojson"
+                                labelProperty="name"
+                                query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{pf_regions.region_id}}","isRoot":true,"Tpe":"="}'
+                                colour="{{constant 'mapPolygon'}}"
+                              />
+                              <TableMarkersLayer
+                                clusterMarkers="false"
+                                showLegend="false"
+                                table="pf_samples"
+                                query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{pf_regions.region_id}}","isRoot":true,"Tpe":"="}'
+                                onClickSingleBehaviour="tooltip"
+                                onClickSingleComponent="ItemTemplate"
+                                onClickSingleComponentTemplateDocPath="templates/ResistanceMapOnClickSingleTooltip.html"
+                                >
+                                <svg style="width: 4px; height: 4px; position: absolute; left: -2px; top: -2px;" viewBox="0 0 100 100">
+                                  <circle cx="50" cy="50" r="50" strokeWidth="0" fill="black" opacity="0.5" />
+                                </svg>
+                              </TableMarkersLayer>
+                              <TableMarkersLayer
+                                clusterMarkers="false"
+                                table="sites"
+                                query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}'
+                                childDataColumns='["ARTresistance", "CQresistance", "MQresistance", "PPQresistance", "PYRresistance", "SDXresistance"]'
+                              >
+                                <SiteMarker/>
+                              </TableMarkersLayer>
                             </Map>
                            </div>
                         </div>
