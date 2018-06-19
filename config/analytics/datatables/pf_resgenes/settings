@@ -3,7 +3,7 @@ namePlural: genes
 
 primKey: gene_id
 
-icon: docimage:icons/gene02.svg
+icon: docimage:icons/gene01.svg
 
 properties:
 - id: gene_id
