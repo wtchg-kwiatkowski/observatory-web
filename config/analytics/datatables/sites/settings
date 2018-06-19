@@ -97,7 +97,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                                 query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{pf_regions.region_id}}","isRoot":true,"Tpe":"="}'
                                 onClickSingleBehaviour="tooltip"
                                 onClickSingleComponent="ItemTemplate"
-                                onClickSingleComponentTemplateDocPath="templates/ResistanceMapOnClickSingleTooltip.html"
+                                onClickSingleComponentTemplateDocPath="templates/siteOnClickTooltip.html"
                                 >
                                 <svg style="width: 4px; height: 4px; position: absolute; left: -2px; top: -2px;" viewBox="0 0 100 100">
                                   <circle cx="50" cy="50" r="50" strokeWidth="0" fill="black" opacity="0.5" />
