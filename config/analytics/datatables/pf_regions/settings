@@ -102,7 +102,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                                   query='{"whcClass":"comparefixed","isCompound":false,"ColName":"pf_region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}'
                                   onClickSingleBehaviour="tooltip"
                                   onClickSingleComponent="ItemTemplate"
-                                  onClickSingleComponentTemplateDocPath="templates/ResistanceMapOnClickSingleTooltip.html"
+                                  onClickSingleComponentTemplateDocPath="templates/siteOnClickTooltip.html"
                                 >
                                   <SiteMarker/>
                                 </TableMarkersLayer>

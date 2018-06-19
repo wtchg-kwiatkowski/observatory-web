@@ -158,7 +158,7 @@ let ResistanceMap = createReactClass({
                     clusterMarkers={false}
                     onClickSingleBehaviour="tooltip"
                     onClickSingleComponent="ItemTemplate"
-                    onClickSingleComponentTemplateDocPath="templates/ResistanceMapOnClickSingleTooltip.html"
+                    onClickSingleComponentTemplateDocPath="templates/siteOnClickTooltip.html"
                     childDataColumns={['ARTresistance', 'CQresistance', 'MQresistance', 'PPQresistance', 'PYRresistance', 'SDXresistance']}
                   >
                     <SiteMarker flux={this.getFlux()}/>
