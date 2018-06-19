@@ -24,7 +24,7 @@ let SiteMarker = createReactClass({
     return (
       <svg className="site-marker">
         <g>
-          <rect x="0" y="0" width="34" height="24" rx="5" ry="5" style={{fill: 'black'}}/>
+          <rect x="0" y="0" width="34" height="24" rx="5" ry="5" style={{fill: '#333333'}}/>
           <rect x="1" y="1" width="32" height="22" rx="4" ry="4" style={{fill: 'white'}}/>
           <circle
             style={{fill:colourFunc(ARTresistance)}}
@@ -62,7 +62,7 @@ let SiteMarker = createReactClass({
             cy="17"
             r="4"
           />
-          <polygon points="14,24 17,27 20,24" style={{fill: 'black'}}/>
+          <polygon points="14,24 17,27 20,24" style={{fill: '#333333'}}/>
           <polygon points="14,23 17,26 20,23" style={{fill: 'white'}}/>
         </g>
       </svg>
