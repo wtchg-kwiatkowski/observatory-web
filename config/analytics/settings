@@ -37,3 +37,35 @@ feeds:
   url: https://malariagenanalyticsfaq.wordpress.com/feed
 - id: blog
   url: https://malariagenanalyticsblog.wordpress.com/feed
+
+initialSessionState:
+  session:
+    components:
+      FirstTab:
+        type: DocPage
+        props:
+          path: index.html
+      InitialDocPage:
+        type: DocPage
+        props:
+          path: pf.html
+      InitialOtherPage:
+        type: DocPage
+        props:
+          path: viewers/index.html
+    tabs:
+      components:
+        - FirstTab
+        - InitialDocPage
+        - InitialOtherPage
+      selectedTab: FirstTab
+      unclosableTabs:
+       - FirstTab
+      unreplaceableTabs:
+       - FirstTab
+    popups:
+      components: []
+      state: {}
+    foundGenes: []
+    usedTableQueries: []
+    popupSlots: []
