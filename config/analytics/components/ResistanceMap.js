@@ -135,7 +135,7 @@ let ResistanceMap = createReactClass({
                         <AttributeToColour table="sites" property={`${drug}resistance`}>
                           <MarkerLayer>
                             <MarkerLayerMarker>
-                              <DocTemplate hideEditButton path="templates/circleMapMarker.html"/>
+                              <DocTemplate hideEditButton path="templates/circleMapMarker.html" table="sites" property={`${drug}resistance`}/>
                             </MarkerLayerMarker>
                             <MarkerLayerPopup>
                               <DocTemplate hideEditButton path="templates/drugResistanceInRegionSiteSamplesOnClickClusterTooltip.html"/>
