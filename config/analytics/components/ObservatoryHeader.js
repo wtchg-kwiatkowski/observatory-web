@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from  'react';
 import createReactClass from 'create-react-class';
-import {withStyles} from 'material-ui/styles';
+import {withStyles} from '@material-ui/core/styles';
 
 // Mixins
 import FluxMixin from 'mixins/FluxMixin';
@@ -15,23 +15,23 @@ import Icon from 'ui/Icon';
 import DocPage from 'panoptes/DocPage';
 
 // Material UI
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
-import IconButton from 'material-ui/IconButton';
-import MenuIcon from 'material-ui-icons/Menu';
-import {ListItemIcon, ListItemText} from 'material-ui/List';
-import HomeIcon from 'material-ui-icons/Home';
-import SettingsIcon from 'material-ui-icons/Settings';
-import ListIcon from 'material-ui-icons/List';
-import ExitToAppIcon from 'material-ui-icons/ExitToApp';
-import Divider from 'material-ui/Divider';
-import Drawer from 'material-ui/Drawer';
-import List, {ListItem} from 'material-ui/List';
-import Collapse from 'material-ui/transitions/Collapse';
-import ExpandLess from 'material-ui-icons/ExpandLess';
-import ExpandMore from 'material-ui-icons/ExpandMore';
-import Tabs, {Tab} from 'material-ui/Tabs';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import {ListItemIcon, ListItemText} from '@material-ui/core';
+import HomeIcon from '@material-ui/icons/Home';
+import SettingsIcon from '@material-ui/icons/Settings';
+import ListIcon from '@material-ui/icons/List';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import Divider from '@material-ui/core/Divider';
+import Drawer from '@material-ui/core/Drawer';
+import {List, ListItem} from '@material-ui/core';
+import Collapse from '@material-ui/core/Collapse';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import {Tabs, Tab} from '@material-ui/core';
 
 import 'font-awesome.css';
 import 'ui-components.scss';

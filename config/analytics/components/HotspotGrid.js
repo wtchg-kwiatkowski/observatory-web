@@ -6,13 +6,13 @@ import DocTemplate from 'panoptes/DocTemplate';
 
 import {propertyColour}  from 'util/Colours.js';
 
-import Table, {
+import {Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
   TableSortLabel,
-} from 'material-ui/Table';
+} from '@material-ui/core';
 import ConfigMixin from "../../../mixins/ConfigMixin";
 import FluxMixin from "../../../mixins/FluxMixin";
 
