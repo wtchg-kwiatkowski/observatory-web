@@ -87,6 +87,7 @@
             <Typography component="div" className="paragraph">The top 10 most highly differentiated genes across the globe are shown below. These genes are likely to be involved in regionally-specific parasite adaptation.</Typography>
 
             <Typography component="div" className="paragraph">
+              <div style="width: 70%; margin: auto; padding-bottom: 20px;">
                 <MuiDataTableView
                   table="pf_genes"
                   maxRowsPerPage="10"
@@ -96,6 +97,7 @@
                   onClickComponent='ItemTemplate'
                   onClickComponentTemplateDocPath='templates/genesOnClickTab.html'
                 />
+              </div>
             </Typography>
             <Typography component="div" align="center">
             <DocLink button href="viewers/GeneticDifferentiation.html">
