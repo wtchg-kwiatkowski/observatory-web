@@ -83,11 +83,11 @@ properties:
 #  description: The proportion of samples that have the non-reference form of this variant in South Asia
 - id: af_WSEA
   dataType: Float
-  name: West South-east Asia
+  name: West southeast Asia
 #  description: The proportion of samples that have the non-reference form of this variant in West South-east Asia
 - id: af_ESEA
   dataType: Float
-  name: East South-east Asia
+  name: East southeast Asia
 #  description: The proportion of samples that have the non-reference form of this variant in East South-east Asia
 - id: af_OCE
   dataType: Float
