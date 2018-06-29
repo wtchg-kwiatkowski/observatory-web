@@ -67,10 +67,10 @@ dataItemViews:              # Lists the custom views that should appear in the p
         <CardStack>
             <Card>
                 <CardContent>
-                    <Typography type="headline">
+                    <Typography variant="headline">
                         {{name}}
                     </Typography>
-                    <Typography type="subheading" color="secondary">
+                    <Typography variant="subheading" color="secondary">
                         A site in {{{countries.name}}}
                     </Typography>
                     <Typography component="div">
@@ -119,13 +119,13 @@ dataItemViews:              # Lists the custom views that should appear in the p
             </Card>
             <Card>
                 <CardContent>
-                    <Typography type="headline">
+                    <Typography variant="headline">
                     Predicted antimalarial drug resistance
                     </Typography>
 
                     <DocTemplate path="templates/proportionPlotTitle.html"/>
 
-                    <Typography component="p">
+                    <Typography >
 
                         <div style="padding-top: 20px">
                           <ProportionBarChartWrap
@@ -159,7 +159,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
             <Card>
               <CardContent>
 
-            <Typography type="headline">
+            <Typography variant="headline">
                Where the {{name}} samples come from
             </Typography>
 
@@ -167,12 +167,12 @@ dataItemViews:              # Lists the custom views that should appear in the p
             {{#query 'studies.study_number' 'studies.webTitle' 'studies.description' 'study_id' table='pf_samples' distinct='true' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}'}}
 
                           <!--
-                            <Typography type="headline">
+                            <Typography variant="headline">
                                 <strong>{{studies.study_number}}</strong>:{{{studies.webTitle}}}
                             </Typography>
                           -->
 
-                            <Typography component="p">
+                            <Typography >
                                 <big><QueryResult table="pf_samples" query='{"whcClass":"compound","isCompound":true,"isRoot":false,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{../site_id}}","isRoot":true,"Tpe":"="}, {"whcClass":"comparefixed","isCompound":false,"ColName":"study_id","CompValue":"{{study_id}}","isRoot":true,"Tpe":"="}],"Tpe":"AND"}' /></big> samples collected <TextRange table="pf_samples" property="year" query='{"whcClass":"compound","isCompound":true,"isRoot":false,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{../site_id}}","isRoot":true,"Tpe":"="}, {"whcClass":"comparefixed","isCompound":false,"ColName":"study_id","CompValue":"{{study_id}}","isRoot":true,"Tpe":"="}],"Tpe":"AND"}' />
                                 by
                                 {{#query 'givenName' 'sn' 'mail' table='study_ldap_people' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"study","CompValue":"{{study_id}}","isRoot":true,"Tpe":"="}'}}

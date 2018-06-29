@@ -4,14 +4,14 @@
       
         <Card>
             <CardContent>
-                <Typography type="headline">
+                <Typography variant="headline">
                   Antimalarial drug resistance
                 </Typography>
-                <Typography type="subheading" color="secondary">
+                <Typography variant="subheading" color="secondary">
                   Parasites are evolving resistance to all frontline antimalarial drugs
                 </Typography>
 
-                <Typography component="p">
+                <Typography >
                  We predict the resistance status of <strong><QueryResult table="pf_drugs"/></strong> major antimalarial drugs based on the presence of genetic mutations in parasite samples.</Typography>
                 <List>
                 {{#query 'drug_id' 'name' 'short_description' table='pf_drugs'}}
@@ -28,10 +28,10 @@
           </Card>
         <Card>
             <CardContent>
-                <Typography type="headline">
+                <Typography variant="headline">
                     Resistance status
                 </Typography>
-                <Typography type="subheading" color="secondary">
+                <Typography variant="subheading" color="secondary">
                     Click a circle for details
                 </Typography>
                 <Typography component="div" className="paragraph">

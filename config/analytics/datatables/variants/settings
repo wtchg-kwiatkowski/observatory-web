@@ -185,23 +185,23 @@ dataItemViews:              # Lists the custom views that should appear in the p
         <CardStack>
             <Card>
                 <CardContent>
-                    <Typography type="headline">
+                    <Typography variant="headline">
                         Variant {{mutation}}
                     </Typography>
-                    <Typography type="subheading" color="secondary">
+                    <Typography variant="subheading" color="secondary">
                        Chromosome {{chrom}} at {{pos}}
                     </Typography>
-                    <Typography component="p">
+                    <Typography >
                         {{#query "fname" "ftype" table="annotation" query='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"fstart","CompValue":"{{pos}}","Tpe":"<="},{"whcClass":"comparefixed","isCompound":false,"ColName":"fstop","CompValue":"{{pos}}","Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"chromid","CompValue":"{{chrom}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"ftype","CompValue":"gene","Tpe":"="}],"Tpe":"AND"}'}}
                             This variant is in the {{fname}} gene
                         {{else}}
                             This variant is not in a gene
                         {{/query}}
                     </Typography>
-                    <Typography component="p">
+                    <Typography >
                         If this is a variant of note a section here will discuss it, linking to other areas.
                     </Typography>
-                    <Typography component="p">
+                    <Typography >
                     A map of the variants geographic spread (WIP)
                     <div class="auto-half-height-container">
                        <div class="auto-height-inner">
