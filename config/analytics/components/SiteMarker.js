@@ -63,7 +63,7 @@ let SiteMarker = createReactClass({
             r="4"
           />
           <polygon points="14,24 17,27 20,24" style={{fill: '#333333'}}/>
-          <polygon points="14,22 17,26 20,22" style={{fill: 'white'}}/>
+          <polygon points="14,23 17,26 20,23" style={{fill: 'white'}}/>
         </g>
       </svg>
     );

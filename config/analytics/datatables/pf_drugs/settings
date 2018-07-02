@@ -27,10 +27,10 @@ dataItemViews:              # Lists the custom views that should appear in the p
         <CardStack>
             <Card>
                 <CardContent>
-                  <Typography type="headline">
+                  <Typography variant="headline">
                       {{name}}
                   </Typography>
-                  <Typography component="p" style="padding-bottom:8px">
+                  <Typography  style="padding-bottom:8px">
                       {{{description}}}
                   </Typography>
                   <Typography component="div" align="center">
@@ -64,7 +64,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
             </Card>
             <Card>
                 <CardContent>
-                    <Typography type="headline">
+                    <Typography variant="headline">
                      {{name}} resistance by region
                     </Typography>
 
