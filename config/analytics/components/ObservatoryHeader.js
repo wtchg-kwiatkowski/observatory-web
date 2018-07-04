@@ -245,4 +245,8 @@ let ObservatoryHeader = createReactClass({
   },
 });
 
-export default withStyles(styles)(ObservatoryHeader);
+
+ObservatoryHeader = withStyles(styles)(ObservatoryHeader);
+ObservatoryHeader.displayName = "ObservatoryHeader";
+
+export default ObservatoryHeader;
