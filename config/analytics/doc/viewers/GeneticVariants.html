@@ -1,14 +1,13 @@
 <TableWithLegend
     disableMultipleColumnOrder="true"
     table="variants"
-    columns='["mutation", "position", "af_WAF", "af_CAF","af_EAF", "af_WSEA", "af_ESEA", "af_SAS",  "af_SAM", "af_OCE" ]'
+    columns='["mutation", "position", "af_SAM", "af_WAF", "af_CAF", "af_EAF", "af_SAS", "af_WSEA", "af_ESEA", "af_OCE"]'
     order='[["desc", "mutation" ]]'
     query='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"chrom","CompValue":"{{chromid}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"pos","CompValue":{{fstart}},"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"pos","CompValue":{{fstop}},"Tpe":"<="},{"whcClass":"compound","isCompound":true,"isRoot":false,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"af_WAF","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"af_CAF","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"af_EAF","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"af_WSEA","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"af_ESEA","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"af_SAS","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"af_SAM","CompValue":0.01,"Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"af_OCE","CompValue":0.01,"Tpe":">="}],"Tpe":"OR"}],"Tpe":"AND"}'
     onClickBehaviour='tooltip'
     onClickComponent='ItemTemplate'
     onClickComponentTemplateDocPath='templates/variantsOnClickTooltip.html'
     verticalLabelsForColumns='["af_WAF", "af_CAF", "af_EAF", "af_WSEA", "af_ESEA", "af_SAS", "af_SAM", "af_OCE"]'
-
  >
     <Typography variant="headline">
         Genetic variants in {{name}}
