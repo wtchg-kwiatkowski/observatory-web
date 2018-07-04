@@ -161,9 +161,9 @@ let ResistanceMap = createReactClass({
 
               </Map>
             </div>
-            <div className="horizontal stack">
-              <div style={{paddingTop: "7px"}}><DocTemplate path="templates/resistanceMapKey.html"/></div>
-              <div style={{maxWidth: "500px"}}><DocTemplate path="templates/resistanceMapLegend.html"/></div>
+            <div style={{display: 'flex', flexWrap:' wrap', paddingTop: '7px'}}>
+              <div style={{flexBasis: '128px'}}><DocTemplate path="templates/resistanceMapKey.html"/></div>
+              <div style={{flexBasis: '310px', flexGrow: '1', minWidth: '310px'}}><DocTemplate path="templates/resistanceMapLegend.html"/></div>
             </div>
           </CardContent>
         </Card>
