@@ -25,6 +25,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import SettingsIcon from '@material-ui/icons/Settings';
 import ListIcon from '@material-ui/icons/List';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import {List, ListItem} from '@material-ui/core';
@@ -198,7 +199,7 @@ let ObservatoryHeader = createReactClass({
                       <ListItemIcon>
                         <ExitToAppIcon style={{color: iconColour, transform: 'scaleX(-1)'}}/>
                       </ListItemIcon>
-                      <ListItemText primary="Sign out" />
+                      <ListItemText primary="Sign out" secondary={this.config.user.id}/>
                     </ListItem>,
                   ]
                   :
@@ -206,10 +207,11 @@ let ObservatoryHeader = createReactClass({
                     this.config.cas.service ?
                       [
                         <Divider key="Divider1" />,
-                        <ListItem button
-                          key="ListItem1"
-                        >
-                          <a style={{textDecoration: 'inherit', color: 'white'}} href={`${this.config.cas.service}?service=${window.location.href}`}>Login</a>
+                        <ListItem button key="ListItemLogin" onClick={() => (this.handleCloseDrawer(), window.location.href = `${this.config.cas.service}?service=${window.location.href}`)}>
+                          <ListItemIcon>
+                            <AccountCircle style={{color: iconColour, transform: 'scaleX(-1)'}}/>
+                          </ListItemIcon>
+                          <ListItemText primary="Login" />
                         </ListItem>
                       ]
                       : null
