@@ -1,9 +1,5 @@
-                <Typography component="div" align="center" style="padding-top:10px">
-                <DocLink button href="viewers/ResistanceMap.html" drug="sites">
-                  <Icon
-                    name="docimage:icons/viewer.svg"
-                    style="margin-right: 0.5em;"
-                  />
-                  Map Viewer
-                </DocLink>
-              </Typography>
+<Typography component="div" align="center" style="padding-top:10px">
+    <PopupButton iconInverse="false" icon="docimage:icons/viewer.svg" label="Explore Map">
+        <ResistanceMap drug="sites"/>
+    </PopupButton>
+</Typography>
