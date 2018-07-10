@@ -1,1 +1,0 @@
-@daily /var/lib/postgresql/scripts/pg_backup_rotated.sh >> /var/lib/postgresql/backups/`date +\%Y-\%m-\%dT\%H-\%M-\%S`.log 2>&1
