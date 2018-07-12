@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import React from  'react';
+import React from 'react';
 import createReactClass from 'create-react-class';
-import {withStyles} from 'material-ui/styles';
+import {withStyles} from '@material-ui/core/styles';
 
 // Mixins
 import FluxMixin from 'mixins/FluxMixin';
@@ -15,23 +15,24 @@ import Icon from 'ui/Icon';
 import DocPage from 'panoptes/DocPage';
 
 // Material UI
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
-import IconButton from 'material-ui/IconButton';
-import MenuIcon from 'material-ui-icons/Menu';
-import {ListItemIcon, ListItemText} from 'material-ui/List';
-import HomeIcon from 'material-ui-icons/Home';
-import SettingsIcon from 'material-ui-icons/Settings';
-import ListIcon from 'material-ui-icons/List';
-import ExitToAppIcon from 'material-ui-icons/ExitToApp';
-import Divider from 'material-ui/Divider';
-import Drawer from 'material-ui/Drawer';
-import List, {ListItem} from 'material-ui/List';
-import Collapse from 'material-ui/transitions/Collapse';
-import ExpandLess from 'material-ui-icons/ExpandLess';
-import ExpandMore from 'material-ui-icons/ExpandMore';
-import Tabs, {Tab} from 'material-ui/Tabs';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import {ListItemIcon, ListItemText} from '@material-ui/core';
+import HomeIcon from '@material-ui/icons/Home';
+import SettingsIcon from '@material-ui/icons/Settings';
+import ListIcon from '@material-ui/icons/List';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import Divider from '@material-ui/core/Divider';
+import Drawer from '@material-ui/core/Drawer';
+import {List, ListItem} from '@material-ui/core';
+import Collapse from '@material-ui/core/Collapse';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import {Tabs, Tab} from '@material-ui/core';
 
 import 'font-awesome.css';
 import 'ui-components.scss';
@@ -104,7 +105,7 @@ let ObservatoryHeader = createReactClass({
             aria-label="open drawer"
             onClick={this.handleClickHamburger}
           >
-            <MenuIcon />
+            <MenuIcon/>
           </IconButton>
           <Drawer
             variant="temporary"
@@ -123,97 +124,121 @@ let ObservatoryHeader = createReactClass({
                   <ListItemIcon>
                     <HomeIcon style={{color: iconColour}}/>
                   </ListItemIcon>
-                  <ListItemText primary="Home" />
+                  <ListItemText primary="Home"/>
                 </ListItem>
                 <ListItem button onClick={() => (this.handleCloseDrawer(), onTabChange(1))}>
                   <ListItemIcon>
-                    <Icon className="icon" name="docimage:icons/guidebook.svg" />
+                    <Icon className="icon" name="docimage:icons/guidebook.svg"/>
                   </ListItemIcon>
-                  <ListItemText primary="Guidebooks" />
-                  {guidebooksIsExpanded ? <ExpandLess onClick={(event) => (event.stopPropagation(), this.handleToggleExpand('guidebooksIsExpanded'))}/> : <ExpandMore onClick={(event) => (event.stopPropagation(), this.handleToggleExpand('guidebooksIsExpanded'))}/>}
+                  <ListItemText primary="Guidebooks"/>
+                  {guidebooksIsExpanded ? <ExpandLess
+                      onClick={(event) => (event.stopPropagation(), this.handleToggleExpand('guidebooksIsExpanded'))}/> :
+                    <ExpandMore
+                      onClick={(event) => (event.stopPropagation(), this.handleToggleExpand('guidebooksIsExpanded'))}/>}
                 </ListItem>
                 <Collapse in={guidebooksIsExpanded} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
-                    <ListItem button className={classes.nested} onClick={() => (this.handleCloseDrawer(), actions.session.tabOpen(<DocPage path="news.html"/>))}>
+                    <ListItem button className={classes.nested}
+                              onClick={() => (this.handleCloseDrawer(), actions.session.tabOpen(<DocPage
+                                path="news.html"/>))}>
                       <ListItemIcon>
-                        <Icon className="icon"  name="docimage:icons/stories-news.svg" />
+                        <Icon className="icon" name="docimage:icons/stories-news.svg"/>
                       </ListItemIcon>
-                      <ListItemText primary="Articles" />
+                      <ListItemText primary="Articles"/>
                     </ListItem>
                   </List>
                   <List component="div" disablePadding>
-                    <ListItem button className={classes.nested} onClick={() => (this.handleCloseDrawer(), actions.session.tabOpen(<DocPage path="pf.html"/>))}>
+                    <ListItem button className={classes.nested}
+                              onClick={() => (this.handleCloseDrawer(), actions.session.tabOpen(<DocPage
+                                path="pf.html"/>))}>
                       <ListItemIcon>
-                        <Icon className="icon"  name="docimage:icons/plasmodium-falciparum.svg" />
+                        <Icon className="icon" name="docimage:icons/plasmodium-falciparum.svg"/>
                       </ListItemIcon>
-                      <ListItemText primary="P. falciparum" />
-                      {pfIsExpanded ? <ExpandLess onClick={(event) => (event.stopPropagation(), this.handleToggleExpand('pfIsExpanded'))}/> : <ExpandMore onClick={(event) => (event.stopPropagation(), this.handleToggleExpand('pfIsExpanded'))}/>}
+                      <ListItemText primary="P. falciparum"/>
+                      {pfIsExpanded ? <ExpandLess
+                          onClick={(event) => (event.stopPropagation(), this.handleToggleExpand('pfIsExpanded'))}/> :
+                        <ExpandMore
+                          onClick={(event) => (event.stopPropagation(), this.handleToggleExpand('pfIsExpanded'))}/>}
                     </ListItem>
                   </List>
                   <Collapse in={pfIsExpanded} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
-                      <ListItem button className={classes.nested2} onClick={() => (this.handleCloseDrawer(), actions.session.tabOpen(<DocPage path="regions.html"/>))}>
+                      <ListItem button className={classes.nested2}
+                                onClick={() => (this.handleCloseDrawer(), actions.session.tabOpen(<DocPage
+                                  path="regions.html"/>))}>
                         <ListItemIcon>
-                          <Icon className="icon"  name="docimage:icons/map.svg" />
+                          <Icon className="icon" name="docimage:icons/map.svg"/>
                         </ListItemIcon>
-                        <ListItemText inset primary="Regions" />
+                        <ListItemText inset primary="Regions"/>
                       </ListItem>
-                      <ListItem button className={classes.nested2} onClick={() => (this.handleCloseDrawer(), actions.session.tabOpen(<DocPage path="drugs.html"/>))}>
+                      <ListItem button className={classes.nested2}
+                                onClick={() => (this.handleCloseDrawer(), actions.session.tabOpen(<DocPage
+                                  path="drugs.html"/>))}>
                         <ListItemIcon>
-                          <Icon className="icon"  name="docimage:icons/drug01.svg" />
+                          <Icon className="icon" name="docimage:icons/drug01.svg"/>
                         </ListItemIcon>
-                        <ListItemText inset primary="Drugs" />
+                        <ListItemText inset primary="Drugs"/>
                       </ListItem>
-                      <ListItem button className={classes.nested2} onClick={() => (this.handleCloseDrawer(), actions.session.tabOpen(<DocPage path="genes.html"/>))}>
+                      <ListItem button className={classes.nested2}
+                                onClick={() => (this.handleCloseDrawer(), actions.session.tabOpen(<DocPage
+                                  path="genes.html"/>))}>
                         <ListItemIcon>
-                          <Icon className="icon"  name="docimage:icons/gene01.svg" />
+                          <Icon className="icon" name="docimage:icons/gene01.svg"/>
                         </ListItemIcon>
-                        <ListItemText inset primary="Genes" />
+                        <ListItemText inset primary="Genes"/>
                       </ListItem>
                     </List>
                   </Collapse>
                 </Collapse>
-                <ListItem button onClick={() => (this.handleCloseDrawer(), actions.session.tabOpen(<DocPage path="about.html"/>))}>
+                <ListItem button onClick={() => (this.handleCloseDrawer(), actions.session.tabOpen(<DocPage
+                  path="about.html"/>))}>
                   <ListItemIcon>
-                    <Icon className="icon" name="docimage:icons/table01.svg" />
+                    <Icon className="icon" name="docimage:icons/table01.svg"/>
                   </ListItemIcon>
-                  <ListItemText inset primary="Data" />
+                  <ListItemText inset primary="Data"/>
                 </ListItem>
                 {this.config.user.isManager ?
                   [
-                    <Divider key="Divider1" />,
-                    <ListItem button key="ListItem1" onClick={() => (this.handleCloseDrawer(), actions.session.tabOpen(<DatasetManagerActions />))}>
+                    <Divider key="Divider1"/>,
+                    <ListItem button key="ListItem1" onClick={() => (this.handleCloseDrawer(), actions.session.tabOpen(
+                      <DatasetManagerActions/>))}>
                       <ListItemIcon>
                         <SettingsIcon style={{color: iconColour}}/>
                       </ListItemIcon>
-                      <ListItemText primary="Admin" />
+                      <ListItemText primary="Admin"/>
                     </ListItem>,
-                    <ListItem button key="ListItem2" onClick={() => (this.handleCloseDrawer(), actions.session.tabOpen(<EmptyTab />))}>
+                    <ListItem button key="ListItem2"
+                              onClick={() => (this.handleCloseDrawer(), actions.session.tabOpen(<EmptyTab/>))}>
                       <ListItemIcon>
                         <ListIcon style={{color: iconColour}}/>
                       </ListItemIcon>
-                      <ListItemText primary="Table/View list" />
-                    </ListItem>,
-                    <ListItem button key="ListItem3" onClick={() => (this.handleCloseDrawer(), window.location.href = this.config.cas.logout)}>
-                      <ListItemIcon>
-                        <ExitToAppIcon style={{color: iconColour, transform: 'scaleX(-1)'}}/>
-                      </ListItemIcon>
-                      <ListItemText primary="Sign out" />
+                      <ListItemText primary="Table/View list"/>
                     </ListItem>,
                   ]
-                  :
-                  (
-                    this.config.cas.service ?
+                  : null}
+                {(
+                  this.config.cas.service ?
+                    (this.config.user.id === "anonymous" ?
                       [
-                        <Divider key="Divider1" />,
-                        <ListItem button
-                          key="ListItem1"
-                        >
-                          <a style={{textDecoration: 'inherit', color: 'white'}} href={`${this.config.cas.service}?service=${window.location.href}`}>Login</a>
-                        </ListItem>
-                      ]
-                      : null
-                  )
+                        <Divider key="Divider1"/>,
+                        <ListItem button key="ListItemLogin"
+                                  onClick={() => (this.handleCloseDrawer(), window.location.href = `${this.config.cas.service}?service=${window.location.href}`)}>
+                          <ListItemIcon>
+                            <AccountCircle style={{color: iconColour, transform: 'scaleX(-1)'}}/>
+                          </ListItemIcon>
+                          <ListItemText primary="Login"/>
+                        </ListItem>]
+                      : [
+                        <Divider key="Divider1"/>,
+                        <ListItem button key="ListItem3"
+                                  onClick={() => (this.handleCloseDrawer(), window.location.href = this.config.cas.logout)}>
+                          <ListItemIcon>
+                            <ExitToAppIcon style={{color: iconColour, transform: 'scaleX(-1)'}}/>
+                          </ListItemIcon>
+                          <ListItemText primary="Sign out" secondary={this.config.user.id}/>
+                        </ListItem>])
+                    : null
+                )
                 }
               </List>
             </div>
@@ -222,11 +247,36 @@ let ObservatoryHeader = createReactClass({
             style={{flex: '1', marginLeft: '21px', height: '64px', textAlign: 'center'}}
           >
             <div style={{display: 'inline-block', overflow: 'hidden', transform: 'translateZ(0)'}}>
-              <img onClick={() => actions.session.tabSwitch('FirstTab')} src={logo} style={{cursor: 'pointer', maxWidth: '100%', height: 'calc(100% - 12px)', marginTop: '12px', marginBottom: '12px'}}/>
-              <div onClick={() => actions.session.tabSwitch('FirstTab')} style={{cursor: 'pointer', display: 'inline-block', position: 'absolute', right: '7px', top: '38px', padding: '0 3px', fontSize: '8px', textTransform: 'uppercase', backgroundColor: '#e64a19', color: 'white'}}>beta</div>
+              <img onClick={() => actions.session.tabSwitch('FirstTab')} src={logo} style={{
+                cursor: 'pointer',
+                maxWidth: '100%',
+                height: 'calc(100% - 12px)',
+                marginTop: '12px',
+                marginBottom: '12px'
+              }}/>
+              <div onClick={() => actions.session.tabSwitch('FirstTab')} style={{
+                cursor: 'pointer',
+                display: 'inline-block',
+                position: 'absolute',
+                right: '7px',
+                top: '38px',
+                padding: '0 3px',
+                fontSize: '8px',
+                textTransform: 'uppercase',
+                backgroundColor: '#e64a19',
+                color: 'white'
+              }}>beta
+              </div>
             </div>
           </div>
-          <div style={{fontSize: '11px', color: '#36454F', textAlign: 'center', marginRight: '12px', marginLeft: '12px'}}>data&#160;version<br/>{version}&#160;beta</div>
+          <div style={{
+            fontSize: '11px',
+            color: '#36454F',
+            textAlign: 'center',
+            marginRight: '12px',
+            marginLeft: '12px'
+          }}>data&#160;version<br/>{version}&#160;beta
+          </div>
         </Toolbar>
         <Tabs
           onChange={onTabChange}
@@ -236,13 +286,17 @@ let ObservatoryHeader = createReactClass({
           centered
           style={{marginRight: '21px'}}
         >
-          <Tab label="Home" />
-          <Tab label="Guidebook" />
-          <Tab label="Viewer" />
+          <Tab label="Home"/>
+          <Tab label="Guidebook"/>
+          <Tab label="Viewer"/>
         </Tabs>
       </AppBar>
     );
   },
 });
 
-export default withStyles(styles)(ObservatoryHeader);
+
+ObservatoryHeader = withStyles(styles)(ObservatoryHeader);
+ObservatoryHeader.displayName = "ObservatoryHeader";
+
+export default ObservatoryHeader;

@@ -1,14 +1,29 @@
 <PageTemplate bgurl="machines.jpg">
     <div className="obs-leader">
-        <span className="obs-highlight">MalariaGEN Analytics</span> provides information on the parasite populations that cause malaria
+       Analysis and commentary on malaria genomic data
     </div>
+
+
+<CardStack>
+  <Feed
+    id="blog"
+    templateDocPath="templates/blogPost.html"
+    className="card-stack"
+  />
+
+</CardStack>
+
+
+
+
+
     <CardStack>
         <Card>
             <CardContent>
-                <Typography type="headline">
+                <Typography variant="headline">
                     Guidebooks
                 </Typography>
-                <Typography type="subheading" color="secondary">
+                <Typography variant="subheading" color="secondary">
                     Data and analysis for malaria control and elimination
                 </Typography>
                 <List>
@@ -38,9 +53,12 @@
             </CardContent>
         </Card>
 
+
+<!-- 
+
         <Card>
            <CardContent>
-              <Typography type="headline">
+              <Typography variant="headline">
                 Articles and commentary
               </Typography> 
                 <List>
@@ -58,13 +76,12 @@
 
 
 
-<!--
          <Card>
             <CardContent>
-                  <Typography type="headline">
+                  <Typography variant="headline">
                         News
                     </Typography>
-                    <Typography type="subheading" color="secondary">
+                    <Typography variant="subheading" color="secondary">
                         Articles about malaria
                     </Typography>
                     <List>
@@ -82,10 +99,10 @@
 
             <Card>
             <CardContent>
-                <Typography type="headline">
+                <Typography variant="headline">
                     Latest stories and analysis
                 </Typography>
-                <Typography type="subheading" color="secondary">
+                <Typography variant="subheading" color="secondary">
                     Key insights and trends from the evolving global malaria genome
                 </Typography>
                 <List>

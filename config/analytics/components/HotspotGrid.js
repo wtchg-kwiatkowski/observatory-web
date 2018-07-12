@@ -6,13 +6,13 @@ import DocTemplate from 'panoptes/DocTemplate';
 
 import {propertyColour}  from 'util/Colours.js';
 
-import Table, {
+import {Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
   TableSortLabel,
-} from 'material-ui/Table';
+} from '@material-ui/core';
 import ConfigMixin from "../../../mixins/ConfigMixin";
 import FluxMixin from "../../../mixins/FluxMixin";
 
@@ -68,7 +68,7 @@ let HotspotGrid = createReactClass({
                       width: '5px',height:'130px',
                       paddingRight: '11px',
                     }} padding="dense" key={region_id}>
-                    <div style={{width:"5px", transform: "rotate(-90deg) translate(-47px, 10px)"}}>{name}</div>
+                  <div style={{width:"5px", whiteSpace: "nowrap", transform: "rotate(-90deg) translate(-47px, 10px)"}}>{name}</div>
                   </TableCell>)
               }
             </TableRow>
@@ -100,8 +100,8 @@ let HotspotGrid = createReactClass({
                       onClick={(e) => this.handleClick(e, 'pf_drug_regions', `${drug_id}_${region_id}`)}
                       padding="dense" key={region_id}>
                       <div style={{
-                          width: "25px",
-                          height: "25px",
+                          width: "22px",
+                          height: "22px",
                           borderRadius: "50%",
                           background: colourFunc(data[drug_id+'resistance'])
                       }}/>
@@ -127,7 +127,7 @@ let HotspotGrid = createReactClass({
                   <TableCell
                     className="hover"
                     onClick={(e) => this.handleClick(e, 'pf_drugs', `${drug_id}`)}
-                    style={{cursor: 'pointer', width: '5px', height: '100px'}} padding="dense" key={drug_id}>
+                    style={{cursor: 'pointer', width: '5px', whiteSpace: "nowrap", height: '100px'}} padding="dense" key={drug_id}>
                     <div style={{width: "5px", transform: "rotate(-90deg) translate(-30px, 10px)"}}>{name}</div>
                   </TableCell>)
               }
@@ -159,8 +159,8 @@ let HotspotGrid = createReactClass({
                       onClick={(e) => this.handleClick(e, 'pf_drug_regions', `${drug_id}_${region_id}`)}
                       padding="dense" key={drug_id}>
                       <div style={{
-                        width: "25px",
-                        height: "25px",
+                        width: "22px",
+                        height: "22px",
                         borderRadius: "50%",
                         background: colourFunc(data[drug_id + 'resistance'])
                       }}/>

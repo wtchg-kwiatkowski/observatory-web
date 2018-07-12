@@ -3,24 +3,24 @@
     <CardStack>
           <Card>
             <CardContent>
-                <Typography type="headline">
+                <Typography variant="headline">
                     Malaria across the world
                 </Typography>
 <!--
-                <Typography type="subheading" color="secondary">
+                <Typography variant="subheading" color="secondary">
                     Identifying sub-populations of parasites is important for malaria control
                 </Typography>
 -->
-                <Typography component="p">
+                <Typography >
                     <em>Plasmodium falciparum</em> malaria is found across the tropics in the Americas, Africa, and Asia. By analysing the DNA in parasite genomes from across the world we can identify the mutations they carry, and from this their drug resistance status.
                </Typography>
 <!--
-                <Typography component="p">
+                <Typography >
                    Understanding where different mutations occur helps us to work out the <strong>relationships</strong> between populations, routes of parasite <strong>transmission</strong>, where <strong>new infections</strong> have come from, and how drug resistance mutations might <strong>spread</strong>.
                 </Typography>
 -->
 
-                 <Typography component="p">
+                 <Typography >
                   Our current analyses are based on the <em><strong>MalariaGEN Pf6.0</strong></em> dataset comprising <strong><QueryResult table="pf_samples"/> <em>P. falciparum</em> samples </strong> collected <TextRange table="pf_samples" property="year"/> from <strong><QueryResult table="pf_samples" expression='["count", [["distinct", ["country_id"]]]]' /></strong> countries in <strong> <QueryResult table="pf_regions"/></strong> major regions. We define these regions using a combination of genetic relatedness and geographic proximity.
                 </Typography>
                 <Typography component="div" className="paragraph">
@@ -29,7 +29,7 @@
                 <!--<PopupButton icon="arrow-right" label="Plot of samples per region" target="tab">-->
                     <!--<ComponentWithLegend>-->
                         <!--<CardHeader title="Sample regions" />-->
-                        <!--<Typography component="p">Note that the number of samples from different regions greatly varies.</Typography>-->
+                        <!--<Typography >Note that the number of samples from different regions greatly varies.</Typography>-->
                         <!--<TablePlot plotType="histogram" table="pf_samples" horizontal="region" />-->
                     <!--</ComponentWithLegend>-->
                 <!--</PopupButton>-->
@@ -58,14 +58,14 @@
         </Card>
         <Card>
             <CardContent>
-                <Typography type="headline">
+                <Typography variant="headline">
                     Resistance status
                 </Typography>
-                <Typography type="subheading" color="secondary">
+                <Typography variant="subheading" color="secondary">
                     Click a circle for details
                 </Typography>
                 <Typography component="div" className="paragraph">
-                    <HotspotGrid regionsOrder='["SAM", "WAF", "CAF", "EAF", "SAS", "WSEA", "ESEA", "OCE"]'/>
+                    <HotspotGrid transpose="true" regionsOrder='["SAM", "WAF", "CAF", "EAF", "SAS", "WSEA", "ESEA", "OCE"]'/>
                 </Typography>
             </CardContent>
         </Card>

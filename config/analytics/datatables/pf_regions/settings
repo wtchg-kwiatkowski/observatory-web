@@ -69,10 +69,10 @@ dataItemViews:              # Lists the custom views that should appear in the p
         <CardStack>
             <Card>
                 <CardContent>
-                    <Typography type="headline">
+                    <Typography variant="headline">
                         Sample sites in {{name}}
                     </Typography>
-                    <Typography type="subheading" color="secondary">
+                    <Typography variant="subheading" color="secondary">
 
                     </Typography>
                     <Typography component="div">
@@ -109,16 +109,16 @@ dataItemViews:              # Lists the custom views that should appear in the p
                             </Map>
                            </div>
                         </div>
-                        <div class="horizontal stack">
-                          <div style="padding-top: 7px"><DocTemplate path="templates/resistanceMapKey.html"/></div>
-                          <div class="grow"><DocTemplate path="templates/resistanceMapLegend.html"/></div>
+                        <div style="display: flex; flex-wrap: wrap; padding-top: 7px;">
+                          <div style="flex-basis: 128px;"><DocTemplate path="templates/resistanceMapKey.html"/></div>
+                          <div style="flex-basis: 310px; flex-grow: 1; min-width: 310px;"><DocTemplate path="templates/resistanceMapLegend.html"/></div>
                         </div>
                         <DocTemplate path="templates/resistanceMapButton.html"/>
                 </CardContent>
             </Card>
             <Card>
                 <CardContent>
-                  <Typography type="headline">
+                  <Typography variant="headline">
                    Drug resistance predictions in {{name}}
                   </Typography>
                   <DocTemplate path="templates/proportionPlotTitle.html"/>
