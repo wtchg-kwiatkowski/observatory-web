@@ -3,19 +3,26 @@
     <Card>
         <CardHeader title="Viewers" />
         <CardContent>
-          <Typography component="p">
+          <Typography >
             Viewers let you to interact with MalariaGEN Analytics data
           </Typography>
           <List>
-            <ObsListItem href="viewers/ResistanceMap.html">
-              <ListItemIcon>
-                <Icon name="docimage:icons/map.svg"/>
-              </ListItemIcon>
-              <ListItemText>
-                  <div>Resistance Map</div>
-                  <span>Visualise and explore global drug resistance</span>
-              </ListItemText>
-            </ObsListItem>
+            <CustomButton>
+                <Anchor>
+                    <ListItem button="true">
+                      <ListItemIcon>
+                        <Icon name="docimage:icons/map.svg"/>
+                      </ListItemIcon>
+                      <ListItemText>
+                          <div>Resistance Map</div>
+                          <span>Visualise and explore global drug resistance</span>
+                      </ListItemText>
+                    </ListItem>
+                </Anchor>
+                <Content>
+                    <ResistanceMap drug="sites"/>
+                </Content>
+            </CustomButton>
           </List>
         </CardContent>
     </Card>

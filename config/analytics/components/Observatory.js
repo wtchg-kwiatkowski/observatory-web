@@ -17,11 +17,11 @@ import SessionComponent from 'panoptes/SessionComponent';
 import ObservatoryHeader from './ObservatoryHeader';
 
 // Material UI
-import createPalette from 'material-ui/styles/createPalette';
-import createTypography from 'material-ui/styles/createTypography';
-import {createMuiTheme, MuiThemeProvider} from 'material-ui/styles';
-import {withTheme} from 'material-ui/styles';
-import {deepOrange, blueGrey} from 'material-ui/colors';
+import createPalette from '@material-ui/core/styles/createPalette';
+import createTypography from '@material-ui/core/styles/createTypography';
+import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
+import {withTheme} from '@material-ui/core/styles';
+import {deepOrange, blueGrey} from '@material-ui/core/colors';
 
 // Panoptes utils
 import DetectResize from 'utils/DetectResize';
@@ -216,4 +216,7 @@ let Observatory = createReactClass({
   },
 });
 
-export default withTheme()(Observatory);
+Observatory = withTheme()(Observatory);
+Observatory.displayName = "Observatory";
+
+export default Observatory;

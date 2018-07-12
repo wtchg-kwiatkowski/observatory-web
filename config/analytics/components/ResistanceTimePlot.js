@@ -9,7 +9,7 @@ import createReactClass from 'create-react-class';
 import withAPIData from 'hoc/withAPIData';
 import FluxMixin from 'mixins/FluxMixin';
 import SQL from 'panoptes/SQL';
-import {Card, CardText} from 'material-ui/Card';
+import {Card, CardText} from '@material-ui/core/Card';
 
 let ResistanceTimePlot = createReactClass({
   displayName: 'ResistanceTimePlot',

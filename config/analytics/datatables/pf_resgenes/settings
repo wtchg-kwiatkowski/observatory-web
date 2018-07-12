@@ -35,13 +35,13 @@ dataItemViews:              # Lists the custom views that should appear in the p
         <CardStack>
             <Card>
                 <CardContent>
-                    <Typography type="headline">
+                    <Typography variant="headline">
                      <em>{{name}}</em> - {{capitalizeAll long_name}}
                     </Typography>
                     <Typography component="div" style="padding-bottom:8px">
                         {{{short_description}}}. <em>{{name}}</em> is also known as {{gene_id}}.
                     </Typography>
-                    <Typography component="p">
+                    <Typography >
                       {{{description}}}
                     </Typography>
 
@@ -56,7 +56,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
             </Card>
             <Card>
                 <CardContent>
-                    <Typography type="headline">
+                    <Typography variant="headline">
                     Predicted {{lowercase pf_drugs.name}} resistance by region
                     </Typography>
                     <DocTemplate path="templates/proportionPlotTitle.html"/>
@@ -85,16 +85,16 @@ dataItemViews:              # Lists the custom views that should appear in the p
 
             <Card>
                 <CardContent>
-                    <Typography type="headline">
+                    <Typography variant="headline">
                         Variation within the <em>{{name}}</em> gene
                     </Typography>
-                    <Typography type="subheading" color="secondary">
+                    <Typography variant="subheading" color="secondary">
 
                     </Typography>
-                    <Typography component="p">
+                    <Typography >
                         A gene is a sequence of DNA within a genome that codes for a molecule with a particular function. This means that changes in the DNA <em>within</em> a gene lead to changes in the function of that gene. Most genes code for proteins, which are made up of amino acids, and it is the DNA sequence directly that codes for these amino acids.
                     </Typography>
-                    <Typography component="p">
+                    <Typography >
                         Geneticists look for changes to DNA, or mutations, that cause changes to the amino acids that are coded by genes. These so-called <em>non-synonymous</em> mutations hint at underlying differences in the biology between groups with different versions of the mutation, and so are good candidates for the target of natural selection.
                     </Typography>
                     <Typography component="div" align="center">

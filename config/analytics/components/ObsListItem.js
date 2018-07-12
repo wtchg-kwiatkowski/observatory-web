@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import createReactClass from 'create-react-class';
 import FluxMixin from 'mixins/FluxMixin';
 import DocPage from 'panoptes/DocPage';
-import {ListItem} from 'material-ui/List';
+import ListItem from '@material-ui/core/ListItem';
 import ConfigMixin from 'mixins/ConfigMixin';
 
 let ObsListItem = createReactClass({

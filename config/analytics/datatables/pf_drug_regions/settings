@@ -39,10 +39,10 @@ dataItemViews:              # Lists the custom views that should appear in the p
       <CardStack>
         <Card>
           <CardContent>
-            <Typography type="headline">
+            <Typography variant="headline">
               {{pf_drugs.name}} resistance prediction in {{pf_regions.name}}
             </Typography>
-            <Typography type="subheading" color="secondary">
+            <Typography variant="subheading" color="secondary">
               Summary
             </Typography>
 
@@ -51,7 +51,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
               <big>{{round resistance}}%</big> {{lowercase pf_drugs.name}} resistance in {{pf_regions.name}} based on <big><QueryResult table="pf_samples" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' /></big> <em>P.falciparum</em> samples collected <TextRange table="pf_samples" property="year" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' />
               </Typography>
 
-              <Typography type="subheading" color="secondary">
+              <Typography variant="subheading" color="secondary">
                 Current situation
               </Typography>
 
@@ -82,10 +82,10 @@ dataItemViews:              # Lists the custom views that should appear in the p
         </Card>
         <Card>
           <CardContent>
-              <Typography type="headline">
+              <Typography variant="headline">
                   Resistance across sample sites
               </Typography>
-              <Typography component="p">
+              <Typography >
                 The size of the circle indicates the number of samples collected for that site (also shown).
               </Typography>
               <Typography component="div" style="margin-top: 10px;">

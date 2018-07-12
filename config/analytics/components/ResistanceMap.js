@@ -1,13 +1,13 @@
 import React from 'react';
 import createReactClass from 'create-react-class';
 import PropTypes from 'prop-types';
-import Card, {CardContent, CardHeader} from 'material-ui/Card';
+import {Card, CardContent, CardHeader} from '@material-ui/core';
 import Map from 'components/Map/Map';
 import TileLayer from 'components/Map/TileLayer';
 import TableMarkersLayer from 'components/Map/TableMarkersLayer';
 import TableGeoJSONsLayer from 'components/Map/TableGeoJSONsLayer';
-import {FormControl, FormControlLabel} from 'material-ui/Form';
-import Radio, {RadioGroup} from 'material-ui/Radio';
+import {FormControl, FormControlLabel} from '@material-ui/core';
+import {Radio, RadioGroup} from '@material-ui/core';
 import FluxMixin from 'mixins/FluxMixin';
 import ConfigMixin from 'mixins/ConfigMixin';
 import HideLayerAtZoom from 'components/Map/HideLayerAtZoom';
@@ -15,7 +15,7 @@ import FeatureGroup from 'components/Map/FeatureGroup';
 import DocTemplate from 'panoptes/DocTemplate';
 import {propertyColour}  from 'util/Colours';
 import SiteMarker from './SiteMarker';
-import Typography from 'material-ui/Typography';
+import Typography from '@material-ui/core/Typography';
 import TableData from 'components/Map/TableData';
 import AttributeToColour from 'components/AttributeToColour';
 import MarkerLayer from 'components/Map/MarkerLayer';
@@ -45,18 +45,18 @@ let ResistanceMap = createReactClass({
     // getDefaultProps doesn't handle empty string
     drug = drug === undefined || drug === '' ? 'sites' : drug;
     return (
-      <div className="centering-container">
+      <div style={{backgroundColor: '#f7f7f7'}} className="centering-container">
         <Card>
           <CardContent>
             <CardHeader title={<span>Global resistance status</span>}/>
             {drug !== 'sites' ?
-              <Typography component="p">
-                Regions are shaded by resistance status. 
+              <Typography >
+                Regions are shaded by resistance status.
                 Zoom in to see the individual sites.
                 The size of the circle indicates the number of samples collected for that site (also shown).
               </Typography>
               :
-              <Typography component="p">
+              <Typography >
                 Each marker is a site, with the coloured circles representing the resistance status of 6 key antimalarial drugs. Click a site for more details.
               </Typography>
             }
@@ -161,9 +161,9 @@ let ResistanceMap = createReactClass({
 
               </Map>
             </div>
-            <div className="horizontal stack">
-              <div style={{paddingTop: "7px"}}><DocTemplate path="templates/resistanceMapKey.html"/></div>
-              <div style={{maxWidth: "500px"}}><DocTemplate path="templates/resistanceMapLegend.html"/></div>
+            <div style={{display: 'flex', flexWrap:' wrap', paddingTop: '7px'}}>
+              <div style={{flexBasis: '128px'}}><DocTemplate path="templates/resistanceMapKey.html"/></div>
+              <div style={{flexBasis: '310px', flexGrow: '1', minWidth: '310px'}}><DocTemplate path="templates/resistanceMapLegend.html"/></div>
             </div>
           </CardContent>
         </Card>

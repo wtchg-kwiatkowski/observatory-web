@@ -4,10 +4,10 @@
 <CardStack>
     <Card>
         <CardContent>
-            <Typography type="headline">
+            <Typography variant="headline">
                 Investigate genes involved in drug resistance
             </Typography>
-            <Typography type="subheading" color="secondary">
+            <Typography variant="subheading" color="secondary">
               Variants in specific genes are known to cause antimalarial drug resistance
             </Typography>
             <Typography component="div" className="paragraph">Genetic mutations in at least <strong><QueryResult table="pf_resgenes"/></strong> genes cause resistance to different antimalarial drugs.</Typography>
@@ -31,10 +31,10 @@
 <!--
     <Card>
         <CardContent>
-            <Typography type="headline">
+            <Typography variant="headline">
                 Investigate any gene
             </Typography>
-            <Typography type="subheading" color="secondary">
+            <Typography variant="subheading" color="secondary">
                 Explore allele frequency differences across regions in any gene
             </Typography>
             <Typography component="div" className="paragraph">
@@ -62,8 +62,8 @@
                   onClickComponentTemplateDocPath='templates/variantsOnClickTooltip.html'
                   maxRowsPerPage="10"
                >
-                     <Typography type="headline">                         Allele frequency differences                    </Typography>
-                    <Typography type="subheading" color="secondary">
+                     <Typography variant="headline">                         Allele frequency differences                    </Typography>
+                    <Typography variant="subheading" color="secondary">
                       Genes with variable allele frequencies in different places may be evolving
                     </Typography>
                     <Typography type = "p" component="div">
@@ -80,13 +80,14 @@
 
     <Card>
         <CardContent>
-            <Typography type="headline"> Identifying genes by differention
+            <Typography variant="headline"> Identifying genes by differention
             </Typography>
-            <Typography type="subheading" color="secondary">Genes with varied allele frequencies in different places may be evolving </Typography>
+            <Typography variant="subheading" color="secondary">Genes with varied allele frequencies in different places may be evolving </Typography>
 
             <Typography component="div" className="paragraph">The top 10 most highly differentiated genes across the globe are shown below. Differentiation is a measure of how varied allele frequencies are across populations, so these genes are likely to be involved in regionally-specific parasite adaptation.</Typography>
 
             <Typography component="div" className="paragraph">
+              <div style="width: 70%; margin: auto; padding-bottom: 20px;">
                 <MuiDataTableView
                   table="pf_genes"
                   maxRowsPerPage="10"
@@ -96,6 +97,7 @@
                   onClickComponent='ItemTemplate'
                   onClickComponentTemplateDocPath='templates/genesOnClickTab.html'
                 />
+              </div>
             </Typography>
             <Typography component="div" align="center">
             <DocLink button href="viewers/GeneticDifferentiation.html">
