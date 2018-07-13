@@ -113,16 +113,18 @@ Get these config resources onto the analytics-wp machine by cloning the repo int
 
 To clone this repo into your home directory, log in to the observatory-db machine and type:
 ```
-cd ~
+cd /home/leehartoxford
 git clone https://github.com/wtchg-kwiatkowski/observatory-web.git
-
 ```
+
+You'll need to provide a username and password, because the repo is private.
+
 
 ### Setting up the backup script
 
 To set up the backups, log in to the analytics-wp machine (e.g. SSH via VM instance web terminal) and type:
 ```
-cd ~
+cd /home/leehartoxford
 mkdir backups
 sudo chmod u+x /home/leehartoxford/observatory-web/cms_resources/cms_backup_resources/wp_backup.sh
 sudo crontab -u leehartoxford /home/leehartoxford/observatory-web/cms_resources/cms_backup_resources/wp_backup.crontab
