@@ -36,7 +36,7 @@ feeds:
 - id: faq
   url: https://malariagenanalyticsfaq.wordpress.com/feed
 - id: blog
-  url: https://malariagenanalyticsblog.wordpress.com/feed
+  url: https://analytics-cms.malariagen.net/feed
 
 initialSessionState:
   session:
