@@ -45,7 +45,7 @@ let ResistanceMap = createReactClass({
     // getDefaultProps doesn't handle empty string
     drug = drug === undefined || drug === '' ? 'sites' : drug;
     return (
-      <div style={{backgroundColor: '#f7f7f7'}} className="centering-container">
+      <div className="obs-page-container centering-container">
         <Card>
           <CardContent>
             <CardHeader title={<span>Global resistance status</span>}/>
