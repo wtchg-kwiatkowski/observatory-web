@@ -1,7 +1,7 @@
 nameSingle: sample
 namePlural: samples
 
-description: Sample metadata including country and region of collection.
+description: This table shows all the information for the samples included. Click column header to sort, and use the buttons below to filter or download the data.
 icon: fa-flask
 primKey: sample_id
 
@@ -13,13 +13,11 @@ properties:
 - id: sample_id
   dataType: Text
   name: Sample ID                 
-  description: Sample identifier   
-  dataType: Text                   
+  dataType: Text
   search: StartPattern
 
 - id: site_id
-  name: Site
-  description: Identifier of the site the sample was collected from
+  name: Site Name
   dataType: Text
   relation:                         # This block defines a many-to-one foreign relation to a parent table
     tableId: sites          # Datatable id of the parent table
@@ -55,42 +53,58 @@ properties:
 - id: run_accessions
   name: ENA Run accession
   dataType: Text
+  externalUrl: http://www.ebi.ac.uk/ena/data/view/{value}
 
 - id: region
+  name: Region Name
   dataType: Text
 
+- id: site_lat
+  name: Latitude
+  dataType: GeoLatitude
 - id: site_lng
+  name: Longitude
   dataType: GeoLongitude
 - id: country_lat
+  name: Country Latitude
+  dataType: Double
+- id: country_lng
+  name: Country Longitude
+  dataType: Double
+- id: region_lat
+  name: Region Latitude
   dataType: Double
 - id: region_lng
+  name: Region Longitude
   dataType: Double
 - id: site
+  name: Site Name
   dataType: Text
-- id: site_lat
-  dataType: GeoLatitude
-- id: region_lat
-  dataType: Double
 - id: country
+  name: Country Name
   dataType: Text
-- id: country_lng
-  dataType: Double
 
 - id: year
   name: Sampling Year
   dataType: Int16
 
 - id: CQresistant
+  name: CQ
   dataType: Text
 - id: PYRresistant
+  name: PYR
   dataType: Text
 - id: SDXresistant
+  name: SDX
   dataType: Text
 - id: MQresistant
+  name: MQ
   dataType: Text
 - id: ARTresistant
+  name: ART
   dataType: Text
 - id: PPQresistant
+  name: PPQ
   dataType: Text
 
 - id: CQresistant, PYRresistant, SDXresistant, MQresistant, ARTresistant, PPQresistant
