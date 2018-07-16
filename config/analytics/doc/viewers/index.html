@@ -23,6 +23,22 @@
                     <ResistanceMap drug="sites"/>
                 </Content>
             </CustomButton>
+              <CustomButton>
+                  <Anchor>
+                      <ListItem button="true">
+                          <ListItemIcon>
+                              <Icon name="docimage:icons/table01.svg"/>
+                          </ListItemIcon>
+                          <ListItemText>
+                              <div>Full sample information</div>
+                              <span>View and download the information on samples</span>
+                          </ListItemText>
+                      </ListItem>
+                  </Anchor>
+                  <Content>
+                      <DataTableWithActions table="pf_samples" columns='["sample_id", "site_id", "country_id", "region_id", "run_accessions", "year", "site_lat", "site_lng", "CQresistant", "PYRresistant", "SDXresistant", "MQresistant", "ARTresistant", "PPQresistant"]'/>
+                  </Content>
+              </CustomButton>
           </List>
         </CardContent>
     </Card>
