@@ -52,8 +52,7 @@ let ResistanceMap = createReactClass({
             {drug !== 'sites' ?
               <Typography >
                 Regions are shaded by resistance status.
-                Zoom in to see the individual sites.
-                The size of the circle indicates the number of samples collected for that site (also shown).
+                The size of the circle indicates the number of samples collected for that site.
               </Typography>
               :
               <Typography >
@@ -83,7 +82,7 @@ let ResistanceMap = createReactClass({
                 <TileLayer/>
                 {drug !== 'sites' ?
                   <FeatureGroup>
-                    <HideLayerAtZoom above={4}>
+                    <HideLayerAtZoom above={2}>
                       <TableGeoJSONsLayer
                         onClickBehaviour="tooltip"
                         onClickComponent="DocTemplate"
@@ -98,14 +97,14 @@ let ResistanceMap = createReactClass({
                         colourProperty={`${drug}resistance`}
                       />
                     </HideLayerAtZoom>
-                    <HideLayerAtZoom above={4}>
+                    <HideLayerAtZoom above={2}>
                       <TableMarkersLayer disableOnClickMarker table="sites" clusterMarkers={false}>
                         <svg style={{pointerEvents:"none", width: "4px", height: "4px", position: "absolute", left: "-2px", top: "-2px"}} viewBox="0 0 100 100">
                           <circle cx={50} cy={50} r={50} strokeWidth={0} fill="black" opacity={0.75} />
                         </svg>
                       </TableMarkersLayer>
                     </HideLayerAtZoom>
-                    <HideLayerAtZoom below={4}>
+                    <HideLayerAtZoom below={2}>
                       <TableGeoJSONsLayer
                         onClickBehaviour="tooltip"
                         onClickComponent="DocTemplate"
@@ -120,10 +119,10 @@ let ResistanceMap = createReactClass({
                         geoJsonFillOpacity={0.5}
                       />
                     </HideLayerAtZoom>
-                    <HideLayerAtZoom below={4}>
+                    <HideLayerAtZoom below={2}>
                       <TableData
                         table="sites"
-                        area={["sql_max",[200,["*", [6, "num_samples"]]]]}
+                        area={["sql_max",[25,["*", [6, "num_samples"]]]]}
                         name="name"
                         lat="lat"
                         lng="lng"
