@@ -187,5 +187,20 @@ dataItemViews:              # Lists the custom views that should appear in the p
                 </CardContent>
             </Card>
 
+            <Card>
+              <CardContent>
+                <Typography variant="headline">
+                   Full sample data
+                </Typography>
+                <Typography>
+                This viewer allows full display and download of the samples from {{name}} <br/>
+                <PopupButton label="table viewer" iconInverse="false" icon="docimage:icons/viewer.svg">
+                    <DataTableWithActions query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}' table="pf_samples" columns='["sample_id", "site_id", "country_id", "region_id", "run_accessions", "year", "site_lat", "site_lng", "CQresistant", "PYRresistant", "SDXresistant", "MQresistant", "ARTresistant", "PPQresistant"]'/>
+                </PopupButton>
+                </CardContent>
+            </Card>
+
+
+
         </CardStack>
     </PageTemplate>
