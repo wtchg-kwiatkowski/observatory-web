@@ -18,6 +18,7 @@ properties:
 
 - id: site_id
   name: Site Name
+  isCategorical: true
   dataType: Text
   relation:                         # This block defines a many-to-one foreign relation to a parent table
     tableId: sites          # Datatable id of the parent table
@@ -62,9 +63,13 @@ properties:
 - id: site_lat
   name: Latitude
   dataType: GeoLatitude
+  minVal: 9999
+  maxVal: 99999
 - id: site_lng
   name: Longitude
   dataType: GeoLongitude
+  minVal: 9999
+  maxVal: 99999
 - id: country_lat
   name: Country Latitude
   dataType: Double

@@ -39,6 +39,51 @@
                       <DataTableWithActions table="pf_samples" columns='["sample_id", "site_id", "country_id", "region_id", "run_accessions", "year", "site_lat", "site_lng", "CQresistant", "PYRresistant", "SDXresistant", "MQresistant", "ARTresistant", "PPQresistant"]'/>
                   </Content>
               </CustomButton>
+              <CustomButton>
+                  <Anchor>
+                      <ListItem button="true">
+                          <ListItemIcon>
+                              <Icon name="docimage:icons/table01.svg"/>
+                          </ListItemIcon>
+                          <ListItemText>
+                              <div>Full variant information</div>
+                              <span>View and download the information on variants</span>
+                          </ListItemText>
+                      </ListItem>
+                  </Anchor>
+                  <Content>
+                      <DataTableWithActions table="variants" />
+                  </Content>
+              </CustomButton>
+              <CustomButton>
+                  <Anchor>
+                      <ListItem button="true">
+                          <ListItemIcon>
+                              <Icon name="docimage:icons/gene01.svg"/>
+                          </ListItemIcon>
+                          <ListItemText>
+                              <div>Genome browser</div>
+                              <span>View data on the plotted on the genome</span>
+                          </ListItemText>
+                      </ListItem>
+                  </Anchor>
+                  <Content>
+                      <GenomeBrowserWithActions>
+                          <PerRowIndicatorChannel table="variants"/>
+                          <NumericalTrackGroupChannel table="variants" autoYScale="true">
+                              <NumericalSummaryTrack table="variants" track="fst_global" />
+                          </NumericalTrackGroupChannel>
+                          <NumericalTrackGroupChannel table="variants" autoYScale="true">
+                              <NumericalSummaryTrack table="variants" track="fst_WAF" />
+                              <NumericalSummaryTrack table="variants" track="fst_EAF" />
+                              <NumericalSummaryTrack table="variants" track="fst_SAS" />
+                              <NumericalSummaryTrack table="variants" track="fst_WSEA" />
+                              <NumericalSummaryTrack table="variants" track="fst_ESEA" />
+                              <NumericalSummaryTrack table="variants" track="fst_OCE" />
+                          </NumericalTrackGroupChannel>
+                      </GenomeBrowserWithActions>
+                  </Content>
+              </CustomButton>
           </List>
         </CardContent>
     </Card>
