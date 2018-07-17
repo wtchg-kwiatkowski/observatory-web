@@ -34,6 +34,8 @@ propertyGroups:
 #- id: Selection
 #  name: Selection
 
+quickFindFields: mutation, position
+
 properties:
 - id: position
   dataType: Text
@@ -56,6 +58,10 @@ properties:
   name: Change
   dataType: Text
   description: The amino acid change (if any)
+
+- id: gene_id
+  name: Gene Identifier
+  dataType: Text
 
 #- id: af_all
 #  dataType: Float
@@ -121,10 +127,6 @@ properties:
 - id: fst_OCE
   dataType: Float
   name: FST - OCE
-
-- id: gene_id
-  name: Gene Identifier
-  dataType: Text
 
 #dataItemViews:
 #- type: PropertyGroup
