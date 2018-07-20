@@ -31,12 +31,9 @@ constants:
   mapNoData: "#F2EFE9"
 
 feeds:
-- id: test
-  url: https://malariagenanalytics.wordpress.com/feed
-- id: faq
-  url: https://malariagenanalyticsfaq.wordpress.com/feed
-- id: blog
-  url: https://malariagenanalyticsblog.wordpress.com/feed
+  test: https://malariagenanalytics.wordpress.com/feed
+  faq: https://malariagenanalyticsfaq.wordpress.com/feed
+  blog: https://analytics-cms.malariagen.net/feed
 
 initialSessionState:
   session:
