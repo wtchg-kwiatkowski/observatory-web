@@ -69,7 +69,7 @@ function perform_backups()
 
   # Credit: https://stackoverflow.com/questions/10730199/linux-all-files-of-folder-modified-yesterday
   # Credit: https://stackoverflow.com/questions/5891866/find-files-and-tar-them-with-spaces
-  if ! find "$BACKUPS_SOURCE_DIR/$FILENAME_GLOB_PATTERN" -type f -mtime $DAYS_AGO -print0 | tar --remove-files -czf $THIS_TARBALL_PATH --null -T -; then
+  if ! find $BACKUPS_SOURCE_DIR -name "$FILENAME_GLOB_PATTERN" -type f -mtime $DAYS_AGO -print0 | tar --remove-files -czf $THIS_TARBALL_PATH --null -T -; then
     echo "[!!ERROR!!] Failed to combine database backups into one .tar.gz file"
   else
     echo -e "\nBackup files have been combined into one .tar.gz file."
