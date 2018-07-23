@@ -59,7 +59,7 @@ function perform_backups()
   # all files from all backup events on that day will be included.
 
   FILE_COUNT=$(find $BACKUPS_SOURCE_DIR -name "$FILENAME_GLOB_PATTERN" -type f -mtime $DAYS_AGO | wc -l)
-  if [ $FILE_COUNT -eq 0 ]; then
+  if [ "$FILE_COUNT" -eq 0 ]; then
     echo "[!!ERROR!!] No files matching FILENAME_GLOB_PATTERN were found in BACKUPS_SOURCE_DIR"
     exit 1
   fi
