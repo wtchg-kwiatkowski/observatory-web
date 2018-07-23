@@ -58,7 +58,7 @@ We should be able to handle missing backups in the cron script.
 
 ## Set up a cron job to run a source-controlled script every day
 
-look for the backups
+look for the backups from YESTERDAY
 bundle them
 upload them to the cloud.
 
@@ -246,11 +246,17 @@ ll /var/www/wp/wp-content/updraft/
 (The upload to cloud step is optional.)
 
 
+Note that the date of our backup is a day ahead of the actual backup,
+because that is what would usually happen. (We would back up yesterday's files.)
+
 ```
 cd /var/www/wp/wp-content/updraft
-tar -cvzf /home/leehartoxford/backups/10-daily.tar.gz backup_2018-07-10-1218_MalariaGEN_Analytics_Blog_*.*
+tar -cvzf /home/leehartoxford/backups/10-daily.tar.gz backup_2018-07-09-1218_MalariaGEN_Analytics_Blog_*.*
 gsutil -m cp -r /home/leehartoxford/backups/10-daily.tar.gz gs://analytics-wp-backups
 ```
+
+There might be different backups from different times on the same day.
+Each set will share the same time and unique Id in the file names.
 
 Log in to the Google Cloud website and look at the Storage > Browser > analytics-wp-backups
 Download the file, and check the contents of the tar.gz
@@ -260,11 +266,36 @@ Download the file, and check the contents of the tar.gz
 
 ### Test the backup script
 
-TODO
+The backup files are expected to be in the directory `/var/www/wp/wp-content/updraft/`
+The backup files are expected to have yesterday's date, be owned by `www-data`, e.g.:
+```
+-rw-r--r--  1 www-data www-data   153510 Jul 23 11:26 backup_2018-07-22-1226_MalariaGEN_Analytics_Blog_3067e1eb7e1d-db.gz
+-rw-r--r--  1 www-data www-data   646154 Jul 23 11:26 backup_2018-07-22-1226_MalariaGEN_Analytics_Blog_3067e1eb7e1d-others.zip
+-rw-r--r--  1 www-data www-data 13010292 Jul 23 11:26 backup_2018-07-22-1226_MalariaGEN_Analytics_Blog_3067e1eb7e1d-plugins.zip
+-rw-r--r--  1 www-data www-data  2300588 Jul 23 11:26 backup_2018-07-22-1226_MalariaGEN_Analytics_Blog_3067e1eb7e1d-themes.zip
+-rw-r--r--  1 www-data www-data  3619481 Jul 23 11:26 backup_2018-07-22-1226_MalariaGEN_Analytics_Blog_3067e1eb7e1d-uploads.zip
+```
 
+NOTE: When there have been more than one Updraft backup in the same day, all files from all backup events on that day will be included.
 
+The `wp_backup.config` file specifies the pattern matching for the file names, e.g.:
+```
+FILENAME_GLOB_PATTERN=backup_????-??-??-????_MalariaGEN_Analytics_Blog_????????????-*.*
+```
 
+You can test that the pattern matches using something like:
+```
+cd /var/www/wp/wp-content/updraft/
+ls backup_????-??-??-????_MalariaGEN_Analytics_Blog_????????????-*.*
+```
 
+To find all files that match that glob pattern that were modified 1 day ago:
+```
+find backup_????-??-??-????_MalariaGEN_Analytics_Blog_????????????-*.* -type f -mtime 1
+```
+
+If none of the files in the directory match the specified glob pattern
+(or if there aren't any files in the directory), then the script should log that error.
 
 
 

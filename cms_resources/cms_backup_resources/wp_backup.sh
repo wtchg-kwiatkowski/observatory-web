@@ -46,62 +46,37 @@ fi
  
 function perform_backups()
 {
-  
-  ############################################
-  ###### DETERMINE BACKUP TARGET PATHS #######
-  ############################################
-  
+  ## Determine the name for the tarball.
 	THIS_BACKUP_TYPE=$1 # daily, monthly
   # The monthly naming scheme is the default.
-  THIS_BACKUP_DIR_NAME="`date +\%Y-\%m-\%d`-$THIS_BACKUP_TYPE"
+  THIS_TARBALL_FILENAME="`date +\%Y-\%m-\%d`-$THIS_BACKUP_TYPE".tar.gz
   if [ "$THIS_BACKUP_TYPE" = 'daily' ]; then
-    THIS_BACKUP_DIR_NAME="`date +\%d`-$THIS_BACKUP_TYPE"
+    THIS_TARBALL_FILENAME="`date +\%d`-$THIS_BACKUP_TYPE".tar.gz
   fi
-  THIS_BACKUP_DIR_PATH="$BACKUPS_DIR/$THIS_BACKUP_DIR_NAME/"
- 
-	echo "Making temporary backup directory in $THIS_BACKUP_DIR_PATH"
- 
-	if ! mkdir -p $THIS_BACKUP_DIR_PATH; then
-		echo "Cannot create backup directory in $THIS_BACKUP_DIR_PATH. Exiting." 1>&2
-		exit 1
-	fi
+  THIS_TARBALL_PATH="$BACKUPS_FERRY_DIR/$THIS_TARBALL_FILENAME"
 
+  # NOTE: When there have been more than one Updraft backup in the same day, 
+  # all files from all backup events on that day will be included.
 
-  #########################
-	### FIND BACKUP FILES ###
-	#########################
-
-  # TODO
-
-
-
-
-
-  #################################################
-	### MOVE BACKUP FILES TO THIS_BACKUP_DIR_NAME ###
-	#################################################
-  
-  # TODO
-  
-
-
-  #################################################################
-	###### TARBALL THIS_BACKUP_DIR_PATH & UPLOAD TO THE CLOUD #######
-	#################################################################
+  ###################################################################
+	### TARBALL THE RELEVANT BACKUP FILES FROM BACKUPS_SOURCE_DIR   ###
+  ### AND STORE IN THIS_BACKUP_DIR_PATH, THEN UPLOAD TO THE CLOUD ###
+	###################################################################
 
   echo -e "\n\nTarballing and then uploading to the cloud"
+  echo -e "\nTarball: $THIS_TARBALL_PATH"
   echo -e "--------------------------------------------\n"
 
-  if ! tar -czf "$THIS_BACKUP_DIR_NAME".tar.gz -C $THIS_BACKUP_DIR_PATH .; then
-    echo "[!!ERROR!!] Failed to compress database backups into one .tar.gz file"
+  # Credit: https://stackoverflow.com/questions/10730199/linux-all-files-of-folder-modified-yesterday
+  # Credit: https://stackoverflow.com/questions/5891866/find-files-and-tar-them-with-spaces
+  if ! find "$BACKUPS_SOURCE_DIR/$FILENAME_GLOB_PATTERN" -type f -mtime $DAYS_AGO -print0 | tar --remove-files -czf $THIS_TARBALL_PATH --null -T -; then
+    echo "[!!ERROR!!] Failed to combine database backups into one .tar.gz file"
   else
-    rm -r $THIS_BACKUP_DIR_PATH
-    mv "$THIS_BACKUP_DIR_NAME".tar.gz $BACKUPS_DIR
-    echo -e "\nAll backups have been compressed into one .tar.gz file."
+    echo -e "\nBackup files have been combined into one .tar.gz file."
     
     if [ "$CLOUD_BUCKET_URI" != "" ]
     then
-      if ! gsutil cp $BACKUPS_DIR/"$THIS_BACKUP_DIR_NAME".tar.gz $CLOUD_BUCKET_URI; then
+      if ! gsutil cp $THIS_TARBALL_PATH $CLOUD_BUCKET_URI; then
         echo "[!!ERROR!!] Failed to copy .tar.gz file to $CLOUD_BUCKET_URI"
       else
         echo -e "\The .tar.gz file has been copied to $CLOUD_BUCKET_URI"
@@ -121,7 +96,7 @@ function perform_backups()
 
 # MONTHLY BACKUPS
 DAY_OF_MONTH=`date +%d`
-if [ $DAY_OF_MONTH -eq 1 ];
+if [ $DAY_OF_MONTH -eq 2 ];
 then
 	perform_backups "monthly"
 	exit 0
@@ -133,7 +108,7 @@ fi
 ########################
 
 # Delete daily backups DAYS_TO_KEEP days old or more
-find $BACKUPS_DIR -maxdepth 1 -mtime +$DAYS_TO_KEEP -name "*-daily.tar.gz" -exec rm -rf '{}' ';'
+find $BACKUPS_FERRY_DIR -maxdepth 1 -mtime +$DAYS_TO_KEEP -name "*-daily.tar.gz" -exec rm -rf '{}' ';'
 # Delete log files DAYS_TO_KEEP days old or more
 # Disabled, because the log files are only 1kB, and this would also remove logs for monthly backups.
 #find $BACKUPS_DIR -maxdepth 1 -mtime +$DAYS_TO_KEEP -name "*.log" -exec rm -rf '{}' ';'
