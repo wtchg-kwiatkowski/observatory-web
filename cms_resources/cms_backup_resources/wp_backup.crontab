@@ -1,1 +1,1 @@
-@daily /var/www/wp/wp-content/updraft/scripts/wp_backup.sh >> /var/www/wp/wp-content/updraft/backups/`date +\%Y-\%m-\%dT\%H-\%M-\%S`.log 2>&1
+@daily /home/leehartoxford/observatory-web/cms_resources/cms_backup_resources/wp_backup.sh >> /home/leehartoxford/backups/`date +\%Y-\%m-\%dT\%H-\%M-\%S`.log 2>&1
