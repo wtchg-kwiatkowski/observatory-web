@@ -78,7 +78,7 @@ function perform_backups()
   # Credit: https://stackoverflow.com/questions/5891866/find-files-and-tar-them-with-spaces
   
   FIND_THEN_TAR=`find $BACKUPS_SOURCE_DIR -name "$FILENAME_GLOB_PATTERN" -type f -mtime $DAYS_AGO -print0 | tar --remove-files -czf $THIS_TARBALL_PATH --null -T -`
-  if ! FIND_THEN_TAR; then
+  if ! $FIND_THEN_TAR; then
     echo "[!!ERROR!!] Failed to combine database backups into one .tar.gz file"
   else
     echo -e "\nBackup files have been combined into one .tar.gz file."
