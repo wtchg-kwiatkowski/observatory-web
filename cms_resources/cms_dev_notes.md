@@ -1968,6 +1968,28 @@ service nginx restart
 I decided to disactivate this plugin. (No immediate significant benefit in investing in researching how to best configure it.)
 
 
+### Changes to the RSS feed
+
+
+From Ben:
+```
+In wp-includes/feed.php add:
+function the_thumbnail_rss() {
+    global $post;
+    if ( has_post_thumbnail( $post->ID ) ) {
+       echo get_the_post_thumbnail( $post->ID );
+    }
+}
+
+In wp-includes/feed-rss2.php in the <item> tag:
+<thumbnail><?php the_thumbnail_rss() ?></thumbnail>
+```
+
+Refers to `/var/www/wp/wp-includes/`
+
+NOTE: Changing the WordPress "core" is sometimes frowned upon (e.g. https://getflywheel.com/layout/wp-core/)
+because the changes might be overwritten when WP updates, or might have unintended consequences (e.g. assumptions made about the "core" behaviour)
+so we should look at transferring this modified behaviour to a plugin, which will also get backed up, have higher visibility, etc.
 
 ###############
 
