@@ -58,18 +58,27 @@ function perform_backups()
   # NOTE: When there have been more than one Updraft backup in the same day, 
   # all files from all backup events on that day will be included.
 
+  FILE_COUNT=$(find $BACKUPS_SOURCE_DIR -name "$FILENAME_GLOB_PATTERN" -type f -mtime $DAYS_AGO | wc -1)
+  if [ $FILE_COUNT -eq 0 ]; then
+    echo "[!!ERROR!!] No files matching FILENAME_GLOB_PATTERN were found in BACKUPS_SOURCE_DIR"
+    exit 1
+  fi
+
   ###################################################################
 	### TARBALL THE RELEVANT BACKUP FILES FROM BACKUPS_SOURCE_DIR   ###
   ### AND STORE IN THIS_BACKUP_DIR_PATH, THEN UPLOAD TO THE CLOUD ###
 	###################################################################
 
   echo -e "\n\nTarballing and then uploading to the cloud"
-  echo -e "\nTarball: $THIS_TARBALL_PATH"
+  echo -e "\nFILE_COUNT: $FILE_COUNT"
+  echo -e "\nTHIS_TARBALL_PATH: $THIS_TARBALL_PATH"
   echo -e "--------------------------------------------\n"
 
   # Credit: https://stackoverflow.com/questions/10730199/linux-all-files-of-folder-modified-yesterday
   # Credit: https://stackoverflow.com/questions/5891866/find-files-and-tar-them-with-spaces
-  if ! find $BACKUPS_SOURCE_DIR -name "$FILENAME_GLOB_PATTERN" -type f -mtime $DAYS_AGO -print0 | tar --remove-files -czf $THIS_TARBALL_PATH --null -T -; then
+  
+  FIND_THEN_TAR=`find $BACKUPS_SOURCE_DIR -name "$FILENAME_GLOB_PATTERN" -type f -mtime $DAYS_AGO -print0 | tar --remove-files -czf $THIS_TARBALL_PATH --null -T -`
+  if ! FIND_THEN_TAR; then
     echo "[!!ERROR!!] Failed to combine database backups into one .tar.gz file"
   else
     echo -e "\nBackup files have been combined into one .tar.gz file."
@@ -79,7 +88,7 @@ function perform_backups()
       if ! gsutil cp $THIS_TARBALL_PATH $CLOUD_BUCKET_URI; then
         echo "[!!ERROR!!] Failed to copy .tar.gz file to $CLOUD_BUCKET_URI"
       else
-        echo -e "\The .tar.gz file has been copied to $CLOUD_BUCKET_URI"
+        echo -e "\nThe .tar.gz file has been copied to $CLOUD_BUCKET_URI"
       fi
     fi  
     
@@ -96,8 +105,7 @@ function perform_backups()
 
 # MONTHLY BACKUPS
 DAY_OF_MONTH=`date +%d`
-if [ $DAY_OF_MONTH -eq 2 ];
-then
+if [ $DAY_OF_MONTH -eq 2 ]; then
 	perform_backups "monthly"
 	exit 0
 fi
