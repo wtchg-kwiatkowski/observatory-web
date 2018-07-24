@@ -126,13 +126,14 @@ To set up the backups, log in to the analytics-wp machine (e.g. SSH via VM insta
 ```
 cd /home/leehartoxford
 mkdir wp_backups
-sudo chown www-data:leehartoxford wp_backups
-sudo chown www-data:leehartoxford /home/leehartoxford/observatory-web/cms_resources/cms_backup_resources/wp_backup.sh
+sudo chown leehartoxford:www-data /var/www/wp/wp-content/updraft
+sudo chmod g+w /var/www/wp/wp-content/updraft
 sudo chmod u+x /home/leehartoxford/observatory-web/cms_resources/cms_backup_resources/wp_backup.sh
-sudo crontab -u www-data /home/leehartoxford/observatory-web/cms_resources/cms_backup_resources/wp_backup.crontab
+sudo crontab -u leehartoxford /home/leehartoxford/observatory-web/cms_resources/cms_backup_resources/wp_backup.crontab
 ```
 
-The script will need to run as `www-data`, because it will remove old backups from `/var/www/wp/wp-content/updraft/`, which are only writable by its owner.
+The script will need to run as a user that can remove old backups from `/var/www/wp/wp-content/updraft/`, which usually only `www-data` can do.
+We don't want the script to run as `www-data`, because we don't want `www-data` to be running the `gsutil` command, which it can't do naturally.
 
 For more info on how and which backups are made, see: 
 - `observatory-web/cms_resources/cms_backup_resources/wp_backup.config`
@@ -141,7 +142,7 @@ For more info on how and which backups are made, see:
 
 To help check whether the cron job will run properly, you can run the job hourly instead of daily by directly modifying the crontab via:
 ```
-sudo crontab -u www-data -e
+sudo crontab -u leehartoxford -e
 ```
 
 For example, this would run hourly:
@@ -340,17 +341,46 @@ One way to test the script (albeit a risky method) is to install it as above (un
 Then wait for the clock to strike.
 The crontab file shows where the output log file will be written (probably in `/home/lee/wp_backups/`).
 
+An example error, due the backup script running as `www-data`, but `www-data` cannot use the `gsutil` command.
+```
+leehartoxford@wp:~/wp_backups$ cat 2018-07-24T12-30-01.log
+Tarballing and then uploading to the cloud
+
+FILE_COUNT: 5
+
+THIS_TARBALL_PATH: /home/leehartoxford/wp_backups/24-daily.tar.gz
+
+Backup files have been combined into one .tar.gz file.
+
+/home/leehartoxford/observatory-web/cms_resources/cms_backup_resources/wp_backup.sh: line 90: gsutil: command not found
+[!!ERROR!!] Failed to copy .tar.gz file to gs://analytics-wp-backups
+Done.
+```
+
+Switch to the www-data user to see why it can't use the gsutil command:
+```
+leehartoxford@wp:~/wp_backups$ sudo -u www-data bash
+www-data@wp:~/wp_backups$ gsutil
+2018/07/24 12:52:24.591437 cmd_run.go:700: WARNING: cannot create user data directory: cannot create "/var/www/snap/google-cloud-sdk/45": mkdir /var/www/snap: permission denied
+cannot create user data directory: /var/www/snap/google-cloud-sdk/45: Permission denied
+```
+
+(It would be risky to allow `www-data` to run the `gsutil` command!)
+
+Enter `exit` to stop impersonating `www-data`.
+
+
 
 To prevent the cron job running again, you can remove it:
 ```
-sudo crontab -u www-data -e
+sudo crontab -u leehartoxford -e
 ```
 (Remove the offending line and save.)
 
 
 To install the crontab again:
 ```
-sudo crontab -u www-data /home/leehartoxford/observatory-web/cms_resources/cms_backup_resources/wp_backup.crontab
+sudo crontab -u leehartoxford /home/leehartoxford/observatory-web/cms_resources/cms_backup_resources/wp_backup.crontab
 ```
 
 ## Snapshot the instance
