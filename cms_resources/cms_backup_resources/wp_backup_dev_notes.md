@@ -222,8 +222,17 @@ Log in to the analytics-wp machine and type:
 ```
 touch /home/leehartoxford/wp_backups/upload.test
 ll /home/leehartoxford/wp_backups/
+gsutil cp /home/leehartoxford/wp_backups/upload.test gs://analytics-wp-backups
+```
+
+To copy multiple files:
+```
+touch /home/leehartoxford/wp_backups/upload1.test
+touch /home/leehartoxford/wp_backups/upload2.test
+ll /home/leehartoxford/wp_backups/
 gsutil -m cp -r /home/leehartoxford/wp_backups/*.test gs://analytics-wp-backups
 ```
+
 
 The backup script might need to use the full path to gsutil instead:
 ```
@@ -340,36 +349,6 @@ If none of the files in the directory match the specified glob pattern
 One way to test the script (albeit a risky method) is to install it as above (under `Setting up the backup script`), and change the crontab to suit your needs.
 Then wait for the clock to strike.
 The crontab file shows where the output log file will be written (probably in `/home/lee/wp_backups/`).
-
-An example error, due the backup script running as `www-data`, but `www-data` cannot use the `gsutil` command.
-```
-leehartoxford@wp:~/wp_backups$ cat 2018-07-24T12-30-01.log
-Tarballing and then uploading to the cloud
-
-FILE_COUNT: 5
-
-THIS_TARBALL_PATH: /home/leehartoxford/wp_backups/24-daily.tar.gz
-
-Backup files have been combined into one .tar.gz file.
-
-/home/leehartoxford/observatory-web/cms_resources/cms_backup_resources/wp_backup.sh: line 90: gsutil: command not found
-[!!ERROR!!] Failed to copy .tar.gz file to gs://analytics-wp-backups
-Done.
-```
-
-Switch to the www-data user to see why it can't use the gsutil command:
-```
-leehartoxford@wp:~/wp_backups$ sudo -u www-data bash
-www-data@wp:~/wp_backups$ gsutil
-2018/07/24 12:52:24.591437 cmd_run.go:700: WARNING: cannot create user data directory: cannot create "/var/www/snap/google-cloud-sdk/45": mkdir /var/www/snap: permission denied
-cannot create user data directory: /var/www/snap/google-cloud-sdk/45: Permission denied
-```
-
-(It would be risky to allow `www-data` to run the `gsutil` command!)
-
-Enter `exit` to stop impersonating `www-data`.
-
-
 
 To prevent the cron job running again, you can remove it:
 ```
