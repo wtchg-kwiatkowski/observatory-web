@@ -58,9 +58,11 @@ function perform_backups()
   # NOTE: When there have been more than one Updraft backup in the same day, 
   # all files from all backup events on that day will be included.
 
-  FILE_COUNT=$(find $BACKUPS_SOURCE_DIR -name "$FILENAME_GLOB_PATTERN" -type f -mtime $DAYS_AGO | wc -l)
+  FILE_COUNT=$(find $BACKUPS_SOURCE_DIR -name "$FILENAME_GLOB_PATTERN" -type f -daystart -mtime $DAYS_AGO | wc -l)
   if [ "$FILE_COUNT" -eq 0 ]; then
-    echo "[!!ERROR!!] No files matching FILENAME_GLOB_PATTERN were found in BACKUPS_SOURCE_DIR"
+    echo -e "[!!ERROR!!] No files matching FILENAME_GLOB_PATTERN were found in BACKUPS_SOURCE_DIR\n"
+    echo -e "FILENAME_GLOB_PATTERN: $FILENAME_GLOB_PATTERN\n"
+    echo -e "BACKUPS_SOURCE_DIR: $BACKUPS_SOURCE_DIR\n"
     exit 1
   fi
 
@@ -69,10 +71,9 @@ function perform_backups()
   ### AND STORE IN THIS_BACKUP_DIR_PATH, THEN UPLOAD TO THE CLOUD ###
 	###################################################################
 
-  echo -e "\n\nTarballing and then uploading to the cloud"
-  echo -e "\nFILE_COUNT: $FILE_COUNT"
-  echo -e "\nTHIS_TARBALL_PATH: $THIS_TARBALL_PATH"
-  echo -e "--------------------------------------------\n"
+  echo -e "Tarballing and then uploading to the cloud\n"
+  echo -e "FILE_COUNT: $FILE_COUNT\n"
+  echo -e "THIS_TARBALL_PATH: $THIS_TARBALL_PATH\n"
 
   # Note: https://unix.stackexchange.com/questions/92346/why-does-find-mtime-1-only-return-files-older-than-2-days
   # Credit: https://stackoverflow.com/questions/10730199/linux-all-files-of-folder-modified-yesterday
@@ -82,20 +83,20 @@ function perform_backups()
   if ! $FIND_THEN_TAR; then
     echo "[!!ERROR!!] Failed to combine database backups into one .tar.gz file"
   else
-    echo -e "\nBackup files have been combined into one .tar.gz file."
+    echo -e "Backup files have been combined into one .tar.gz file.\n"
     
     if [ "$CLOUD_BUCKET_URI" != "" ]
     then
       if ! /snap/bin/gsutil cp $THIS_TARBALL_PATH $CLOUD_BUCKET_URI; then
         echo "[!!ERROR!!] Failed to copy .tar.gz file to $CLOUD_BUCKET_URI"
       else
-        echo -e "\nThe .tar.gz file has been copied to $CLOUD_BUCKET_URI"
+        echo -e "The .tar.gz file has been copied to $CLOUD_BUCKET_URI\n"
       fi
     fi  
     
   fi
 
-  echo -e "\nDone."
+  echo -e "Done.\n"
   
 }
 
