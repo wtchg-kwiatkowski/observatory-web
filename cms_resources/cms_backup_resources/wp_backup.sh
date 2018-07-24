@@ -74,10 +74,11 @@ function perform_backups()
   echo -e "\nTHIS_TARBALL_PATH: $THIS_TARBALL_PATH"
   echo -e "--------------------------------------------\n"
 
+  # Note: https://unix.stackexchange.com/questions/92346/why-does-find-mtime-1-only-return-files-older-than-2-days
   # Credit: https://stackoverflow.com/questions/10730199/linux-all-files-of-folder-modified-yesterday
   # Credit: https://stackoverflow.com/questions/5891866/find-files-and-tar-them-with-spaces
   
-  FIND_THEN_TAR=`find $BACKUPS_SOURCE_DIR -name "$FILENAME_GLOB_PATTERN" -type f -mtime $DAYS_AGO -print0 | tar --remove-files -czf $THIS_TARBALL_PATH --null -T -`
+  FIND_THEN_TAR=`find $BACKUPS_SOURCE_DIR -name "$FILENAME_GLOB_PATTERN" -type f -daystart -mtime $DAYS_AGO -print0 | tar --remove-files --directory="$BACKUPS_SOURCE_DIR" -czf $THIS_TARBALL_PATH --null -T -`
   if ! $FIND_THEN_TAR; then
     echo "[!!ERROR!!] Failed to combine database backups into one .tar.gz file"
   else
@@ -85,7 +86,7 @@ function perform_backups()
     
     if [ "$CLOUD_BUCKET_URI" != "" ]
     then
-      if ! gsutil cp $THIS_TARBALL_PATH $CLOUD_BUCKET_URI; then
+      if ! /snap/bin/gsutil cp $THIS_TARBALL_PATH $CLOUD_BUCKET_URI; then
         echo "[!!ERROR!!] Failed to copy .tar.gz file to $CLOUD_BUCKET_URI"
       else
         echo -e "\nThe .tar.gz file has been copied to $CLOUD_BUCKET_URI"
