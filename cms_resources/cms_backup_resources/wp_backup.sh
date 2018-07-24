@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 ###########################
 ####### LOAD CONFIG #######
@@ -60,7 +60,7 @@ function perform_backups()
 
   FILE_COUNT=$(find $BACKUPS_SOURCE_DIR -name "$FILENAME_GLOB_PATTERN" -type f -daystart -mtime $DAYS_AGO | wc -l)
   if [ "$FILE_COUNT" -eq 0 ]; then
-    echo -e "[!!ERROR!!] No files matching FILENAME_GLOB_PATTERN were found in BACKUPS_SOURCE_DIR\n"
+    echo -e "[!!ERROR!!] No files matching FILENAME_GLOB_PATTERN modified $DAYS_AGO DAYS_AGO (-daystart) were found in BACKUPS_SOURCE_DIR\n"
     echo -e "FILENAME_GLOB_PATTERN: $FILENAME_GLOB_PATTERN\n"
     echo -e "BACKUPS_SOURCE_DIR: $BACKUPS_SOURCE_DIR\n"
     exit 1
@@ -79,7 +79,7 @@ function perform_backups()
   # Credit: https://stackoverflow.com/questions/10730199/linux-all-files-of-folder-modified-yesterday
   # Credit: https://stackoverflow.com/questions/5891866/find-files-and-tar-them-with-spaces
   
-  FIND_THEN_TAR=`find $BACKUPS_SOURCE_DIR -name "$FILENAME_GLOB_PATTERN" -type f -daystart -mtime $DAYS_AGO -print0 | tar --remove-files --directory="$BACKUPS_SOURCE_DIR" -czf $THIS_TARBALL_PATH --null -T -`
+  FIND_THEN_TAR=`cd $BACKUPS_SOURCE_DIR; find . -name "$FILENAME_GLOB_PATTERN" -type f -daystart -mtime $DAYS_AGO -print0 | tar --remove-files -czf $THIS_TARBALL_PATH --null -T -`
   if ! $FIND_THEN_TAR; then
     echo "[!!ERROR!!] Failed to combine database backups into one .tar.gz file"
   else
@@ -87,7 +87,7 @@ function perform_backups()
     
     if [ "$CLOUD_BUCKET_URI" != "" ]
     then
-      if ! /snap/bin/gsutil cp $THIS_TARBALL_PATH $CLOUD_BUCKET_URI; then
+      if ! gsutil cp $THIS_TARBALL_PATH $CLOUD_BUCKET_URI; then
         echo "[!!ERROR!!] Failed to copy .tar.gz file to $CLOUD_BUCKET_URI"
       else
         echo -e "The .tar.gz file has been copied to $CLOUD_BUCKET_URI\n"
