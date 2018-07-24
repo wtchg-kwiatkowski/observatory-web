@@ -127,6 +127,7 @@ To set up the backups, log in to the analytics-wp machine (e.g. SSH via VM insta
 cd /home/leehartoxford
 mkdir wp_backups
 sudo chown www-data:leehartoxford wp_backups
+sudo chown www-data:leehartoxford /home/leehartoxford/observatory-web/cms_resources/cms_backup_resources/wp_backup.sh
 sudo chmod u+x /home/leehartoxford/observatory-web/cms_resources/cms_backup_resources/wp_backup.sh
 sudo crontab -u www-data /home/leehartoxford/observatory-web/cms_resources/cms_backup_resources/wp_backup.crontab
 ```
@@ -222,6 +223,13 @@ touch /home/leehartoxford/wp_backups/upload.test
 ll /home/leehartoxford/wp_backups/
 gsutil -m cp -r /home/leehartoxford/wp_backups/*.test gs://analytics-wp-backups
 ```
+
+The backup script might need to use the full path to gsutil instead:
+```
+whereis gsutil
+  gsutil: /snap/bin/gsutil
+```
+
 
 You might see this error:
 ```
