@@ -1,9 +1,12 @@
 #!/bin/bash
 
+# Allow this script to use /snap/bin/gsutil
+PATH="$PATH":/snap/bin
+
 ###########################
 ####### LOAD CONFIG #######
 ###########################
- 
+
 while [ $# -gt 0 ]; do
         case $1 in
                 -c)
@@ -16,24 +19,24 @@ while [ $# -gt 0 ]; do
                         ;;
         esac
 done
- 
+
 if [ -z $CONFIG_FILE_PATH ] ; then
         SCRIPTPATH=$(cd ${0%/*} && pwd -P)
         CONFIG_FILE_PATH="${SCRIPTPATH}/wp_backup.config"
 fi
- 
+
 if [ ! -r ${CONFIG_FILE_PATH} ] ; then
         echo "Could not load config file from ${CONFIG_FILE_PATH}" 1>&2
         exit 1
 fi
- 
+
 source "${CONFIG_FILE_PATH}"
 
 
 ###########################
 #### CHECK RUN_AS_USER ####
 ###########################
- 
+
 # Make sure we're running as the required backup user
 if [ "$RUN_AS_USER" != "" -a "$(id -un)" != "$RUN_AS_USER" ]; then
 	echo "This script must be run as $RUN_AS_USER. Exiting." 1>&2
@@ -43,7 +46,7 @@ fi
 #######################
 #### MAIN FUNCTION ####
 #######################
- 
+
 function perform_backups()
 {
   ## Determine the name for the tarball.
@@ -71,20 +74,19 @@ function perform_backups()
   ### AND STORE IN THIS_BACKUP_DIR_PATH, THEN UPLOAD TO THE CLOUD ###
 	###################################################################
 
-  echo -e "Tarballing and then uploading to the cloud\n"
+  echo -e "Tarballing and then uploading to the cloud...\n"
   echo -e "FILE_COUNT: $FILE_COUNT\n"
   echo -e "THIS_TARBALL_PATH: $THIS_TARBALL_PATH\n"
 
   # Note: https://unix.stackexchange.com/questions/92346/why-does-find-mtime-1-only-return-files-older-than-2-days
   # Credit: https://stackoverflow.com/questions/10730199/linux-all-files-of-folder-modified-yesterday
   # Credit: https://stackoverflow.com/questions/5891866/find-files-and-tar-them-with-spaces
-  
+
   FIND_THEN_TAR=`cd $BACKUPS_SOURCE_DIR; find . -name "$FILENAME_GLOB_PATTERN" -type f -daystart -mtime $DAYS_AGO -print0 | tar --remove-files -czf $THIS_TARBALL_PATH --null -T -`
   if ! $FIND_THEN_TAR; then
     echo "[!!ERROR!!] Failed to combine database backups into one .tar.gz file"
   else
     echo -e "Backup files have been combined into one .tar.gz file.\n"
-    
     if [ "$CLOUD_BUCKET_URI" != "" ]
     then
       if ! gsutil cp $THIS_TARBALL_PATH $CLOUD_BUCKET_URI; then
@@ -92,12 +94,12 @@ function perform_backups()
       else
         echo -e "The .tar.gz file has been copied to $CLOUD_BUCKET_URI\n"
       fi
-    fi  
-    
+    fi
+
   fi
 
   echo -e "Done.\n"
-  
+
 }
 
 
