@@ -125,17 +125,48 @@ You'll need to provide a username and password, because the repo is private.
 To set up the backups, log in to the analytics-wp machine (e.g. SSH via VM instance web terminal) and type:
 ```
 cd /home/leehartoxford
-mkdir backups
+mkdir wp_backups
+sudo chown www-data:leehartoxford wp_backups
 sudo chmod u+x /home/leehartoxford/observatory-web/cms_resources/cms_backup_resources/wp_backup.sh
-sudo crontab -u leehartoxford /home/leehartoxford/observatory-web/cms_resources/cms_backup_resources/wp_backup.crontab
+sudo crontab -u www-data /home/leehartoxford/observatory-web/cms_resources/cms_backup_resources/wp_backup.crontab
 ```
+
+The script will need to run as `www-data`, because it will remove old backups from `/var/www/wp/wp-content/updraft/`, which are only writable by its owner.
 
 For more info on how and which backups are made, see: 
 - `observatory-web/cms_resources/cms_backup_resources/wp_backup.config`
 - `observatory-web/cms_resources/cms_backup_resources/wp_backup.sh`
 - `observatory-web/cms_resources/cms_backup_resources/wp_backup.crontab`
 
-To help check whether the cron job will run properly, you can run the job hourly instead of daily by directly modifying the crontab via `sudo crontab -u leehartoxford -e`.
+To help check whether the cron job will run properly, you can run the job hourly instead of daily by directly modifying the crontab via:
+```
+sudo crontab -u www-data -e
+```
+
+For example, this would run hourly:
+```
+@hourly /home/leehartoxford/observatory-web/cms_resources/cms_backup_resources/wp_backup.sh >> /home/leehartoxford/wp_backups/`date +\%Y-\%m-\%dT\%H-\%M-\%S`.log 2>&1
+```
+
+This would run at 10 minutes past the hour:
+```
+10 * * * * /home/leehartoxford/observatory-web/cms_resources/cms_backup_resources/wp_backup.sh >> /home/leehartoxford/wp_backups/`date +\%Y-\%m-\%dT\%H-\%M-\%S`.log 2>&1
+``
+
+This would run at 10 or 20 minutes past:
+```
+10,20 * * * * /home/leehartoxford/observatory-web/cms_resources/cms_backup_resources/wp_backup.sh >> /home/leehartoxford/wp_backups/`date +\%Y-\%m-\%dT\%H-\%M-\%S`.log 2>&1
+``
+
+This would run every 10 minutes:
+```
+*/10 * * * * /home/leehartoxford/observatory-web/cms_resources/cms_backup_resources/wp_backup.sh >> /home/leehartoxford/wp_backups/`date +\%Y-\%m-\%dT\%H-\%M-\%S`.log 2>&1
+``
+
+This would run every half hour:
+```
+*/30 * * * * /home/leehartoxford/observatory-web/cms_resources/cms_backup_resources/wp_backup.sh >> /home/leehartoxford/wp_backups/`date +\%Y-\%m-\%dT\%H-\%M-\%S`.log 2>&1
+``
 
 
 ### Set up a service account for authentication on the analytics-wp machine.
@@ -187,14 +218,14 @@ To create a cloud bucket via the web console:
 
 Log in to the analytics-wp machine and type:
 ```
-touch /home/leehartoxford/backups/upload.test
-ll /home/leehartoxford/backups/
-gsutil -m cp -r /home/leehartoxford/backups/*.test gs://analytics-wp-backups
+touch /home/leehartoxford/wp_backups/upload.test
+ll /home/leehartoxford/wp_backups/
+gsutil -m cp -r /home/leehartoxford/wp_backups/*.test gs://analytics-wp-backups
 ```
 
 You might see this error:
 ```
-Copying file:///home/leehartoxford/backups/upload.test [Content-Type=application/octet-stream]...
+Copying file:///home/leehartoxford/wp_backups/upload.test [Content-Type=application/octet-stream]...
 AccessDeniedException: 403 Insufficient OAuth2 scope to perform this operation. 
 Acceptable scopes: https://www.googleapis.com/auth/cloud-platform
 CommandException: 1 file/object could not be transferred.
@@ -223,7 +254,7 @@ Starting Initial cloud-init job (metadata service crawler)...
 
 If the upload test works, you should see something like:
 ```
-Copying file:///home/leehartoxford/backups/upload.test [Content-Type=application/octet-stream]...
+Copying file:///home/leehartoxford/wp_backups/upload.test [Content-Type=application/octet-stream]...
 / [1/1 files][    0.0 B/    0.0 B]                                              
 Operation completed over 1 objects.
 ```
@@ -251,8 +282,8 @@ because that is what would usually happen. (We would back up yesterday's files.)
 
 ```
 cd /var/www/wp/wp-content/updraft
-tar -cvzf /home/leehartoxford/backups/10-daily.tar.gz backup_2018-07-09-1218_MalariaGEN_Analytics_Blog_*.*
-gsutil -m cp -r /home/leehartoxford/backups/10-daily.tar.gz gs://analytics-wp-backups
+tar -cvzf /home/leehartoxford/wp_backups/10-daily.tar.gz backup_2018-07-09-1218_MalariaGEN_Analytics_Blog_*.*
+gsutil -m cp -r /home/leehartoxford/wp_backups/10-daily.tar.gz gs://analytics-wp-backups
 ```
 
 There might be different backups from different times on the same day.
@@ -291,16 +322,28 @@ ls backup_????-??-??-????_MalariaGEN_Analytics_Blog_????????????-*.*
 
 To find all files that match that glob pattern that were modified 1 day ago:
 ```
-find backup_????-??-??-????_MalariaGEN_Analytics_Blog_????????????-*.* -type f -mtime 1
+find /var/www/wp/wp-content/updraft/backup_????-??-??-????_MalariaGEN_Analytics_Blog_????????????-*.* -type f -mtime 1
 ```
 
 If none of the files in the directory match the specified glob pattern
 (or if there aren't any files in the directory), then the script should log that error.
 
+One way to test the script (albeit a risky method) is to install it as above (under `Setting up the backup script`), and change the crontab to suit your needs.
+Then wait for the clock to strike.
+The crontab file shows where the output log file will be written (probably in `/home/lee/wp_backups/`).
 
 
+To prevent the cron job running again, you can remove it:
+```
+sudo crontab -u www-data -e
+```
+(Remove the offending line and save.)
 
 
+To install the crontab again:
+```
+sudo crontab -u www-data /home/leehartoxford/observatory-web/cms_resources/cms_backup_resources/wp_backup.crontab
+```
 
 ## Snapshot the instance
 
