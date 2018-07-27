@@ -2,3 +2,7 @@ data
 config/observatory/pre/malobs/client_secret.json
 config/observatory/pre/malobs/gsheets_credentials.json
 config/observatory/pre/malobs/settings
+cms_resources
+db_resources
+graphic_resources
+
