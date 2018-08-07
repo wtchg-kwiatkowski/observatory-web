@@ -41,8 +41,6 @@ properties:
   dataType: Text
   name: Position
   description: Chromosome and position of this variant on the genome
-  valueColours:
-    _other_: rgb(255,255,255)
 - id: chrom
   name: Chromosome
   description: Chromosome of this variant
@@ -50,8 +48,6 @@ properties:
 - id: pos
   name: Position
   dataType: Int32
-  valueColours:
-    _other_: rgb(255,255,255)
 
 
 - id: mutation
