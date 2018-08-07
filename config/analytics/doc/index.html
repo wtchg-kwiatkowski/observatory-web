@@ -1,10 +1,19 @@
 <PageTemplate bgurl="machines.jpg">
+
+
+<CardStack>   
+
+
     <div className="obs-leader">
-       Analysis and commentary on malaria genomic data
+      We analyse genomic data to provide information and commentary on the global status of malaria
     </div>
 
 
-<CardStack>
+
+ <Card>
+  <CardHeader title="Read about our latest analyses of malaria genomes" />
+   <CardContent>  
+
   <Feed
     id="blog"
     tags="analysis"
@@ -13,20 +22,18 @@
   <div style="float: right;padding-bottom: 10px">
       <PopupButton iconInverse="false" icon="docimage:icons/stories-news.svg" label="All Articles"><FeedIndex id="blog"/></PopupButton>
   </div>
+  </CardContent>
+ </Card>
 </CardStack>
-
 
 
 
     <CardStack>
         <Card>
+          <CardHeader title="Learn about malaria genomics in our Guidebooks" />
             <CardContent>
-                <Typography variant="headline">
-                    Guidebooks
-                </Typography>
-                <Typography variant="subheading" color="secondary">
-                    Data and analysis for malaria control and elimination
-                </Typography>
+                
+               
                 <List>
                     <ObsListItem href="pf.html">
                         <ListItemIcon><Icon class="icon" name='docimage:icons/plasmodium-falciparum.svg' /></ListItemIcon>
@@ -54,8 +61,8 @@
             </CardContent>
         </Card>
 
+<!--   
 
-<!-- 
 
         <Card>
            <CardContent>
@@ -132,6 +139,98 @@
             </CardContent>
         </Card>
 -->
+
+
+
+<Card>
+     <CardHeader title="Explore genomic data through the Viewer" />
+     <CardContent>
+       <Typography >
+         Viewers let you to interact with MalariaGEN Analytics data
+       </Typography>
+       <List>
+         <CustomButton>
+             <Anchor>
+                 <ListItem button="true">
+                   <ListItemIcon>
+                     <Icon name="docimage:icons/map.svg"/>
+                   </ListItemIcon>
+                   <ListItemText>
+                       <div>View resistance map</div>
+                       <span>Visualise and explore global drug resistance</span>
+                   </ListItemText>
+                 </ListItem>
+             </Anchor>
+             <Content>
+                 <ResistanceMap drug="sites"/>
+             </Content>
+         </CustomButton>
+           <CustomButton>
+               <Anchor>
+                   <ListItem button="true">
+                       <ListItemIcon>
+                           <Icon name="docimage:icons/table01.svg"/>
+                       </ListItemIcon>
+                       <ListItemText>
+                           <div>View samples</div>
+                           <span>Explore and download sample information</span>
+                       </ListItemText>
+                   </ListItem>
+               </Anchor>
+               <Content>
+                   <DataTableWithActions table="pf_samples" columns='["sample_id", "site_id", "country_id", "region_id", "run_accessions", "year", "site_lat", "site_lng", "CQresistant", "PYRresistant", "SDXresistant", "MQresistant", "ARTresistant", "PPQresistant"]'/>
+               </Content>
+           </CustomButton>
+           <CustomButton>
+               <Anchor>
+                   <ListItem button="true">
+                       <ListItemIcon>
+                           <Icon name="docimage:icons/table01.svg"/>
+                       </ListItemIcon>
+                       <ListItemText>
+                           <div>View variants</div>
+                           <span>Explore and download information on genetic variants</span>
+                       </ListItemText>
+                   </ListItem>
+               </Anchor>
+               <Content>
+                   <DataTableWithActions table="variants" />
+               </Content>
+           </CustomButton>
+           <CustomButton>
+               <Anchor>
+                   <ListItem button="true">
+                       <ListItemIcon>
+                           <Icon name="docimage:icons/gene01.svg"/>
+                       </ListItemIcon>
+                       <ListItemText>
+                           <div>View genome</div>
+                           <span>View data plotted along the genome</span>
+                       </ListItemText>
+                   </ListItem>
+               </Anchor>
+               <Content>
+                   <GenomeBrowserWithActions>
+                       <PerRowIndicatorChannel table="variants"/>
+                       <NumericalTrackGroupChannel table="variants" autoYScale="true">
+                           <NumericalSummaryTrack table="variants" track="fst_global" />
+                       </NumericalTrackGroupChannel>
+                       <NumericalTrackGroupChannel table="variants" autoYScale="true">
+                           <NumericalSummaryTrack table="variants" track="fst_WAF" />
+                           <NumericalSummaryTrack table="variants" track="fst_EAF" />
+                           <NumericalSummaryTrack table="variants" track="fst_SAS" />
+                           <NumericalSummaryTrack table="variants" track="fst_WSEA" />
+                           <NumericalSummaryTrack table="variants" track="fst_ESEA" />
+                           <NumericalSummaryTrack table="variants" track="fst_OCE" />
+                       </NumericalTrackGroupChannel>
+                   </GenomeBrowserWithActions>
+               </Content>
+           </CustomButton>
+       </List>
+     </CardContent>
+ </Card>
+
+
 
 
     </CardStack>
