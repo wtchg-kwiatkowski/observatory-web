@@ -43,8 +43,13 @@ $usual-text-size: 14px;
   position: relative;
 }
 
-.obs-leader {
+.card-stack {
   max-width: $card-max-width;
+  width: 100%
+}
+
+.obs-leader {
+  //max-width: $card-max-width;
   font-size: 25px;
   text-align: center;
   margin-bottom: 20px;
@@ -145,3 +150,41 @@ $usual-text-size: 14px;
 li {
   padding-bottom: 5px;
 }
+
+
+.home-content {
+  display: flex;
+  flex-direction: column;
+  .home-headline {
+    font-size: 18px;
+  }
+}
+
+.home-blog {
+  //border: 1px solid darkgrey;
+  //border-radius: 5px;
+  //padding: 10px;
+
+}
+
+
+.home-header {
+  font-weight: normal;
+  padding-top: 15px;
+}
+.home-header-first {
+  padding-top: inherit;
+}
+
+@media (min-width: 1200px) {
+  .home-content {
+    flex-direction: row;
+  }
+  .home-blog {
+    margin-right: 100px;
+  }
+  .home-header-top {
+    padding-top: inherit;
+  }
+}
+
