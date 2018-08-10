@@ -104,7 +104,7 @@ $usual-text-size: 14px;
 .site-marker {
   width: 34px;
   height: 27px;
-  transform: translate(-17px,-27px);
+  transform: translate(-17px, -27px);
 }
 
 .site-marker-contrast-text {
@@ -120,37 +120,39 @@ $usual-text-size: 14px;
 
 /* credit http://www.cssarrowplease.com/ */
 .arrow_box {
-	position: relative;
-	background: #ffffff;
-	border: 1px solid #333333;
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #333333;
 }
+
 .arrow_box:after, .arrow_box:before {
-	top: 100%;
-	left: 50%;
-	border: solid transparent;
-	content: " ";
-	height: 0;
-	width: 0;
-	position: absolute;
-	pointer-events: none;
+  top: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
 }
+
 .arrow_box:after {
-	border-color: rgba(255, 255, 255, 0);
-	border-top-color: #ffffff;
-	border-width: 5px;
-	margin-left: -5px;
+  border-color: rgba(255, 255, 255, 0);
+  border-top-color: #ffffff;
+  border-width: 5px;
+  margin-left: -5px;
 }
+
 .arrow_box:before {
-	border-color: rgba(51, 51, 51, 0);
-	border-top-color: #333333;
-	border-width: 6px;
-	margin-left: -6px;
+  border-color: rgba(51, 51, 51, 0);
+  border-top-color: #333333;
+  border-width: 6px;
+  margin-left: -6px;
 }
 
 li {
   padding-bottom: 5px;
 }
-
 
 .home-content {
   display: flex;
@@ -167,13 +169,65 @@ li {
 
 }
 
-
 .home-header {
   font-weight: normal;
   padding-top: 15px;
 }
+
 .home-header-first {
   padding-top: inherit;
+}
+
+.header-logo {
+  flex: 1;
+  margin-left: 21px;
+  height: 64px;
+  .header-logo-beta {
+    cursor: pointer;
+    display: inline-block;
+    position: absolute;
+    right: 7px;
+    top: 38px;
+    padding: 0 3px;
+    font-size: 8px;
+    text-transform: uppercase;
+    background-color: #e64a19;
+    color: white
+
+  }
+  .header-logo-container {
+    display: inline-block;
+    overflow: hidden;
+    transform: translateZ(0)
+  }
+  .header-logo-mg {
+    cursor: pointer;
+    max-width: 100%;
+    height: calc(100% - 12px);
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+}
+
+.header-filler {
+  flex: 1;
+  max-width: calc(100% / 2 - 145px);
+}
+
+.data-version {
+  font-size: 11px;
+  color: #36454F;
+  text-align: center;
+  margin-right: 12px;
+  margin-left: 12px
+}
+
+.header-top-nav {
+  display: none;
+}
+
+.header-hamburger {
+  display: inherit !important;
 }
 
 @media (min-width: 1200px) {
@@ -186,5 +240,14 @@ li {
   .home-header-top {
     padding-top: inherit;
   }
+  .header-top-nav {
+    display: flex;
+  }
+  .header-hamburger {
+    display: none !important;
+  }
+  .header-filler {
+  max-width: calc(100% / 2 - 371px);
 }
 
+}

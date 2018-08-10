@@ -13,6 +13,7 @@ import EmptyTab from 'containers/EmptyTab';
 import DatasetManagerActions from 'components/DatasetManagerActions';
 import Icon from 'ui/Icon';
 import DocPage from 'panoptes/DocPage';
+import PopupButton from 'panoptes/PopupButton';
 
 // Material UI
 import AppBar from '@material-ui/core/AppBar';
@@ -33,7 +34,13 @@ import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import {Tabs, Tab} from '@material-ui/core';
-
+import Button from '@material-ui/core/Button';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Grow from '@material-ui/core/Grow';
+import Paper from '@material-ui/core/Paper';
+import Popper from '@material-ui/core/Popper';
+import MenuItem from '@material-ui/core/MenuItem';
+import MenuList from '@material-ui/core/MenuList';
 import 'font-awesome.css';
 import 'ui-components.scss';
 import 'main.scss';
@@ -101,7 +108,7 @@ let ObservatoryHeader = createReactClass({
       <AppBar position="static" style={{backgroundColor: this.config.constants.appBar}}>
         <Toolbar disableGutters={true} style={{marginLeft: '12px', marginRight: '12px'}}>
           <IconButton
-            style={{color: '#36454F'}}
+            className="header-hamburger"
             aria-label="open drawer"
             onClick={this.handleClickHamburger}
           >
@@ -243,60 +250,132 @@ let ObservatoryHeader = createReactClass({
               </List>
             </div>
           </Drawer>
+          <div className="header-top-nav">
+            <HorizontalSiteNav />
+          </div>
+          <div className="header-filler" />
           <div
-            style={{flex: '1', marginLeft: '21px', height: '64px', textAlign: 'center'}}
+            className="header-logo"
           >
-            <div style={{display: 'inline-block', overflow: 'hidden', transform: 'translateZ(0)'}}>
-              <img onClick={() => actions.session.tabSwitch('FirstTab')} src={logo} style={{
-                cursor: 'pointer',
-                maxWidth: '100%',
-                height: 'calc(100% - 12px)',
-                marginTop: '12px',
-                marginBottom: '12px'
-              }}/>
-              <div onClick={() => actions.session.tabSwitch('FirstTab')} style={{
-                cursor: 'pointer',
-                display: 'inline-block',
-                position: 'absolute',
-                right: '7px',
-                top: '38px',
-                padding: '0 3px',
-                fontSize: '8px',
-                textTransform: 'uppercase',
-                backgroundColor: '#e64a19',
-                color: 'white'
-              }}>beta
+            <div className="header-logo-container">
+              <img onClick={() => actions.session.tabSwitch('FirstTab')} src={logo} className="header-logo-mg"/>
+              <div onClick={() => actions.session.tabSwitch('FirstTab')} className="header-logo-beta">
+                beta
               </div>
             </div>
           </div>
-          <div style={{
-            fontSize: '11px',
-            color: '#36454F',
-            textAlign: 'center',
-            marginRight: '12px',
-            marginLeft: '12px'
-          }}>data&#160;version<br/>{version}&#160;beta
+          <div className="data-version">
+            data&#160;version<br/>{version}&#160;beta
           </div>
         </Toolbar>
-        <Tabs
-          onChange={onTabChange}
-          value={tabIndex}
-          indicatorColor="primary"
-          textColor="primary"
-          centered
-          style={{marginRight: '21px'}}
-        >
-          <Tab label="Home"/>
-          <Tab label="Guidebook"/>
-          <Tab label="Viewer"/>
-        </Tabs>
       </AppBar>
     );
   },
 });
 
 
+
+class MenuListComposition extends React.Component {
+  state = {
+    open: false,
+  };
+
+  handleToggle = () => {
+    this.setState(state => ({ open: !state.open }));
+  };
+
+  handleClose = event => {
+    this.setState({ open: false });
+  };
+
+  render() {
+    const { open } = this.state;
+    let { type, label, children, onClick} = this.props;
+    return (
+      <div>
+        <div>
+          {type === 'button' ? <Button
+            buttonRef={node => {
+              this.anchorEl = node;
+            }}
+            aria-owns={open ? 'menu-list-grow' : null}
+            aria-haspopup="true"
+            onClick={this.handleToggle}
+          >
+            {label}
+          </Button> : <MenuItem
+            ref={node => {
+              this.anchorEl = node;
+            }}
+            aria-owns={open ? 'menu-list-grow' : null}
+            aria-haspopup="true"
+            onClick={this.handleToggle}
+          >
+            {label}
+          </MenuItem>}
+          <Popper open={open} anchorEl={this.anchorEl} transition disablePortal>
+            {({ TransitionProps, placement }) => (
+              <Grow
+                {...TransitionProps}
+                id="menu-list-grow"
+                style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+              >
+                <Paper>
+                  <ClickAwayListener onClickAway={this.handleClose}>
+                    <MenuList>
+                      {children.map((child) => React.cloneElement(child, {onClick: (e) => {
+                        onClick ? onClick(e) : null;
+                        this.handleClose(e);
+                        child.props.onClick ? child.props.onClick(e) : null;
+                        }}))}
+                    </MenuList>
+                  </ClickAwayListener>
+                </Paper>
+              </Grow>
+            )}
+          </Popper>
+        </div>
+      </div>
+    );
+  }
+}
+
+MenuListComposition.propTypes = {
+  label: PropTypes.string,
+};
+
+let HorizontalSiteNav = createReactClass({
+  displayName: 'HorizontalSiteNav',
+
+  mixins: [
+    PureRenderMixin,
+    FluxMixin,
+    ConfigMixin,
+  ],
+
+  render() {
+    const {sitemap} = this.config.constants;
+
+    let recurse = (tree, type) => {
+      return tree.map((branch, i) => {
+      if (branch.children) {
+        return <MenuListComposition key={i} type={type} label={branch.label}>
+          {recurse(branch.children, 'menuitem')}
+        </MenuListComposition>
+      } else {
+        return (type !== 'button' ? <MenuItem key={i} onClick={() => this.getFlux().actions.session.tabOpen(React.createElement(branch.component.type, branch.component.props))}>{branch.label}</MenuItem> :
+          <Button key={i} onClick={() => this.getFlux().actions.session.tabOpen(React.createElement(branch.component.type, branch.component.props))}>{branch.label}</Button>)
+      }
+      })
+    };
+
+    return recurse(sitemap, 'button');
+  }
+});
+
 ObservatoryHeader = withStyles(styles)(ObservatoryHeader);
 ObservatoryHeader.displayName = "ObservatoryHeader";
+
+
 
 export default ObservatoryHeader;
