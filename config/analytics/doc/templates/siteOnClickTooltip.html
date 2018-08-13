@@ -9,7 +9,7 @@
     'PPQresistance'
     'PYRresistance'
     'SDXresistance'
-    table='sites'
+    table='pf_sites'
     distinct='true'
     query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}'
   }}
@@ -42,8 +42,8 @@
                 vertical-align: middle;
                 line-height: 35px;
                 font-size: 15px;
-                color: {{visibleColour "sites" "ARTresistance" ARTresistance}};
-                background: {{colour "sites" "ARTresistance" ARTresistance}};">ART</div>
+                color: {{visibleColour "pf_sites" "ARTresistance" ARTresistance}};
+                background: {{colour "pf_sites" "ARTresistance" ARTresistance}};">ART</div>
     <div style="display: inline-block;
                 width: 35px;
                 height: 35px;
@@ -52,8 +52,8 @@
                 vertical-align: middle;
                 line-height: 35px;
                 font-size: 15px;
-                color: {{visibleColour "sites" "ARTresistance" CQresistance}};
-                background: {{colour "sites" "ARTresistance" CQresistance}};">CQ</div>
+                color: {{visibleColour "pf_sites" "ARTresistance" CQresistance}};
+                background: {{colour "pf_sites" "ARTresistance" CQresistance}};">CQ</div>
     <div style="display: inline-block;
                 width: 35px;
                 height: 35px;
@@ -62,8 +62,8 @@
                 vertical-align: middle;
                 line-height: 35px;
                 font-size: 15px;
-                color: {{visibleColour "sites" "ARTresistance" MQresistance}};
-                background: {{colour "sites" "ARTresistance" MQresistance}};">MQ</div></br>
+                color: {{visibleColour "pf_sites" "ARTresistance" MQresistance}};
+                background: {{colour "pf_sites" "ARTresistance" MQresistance}};">MQ</div></br>
     <div style="display: inline-block;
                 width: 35px;
                 height: 35px;
@@ -73,8 +73,8 @@
                 vertical-align: middle;
                 line-height: 35px;
                 font-size: 15px;
-                color: {{visibleColour "sites" "ARTresistance" PPQresistance}};
-                background: {{colour "sites" "ARTresistance" PPQresistance}};">PPQ</div>
+                color: {{visibleColour "pf_sites" "ARTresistance" PPQresistance}};
+                background: {{colour "pf_sites" "ARTresistance" PPQresistance}};">PPQ</div>
     <div style="display: inline-block;
                   width: 35px;
                   height: 35px;
@@ -84,8 +84,8 @@
                   vertical-align: middle;
                   line-height: 35px;
                   font-size: 15px;
-                  color: {{visibleColour "sites" "ARTresistance" PYRresistance}};
-                  background: {{colour "sites" "ARTresistance" PYRresistance}};">PYR</div>
+                  color: {{visibleColour "pf_sites" "ARTresistance" PYRresistance}};
+                  background: {{colour "pf_sites" "ARTresistance" PYRresistance}};">PYR</div>
     <div style="display: inline-block;
                   width: 35px;
                   height: 35px;
@@ -95,11 +95,11 @@
                   vertical-align: middle;
                   line-height: 35px;
                   font-size: 15px;
-                  color: {{visibleColour "sites" "ARTresistance" SDXresistance}};
-                  background: {{colour "sites" "ARTresistance" SDXresistance}};">SDX</div>
+                  color: {{visibleColour "pf_sites" "ARTresistance" SDXresistance}};
+                  background: {{colour "pf_sites" "ARTresistance" SDXresistance}};">SDX</div>
   </div>
   <div style="margin-top: 10px">
-    <ItemLink table="sites" primKey="{{site_id}}"><Button color="primary" raised="true" label="more"/></ItemLink>
+    <ItemLink table="pf_sites" primKey="{{site_id}}"><Button color="primary" raised="true" label="more"/></ItemLink>
   </div>
   {{/query}}
 </div

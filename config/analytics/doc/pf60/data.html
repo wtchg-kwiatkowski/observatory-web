@@ -1,0 +1,86 @@
+<PageTemplate bgurl="sporozoites.jpg">
+    <!--<div className="obs-leader">-->
+    <!--This Guidebook will help you to understand more about the distribution and epidemiology of <strong><em>Plasmodium falciparum</em></strong>, the most common and most deadly species of malaria.</span>-->
+    <!--</div>-->
+    <CardStack>
+        <Card>
+            <CardContent>
+                <Typography class="home-headline" variant="headline"> MalariaGEN <em>P.f.</em> 6.0 release</Typography>
+                <Typography variant="subheading" color="textSecondary" paragraph="true">Data on genetic variation from
+                    whole-genome sequencing of
+                    <QueryResult table="pf_samples"/>
+                    P. falciparum samples from
+                    <QueryResult table="pf_sites"/>
+                    study sites in
+                    <QueryResult table="countries"/>
+                    countries.
+                </Typography>
+
+                <List>
+                    <CustomButton>
+                        <Anchor>
+                            <ListItem button="true">
+                                <ListItemIcon>
+                                    <Icon name="docimage:icons/table01.svg" size="2x"/>
+                                </ListItemIcon>
+                                <ListItemText>
+                                    <div>View samples</div>
+                                    <span>Explore and download sample information</span>
+                                </ListItemText>
+                            </ListItem>
+                        </Anchor>
+                        <Content>
+                            <DataTableWithActions table="pf_samples"
+                                                  columns='["sample_id", "site_id", "country_id", "region_id", "run_accessions", "year", "site_lat", "site_lng", "CQresistant", "PYRresistant", "SDXresistant", "MQresistant", "ARTresistant", "PPQresistant"]'/>
+                        </Content>
+                    </CustomButton>
+                    <CustomButton>
+                        <Anchor>
+                            <ListItem button="true">
+                                <ListItemIcon>
+                                    <Icon name="docimage:icons/table01.svg" size="2x"/>
+                                </ListItemIcon>
+                                <ListItemText>
+                                    <div>View variants</div>
+                                    <span>Explore and download information on genetic variants</span>
+                                </ListItemText>
+                            </ListItem>
+                        </Anchor>
+                        <Content>
+                            <DataTableWithActions table="pf_variants"/>
+                        </Content>
+                    </CustomButton>
+                    <CustomButton>
+                        <Anchor>
+                            <ListItem button="true">
+                                <ListItemIcon>
+                                    <Icon name="docimage:icons/gene01.svg" size="2x"/>
+                                </ListItemIcon>
+                                <ListItemText>
+                                    <div>View genome</div>
+                                    <span>View data plotted along the genome</span>
+                                </ListItemText>
+                            </ListItem>
+                        </Anchor>
+                        <Content>
+                            <GenomeBrowserWithActions>
+                                <PerRowIndicatorChannel table="pf_variants"/>
+                                <NumericalTrackGroupChannel table="pf_variants" autoYScale="true">
+                                    <NumericalSummaryTrack table="pf_variants" track="fst_global"/>
+                                </NumericalTrackGroupChannel>
+                                <NumericalTrackGroupChannel table="pf_variants" autoYScale="true">
+                                    <NumericalSummaryTrack table="pf_variants" track="fst_WAF"/>
+                                    <NumericalSummaryTrack table="pf_variants" track="fst_EAF"/>
+                                    <NumericalSummaryTrack table="pf_variants" track="fst_SAS"/>
+                                    <NumericalSummaryTrack table="pf_variants" track="fst_WSEA"/>
+                                    <NumericalSummaryTrack table="pf_variants" track="fst_ESEA"/>
+                                    <NumericalSummaryTrack table="pf_variants" track="fst_OCE"/>
+                                </NumericalTrackGroupChannel>
+                            </GenomeBrowserWithActions>
+                        </Content>
+                    </CustomButton>
+                </List>
+            </CardContent>
+        </Card>
+    </CardStack>
+</PageTemplate>

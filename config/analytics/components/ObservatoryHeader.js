@@ -64,7 +64,6 @@ let ObservatoryHeader = createReactClass({
   displayName: 'ObservatoryHeader',
 
   mixins: [
-    PureRenderMixin,
     ConfigMixin,
     FluxMixin,
   ],
@@ -73,7 +72,7 @@ let ObservatoryHeader = createReactClass({
     name: PropTypes.string,
     logo: PropTypes.string,
     classes: PropTypes.object.isRequired,
-    tabs: PropTypes.object.isRequired,
+    selectedTab: PropTypes.string.isRequired,
     components: PropTypes.object.isRequired,
     version: PropTypes.string,
     tabIndex: PropTypes.number,
@@ -101,7 +100,7 @@ let ObservatoryHeader = createReactClass({
   },
 
   render() {
-    let {logo, classes, version, tabIndex, onTabChange} = this.props;
+    let {logo, classes, version, selectedTab} = this.props;
     let actions = this.getFlux().actions;
     const {drawerIsOpen, guidebooksIsExpanded, pfIsExpanded} = this.state;
     return (

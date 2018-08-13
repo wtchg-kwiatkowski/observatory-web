@@ -4,6 +4,7 @@ import createReactClass from 'create-react-class';
 import NotificationSystem from 'react-notification-system';
 import deserialiseComponent from 'util/deserialiseComponent'; // NB: deserialiseComponent is actually used.
 import _assign from 'lodash.assign';
+import StateBreadCrumb from "./StateBreadCrumb";
 
 // Mixins
 import FluxMixin from 'mixins/FluxMixin';
@@ -31,7 +32,7 @@ import 'ui-components.scss';
 import 'main.scss';
 
 const palette = createPalette({
-  primary: deepOrange,
+  // primary: deepOrange,
   secondary: blueGrey,
   genotypeRefColor: 'rgb(0, 128, 192)',
   genotypeAltColor: 'rgb(255, 50, 50)',
@@ -114,62 +115,12 @@ let Observatory = createReactClass({
     return (this.isDocPage(component) && !this.isViewerDocPage(component));
   },
 
-  separateNonViewerDocPagesFromOtherComponents(tabComponents, components) {
-    let nonViewerDocPageComponents = [];
-    let otherComponents = [];
-    tabComponents.forEach((component) => {
-      if (component !== 'FirstTab') {
-        (this.isNonViewerDocPage(components[component]) ? nonViewerDocPageComponents : otherComponents).push(component);
-      }
-    });
-    return {nonViewerDocPageComponents, otherComponents};
-  },
-
-  handleChangeTab(event, index) {
-    let actions = this.getFlux().actions.session;
-    let {tabs,  components} = this.state;
-    tabs = tabs.toJS();
-    components = components.toJS();
-    const {nonViewerDocPageComponents, otherComponents} = this.separateNonViewerDocPagesFromOtherComponents(tabs.components, components);
-    if (index === 0) {
-      actions.tabSwitch('FirstTab');
-    }
-    if (index === 1) {
-      actions.tabSwitch(nonViewerDocPageComponents[nonViewerDocPageComponents.length - 1]);
-    }
-    if (index === 2) {
-      actions.tabSwitch(otherComponents[otherComponents.length - 1]);
-    }
-  },
-
   render() {
     let actions = this.getFlux().actions.session;
     let {tabs, modal, components} = this.state;
     let config = this.config;
     tabs = tabs.toJS();
     components = components.toJS();
-    const {nonViewerDocPageComponents, otherComponents} = this.separateNonViewerDocPagesFromOtherComponents(tabs.components, components);
-
-    let tabIndex = undefined;
-    let selectedDocPage = undefined;
-    let selectedOther = undefined;
-
-    if (tabs.selectedTab === 'FirstTab') {
-      tabIndex = 0;
-    } else if (tabs.selectedTab === 'InitialDocPage') {
-      tabIndex = 1;
-      selectedDocPage = 'InitialDocPage';
-    } else if (nonViewerDocPageComponents.indexOf(tabs.selectedTab) !== -1) {
-      tabIndex = 1;
-      selectedDocPage = tabs.selectedTab;
-    } else if (tabs.selectedTab === 'InitialOther') {
-      tabIndex = 2;
-      selectedOther = 'InitialOther';
-    } else if (otherComponents.indexOf(tabs.selectedTab) !== -1) {
-      tabIndex = 2;
-      selectedOther = tabs.selectedTab;
-    }
-
     // NB: initialConfig is actually defined (in index.html)
     return (
       <DetectResize onResize={this.handleResize}>
@@ -184,23 +135,18 @@ let Observatory = createReactClass({
                 name={config.settings.nameBanner}
                 version={config.settings.version}
                 logo={initialConfig.logo}
-                tabs={tabs}
+                selectedTab={tabs.selectedTab}
                 components={components}
-                tabIndex={tabIndex}
                 onTabChange={this.handleChangeTab}
               />
-              {tabIndex === 0 ?
                 <div className="body scroll-within">
-                  <SessionComponent key="FirstTab" compId={'FirstTab'} />
-                </div> : null}
-              {tabIndex === 1 ?
-                <div className="body scroll-within">
-                  <SessionComponent key={selectedDocPage} compId={selectedDocPage} />
-                </div> : null}
-              {tabIndex === 2 ?
-                <div className="body scroll-within">
-                  <SessionComponent key={selectedOther} compId={selectedOther} />
-                </div> : null}
+                  <div style={{position: 'relative', height: '100%'}}>
+                    <div className="vertical stack">
+                      <StateBreadCrumb compId={tabs.selectedTab}/>
+                      <div className="grow"><SessionComponent compId={tabs.selectedTab} /></div>
+                    </div>
+                  </div>
+                </div>
             </div>
             <Modal visible={!!modal}
               onClose={actions.modalClose}>

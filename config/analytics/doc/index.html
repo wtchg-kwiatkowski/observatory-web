@@ -1,11 +1,15 @@
 <PageTemplate bgurl="machines.jpg">
     <div className="obs-leader">
-       Analysis and commentary on genomic data and the global status of malaria
+        Analysis and commentary on genomic data and the global status of malaria
     </div>
 
     <div class="home-content">
         <div class="home-blog">
-            <h2 class="home-header home-header-first">Articles</h2>
+            <h2 class="home-header home-header-first">
+                <TextButton label="Articles">
+                    <FeedIndex id="blog"/>
+                </TextButton>
+            </h2>
             <CardStack>
                 <Feed
                         id="blog"
@@ -16,40 +20,73 @@
                     <PopupButton iconInverse="false" icon="docimage:icons/stories-news.svg" label="All Articles">
                         <FeedIndex id="blog"/>
                     </PopupButton>
-                <div>
+                    <div>
             </CardStack>
         </div>
 
 
         <div class="home-others">
             <CardStack>
-            <h2 class="home-header home-header-top">Analysis</h2>
+                <h2 class="home-header home-header-top">
+                    <DocLink href="analysis.html">Analysis</DocLink>
+                </h2>
                 <Card>
                     <CardContent>
-                        <Typography class="home-headline" variant="headline">Drug resistance in Plasmodium falciparum malaria </Typography>
-                        <Typography variant="subheading" color="textSecondary" paragraph="true">Analysis of the occurence and spread of resistance to anti-malaria drugs, using genome sequence data from <QueryResult table="pf_samples"/> P. falciparum samples from <QueryResult table="sites"/> study sites in <QueryResult table="countries"/> countries.</Typography>
+                        <Typography class="home-headline" variant="headline">Drug resistance in <em>Plasmodium
+                            falciparum malaria</em></Typography>
+                        <Typography variant="subheading" color="textSecondary" paragraph="true">Analysis of the
+                            occurence and spread of resistance to anti-malaria drugs, using genome sequence data from
+                            <QueryResult table="pf_samples"/>
+                            P. falciparum samples from
+                            <QueryResult table="pf_sites"/>
+                            study sites in
+                            <QueryResult table="countries"/>
+                            countries.
+                        </Typography>
                         <List>
-                    <ObsListItem href="drugs.html">
-                        <ListItemIcon><Icon class="icon" name='docimage:icons/big/drug.svg' size="2x"/></ListItemIcon>
-                        <ListItemText>
-                            <span>Anti-malarial drugs</span>
-                            <span>Compare resistance across drugs</span>
-                        </ListItemText>
-                    </ObsListItem>
-                    <ObsListItem href="regions.html">
-                        <ListItemIcon><Icon class="icon" name='docimage:icons/big/geography.svg' size="2x"/></ListItemIcon>
-                        <ListItemText>
-                            <span>Geographical regions</span>
-                            <span>See how drug resistance varies across the world</span>
-                        </ListItemText>
-                    </ObsListItem>
-                    <ObsListItem href="genes.html">
-                        <ListItemIcon><Icon class="icon" name='docimage:icons/big/gene.svg' size="2x"/></ListItemIcon>
-                        <ListItemText>
-                            <span>Resistance genes</span>
-                            <span>Explore the genetic variants causing drug resistance</span>
-                        </ListItemText>
-                    </ObsListItem>
+                            <ObsListItem href="pf60/drugs.html">
+                                <ListItemIcon>
+                                    <Icon class="icon" name='docimage:icons/big/drug.svg' size="2x"/>
+                                </ListItemIcon>
+                                <ListItemText>
+                                    <span>Anti-malarial drugs</span>
+                                    <span>Compare resistance across drugs</span>
+                                </ListItemText>
+                            </ObsListItem>
+                            <ObsListItem href="pf60/regions.html">
+                                <ListItemIcon>
+                                    <Icon class="icon" name='docimage:icons/big/geography.svg' size="2x"/>
+                                </ListItemIcon>
+                                <ListItemText>
+                                    <span>Geographical regions</span>
+                                    <span>See how drug resistance varies across the world</span>
+                                </ListItemText>
+                            </ObsListItem>
+                            <ObsListItem href="pf60/genes.html">
+                                <ListItemIcon>
+                                    <Icon class="icon" name='docimage:icons/big/gene.svg' size="2x"/>
+                                </ListItemIcon>
+                                <ListItemText>
+                                    <span>Resistance genes</span>
+                                    <span>Explore the genetic variants causing drug resistance</span>
+                                </ListItemText>
+                            </ObsListItem>
+                            <CustomButton>
+                                <Anchor>
+                                    <ListItem button="true">
+                                        <ListItemIcon>
+                                            <Icon name="docimage:icons/map.svg" size="2x"/>
+                                        </ListItemIcon>
+                                        <ListItemText>
+                                            <div>View resistance map</div>
+                                            <span>Visualise and explore global drug resistance</span>
+                                        </ListItemText>
+                                    </ListItem>
+                                </Anchor>
+                                <Content>
+                                    <ResistanceMap drug="sites"/>
+                                </Content>
+                            </CustomButton>
                         </List>
                     </CardContent>
                 </Card>
@@ -132,29 +169,24 @@
                         </Card>
                 -->
 
-                <h2 class="home-header">Data</h2>
+                <h2 class="home-header">
+                    <DocLink href="data.html">Data</DocLink>
+                </h2>
                 <Card>
                     <CardContent>
-                        <Typography class="home-headline" variant="headline">  MalariaGEN P.f. 6.0 release </Typography>
-                        <Typography variant="subheading" color="textSecondary" paragraph="true">Data on genetic variation from whole-genome sequencing of <QueryResult table="pf_samples"/> P. falciparum samples from <QueryResult table="sites"/> study sites in <QueryResult table="countries"/> countries.</Typography>
+                        <Typography class="home-headline" variant="headline"> MalariaGEN <em>P.f.</em> 6.0 release
+                        </Typography>
+                        <Typography variant="subheading" color="textSecondary" paragraph="true">Data on genetic
+                            variation from whole-genome sequencing of
+                            <QueryResult table="pf_samples"/>
+                            P. falciparum samples from
+                            <QueryResult table="pf_sites"/>
+                            study sites in
+                            <QueryResult table="countries"/>
+                            countries.
+                        </Typography>
 
                         <List>
-                            <CustomButton>
-                                <Anchor>
-                                    <ListItem button="true">
-                                        <ListItemIcon>
-                                            <Icon name="docimage:icons/map.svg" size="2x"/>
-                                        </ListItemIcon>
-                                        <ListItemText>
-                                            <div>View resistance map</div>
-                                            <span>Visualise and explore global drug resistance</span>
-                                        </ListItemText>
-                                    </ListItem>
-                                </Anchor>
-                                <Content>
-                                    <ResistanceMap drug="sites"/>
-                                </Content>
-                            </CustomButton>
                             <CustomButton>
                                 <Anchor>
                                     <ListItem button="true">
@@ -185,7 +217,7 @@
                                     </ListItem>
                                 </Anchor>
                                 <Content>
-                                    <DataTableWithActions table="variants"/>
+                                    <DataTableWithActions table="pf_variants"/>
                                 </Content>
                             </CustomButton>
                             <CustomButton>
@@ -202,17 +234,17 @@
                                 </Anchor>
                                 <Content>
                                     <GenomeBrowserWithActions>
-                                        <PerRowIndicatorChannel table="variants"/>
-                                        <NumericalTrackGroupChannel table="variants" autoYScale="true">
-                                            <NumericalSummaryTrack table="variants" track="fst_global"/>
+                                        <PerRowIndicatorChannel table="pf_variants"/>
+                                        <NumericalTrackGroupChannel table="pf_variants" autoYScale="true">
+                                            <NumericalSummaryTrack table="pf_variants" track="fst_global"/>
                                         </NumericalTrackGroupChannel>
-                                        <NumericalTrackGroupChannel table="variants" autoYScale="true">
-                                            <NumericalSummaryTrack table="variants" track="fst_WAF"/>
-                                            <NumericalSummaryTrack table="variants" track="fst_EAF"/>
-                                            <NumericalSummaryTrack table="variants" track="fst_SAS"/>
-                                            <NumericalSummaryTrack table="variants" track="fst_WSEA"/>
-                                            <NumericalSummaryTrack table="variants" track="fst_ESEA"/>
-                                            <NumericalSummaryTrack table="variants" track="fst_OCE"/>
+                                        <NumericalTrackGroupChannel table="pf_variants" autoYScale="true">
+                                            <NumericalSummaryTrack table="pf_variants" track="fst_WAF"/>
+                                            <NumericalSummaryTrack table="pf_variants" track="fst_EAF"/>
+                                            <NumericalSummaryTrack table="pf_variants" track="fst_SAS"/>
+                                            <NumericalSummaryTrack table="pf_variants" track="fst_WSEA"/>
+                                            <NumericalSummaryTrack table="pf_variants" track="fst_ESEA"/>
+                                            <NumericalSummaryTrack table="pf_variants" track="fst_OCE"/>
                                         </NumericalTrackGroupChannel>
                                     </GenomeBrowserWithActions>
                                 </Content>
@@ -220,6 +252,49 @@
                         </List>
                     </CardContent>
                 </Card>
+                <h2 class="home-header">About</h2>
+                <Card>
+                    <CardContent>
+                        <Typography variant="headline">
+                            Learn more
+                        </Typography>
+                        <Typography variant="subheading" color="secondary">
+                            MalariaGEN Analytics is part of MalariaGEN
+                        </Typography>
+                        <Typography>
+                            <a target="_blank" href='https://www.malariagen.net/'>MalariaGEN</a> is investigating how
+                            genetic variation affects the biology and epidemiology of malaria and is using this
+                            knowledge to develop tools to control the disease.
+                        </Typography>
+                        <Typography>
+                            MalariaGEN Analytics uses genomic datasets generated by MalariaGEN and others to translate
+                            genomic data into actionable information for malaria control. A large and growing community
+                            of researchers from across the world have provided samples and analytical expertise to the
+                            project.
+                        </Typography>
+                        <List>
+                            <ObsListItem href="about.html">
+                                <ListItemIcon>
+                                    <Icon size="2x" class="icon" name='docimage:icons/about01.svg'/>
+                                </ListItemIcon>
+                                <ListItemText>
+                                    <span>About MalariaGEN Analytics and its data</span>
+                                    <span>Our collaborators, datasets, and team</span>
+                                </ListItemText>
+                            </ObsListItem>
+                            <ObsListItem href="technical.html">
+                                <ListItemIcon>
+                                    <Icon size="2x" class="icon" name='docimage:icons/publications-reports.svg'/>
+                                </ListItemIcon>
+                                <ListItemText>
+                                    <span>Scientific publications and technical reports</span>
+                                    <span>Specialised reports on how we generate the information in the Guidebooks</span>
+                                </ListItemText>
+                            </ObsListItem>
+                        </List>
+                    </CardContent>
+                </Card>
+
             </CardStack>
         </div>
     </div>

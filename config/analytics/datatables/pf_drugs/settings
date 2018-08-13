@@ -23,7 +23,6 @@ dataItemViews:              # Lists the custom views that should appear in the p
   name: Details
   content: |
     <PageTemplate bgurl="drugs.jpg">
-        <BreadCrumb a="pf" b="drugs"><span>{{name}}</span></BreadCrumb>
         <CardStack>
             <Card>
                 <CardContent>
@@ -43,23 +42,35 @@ dataItemViews:              # Lists the custom views that should appear in the p
                        <div class="auto-height-inner">
                         <Map>
                           <TileLayer/>
-                          <TableGeoJSONsLayer
-                            onClickBehaviour="tooltip"
-                            onClickComponent="DocPage"
-                            onClickComponentProps='{"drug_id":"{{drug_id}}","drug_name":"{{name}}","dynamicSize":"true", "path":"templates/regionCloroplethTooltip.html"}'
-                            table="pf_regions"
-                            geoJsonProperty="geojson"
-                            colourProperty="{{drug_id}}resistance"
-                            showLegend="false"
-                            geoJsonStrokeOpacity="0.7"
-                            geoJsonFillOpacity="0.7"
-                          />
+
+                       <TableData
+                        table="pf_sites"
+                        area='["sql_max",[25,["*", [1, "num_samples"]]]]'
+                        name="name"
+                        lat="lat"
+                        lng="lng"
+                        colour="ARTresistance"
+                        resistance="ARTresistance"
+                        primKey="site_id"
+                        num_samples="num_samples"
+                      >
+                        <AttributeToColour table="pf_sites" property="ARTresistance">
+                          <MarkerLayer>
+                            <MarkerLayerMarker>
+                              <DocTemplate hideEditButton path="templates/circleMapMarker.html"/>
+                            </MarkerLayerMarker>
+                            <MarkerLayerPopup>
+                              <DocTemplate hideEditButton path="templates/drugResistanceInRegionSiteSamplesOnClickClusterTooltip.html"/>
+                            </MarkerLayerPopup>
+                          </MarkerLayer>
+                        </AttributeToColour>
+                      </TableData>
                         </Map>
                       </div>
                     </div>
                   </div>
                   <DocTemplate path="templates/resistanceMapLegend.html"/>
-                  <DocTemplate path="templates/resistanceMapButton.html"/>
+                  <DocTemplate path="templates/resistanceMapButton.html" drug="{{drug_id}}" />
                 </CardContent>
             </Card>
             <Card>

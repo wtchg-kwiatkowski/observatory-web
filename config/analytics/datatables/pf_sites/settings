@@ -7,6 +7,7 @@ icon: fa-map-marker
 listView: true
 
 primKey: site_id
+cacheTableInConfig: true
 
 properties:
 - id: site_id
@@ -63,7 +64,6 @@ dataItemViews:              # Lists the custom views that should appear in the p
   name: Details
   content: |
     <PageTemplate bgurl="mountains.jpg">
-        <BreadCrumb a="pf" b="regions"><ItemLink table="pf_regions" primKey="{{pf_regions.region_id}}"><span class="obs-breadcrumb-component"><a>{{pf_regions.name}}</a></span></ItemLink><span>{{name}}</span></BreadCrumb>
         <CardStack>
             <Card>
                 <CardContent>
@@ -105,7 +105,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                               </TableMarkersLayer>
                               <TableMarkersLayer
                                 clusterMarkers="false"
-                                table="sites"
+                                table="pf_sites"
                                 query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}'
                                 childDataColumns='["ARTresistance", "CQresistance", "MQresistance", "PPQresistance", "PYRresistance", "SDXresistance"]'
                               >

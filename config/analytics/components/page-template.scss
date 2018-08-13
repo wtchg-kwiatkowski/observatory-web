@@ -64,8 +64,9 @@ $usual-text-size: 14px;
 }
 
 .obs-breadcrumb {
-  margin-bottom: 15px;
-  max-width: $card-max-width;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #f7f7f7;
   width: 100%;
   position: relative;
   .obs-breadcrumb-inner {
@@ -211,7 +212,7 @@ li {
 
 .header-filler {
   flex: 1;
-  max-width: calc(100% / 2 - 145px);
+  max-width: calc(100% / 2 - 115px);
 }
 
 .data-version {
@@ -247,7 +248,7 @@ li {
     display: none !important;
   }
   .header-filler {
-  max-width: calc(100% / 2 - 371px);
-}
+    max-width: calc(100% / 2 - 351px);
+  }
 
 }

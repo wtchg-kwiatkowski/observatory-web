@@ -93,12 +93,11 @@ let ResistanceMap = createReactClass({
                         min={0}
                         showLegend={false}
                         geoJsonStrokeOpacity={0.7}
-                        geoJsonFillOpacity={0.7}
-                        colourProperty={`${drug}resistance`}
+                        geoJsonFillOpacity={0.0}
                       />
                     </HideLayerAtZoom>
                     <HideLayerAtZoom above={2}>
-                      <TableMarkersLayer disableOnClickMarker table="sites" clusterMarkers={false}>
+                      <TableMarkersLayer disableOnClickMarker table="pf_sites" clusterMarkers={false}>
                         <svg style={{pointerEvents:"none", width: "4px", height: "4px", position: "absolute", left: "-2px", top: "-2px"}} viewBox="0 0 100 100">
                           <circle cx={50} cy={50} r={50} strokeWidth={0} fill="black" opacity={0.75} />
                         </svg>
@@ -111,17 +110,16 @@ let ResistanceMap = createReactClass({
                         onClickComponentProps={{drug_id:drug, dynamicSize: true, path: "templates/regionCloroplethTooltip.html"}}
                         table="pf_regions"
                         geoJsonProperty="geojson"
-                        colourProperty={`${drug}resistance`}
                         max={100}
                         min={0}
                         showLegend={false}
                         geoJsonStrokeOpacity={0.5}
-                        geoJsonFillOpacity={0.5}
+                        geoJsonFillOpacity={0}
                       />
                     </HideLayerAtZoom>
                     <HideLayerAtZoom below={2}>
                       <TableData
-                        table="sites"
+                        table="pf_sites"
                         area={["sql_max",[25,["*", [6, "num_samples"]]]]}
                         name="name"
                         lat="lat"
@@ -131,7 +129,7 @@ let ResistanceMap = createReactClass({
                         primKey="site_id"
                         num_samples="num_samples"
                       >
-                        <AttributeToColour table="sites" property={`${drug}resistance`}>
+                        <AttributeToColour table="pf_sites" property={`${drug}resistance`}>
                           <MarkerLayer>
                             <MarkerLayerMarker>
                               <DocTemplate hideEditButton path="templates/circleMapMarker.html"/>
@@ -147,7 +145,7 @@ let ResistanceMap = createReactClass({
                   :
                   <TableMarkersLayer
                     clickPrimaryKeyProperty="site_id"
-                    table="sites"
+                    table="pf_sites"
                     clusterMarkers={false}
                     onClickSingleBehaviour="tooltip"
                     onClickSingleComponent="ItemTemplate"

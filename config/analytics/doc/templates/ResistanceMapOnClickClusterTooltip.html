@@ -2,7 +2,7 @@
   'site_id'
   'name'
   'countries.name'
-  table='sites'
+  table='pf_sites'
   distinct='true'
   query='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"sites.lat","CompValue":"{{originalLat}}","isRoot":true,"Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"sites.lng","CompValue":"{{originalLng}}","isRoot":true,"Tpe":"="}],"Tpe":"AND"}'
 }}
@@ -27,6 +27,6 @@
     /></strong>.
 </div>
 <div style="margin-top: 10px">
-  <ItemLink table="sites" primKey="{{site_id}}"><Button color="primary" raised="true" label="more"/></ItemLink>
+  <ItemLink table="pf_sites" primKey="{{site_id}}"><Button color="primary" raised="true" label="more"/></ItemLink>
 </div>
 {{/query}}
