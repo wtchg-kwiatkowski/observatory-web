@@ -20,7 +20,7 @@ let SiteMarker = createReactClass({
       PYRresistance,
       SDXresistance
     } = this.props;
-    const colourFunc = propertyColour(this.config.tablesById['sites'].propertiesById['ARTresistance']);
+    const colourFunc = propertyColour(this.config.tablesById['pf_sites'].propertiesById['ARTresistance']);
     return (
       <svg className="site-marker">
         <g>

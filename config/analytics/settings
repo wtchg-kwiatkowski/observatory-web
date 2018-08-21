@@ -10,14 +10,14 @@ dataTables:
 - pf_features
 - pf_regions
 - pf_samples
-- sites
+- pf_sites
 - pf_featuretypes
 - pf_drugs
 - pf_resgenes
 - pf_genes
 - pf_drug_regions
 #- strains
-- variants
+- pf_variants
 
 topLevelComponent: Observatory
 
@@ -29,6 +29,46 @@ constants:
   mapRangeMax: red
   mapRangeZero: green
   mapNoData: "#F2EFE9"
+  sitemap:
+    - label: Home
+      component:
+        type: DocPage
+        props:
+          path: index.html
+    - label: Articles
+      component:
+        type: FeedIndex
+        props:
+          id: blog
+    - label: Analysis
+      component:
+        type: DocPage
+        props:
+          path: analysis.html
+    - label: Data
+      children:
+        - label: Pf 6.0 release
+          children:
+            - label: Sample Table
+              component:
+                type: DataTableWithActions
+                props:
+                  table: pf_samples
+                  columns: ["sample_id", "site_id", "country_id", "region_id", "run_accessions", "year", "site_lat", "site_lng", "CQresistant", "PYRresistant", "SDXresistant", "MQresistant", "ARTresistant", "PPQresistant"]
+            - label: Variant Table
+              component:
+                type: DataTableWithActions
+                props:
+                  table: pf_variants
+            - label: Genome Browser
+              component:
+                type: GenomeBrowserWithActions
+            - label: Resistance Map
+              component:
+                type: ResistanceMap
+                props:
+                  drug: sites
+
 
 feeds:
   test: https://malariagenanalytics.wordpress.com/feed
@@ -45,7 +85,7 @@ initialSessionState:
       InitialDocPage:
         type: DocPage
         props:
-          path: pf.html
+          path: analysis.html
       InitialOtherPage:
         type: DocPage
         props:

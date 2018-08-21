@@ -65,7 +65,6 @@ dataItemViews:              # Lists the custom views that should appear in the p
   name: Details
   content: |
     <PageTemplate bgurl="mountains.jpg">
-        <BreadCrumb a="pf" b="regions"><span>{{name}}</span></BreadCrumb>
         <CardStack>
             <Card>
                 <CardContent>
@@ -95,9 +94,9 @@ dataItemViews:              # Lists the custom views that should appear in the p
                                 <TableMarkersLayer
                                   clusterMarkers="false"
                                   showLegend="false"
-                                  clickTable="sites"
+                                  clickTable="pf_sites"
                                   clickPrimaryKeyProperty="site_id"
-                                  table="sites"
+                                  table="pf_sites"
                                   childDataColumns='["ARTresistance", "CQresistance", "MQresistance", "PPQresistance", "PYRresistance", "SDXresistance"]'
                                   query='{"whcClass":"comparefixed","isCompound":false,"ColName":"pf_region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}'
                                   onClickSingleBehaviour="tooltip"

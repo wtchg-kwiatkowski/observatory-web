@@ -49,7 +49,7 @@ let HotspotGrid = createReactClass({
     const drugs = this.config.cachedTables['pf_drugs'];
     const regions = this.config.cachedTables['pf_regions'];
     const regionsInOrder = regionsOrder !== undefined ? regionsOrder.map((region_id) => regions.filter((region) => region.region_id === region_id)[0]) : regions.sort(({region_id}, b) => region_id > b.region_id);
-    let colourFunc = propertyColour(this.config.tablesById['sites'].propertiesById['ARTresistance']);
+    let colourFunc = propertyColour(this.config.tablesById['pf_sites'].propertiesById['ARTresistance']);
     if (transpose) {
       return <div style={{overflowX: "auto", overflowY: "hidden",  position: 'relative'}}>
         <Table>

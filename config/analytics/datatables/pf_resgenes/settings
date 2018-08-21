@@ -5,6 +5,8 @@ primKey: gene_id
 
 icon: docimage:icons/gene01.svg
 
+cacheTableInConfig: true
+
 properties:
 - id: gene_id
   dataType: Text
@@ -31,7 +33,6 @@ dataItemViews:              # Lists the custom views that should appear in the p
   name: Details
   content: |
     <PageTemplate bgurl="mapgenome.jpg">
-        <BreadCrumb a="pf" b="genes"><span>{{name}}</span></BreadCrumb>
         <CardStack>
             <Card>
                 <CardContent>
@@ -102,7 +103,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                         {{#query 'chromid' 'fstart' 'fstop' table='annotation' query='{"whcClass":"comparefixed","isCompond":false,"isTrivial":false,"isRoot":true,"ColName":"fid","CompValue":"{{gene_id}}","Tpe":"="}'}}
                         <DocLink
                           button
-                          href="viewers/GeneticVariants.html"
+                          href="pf60/GeneticVariants.html"
                           chromid="{{chromid}}"
                           fstart="{{fstart}}"
                           fstop="{{fstop}}"

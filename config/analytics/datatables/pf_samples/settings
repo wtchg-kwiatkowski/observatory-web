@@ -21,7 +21,7 @@ properties:
   isCategorical: true
   dataType: Text
   relation:                         # This block defines a many-to-one foreign relation to a parent table
-    tableId: sites          # Datatable id of the parent table
+    tableId: pf_sites          # Datatable id of the parent table
     forwardName: is sampled from    # Display name of the relation from child to parent
     reverseName: contains           # Display name of the relation from parent to child
   

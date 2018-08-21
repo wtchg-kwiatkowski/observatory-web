@@ -35,7 +35,6 @@ dataItemViews:              # Lists the custom views that should appear in the p
   name: Details
   content: |
     <PageTemplate bgurl="mountains.jpg">
-        <BreadCrumb a="pf" b="regions"><ItemLink table="pf_regions" primKey="{{region_id}}"><span class="obs-breadcrumb-component"><a>{{pf_regions.name}}</a></span></ItemLink><span>{{pf_drugs.name}} in {{pf_regions.name}}</span></BreadCrumb>
       <CardStack>
         <Card>
           <CardContent>
@@ -96,7 +95,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                       <TableGeoJSONsLayer disableClick showLegend="false" table="pf_regions" geoJsonProperty="geojson" colour="{{constant 'mapPolygon'}}" labelProperty="name" query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}' />
                       <TableData
                               query='{"whcClass":"comparefixed","isCompound":false,"ColName":"pf_region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}'
-                              table="sites"
+                              table="pf_sites"
                               area='["sql_max",[200,["*", [6, "num_samples"]]]]'
                               name="name"
                               lat="lat"
@@ -106,7 +105,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                               primKey="site_id"
                               num_samples="num_samples"
                       >
-                        <AttributeToColour table="sites" property="{{drug_id}}resistance">
+                        <AttributeToColour table="pf_sites" property="{{drug_id}}resistance">
                           <MarkerLayer>
                             <MarkerLayerMarker>
                               <DocTemplate hideEditButton path="templates/circleMapMarker.html"/>
@@ -134,10 +133,10 @@ dataItemViews:              # Lists the custom views that should appear in the p
                       'alpha_3_code'
                       'countries.name'
                       'num_samples'
-                      'sites.pf_region_id'
+                      'pf_sites.pf_region_id'
                       table='countries'
-                      joins='[{"type": "INNER", "foreignTable": "sites", "foreignColumn": "sites.country_id", "column": "countries.country_id"}]'
-                      query='{"whcClass":"comparefixed","isCompound":false,"ColName":"sites.pf_region_id","CompValue":"{{region_id}}","Tpe":"="}'
+                      joins='[{"type": "INNER", "foreignTable": "pf_sites", "foreignColumn": "pf_sites.country_id", "column": "countries.country_id"}]'
+                      query='{"whcClass":"comparefixed","isCompound":false,"ColName":"pf_sites.pf_region_id","CompValue":"{{region_id}}","Tpe":"="}'
                       distinct='true'
                       orderBy='[["asc","countries.name"]]'
                     }}
@@ -145,12 +144,12 @@ dataItemViews:              # Lists the custom views that should appear in the p
                       {{#query
                         'site_id'
                         'name'
-                        table='sites'
-                        query='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"pf_region_id","CompValue":"{{sites.pf_region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"country_id","CompValue":"{{countries.country_id}}","Tpe":"="}],"Tpe":"AND"}'
+                        table='pf_sites'
+                        query='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"pf_region_id","CompValue":"{{pf_sites.pf_region_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"country_id","CompValue":"{{countries.country_id}}","Tpe":"="}],"Tpe":"AND"}'
                       }}
                         <ProportionBarChartRow
                           key="ProportionBarChartRow_{{site_id}}"
-                          rowTable="sites"
+                          rowTable="pf_sites"
                           rowPrimKeyValue="{{site_id}}"
                           rowLabel="{{name}}"
                           rowLabelStyle='{"paddingLeft": "8px"}'
