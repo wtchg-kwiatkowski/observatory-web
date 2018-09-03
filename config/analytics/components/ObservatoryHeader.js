@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import createReactClass from 'create-react-class';
 import {withStyles} from '@material-ui/core/styles';
+import _flattenDeep from 'lodash.flattendeep';
 
 // Mixins
 import FluxMixin from 'mixins/FluxMixin';
@@ -12,17 +13,13 @@ import PureRenderMixin from 'mixins/PureRenderMixin';
 import EmptyTab from 'containers/EmptyTab';
 import DatasetManagerActions from 'components/DatasetManagerActions';
 import Icon from 'ui/Icon';
-import DocPage from 'panoptes/DocPage';
-import PopupButton from 'panoptes/PopupButton';
 
 // Material UI
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import {ListItemIcon, ListItemText} from '@material-ui/core';
-import HomeIcon from '@material-ui/icons/Home';
 import SettingsIcon from '@material-ui/icons/Settings';
 import ListIcon from '@material-ui/icons/List';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -30,9 +27,6 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import {List, ListItem} from '@material-ui/core';
-import Collapse from '@material-ui/core/Collapse';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
 import {Tabs, Tab} from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -126,83 +120,7 @@ let ObservatoryHeader = createReactClass({
                 <img src={logo} onClick={this.handleCloseDrawer}/>
               </div>
               <List component="nav">
-                <ListItem button onClick={() => (this.handleCloseDrawer(), actions.session.tabSwitch('FirstTab'))}>
-                  <ListItemIcon>
-                    <HomeIcon style={{color: iconColour}}/>
-                  </ListItemIcon>
-                  <ListItemText primary="Home"/>
-                </ListItem>
-                <ListItem button onClick={() => (this.handleCloseDrawer(), onTabChange(1))}>
-                  <ListItemIcon>
-                    <Icon className="icon" name="docimage:icons/guidebook.svg"/>
-                  </ListItemIcon>
-                  <ListItemText primary="Guidebooks"/>
-                  {guidebooksIsExpanded ? <ExpandLess
-                      onClick={(event) => (event.stopPropagation(), this.handleToggleExpand('guidebooksIsExpanded'))}/> :
-                    <ExpandMore
-                      onClick={(event) => (event.stopPropagation(), this.handleToggleExpand('guidebooksIsExpanded'))}/>}
-                </ListItem>
-                <Collapse in={guidebooksIsExpanded} timeout="auto" unmountOnExit>
-                  <List component="div" disablePadding>
-                    <ListItem button className={classes.nested}
-                              onClick={() => (this.handleCloseDrawer(), actions.session.tabOpen(<DocPage
-                                path="news.html"/>))}>
-                      <ListItemIcon>
-                        <Icon className="icon" name="docimage:icons/stories-news.svg"/>
-                      </ListItemIcon>
-                      <ListItemText primary="Articles"/>
-                    </ListItem>
-                  </List>
-                  <List component="div" disablePadding>
-                    <ListItem button className={classes.nested}
-                              onClick={() => (this.handleCloseDrawer(), actions.session.tabOpen(<DocPage
-                                path="pf.html"/>))}>
-                      <ListItemIcon>
-                        <Icon className="icon" name="docimage:icons/plasmodium-falciparum.svg"/>
-                      </ListItemIcon>
-                      <ListItemText primary="P. falciparum"/>
-                      {pfIsExpanded ? <ExpandLess
-                          onClick={(event) => (event.stopPropagation(), this.handleToggleExpand('pfIsExpanded'))}/> :
-                        <ExpandMore
-                          onClick={(event) => (event.stopPropagation(), this.handleToggleExpand('pfIsExpanded'))}/>}
-                    </ListItem>
-                  </List>
-                  <Collapse in={pfIsExpanded} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                      <ListItem button className={classes.nested2}
-                                onClick={() => (this.handleCloseDrawer(), actions.session.tabOpen(<DocPage
-                                  path="regions.html"/>))}>
-                        <ListItemIcon>
-                          <Icon className="icon" name="docimage:icons/map.svg"/>
-                        </ListItemIcon>
-                        <ListItemText inset primary="Regions"/>
-                      </ListItem>
-                      <ListItem button className={classes.nested2}
-                                onClick={() => (this.handleCloseDrawer(), actions.session.tabOpen(<DocPage
-                                  path="drugs.html"/>))}>
-                        <ListItemIcon>
-                          <Icon className="icon" name="docimage:icons/drug01.svg"/>
-                        </ListItemIcon>
-                        <ListItemText inset primary="Drugs"/>
-                      </ListItem>
-                      <ListItem button className={classes.nested2}
-                                onClick={() => (this.handleCloseDrawer(), actions.session.tabOpen(<DocPage
-                                  path="genes.html"/>))}>
-                        <ListItemIcon>
-                          <Icon className="icon" name="docimage:icons/gene01.svg"/>
-                        </ListItemIcon>
-                        <ListItemText inset primary="Genes"/>
-                      </ListItem>
-                    </List>
-                  </Collapse>
-                </Collapse>
-                <ListItem button onClick={() => (this.handleCloseDrawer(), actions.session.tabOpen(<DocPage
-                  path="about.html"/>))}>
-                  <ListItemIcon>
-                    <Icon className="icon" name="docimage:icons/table01.svg"/>
-                  </ListItemIcon>
-                  <ListItemText inset primary="Data"/>
-                </ListItem>
+                <HamburgerContents onClose={this.handleCloseDrawer}/>
                 {this.config.user.isManager ?
                   [
                     <Divider key="Divider1"/>,
@@ -355,20 +273,78 @@ let HorizontalSiteNav = createReactClass({
   render() {
     const {sitemap} = this.config.constants;
 
-    let recurse = (tree, type) => {
-      return tree.map((branch, i) => {
-      if (branch.children) {
-        return <MenuListComposition key={i} type={type} label={branch.label}>
-          {recurse(branch.children, 'menuitem')}
-        </MenuListComposition>
-      } else {
-        return (type !== 'button' ? <MenuItem key={i} onClick={() => this.getFlux().actions.session.tabOpen(React.createElement(branch.component.type, branch.component.props))}>{branch.label}</MenuItem> :
-          <Button key={i} onClick={() => this.getFlux().actions.session.tabOpen(React.createElement(branch.component.type, branch.component.props))}>{branch.label}</Button>)
-      }
-      })
-    };
+    return sitemap.map((branch, i) => {
+        if (branch.children) {
+          return <MenuListComposition key={i}
+                                      type={'button'}
+                                      label={branch.label}>
+            {_flattenDeep(branch.children.map((option, j) => {
+                return  [<MenuItem key={j}
+                                 onClick={() => this.getFlux().actions.session.tabOpen(React.createElement(option.component.type, option.component.props))}>
+                  {option.icon ? <ListItemIcon>
+                    <Icon className="icon" name={option.icon}/>
+                  </ListItemIcon> : null}
+                  <ListItemText primary={option.label} />
+                </MenuItem>,
+                option.children.map((subOption, k) => <MenuItem key={j+k}
+                                                                style={{paddingLeft: '40px'}}
+                                                                onClick={() => this.getFlux().actions.session.tabOpen(React.createElement(subOption.component.type, subOption.component.props))}>
+                  {subOption.icon ? <ListItemIcon>
+                    <Icon className="icon" name={subOption.icon}/>
+                  </ListItemIcon> : null}
+                  <ListItemText primary={subOption.label} />
+                </MenuItem>)
+                ];
+              }))}
+          </MenuListComposition>;
+        } else {
+          return <Button key={i} onClick={() => this.getFlux().actions.session.tabOpen(React.createElement(branch.component.type, branch.component.props))}>{branch.label}</Button>;
+        }
+    })
+  }
+});
 
-    return recurse(sitemap, 'button');
+let HamburgerContents = createReactClass({
+  displayName: 'HamburgerContents',
+
+  mixins: [
+    PureRenderMixin,
+    FluxMixin,
+    ConfigMixin,
+  ],
+
+  render() {
+    const {sitemap} = this.config.constants;
+    const {onClose} = this.props;
+
+    return _flattenDeep(sitemap.map((branch, i) => {
+        return [<MenuItem key={i}
+                         onClick={() => (onClose(), this.getFlux().actions.session.tabOpen(React.createElement(branch.component.type, branch.component.props)))}>
+          {branch.icon ? <ListItemIcon>
+            <Icon className="icon" name={branch.icon}/>
+          </ListItemIcon> : null}
+          <ListItemText primary={branch.label} />
+        </MenuItem>,
+          (branch.children || []).map((option, j) => {
+            return  [<MenuItem key={j}
+                               style={{paddingLeft: '40px'}}
+                               onClick={() => (onClose(),this.getFlux().actions.session.tabOpen(React.createElement(option.component.type, option.component.props)))}>
+              {option.icon ? <ListItemIcon>
+                <Icon className="icon" name={option.icon}/>
+              </ListItemIcon> : null}
+              <ListItemText primary={option.label} />
+            </MenuItem>,
+              option.children.map((subOption, k) => <MenuItem key={j+k}
+                                                              style={{paddingLeft: '60px'}}
+                                                              onClick={() => (onClose(),this.getFlux().actions.session.tabOpen(React.createElement(subOption.component.type, subOption.component.props)))}>
+                {subOption.icon ? <ListItemIcon>
+                  <Icon className="icon" name={subOption.icon}/>
+                </ListItemIcon> : null}
+                <ListItemText primary={subOption.label} />
+              </MenuItem>)
+            ];
+          })];
+    }))
   }
 });
 

@@ -36,38 +36,80 @@ constants:
         props:
           path: index.html
     - label: Articles
+      icon: docimage:icons/stories-news.svg
       component:
         type: FeedIndex
         props:
           id: blog
     - label: Analysis
+      icon: docimage:icons/guidebook.svg
       component:
         type: DocPage
         props:
           path: analysis.html
+      children:
+        - label: Drug resistance in P.f.
+          icon: docimage:icons/plasmodium-falciparum.svg
+          component:
+            type: DocPage
+            props:
+              path: analysis.html
+          children:
+            - label: Anti-malarial drugs
+              icon: docimage:icons/big/drug.svg
+              component:
+                type: DocPage
+                props:
+                  path: pf60/drugs.html
+            - label: Geographical regions
+              icon: docimage:icons/big/geography.svg
+              component:
+                type: DocPage
+                props:
+                  path: pf60/regions.html
+            - label: Resistance genes
+              icon: docimage:icons/big/gene.svg
+              component:
+                type: DocPage
+                props:
+                  path: pf60/genes.html
+            - label: Resistance map
+              icon: docimage:icons/map.svg
+              component:
+                type: ResistanceMap
+                props:
+                  drug: sites
     - label: Data
+      component:
+        type: DocPage
+        props:
+          path: data.html
+      icon: docimage:icons/table01.svg
       children:
         - label: Pf 6.0 release
+          icon: docimage:icons/plasmodium-falciparum.svg
+          component:
+            type: DocPage
+            props:
+              path: data.html
           children:
             - label: Sample Table
+              icon: docimage:icons/table01.svg
               component:
                 type: DataTableWithActions
                 props:
                   table: pf_samples
                   columns: ["sample_id", "site_id", "country_id", "region_id", "run_accessions", "year", "site_lat", "site_lng", "CQresistant", "PYRresistant", "SDXresistant", "MQresistant", "ARTresistant", "PPQresistant"]
             - label: Variant Table
+              icon: docimage:icons/table01.svg
               component:
                 type: DataTableWithActions
                 props:
                   table: pf_variants
             - label: Genome Browser
+              icon: docimage:icons/gene01.svg
               component:
                 type: GenomeBrowserWithActions
-            - label: Resistance Map
-              component:
-                type: ResistanceMap
-                props:
-                  drug: sites
 
 
 feeds:
