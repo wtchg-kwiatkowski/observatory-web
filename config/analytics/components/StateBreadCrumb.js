@@ -143,7 +143,7 @@ let StateBreadCrumb = createReactClass({
             pf60DataRelease,
             ['Samples Table', null],
           ],
-          variants: [
+          pf_variants: [
             data,
             pf60DataRelease,
             ['Variants Table', null],
@@ -156,7 +156,7 @@ let StateBreadCrumb = createReactClass({
           ['Samples Table', <DataTableWithActions table={table} />],
           ['Pivot', null],
         ],
-        variants: [
+        pf_variants: [
           data,
           pf60DataRelease,
           ['Variants Table', <DataTableWithActions table={table} />],
@@ -170,7 +170,7 @@ let StateBreadCrumb = createReactClass({
           ['Samples Table', <DataTableWithActions table={table} />],
           ['Plot', null],
         ],
-        variants: [
+        pf_variants: [
           data,
           pf60DataRelease,
           ['Variants Table', <DataTableWithActions table={table} />],
