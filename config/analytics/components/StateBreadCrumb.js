@@ -37,7 +37,7 @@ let StateBreadCrumb = createReactClass({
     let {type, props} = component.toJS();
 
     const analysis = ['Analysis', <DocPage path="analysis.html"/>];
-    const pf60Resistance = ['Resistance in P.f', <DocPage path="pf60/analysis.html"/>];
+    const pf60Resistance = ['Resistance in P.f', <DocPage path="analysis.html"/>];
     const genes = ['Genes', <DocPage path="pf60/genes.html"/>];
     const regions = ['Geographic Regions', <DocPage path="pf60/regions.html"/>];
     const drugs = ['Drugs', <DocPage path="pf60/drugs.html"/>];
