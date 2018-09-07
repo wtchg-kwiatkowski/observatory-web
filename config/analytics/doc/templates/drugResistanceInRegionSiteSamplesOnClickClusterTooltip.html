@@ -1,5 +1,9 @@
 <div>
-  <div>{{round resistance}}% {{drug}} resistance in {{name}}</div>
+  {{#gt resistance -1}}
+    <div>{{round resistance}}% {{drug}} resistance in {{name}}</div>
+  {{else}}
+    <div> No data for {{drug}} in {{name}}</div>
+  {{/gt}}
   <div style="margin-top: 10px">
     <ItemLink table="pf_sites" primKey="{{primKey}}"><Button color="primary" raised="true" label="Site info"/></ItemLink>
   </div>
