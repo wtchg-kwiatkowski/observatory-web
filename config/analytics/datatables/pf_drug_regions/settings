@@ -5,6 +5,8 @@ primKey: drug_region_id
 
 listView: True
 
+isHidden: True
+
 properties:
 - id: drug_region_id
   dataType: Text

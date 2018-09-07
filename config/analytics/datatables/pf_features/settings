@@ -10,3 +10,5 @@ properties:
 - id: name
   dataType: Text
 primKey: feature_id
+
+isHidden: True

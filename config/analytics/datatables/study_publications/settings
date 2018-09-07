@@ -1,6 +1,9 @@
 nameSingle: publication
 namePlural: publications
 primKey: pmid
+
+isHidden: True
+
 properties:
 - id: study
   dataType: Text

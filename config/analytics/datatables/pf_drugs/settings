@@ -7,6 +7,8 @@ primKey: drug_id
 
 icon: docimage:icons/drug02.svg
 
+isHidden: True
+
 properties:
 - id: drug_id
   dataType: Text

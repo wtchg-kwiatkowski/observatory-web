@@ -1,6 +1,9 @@
 nameSingle: person
 namePlural: people
 primKey: uid
+
+isHidden: True
+
 properties:
 - id: study
   dataType: Text

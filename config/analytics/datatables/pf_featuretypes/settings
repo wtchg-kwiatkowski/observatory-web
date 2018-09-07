@@ -15,3 +15,5 @@ properties:
   dataType: Text
   
 primKey: AutoKey
+
+isHidden: True
