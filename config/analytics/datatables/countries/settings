@@ -16,24 +16,31 @@ itemTitle: "{{#isnt country_id 'Lab'}}<img style='width:20px; padding-right:5px'
 properties: 
 - id: country_id
   dataType: Text
+  name: ID
 
 - id: lat
   dataType: Double
+  name: Latitude
 - id: lng
   dataType: Double
+  name: Longitude
 
 - id: num_samples
   dataType: Double
+  name: Num Samples
 
 - id: name
   dataType: Text
+  name: Name
 
 - id: alpha_3_code
   dataType: Text
+  name: ISO Code
 
 - id: geojson
   dataType: Text
   isCategorical: False
+  showInTable: False
 
 - id: CQresistance, PYRresistance, SDXresistance, MQresistance, ARTresistance, PPQresistance
   dataType: Float
