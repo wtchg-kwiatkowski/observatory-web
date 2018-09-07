@@ -49,16 +49,6 @@ let ResistanceMap = createReactClass({
         <Card>
           <CardContent>
             <CardHeader title={<span>Global resistance status</span>}/>
-            {drug !== 'sites' ?
-              <Typography >
-                Regions are shaded by resistance status.
-                The size of the circle indicates the number of samples collected for that site.
-              </Typography>
-              :
-              <Typography >
-                Each marker is a site, with the coloured circles representing the resistance status of 6 key antimalarial drugs. Click a site for more details.
-              </Typography>
-            }
             <FormControl component="fieldset">
               <RadioGroup
                 aria-label="drug"
@@ -77,33 +67,20 @@ let ResistanceMap = createReactClass({
                 <FormControlLabel value="SDX" control={<Radio/>} label="Sulfadoxine"/>
               </RadioGroup>
             </FormControl>
+            {drug !== 'sites' ?
+              <Typography >
+                The area of the circle is proportional to the number of samples collected for that site, the colour indicates resistance status.
+              </Typography>
+              :
+              <Typography >
+                Each marker is a site, with the coloured circles representing the resistance status of 6 key antimalarial drugs. Click a site for more details.
+              </Typography>
+            }
             <div style={{width: '80vw', height: '60vh'}}>
               <Map>
                 <TileLayer/>
                 {drug !== 'sites' ?
                   <FeatureGroup>
-                    <HideLayerAtZoom above={2}>
-                      <TableGeoJSONsLayer
-                        onClickBehaviour="tooltip"
-                        onClickComponent="DocTemplate"
-                        onClickComponentProps={{drug_id:drug, dynamicSize: true, path: "templates/regionCloroplethTooltip.html"}}
-                        table="pf_regions"
-                        geoJsonProperty="geojson"
-                        max={100}
-                        min={0}
-                        showLegend={false}
-                        geoJsonStrokeOpacity={0.7}
-                        geoJsonFillOpacity={0.0}
-                      />
-                    </HideLayerAtZoom>
-                    <HideLayerAtZoom above={2}>
-                      <TableMarkersLayer disableOnClickMarker table="pf_sites" clusterMarkers={false}>
-                        <svg style={{pointerEvents:"none", width: "4px", height: "4px", position: "absolute", left: "-2px", top: "-2px"}} viewBox="0 0 100 100">
-                          <circle cx={50} cy={50} r={50} strokeWidth={0} fill="black" opacity={0.75} />
-                        </svg>
-                      </TableMarkersLayer>
-                    </HideLayerAtZoom>
-                    <HideLayerAtZoom below={2}>
                       <TableGeoJSONsLayer
                         onClickBehaviour="tooltip"
                         onClickComponent="DocTemplate"
@@ -116,8 +93,6 @@ let ResistanceMap = createReactClass({
                         geoJsonStrokeOpacity={0.5}
                         geoJsonFillOpacity={0}
                       />
-                    </HideLayerAtZoom>
-                    <HideLayerAtZoom below={2}>
                       <TableData
                         table="pf_sites"
                         area={["sql_max",[25,["*", [6, "num_samples"]]]]}
@@ -140,7 +115,6 @@ let ResistanceMap = createReactClass({
                           </MarkerLayer>
                         </AttributeToColour>
                       </TableData>
-                    </HideLayerAtZoom>
                   </FeatureGroup>
                   :
                   <TableMarkersLayer
