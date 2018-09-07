@@ -110,7 +110,7 @@ let ResistanceMap = createReactClass({
                               <DocTemplate hideEditButton path="templates/circleMapMarker.html"/>
                             </MarkerLayerMarker>
                             <MarkerLayerPopup>
-                              <DocTemplate hideEditButton path="templates/drugResistanceInRegionSiteSamplesOnClickClusterTooltip.html"/>
+                              <DocTemplate hideEditButton drug={drug} path="templates/drugResistanceInRegionSiteSamplesOnClickClusterTooltip.html"/>
                             </MarkerLayerPopup>
                           </MarkerLayer>
                         </AttributeToColour>
