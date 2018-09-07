@@ -7,6 +7,8 @@ icon: docimage:icons/gene01.svg
 
 cacheTableInConfig: true
 
+isHidden: True
+
 properties:
 - id: gene_id
   dataType: Text
