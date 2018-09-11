@@ -22,7 +22,7 @@ $usual-text-size: 14px;
 .obs-page-container {
   background-color: #F7F7F7;
   position: relative;
-  min-height: 100%;
+  height: 100%;
   div.paragraph, p {
     font-size: $usual-text-size;
     margin-bottom: $usual-text-size;
@@ -175,6 +175,12 @@ li {
   padding-top: 15px;
 }
 
+.home-subheader {
+  font-weight: normal;
+  margin-top: -12px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
 .home-header-first {
   padding-top: inherit;
 }
@@ -212,7 +218,7 @@ li {
 
 .header-filler {
   flex: 1;
-  max-width: calc(100% / 2 - 115px);
+  max-width: calc(100% / 2 - 151px);
 }
 
 .data-version {
@@ -248,7 +254,7 @@ li {
     display: none !important;
   }
   .header-filler {
-    max-width: calc(100% / 2 - 351px);
+    max-width: calc(100% / 2 - 429px);
   }
 
 }

@@ -181,9 +181,6 @@ let ObservatoryHeader = createReactClass({
               </div>
             </div>
           </div>
-          <div className="data-version">
-            data&#160;version<br/>{version}&#160;beta
-          </div>
         </Toolbar>
       </AppBar>
     );
