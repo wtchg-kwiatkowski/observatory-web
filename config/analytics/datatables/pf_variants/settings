@@ -178,25 +178,28 @@ dataItemViews:              # Lists the custom views that should appear in the p
                        Chromosome {{chrom}} at {{pos}}
                     </Typography>
                     <Typography >
-                        {{#query "fname" "ftype" table="annotation" query='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"fstart","CompValue":"{{pos}}","Tpe":"<="},{"whcClass":"comparefixed","isCompound":false,"ColName":"fstop","CompValue":"{{pos}}","Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"chromid","CompValue":"{{chrom}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"ftype","CompValue":"gene","Tpe":"="}],"Tpe":"AND"}'}}
-                            This variant is in the {{fname}} gene
+                        {{#query "fid" "chromid" "fstart" "fstop" "fname" "ftype" table="annotation" query='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"fstart","CompValue":"{{pos}}","Tpe":"<="},{"whcClass":"comparefixed","isCompound":false,"ColName":"fstop","CompValue":"{{pos}}","Tpe":">="},{"whcClass":"comparefixed","isCompound":false,"ColName":"chromid","CompValue":"{{chrom}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"ftype","CompValue":"gene","Tpe":"="}],"Tpe":"AND"}'}}
+                            This variant is in the <DocLink path="templates/genesOnClickTab.html" gene_name="{{#eq fname ""}}{{fid}}{{else}}{{fname}}{{/eq}}" chrom="{{chromid}}" start="{{fstart}}" end="{{fstop}}"> {{#eq fname ""}}{{fid}}{{else}}{{fname}}{{/eq}} gene </DocLink>
                         {{else}}
                             This variant is not in a gene
                         {{/query}}
                     </Typography>
                     <Typography >
-                        If this is a variant of note a section here will discuss it, linking to other areas.
-                    </Typography>
-                    <Typography >
-                    A map of the variants geographic spread (WIP)
+                    Global allele freqencies:
                     <div class="auto-half-height-container">
                        <div class="auto-height-inner">
-                           <Map>
+                           <Map zoom=1>
                                <TileLayer/>
+                               <FeatureGroup>
+                                   {{#query "region_id" "name" "lat" "lng" table="pf_regions"}}
+                                     <ComponentMarker position='{"lat": {{lat}}, "lng": {{lng}} }'>
+                                        <PieChart name="{{name}}" radius="20" chartData='[{"name": "Alternative allele", "value":{{lookup .. (concat 'af_' region_id)}}, "color":"#d62728"},{"name": "Reference allele", "value":{{subtract 1 (lookup .. (concat 'af_' region_id))}}, "color":"#1f77b4"}]'/>
+                                     </ComponentMarker>
+                                   {{/query}}
+                               </FeatureGroup>
                            </Map>
                         </div>
                     </div>
                     </Typography>
-
         </CardStack>
     </PageTemplate>
