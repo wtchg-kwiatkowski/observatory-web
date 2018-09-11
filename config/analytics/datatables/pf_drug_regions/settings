@@ -74,8 +74,10 @@ dataItemViews:              # Lists the custom views that should appear in the p
                 <div>{{{eval text}}}</div>
               {{/if}}
             </Typography>
-            <Typography component="div" className="paragraph" align="center">
+            <Typography component="div" align="center">
               <ItemLink button table="pf_drugs" primKey="{{drug_id}}"> DRUG: {{pf_drugs.name}}</ItemLink>
+
+              <span style="padding-left:20px;"><ItemLink button table="pf_regions" primKey="{{region_id}}"> REGION: {{pf_regions.name}}</ItemLink></span>
             </Typography>
 
 
