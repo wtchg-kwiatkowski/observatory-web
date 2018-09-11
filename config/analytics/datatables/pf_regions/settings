@@ -1,7 +1,7 @@
 nameSingle: region
 namePlural: regions
 
-icon: fa-globe
+icon: docimage:icons/big/geography.svg
 
 primKey: region_id
 isPositionOnGenome: false
