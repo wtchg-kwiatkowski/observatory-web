@@ -33,10 +33,15 @@ let ResistanceMap = createReactClass({
   propTypes: {
     drug: PropTypes.string,
     setProps: PropTypes.func.isRequired,
+    resetScroll: PropTypes.func
   },
 
   handleChange(e, drug) {
     this.props.setProps({drug});
+  },
+
+  componentWillMount() {
+    if (this.props.resetScroll) this.props.resetScroll();
   },
 
   render() {
