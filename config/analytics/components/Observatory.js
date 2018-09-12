@@ -115,6 +115,10 @@ let Observatory = createReactClass({
     return (this.isDocPage(component) && !this.isViewerDocPage(component));
   },
 
+  resetScroll() {
+    if (this.scrollContainer) this.scrollContainer.scrollTop = 0;
+  },
+
   render() {
     let actions = this.getFlux().actions.session;
     let {tabs, modal, components} = this.state;
@@ -139,11 +143,11 @@ let Observatory = createReactClass({
                 components={components}
                 onTabChange={this.handleChangeTab}
               />
-                <div className="body scroll-within">
+                <div ref={(node) => {this.scrollContainer = node; console.log(node)}} className="body scroll-within">
                   <div style={{position: 'relative', height: '100%'}}>
                     <div className="vertical stack">
                       <StateBreadCrumb compId={tabs.selectedTab}/>
-                      <div className="grow"><SessionComponent compId={tabs.selectedTab} /></div>
+                      <div className="grow"><SessionComponent resetScroll={this.resetScroll} compId={tabs.selectedTab} /></div>
                     </div>
                   </div>
                 </div>
