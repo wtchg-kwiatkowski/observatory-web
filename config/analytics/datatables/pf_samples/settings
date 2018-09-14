@@ -14,6 +14,7 @@ properties:
   dataType: Text
   name: Sample ID                 
   dataType: Text
+  hideLink: True
   search: StartPattern
 
 - id: site_id
@@ -28,6 +29,7 @@ properties:
 - id: country_id
   name: Country
   dataType: Text
+  hideLink: True
   relation:                         # This block defines a many-to-one foreign relation to a parent table
     tableId: countries         # Datatable id of the parent table
     forwardName: is sampled from    # Display name of the relation from child to parent
@@ -45,6 +47,7 @@ properties:
   name: Study
   description: Identifier of the study that contributed the samples
   dataType: Text
+  hideLink: True
   relation:                         # This block defines a many-to-one foreign relation to a parent table
     tableId: studies           # Data table id of the parent table
     forwardName: is contributed by  # Display name of the relation from child to parent

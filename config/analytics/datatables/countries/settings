@@ -5,6 +5,7 @@ description: Information about the countries where samples were collected     # 
 
 icon: fa-globe
 
+
 primKey: country_id
 quickFindFields: country_id, name
 sortDefault: name
