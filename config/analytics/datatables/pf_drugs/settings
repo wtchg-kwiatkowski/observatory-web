@@ -39,7 +39,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                           <ItemLink table="pf_resgenes" primKey="{{gene_id}}" button> Gene: {{name}} </ItemLink>
                       {{/each}}
                   </Typography>
-                  <div style="padding-top:10px;">
+                  <div style="padding-top:20px;">
                     <div class="auto-half-height-container">
                        <div class="auto-height-inner">
                         <Map>

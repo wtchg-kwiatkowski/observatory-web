@@ -76,22 +76,9 @@ dataItemViews:              # Lists the custom views that should appear in the p
             </Typography>
             <Typography component="div" align="center">
               <ItemLink button table="pf_drugs" primKey="{{drug_id}}"> DRUG: {{pf_drugs.name}}</ItemLink>
-
               <span style="padding-left:20px;"><ItemLink button table="pf_regions" primKey="{{region_id}}"> REGION: {{pf_regions.name}}</ItemLink></span>
             </Typography>
-
-
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent>
-              <Typography variant="headline">
-                  Resistance across sample sites
-              </Typography>
-              <Typography >
-                The size of the circle indicates the number of samples collected for that site (also shown).
-              </Typography>
-              <Typography component="div" style="margin-top: 10px;">
+              <Typography component="div" style="margin-top: 20px;">
                 <div class="auto-half-height-container">
                   <div class="auto-height-inner">
                     <Map>
@@ -125,6 +112,13 @@ dataItemViews:              # Lists the custom views that should appear in the p
                   </div>
                 </div>
                 <DocTemplate path="templates/resistanceMapLegend.html"/>
+              </Typography>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent>
+              <Typography variant="headline">
+                  Resistance across sample sites
               </Typography>
               <DocTemplate path="templates/proportionPlotTitle.html"/>
               <Typography component="div">
