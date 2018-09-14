@@ -39,9 +39,14 @@ dataItemViews:              # Lists the custom views that should appear in the p
                           <ItemLink table="pf_resgenes" primKey="{{gene_id}}" button> Gene: {{name}} </ItemLink>
                       {{/each}}
                   </Typography>
+
+                  <Typography>
+                  The area of the circle below is proportional to the total number of samples collected at a site.
+                  </Typography>
                   <div style="padding-top:20px;">
                     <div class="auto-half-height-container">
                        <div class="auto-height-inner">
+
                         <Map>
                           <TileLayer/>
 

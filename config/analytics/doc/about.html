@@ -5,7 +5,7 @@
         <Card>
             <CardContent>
                 <Typography variant="headline">
-                  What is MalariaGEN Analytics?
+                  About MalariaGEN Analytics
                 </Typography>
                 <Typography variant="body1">
                   MalariaGEN Analytics is a platform for visualising genomics-based analytics for malaria control. It is based on three core pillars:
@@ -26,19 +26,44 @@
                  </ListItemText>
                 </ObsListItem>
 
-                <Typography variant="subheading" color="secondary"> How it works                 </Typography>            <Typography >
+                <Typography variant="subheading" color="secondary"> How does MalariaGEN Analytics work?         </Typography>            <Typography >
                 We generate a number of different genetics-based metrics for each individual parasite, from presence/absence of particular alleles to, in the case of drug resistance muations, our assignment of a specific lineage, or independent origin, to each of these alleles.  MalariaGEN Analytics presents these metrics in an intuitive and informative way by aggregating information across sites, countries, and regions.                 
               </Typography>
               <Typography variant="subheading" color="secondary">
-              Who contributes samples and data to MalariaGEN Analytics?</Typography>
+              What data do we use?
+              </Typography>
+              
               <Typography component="p">
               MalariaGEN Analytics currently includes only those <big><QueryResult table="pf_samples"/></big> from the full <strong>MalariaGEN Pf6.0</strong> dataset that passed quality control.                  
               </Typography>
+
+
+              <Typography variant="subheading" color="secondary">
+              How do we get samples?
+              </Typography>
+
+
               <Typography >
-               The <strong>MalariaGEN Pf6.0</strong> dataset contains samples from many partners contributed since 2005 and forms the basis of the latest MalariaGEN community project data release.Information on sites, studies, and researchers is included within this website.                 
-               </Typography> 
-             
-                               
+              The <strong>MalariaGEN Pf6.0</strong> dataset contains samples collected by collaborators from the <a href="https://www.malariagen.net/"> MalariaGEN</a> network across the world. Information on sites, studies, and researchers is included within this website.
+              </Typography>
+
+
+              <Typography component="p">The majority of samples will have been taken as blood draws from people with malaria, from which parasite DNA will have been extracted. However, it is now also possible to extract enough DNA from dried blood spots collected on filter paper to sequence a parasite genome.
+              </Typography>
+
+              <Typography component="p"> In the near future, we'll be able to incorporate any available DNA sequence data into the datasets underlying MalariaGEN Analytics. Our vision is that researchers should be able to compare brand new sequences to our database to understand where new infections have come from and what drugs they're resistant to.
+              </Typography>
+
+              <Typography variant="subheading" color="secondary">
+              How do we sequence DNA?
+              </Typography>
+
+              <Typography component="p"> We use two technologies to generate genomic data. Wherever possible (depending on having enough DNA) we use whole-genome sequencing technology to read every base in the parasites genome. For samples sequenced at the <a href="http://www.sanger.ac.uk/"> Wellcome Sanger Institute</a> we use Illumina HiSeq sequencing machines to do this. </Typography>
+
+              <Typography component="p"> For samples with low quantity of DNA we concentrate on genotyping roughly 100 informative genetic markers using Illumina MiSeq amplicon sequencing.
+              </Typography>
+
+              <Typography component="p"> We then combine all available sequence data into a large united dataset on which we then run our analytics. </Typography>
 
             </CardContent>
         </Card>

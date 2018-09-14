@@ -54,6 +54,16 @@ let ResistanceMap = createReactClass({
         <Card>
           <CardContent>
             <CardHeader title={<span>Global resistance status</span>}/>
+            {drug !== 'sites' ?
+              <Typography >
+                Each marker represents a site with parasite genome data. The area of the circle is proportional to the total number of samples collected at that site. Click on a different drug or site for further details.
+              </Typography>
+              :
+              <Typography >
+                Each marker represents a site with parasite genome data. This summary shows the proportion of resistant parasites at six  antimalarial drugs. Click a drug or site for further details.
+              </Typography>
+            }
+
             <FormControl component="fieldset">
               <RadioGroup
                 aria-label="drug"
@@ -72,15 +82,7 @@ let ResistanceMap = createReactClass({
                 <FormControlLabel value="SDX" control={<Radio/>} label="Sulfadoxine"/>
               </RadioGroup>
             </FormControl>
-            {drug !== 'sites' ?
-              <Typography >
-                The area of the circle is proportional to the number of samples collected for that site, the colour indicates resistance status.
-              </Typography>
-              :
-              <Typography >
-                Each marker is a site, with the coloured circles representing the resistance status of 6 key antimalarial drugs. Click a site for more details.
-              </Typography>
-            }
+
             <div style={{width: '80vw', height: '60vh'}}>
               <Map>
                 <TileLayer/>
