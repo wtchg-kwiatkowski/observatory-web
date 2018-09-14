@@ -120,7 +120,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
             <Card>
                 <CardContent>
                     <Typography variant="headline">
-                    Predicted antimalarial drug resistance
+                    Predicted antimalarial drug resistance in {{name}}
                     </Typography>
 
                     <DocTemplate path="templates/proportionPlotTitle.html"/>
