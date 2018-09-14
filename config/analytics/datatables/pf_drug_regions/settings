@@ -78,6 +78,18 @@ dataItemViews:              # Lists the custom views that should appear in the p
               <ItemLink button table="pf_drugs" primKey="{{drug_id}}"> DRUG: {{pf_drugs.name}}</ItemLink>
               <span style="padding-left:20px;"><ItemLink button table="pf_regions" primKey="{{region_id}}"> REGION: {{pf_regions.name}}</ItemLink></span>
             </Typography>
+
+
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent>
+              <Typography variant="headline">
+                  Resistance across sample sites
+              </Typography>
+              <Typography >
+                The area of the circle below is proportional to the total number of samples collected at a site.
+              </Typography>
               <Typography component="div" style="margin-top: 20px;">
                 <div class="auto-half-height-container">
                   <div class="auto-height-inner">

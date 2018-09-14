@@ -115,6 +115,11 @@ dataItemViews:              # Lists the custom views that should appear in the p
                            </div>
                         </div>
                     </Typography>
+                    <div style="display: flex; flex-wrap: wrap; padding-top: 7px;">
+                      <div style="flex-basis: 128px;"><DocTemplate path="templates/resistanceMapKey.html"/></div>
+                      <div style="flex-basis: 310px; flex-grow: 1; min-width: 310px;"><DocTemplate path="templates/resistanceMapLegend.html"/></div>
+                    </div>
+                    <DocTemplate path="templates/resistanceMapButton.html"/>
                 </CardContent>
             </Card>
             <Card>
