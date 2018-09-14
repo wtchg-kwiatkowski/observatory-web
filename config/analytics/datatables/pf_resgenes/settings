@@ -54,37 +54,6 @@ dataItemViews:              # Lists the custom views that should appear in the p
 
                 </CardContent>
             </Card>
-            <Card>
-
-            </Card>
-            <Card>
-                <CardContent>
-                    <Typography variant="headline">
-                    Predicted {{lowercase pf_drugs.name}} resistance by region
-                    </Typography>
-                    <DocTemplate path="templates/proportionPlotTitle.html"/>
-                    <Typography component="div">
-                        <div style="padding-top: 20px">
-                          <ProportionBarChart
-                            rowTable="pf_regions"
-                            rowTableOrder='[["asc", "region_id"]]'
-                            proportionTable="pf_samples"
-                            numeratorQuery='{"whcClass":"comparefixed","isCompound":false,"ColName":"{{pf_drugs.drug_id}}resistant","CompValue":"resistant","Tpe":"="}'
-                            denominatorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"{{pf_drugs.drug_id}}resistant","CompValue":"resistant","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{pf_drugs.drug_id}}resistant","CompValue":"sensitive","Tpe":"="}],"Tpe":"OR"}'
-                            remainderTextColour="inherit"
-                            numberOfTickLabels="5"
-                            onClickBehaviour="ItemLink"
-                            onClickTable="pf_drug_regions"
-                            onClickPrimKey="{{pf_drugs.drug_id}}_{}"
-                            colourProperty="pf_regions.{{pf_drugs.drug_id}}resistance"
-                            rawNumerator="true"
-                          />
-                        </div>
-                    </Typography>
-                    <DocTemplate path="templates/proportionPlotLegend.html"/>
-                </CardContent>
-            </Card>
-
 
             <Card>
                 <CardContent>
@@ -119,6 +88,33 @@ dataItemViews:              # Lists the custom views that should appear in the p
                         </DocLink>
                         {{/query}}
                     </Typography>
+                </CardContent>
+            </Card>
+            <Card>
+                <CardContent>
+                    <Typography variant="headline">
+                    Predicted {{lowercase pf_drugs.name}} resistance by region
+                    </Typography>
+                    <DocTemplate path="templates/proportionPlotTitle.html"/>
+                    <Typography component="div">
+                        <div style="padding-top: 20px">
+                          <ProportionBarChart
+                            rowTable="pf_regions"
+                            rowTableOrder='[["asc", "region_id"]]'
+                            proportionTable="pf_samples"
+                            numeratorQuery='{"whcClass":"comparefixed","isCompound":false,"ColName":"{{pf_drugs.drug_id}}resistant","CompValue":"resistant","Tpe":"="}'
+                            denominatorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"{{pf_drugs.drug_id}}resistant","CompValue":"resistant","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{pf_drugs.drug_id}}resistant","CompValue":"sensitive","Tpe":"="}],"Tpe":"OR"}'
+                            remainderTextColour="inherit"
+                            numberOfTickLabels="5"
+                            onClickBehaviour="ItemLink"
+                            onClickTable="pf_drug_regions"
+                            onClickPrimKey="{{pf_drugs.drug_id}}_{}"
+                            colourProperty="pf_regions.{{pf_drugs.drug_id}}resistance"
+                            rawNumerator="true"
+                          />
+                        </div>
+                    </Typography>
+                    <DocTemplate path="templates/proportionPlotLegend.html"/>
                 </CardContent>
             </Card>
             <DocTemplate path="templates/sop.html"/>
