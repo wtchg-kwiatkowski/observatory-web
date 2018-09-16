@@ -8,10 +8,10 @@ Currently based on pre-milestone1 sub-versions:
 
 TODO: include administrative features?
 
-Summary: (TODO)
-- 306 QA'd features
-- 94 intended features (missing/broken)
-- 84 blocking issues
+Summary:
+- 414 verified features
+- 135 broken/missing features
+- 131 related bugs
 
 ___________________________________________
 
