@@ -43,11 +43,18 @@ let StateBreadCrumb = createReactClass({
     const drugs = ['Drugs', <DocPage path="pf60/drugs.html"/>];
 
     const data = ['Data', <DocPage path="data.html"/>];
+    const about = ['About', <DocPage path="about.html"/>];
     const pf60DataRelease = ['P.f 6.0 Release', <DocPage path="pf60/data.html"/>];
 
     const convertersByType = {
         DocPage: ({path, name}) => ({
           'index.html': null,
+          'about.html': [
+            [about[0], null]
+          ],
+          'technical.html': [
+            about, ['Technical', null]
+          ],
           'analysis.html': [
             [analysis[0], null],
           ],
@@ -149,35 +156,35 @@ let StateBreadCrumb = createReactClass({
             ['Variants Table', null],
           ],
         }[table]),
-      PivotTableWithActions: ({table}) => ({
-        pf_samples: [
-          data,
-          pf60DataRelease,
-          ['Samples Table', <DataTableWithActions table={table} />],
-          ['Pivot', null],
-        ],
-        pf_variants: [
-          data,
-          pf60DataRelease,
-          ['Variants Table', <DataTableWithActions table={table} />],
-          ['Pivot', null],
-        ],
-      }[table]),
-      TablePlotActions: ({table}) => ({
-        pf_samples: [
-          data,
-          pf60DataRelease,
-          ['Samples Table', <DataTableWithActions table={table} />],
-          ['Plot', null],
-        ],
-        pf_variants: [
-          data,
-          pf60DataRelease,
-          ['Variants Table', <DataTableWithActions table={table} />],
-          ['Plot', null],
-        ],
-      }[table]),
-      GenomeBrowserWithActions: () => [
+        PivotTableWithActions: ({table}) => ({
+          pf_samples: [
+            data,
+            pf60DataRelease,
+            ['Samples Table', <DataTableWithActions table={table} />],
+            ['Pivot', null],
+          ],
+          pf_variants: [
+            data,
+            pf60DataRelease,
+            ['Variants Table', <DataTableWithActions table={table} />],
+            ['Pivot', null],
+          ],
+        }[table]),
+        TablePlotActions: ({table}) => ({
+          pf_samples: [
+            data,
+            pf60DataRelease,
+            ['Samples Table', <DataTableWithActions table={table} />],
+            ['Plot', null],
+          ],
+          pf_variants: [
+            data,
+            pf60DataRelease,
+            ['Variants Table', <DataTableWithActions table={table} />],
+            ['Plot', null],
+          ],
+        }[table]),
+        GenomeBrowserWithActions: () => [
           data,
           pf60DataRelease,
           ['Genome Browser', null]
