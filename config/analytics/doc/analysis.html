@@ -3,48 +3,6 @@
         <!--This Guidebook will help you to understand more about the distribution and epidemiology of <strong><em>Plasmodium falciparum</em></strong>, the most common and most deadly species of malaria.</span>-->
     <!--</div>-->
     <CardStack>
-        <Card>
-            <CardContent>
-                <Typography variant="headline">
-                    Drug resistance in <em>Plasmodium falciparum</em> malaria
-                </Typography>
-                <Typography variant="subheading" color="secondary">
-                    Analysis of <strong><QueryResult table="pf_samples"/> </strong> <em>P. falciparum</em> samples from <strong><QueryResult table="pf_sites"/></strong> study sites in <strong><QueryResult table="countries"/></strong> countries
-                </Typography>
-
-                <List>
-                    <ObsListItem href="pf60/regions.html">
-                        <ListItemIcon><Icon class="icon" name='docimage:icons/big/geography.svg' /></ListItemIcon>
-                        <ListItemText>
-                            <span>Investigate a <strong>geographical region</strong></span>
-                            <span>See how drug resistance varies across the world</span>
-                        </ListItemText>
-                    </ObsListItem>
-                    <ObsListItem href="pf60/drugs.html">
-                        <ListItemIcon><Icon class="icon" name='docimage:icons/big/drug.svg' /></ListItemIcon>
-                        <ListItemText>
-                            <span>Anti-malarial <strong>drug resistance</strong></span>
-                            <span>Discover how parasites are evolving to beat the main tools we have to fight malaria</span>
-                        </ListItemText>
-                    </ObsListItem>
-                    <ObsListItem href="pf60/genes.html">
-                        <ListItemIcon><Icon class="icon" name='docimage:icons/big/gene.svg' /></ListItemIcon>
-                        <ListItemText>
-                            <span>Investigate <strong>genes</strong> including those of epidemiological importance</span>
-                            <span>Understand how gene frequencies vary across the world</span>
-                        </ListItemText>
-                    </ObsListItem>
-
-                    <ObsListItem href="https://www.malariagen.net/data" target="_blank">
-                      <ListItemIcon><Icon class="icon" name='docimage:icons/contributing02.svg' /></ListItemIcon>
-                      <ListItemText>
-                      <span>Get open access genomic <strong>data</strong></span>
-                         <span> Our analyses are built on <strong>Release 6</strong> from the <em>Plasmodium falciparum</em> Community Project</span>
-                      </ListItemText>
-                    </ObsListItem>
-                </List>
-
-            </CardContent>
-        </Card>
+        <DocTemplate path="pf60/index_card.html"/>
     </CardStack>
 </PageTemplate>
