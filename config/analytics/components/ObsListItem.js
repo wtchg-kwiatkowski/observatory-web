@@ -53,7 +53,7 @@ let ObsListItem = createReactClass({
         );
       } else {
         //External link
-        return (<a style={{textDecoration: 'none'}} href={href}>
+        return (<a style={{textDecoration: 'none'}} href={href} target={target}>
           <ListItem button disableGutters={disableGutters} {...other}>
             {children}
           </ListItem>
