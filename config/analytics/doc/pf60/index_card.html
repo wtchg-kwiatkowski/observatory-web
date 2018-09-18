@@ -1,0 +1,60 @@
+<Card>
+    <CardContent>
+        <Typography class="home-headline" variant="headline">Drug resistance in <em>Plasmodium
+            falciparum malaria</em></Typography>
+        <Typography variant="subheading" color="textSecondary" paragraph="true">Analysis of the
+            occurrence and spread of resistance to antimalaria drugs, using genome sequence data from
+            <QueryResult table="pf_samples"/>
+            P. falciparum samples from
+            <QueryResult table="pf_sites"/>
+            study sites in
+            <QueryResult table="countries"/>
+            countries.
+        </Typography>
+        <List>
+            <ObsListItem href="pf60/drugs.html">
+                <ListItemIcon>
+                    <Icon class="icon" name='docimage:icons/big/drug.svg' size="2x"/>
+                </ListItemIcon>
+                <ListItemText>
+                    <span>Antimalarial drugs</span>
+                    <span>Compare resistance across drugs</span>
+                </ListItemText>
+            </ObsListItem>
+            <ObsListItem href="pf60/regions.html">
+                <ListItemIcon>
+                    <Icon class="icon" name='docimage:icons/big/geography.svg' size="2x"/>
+                </ListItemIcon>
+                <ListItemText>
+                    <span>Geographical regions</span>
+                    <span>See how drug resistance varies across the world</span>
+                </ListItemText>
+            </ObsListItem>
+            <ObsListItem href="pf60/genes.html">
+                <ListItemIcon>
+                    <Icon class="icon" name='docimage:icons/big/gene.svg' size="2x"/>
+                </ListItemIcon>
+                <ListItemText>
+                    <span>Resistance genes</span>
+                    <span>Explore the genetic variants causing drug resistance</span>
+                </ListItemText>
+            </ObsListItem>
+            <CustomButton>
+                <Anchor>
+                    <ListItem button="true">
+                        <ListItemIcon>
+                            <Icon name="docimage:icons/map.svg" size="2x"/>
+                        </ListItemIcon>
+                        <ListItemText>
+                            <div>View resistance map</div>
+                            <span>Visualise and explore global drug resistance</span>
+                        </ListItemText>
+                    </ListItem>
+                </Anchor>
+                <Content>
+                    <ResistanceMap drug="sites"/>
+                </Content>
+            </CustomButton>
+        </List>
+    </CardContent>
+</Card>
