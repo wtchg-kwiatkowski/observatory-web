@@ -52,6 +52,9 @@ let StateBreadCrumb = createReactClass({
           'about.html': [
             [about[0], null]
           ],
+          'data.html': [
+            ["Data", null]
+          ],
           'technical.html': [
             about, ['Technical', null]
           ],
