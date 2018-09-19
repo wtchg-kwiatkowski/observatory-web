@@ -39,7 +39,7 @@ quickFindFields: mutation, position
 properties:
 - id: position
   dataType: Text
-  name: Position
+  name: Location
   description: Chromosome and position of this variant on the genome
 - id: chrom
   name: Chromosome
@@ -98,31 +98,31 @@ properties:
 
 - id: fst_global
   dataType: Float
-  name: FST - Global
+  name: Fst - Global
 
 - id: fst_WAF
   dataType: Float
-  name: FST - WAF
+  name: Fst - WAF
 
 - id: fst_EAF
   dataType: Float
-  name: FST - EAF
+  name: Fst - EAF
 
 - id: fst_SAS
   dataType: Float
-  name: FST - SAS
+  name: Fst - SAS
 
 - id: fst_WSEA
   dataType: Float
-  name: FST - WSEA
+  name: Fst - WSEA
 
 - id: fst_ESEA
   dataType: Float
-  name: FST - ESEA
+  name: Fst - ESEA
 
 - id: fst_OCE
   dataType: Float
-  name: FST - OCE
+  name: Fst - OCE
 
 #dataItemViews:
 #- type: PropertyGroup
