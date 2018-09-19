@@ -13,6 +13,7 @@ import PureRenderMixin from 'mixins/PureRenderMixin';
 import EmptyTab from 'containers/EmptyTab';
 import DatasetManagerActions from 'components/DatasetManagerActions';
 import Icon from 'ui/Icon';
+import DocPage from 'panoptes/DocPage';
 
 // Material UI
 import AppBar from '@material-ui/core/AppBar';
@@ -175,8 +176,8 @@ let ObservatoryHeader = createReactClass({
             className="header-logo"
           >
             <div className="header-logo-container">
-              <img onClick={() => actions.session.tabSwitch('FirstTab')} src={logo} className="header-logo-mg"/>
-              <div onClick={() => actions.session.tabSwitch('FirstTab')} className="header-logo-beta">
+              <img onClick={() => actions.session.tabOpen(<DocPage path="index.html" />)} src={logo} className="header-logo-mg"/>
+              <div onClick={() => actions.session.tabOpen(<DocPage path="index.html" />)} className="header-logo-beta">
                 beta
               </div>
             </div>
