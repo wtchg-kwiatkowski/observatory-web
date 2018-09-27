@@ -11,6 +11,7 @@ import DetectResize from 'utils/DetectResize';
 // Custom components
 import StateBreadCrumb from './StateBreadCrumb';
 import ObservatoryHeader from './ObservatoryHeader';
+import GoogleAnalytics from './GoogleAnalytics';
 
 // Mixins
 import FluxMixin from 'mixins/FluxMixin';
@@ -131,6 +132,7 @@ let Observatory = createReactClass({
             <div className="loading-container">
               <div className="spinner" />
             </div>
+            <GoogleAnalytics/>
             <div className="page">
               <ObservatoryHeader
                 dataset={config.dataset}
