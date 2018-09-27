@@ -4,7 +4,13 @@ import createReactClass from 'create-react-class';
 import NotificationSystem from 'react-notification-system';
 import deserialiseComponent from 'util/deserialiseComponent'; // NB: deserialiseComponent is actually used.
 import _assign from 'lodash.assign';
+import Modal from 'ui/Modal';
+import SessionComponent from 'panoptes/SessionComponent';
+import DetectResize from 'utils/DetectResize';
+
+// Custom components
 import StateBreadCrumb from './StateBreadCrumb';
+import ObservatoryHeader from './ObservatoryHeader';
 
 // Mixins
 import FluxMixin from 'mixins/FluxMixin';
@@ -12,20 +18,12 @@ import ConfigMixin from 'mixins/ConfigMixin';
 import PureRenderMixin from 'mixins/PureRenderMixin';
 import StoreWatchMixin from 'mixins/StoreWatchMixin';
 
-// Panoptes
-import Modal from 'ui/Modal';
-import SessionComponent from 'panoptes/SessionComponent';
-import ObservatoryHeader from './ObservatoryHeader';
-
 // Material UI
 import createPalette from '@material-ui/core/styles/createPalette';
 import createTypography from '@material-ui/core/styles/createTypography';
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
 import {withTheme} from '@material-ui/core/styles';
 import {blueGrey} from '@material-ui/core/colors';
-
-// Panoptes utils
-import DetectResize from 'utils/DetectResize';
 
 import 'font-awesome.css';
 import 'ui-components.scss';
