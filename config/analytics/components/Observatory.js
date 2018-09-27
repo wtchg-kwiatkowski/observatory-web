@@ -4,7 +4,7 @@ import createReactClass from 'create-react-class';
 import NotificationSystem from 'react-notification-system';
 import deserialiseComponent from 'util/deserialiseComponent'; // NB: deserialiseComponent is actually used.
 import _assign from 'lodash.assign';
-import StateBreadCrumb from "./StateBreadCrumb";
+import StateBreadCrumb from './StateBreadCrumb';
 
 // Mixins
 import FluxMixin from 'mixins/FluxMixin';
@@ -22,7 +22,7 @@ import createPalette from '@material-ui/core/styles/createPalette';
 import createTypography from '@material-ui/core/styles/createTypography';
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
 import {withTheme} from '@material-ui/core/styles';
-import {deepOrange, blueGrey} from '@material-ui/core/colors';
+import {blueGrey} from '@material-ui/core/colors';
 
 // Panoptes utils
 import DetectResize from 'utils/DetectResize';
@@ -143,14 +143,14 @@ let Observatory = createReactClass({
                 components={components}
                 onTabChange={this.handleChangeTab}
               />
-                <div ref={(node) => {this.scrollContainer = node}} className="body scroll-within">
-                  <div style={{position: 'relative', height: '100%'}}>
-                    <div className="vertical stack">
-                      <StateBreadCrumb compId={tabs.selectedTab}/>
-                      <div className="grow"><SessionComponent resetScroll={this.resetScroll} compId={tabs.selectedTab} /></div>
-                    </div>
+              <div ref={(node) => { this.scrollContainer = node; }} className="body scroll-within">
+                <div style={{position: 'relative', height: '100%'}}>
+                  <div className="vertical stack">
+                    <StateBreadCrumb compId={tabs.selectedTab}/>
+                    <div className="grow"><SessionComponent resetScroll={this.resetScroll} compId={tabs.selectedTab} /></div>
                   </div>
                 </div>
+              </div>
             </div>
             <Modal visible={!!modal}
               onClose={actions.modalClose}>
@@ -167,6 +167,6 @@ let Observatory = createReactClass({
 });
 
 Observatory = withTheme()(Observatory);
-Observatory.displayName = "Observatory";
+Observatory.displayName = 'Observatory';
 
 export default Observatory;
