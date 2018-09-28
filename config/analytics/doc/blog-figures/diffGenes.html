@@ -1,0 +1,24 @@
+<Typography component="div" className="paragraph">The top 10 most highly differentiated genes across the globe are shown
+    below. Differentiation is a measure of how varied allele frequencies are across populations, so these genes are
+    likely to be involved in regionally-specific parasite adaptation.
+</Typography>
+<MuiDataTableView
+        table="pf_genes"
+        maxRowsPerPage="10"
+        columns='["gene_name", "gene_id","global_differentiation_score"]'
+        order='[["desc", "global_differentiation_score"]]'
+        onClickBehaviour='tab'
+        onClickComponent='ItemTemplate'
+        onClickComponentTemplateDocPath='templates/genesOnClickTab.html'
+/>
+<Typography component="div" className="paragraph">
+    <div class="centering-container">
+        <DocLink button href="pf60/GeneticDifferentiation.html">
+            <Icon
+                    name="docimage:icons/viewer.svg"
+                    style="margin-right: 0.5em;"
+            />
+            Full table
+        </DocLink>
+    </div>
+</Typography>

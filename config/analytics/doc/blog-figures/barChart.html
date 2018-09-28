@@ -1,0 +1,16 @@
+<DocTemplate path="templates/proportionPlotTitle.html"/>
+<ProportionBarChart
+        rowTable="pf_regions"
+        rowTableOrder='[["asc", "region_id"]]'
+        proportionTable="pf_samples"
+        numeratorQuery='{"whcClass":"comparefixed","isCompound":false,"ColName":"CQresistant","CompValue":"resistant","Tpe":"="}'
+        denominatorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"CQresistant","CompValue":"resistant","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"CQresistant","CompValue":"sensitive","Tpe":"="}],"Tpe":"OR"}'
+        remainderTextColour="inherit"
+        numberOfTickLabels="5"
+        onClickBehaviour="ItemLink"
+        onClickTable="pf_drug_regions"
+        onClickPrimKey="CQ_{}"
+        colourProperty="pf_regions.CQresistance"
+        rawNumerator="true"
+/>
+<DocTemplate path="templates/proportionPlotLegend.html"/>
