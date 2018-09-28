@@ -1,0 +1,18 @@
+<div class="auto-half-height-container">
+    <div class="auto-height-inner">
+        <Map>
+            <TileLayer/>
+            <TableMarkersLayer
+                    clickPrimaryKeyProperty="site_id"
+                    table="pf_sites"
+                    clusterMarkers={false}
+                    onClickSingleBehaviour="tooltip"
+                    onClickSingleComponent="ItemTemplate"
+                    onClickSingleComponentTemplateDocPath="templates/siteOnClickTooltip.html"
+                    childDataColumns='["ARTresistance", "CQresistance", "MQresistance", "PPQresistance", "PYRresistance", "SDXresistance"]'
+            >
+                <SiteMarker/>
+            </TableMarkersLayer>
+        </Map>
+    </div>
+</div>
