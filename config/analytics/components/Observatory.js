@@ -85,7 +85,7 @@ let Observatory = createReactClass({
         _assign(store.getLastNotification(), {position: 'tc'})));
     //We don't need this as it will come to us in page load json
     //this.getFlux().actions.api.fetchUser(this.state.panoptes.get('dataset'));
-    console.info('Theme: %o', this.props.theme);
+    console.info('Theme:', this.props.theme);
   },
 
   getStateFromFlux() {
@@ -160,7 +160,7 @@ let Observatory = createReactClass({
                 React.cloneElement(modal, {setProps: actions.modalSetProps})
                 : null}
             </Modal>
-            <NotificationSystem ref={(input) => { this.notificationSystem = input; }}/>
+            <NotificationSystem ref={(ref) => this.notificationSystem = ref}/>
           </div>
         </MuiThemeProvider>
       </DetectResize>
