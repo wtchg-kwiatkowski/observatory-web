@@ -2,6 +2,12 @@ name: ''
 nameBanner: ''
 version: Pf6.0
 
+# Use the appropriate Tracking ID for each environment.
+# Development: UA-126631386-2
+# Staging: UA-126631386-3
+# Production: UA-126631386-1
+googleAnalyticsId:  UA-126631386-2
+
 dataTables:
 - studies
 - study_ldap_people
