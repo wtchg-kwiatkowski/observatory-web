@@ -1,7 +1,9 @@
 import createReactClass from 'create-react-class';
 import React from 'react';
-import CookieConsent, {Cookies} from 'react-cookie-consent';
+import Cookies from 'js-cookie';
 import FluxMixin from 'mixins/FluxMixin';
+
+// Credit https://github.com/Mastermindzh/react-cookie-consent
 
 let CookieBanner = createReactClass({
   displayName: 'CookieBanner',
@@ -9,6 +11,12 @@ let CookieBanner = createReactClass({
   mixins: [
     FluxMixin,
   ],
+
+  getInitialState() {
+    return {
+      visible: false,
+    };
+  },
 
   componentWillMount() {
     this.consentCookieName = 'userGaveCookieConsent';
@@ -18,33 +26,86 @@ let CookieBanner = createReactClass({
     if (this.doNotTrack) {
       // If doNotTrack then remove the consent-cookie and do not track.
       Cookies.remove(this.consentCookieName);
-      console.info('Do not track.');
+      console.info('Do Not Track');
     }
     console.info('Cookies:', Object.keys(Cookies.get()));
   },
 
-  handleAccept() {
-    console.log('TODO: trigger GoogleAnalytics');
+  componentDidMount() {
+    if (Cookies.get(this.consentCookieName) === undefined) {
+      this.setState({visible: true});
+    }
+  },
+
+  handleConsent() {
+    console.log('TODO: handleConsent, trigger GoogleAnalytics');
+    Cookies.set(this.consentCookieName, true, {expires: 365});
+    this.setState({visible: false});
+  },
+
+  handleRefuse() {
+    this.setState({visible: false});
   },
 
   render() {
-    if (this.doNotTrack) {
+    if (!this.state.visible || this.doNotTrack) {
       return null;
     } else {
-      // CookieConsent settings
-      // `expires` should be a number, i.e. "Number of days before the cookie expires.", not a string. The default is 365.
-      // `debug` set to true prevents the banner from disappearing
+
+      const bannerStyle = {
+        alignItems: 'baseline',
+        background: '#3f51b5',
+        color: '#ffffff',
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        left: '0',
+        position: 'fixed',
+        width: '100%',
+        zIndex: '999',
+        bottom: '0',
+      };
+
+      const contentStyle = {
+        flex: '1 0 300px',
+        margin: '10px',
+        textAlign: 'center',
+        alignSelf: 'flex-start',
+      };
+
+      const buttonStyle = {
+        background: '#69b3e4',
+        border: '0',
+        borderRadius: '3px',
+        boxShadow: 'none',
+        color: '#ffffff',
+        flex: '0 0 auto',
+        padding: '5px 10px',
+        margin: '10px',
+      };
+
+      const linkStyle = {
+        color: '#ffffff',
+      };
+
       return (
-        <CookieConsent
-          cookieName={this.consentCookieName}
-          expires={365}
-          buttonText="Consent"
-          buttonStyle={{backgroundColor: '#F7F7F7', borderRadius: '3px'}}
-          style={{textAlign: 'center'}}
-          onAccept={this.handleAccept}
-        >
-          We would like to use cookies to help improve this website&#8217;s performance and your experience. See our <a href="https://www.malariagen.net/cookie-statement" target="_blank" rel="noreferrer noopener">cookie statement</a> for details.
-        </CookieConsent>
+        <div style={bannerStyle}>
+          <button
+            style={buttonStyle}
+            onClick={() => { this.handleRefuse(); }}
+          >
+            Refuse
+          </button>
+          <div style={contentStyle}>
+            We would like to use cookies to help improve this website&#8217;s performance and your experience. See our <a href="https://www.malariagen.net/cookie-statement" target="_blank" rel="noreferrer noopener" style={linkStyle}>cookie statement</a> for details.
+          </div>
+          <button
+            style={buttonStyle}
+            onClick={() => {   this.handleConsent(); }}
+          >
+            Consent
+          </button>
+        </div>
       );
     }
   }
