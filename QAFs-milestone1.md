@@ -3,15 +3,15 @@ DRAFT
 TODO: resolve all non-assured features (marked as `[ ]`) and all undetermined queries (marked as `??`)
 
 Currently based on pre-milestone1 sub-versions:
-- Panoptes core: master branch, commit 176be5e813f7abc3cd79e4acf7aa258c40138faf
-- Observatory-web configuration: master branch, commit 19943aac93241d5870dd8582e4ed5fdbe091abb4
+- Panoptes core: observatory branch, commit ca669b7341f4150b0b7f9208235818f2a11e5289
+- Observatory-web configuration: master branch, commit 90a4371084952d6e4316528e4e62de82b36ce2c8
 
 TODO: include administrative features?
 
 Summary:
-- 414 verified features
-- 135 broken/missing features
-- 131 related bugs
+- 434 verified features
+- 112 broken/missing features
+- 110 related bugs
 
 ___________________________________________
 
@@ -38,24 +38,25 @@ This document asserts the intended functionality and compatibility of features r
 - **Version:** milestone 1
 - **Access Level:** anonymous users, i.e. `.*, .*, read` (Authorisation is controlled by the `server/responders/PanoptesAuthDb` file. Authentication is controlled by the `MalariaGEN SSO`.)
 
-### About these checkboxes
+### About the checkboxes
 - [x] Checked items have been checked by the checker (the designated human) and found to be working.
-- [ ] Unchecked items are expected to work, but either they haven't been checked yet, or they have issues, which should be noted.
+- [ ] Unchecked items are expected to work, i.e. they are intended features or support, but either they haven't been checked yet, or they have known issues, which should be noted.
 
-### About these so-called compatibilities and features
+### About the "compatibilities" and "features"
 To track bugs, features and other issues, please use the issue tracker in the associated [GitHub project](https://github.com/wtchg-kwiatkowski/observatory-web/issues).
 
-### About these so-called components
+### About the "components"
 At the end of this document, there is a list of user-interface components. These are all the user-interface components that are referred to in the **Features** section, loosely organised into a sort of hierarchy.
 
 
 Compatibilities
 ---------------
 
-### Compatible server operating systems:
+### Server operating systems:
+- [x] Canonical Ubuntu Server 16.04.5 LTS (Xenial Xerus), 18.04.1 (Bionic Beaver)
 - [x] Debian GNU/Linux 9.4 (stretch)
 
-### Compatible client machine specifications:
+### Client machine specifications:
 - Internet connection
   - [ ] 26 Mbps download speed (UK average[^1])
   - [ ] 11 Mbps upload speed (UK average[^1])
@@ -69,19 +70,22 @@ Compatibilities
 [^1]: http://www.speedtest.net/reports/united-kingdom/ "Q3–Q4 2017"
 
 
-### Compatible client operating systems and web browsers:
+### Client operating systems and web browsers:
 - Desktop and laptop
-  - Canonical Ubuntu 16.04
-    - [x] Google Chrome v67.0
-    - [x] Mozilla Firefox v61.0
+  - Canonical Ubuntu  18.04.1 (Bionic Beaver)
+    - [ ] Google Chrome v69
+    - [ ] Mozilla Firefox v62
+  - Canonical Ubuntu 16.04.5 LTS (Xenial Xerus)
+    - [ ] Google Chrome v69
+    - [ ] Mozilla Firefox v62
   - Microsoft Windows 10
-    - [x] Google Chrome v67.0
-    - [x] Mozilla Firefox v61.0
-    - [ ] Microsoft Edge v42.17134
+    - [ ] Google Chrome v69
+    - [ ] Mozilla Firefox v62
+    - [ ] Microsoft Edge v??
   - Apple macOS 10.12
     - [ ] Apple Safari v??
-    - [ ] Google Chrome v??
-    - [ ] Mozilla Firefox v??
+    - [ ] Google Chrome v69
+    - [ ] Mozilla Firefox v62
 - Tablet and mobile
   - Apple iOS v10
     - [ ] Apple Safari v??
@@ -112,19 +116,19 @@ As an end-user of the software, you can:
 
 ### From anywhere with a compatible internet connection
 - [x] Visit the _webapp's home address_ using a compatible web browser to see the webapp's `home page` with no critical errors (e.g. 404)
-  - [ ] Click on the `cookies consent button` to hide the `cookie consent request` [Issue #277](https://github.com/wtchg-kwiatkowski/observatory-web/issues/277)
-  - [ ] Don't see the `cookies consent request` after previously clicking on the `cookies consent button` and reloading the page with normal settings. [Issue #277](https://github.com/wtchg-kwiatkowski/observatory-web/issues/277)
+  - [x] Click on the `cookies consent button` to hide the `cookie consent request`
+  - [x] Don't see the `cookies consent request` after previously clicking on the `cookies consent button` and reloading the page with normal settings.
   - [x] Click on the `cookies statement button` to see the `cookies statement`
   
 ### From anywhere in the webapp
-- [ ] Click on the `MalariaGEN Analytics logo` to see the webapp's `home page` [Issue #276](https://github.com/wtchg-kwiatkowski/observatory-web/issues/276)
-- [ ] If your viewport > _horizontal-menu break-point pixel-width_, see the `horizontal-menu buttons`
+- [x] Click on the `MalariaGEN Analytics logo` to see the webapp's `home page`
+- [x] If your viewport > _horizontal-menu break-point pixel-width_, see the `horizontal-menu buttons`
 - For viewports < _horizontal-menu break-point pixel-width_:
   - [x] Click on the `hamburger-menu button` to see the `hamburger-menu buttons`
-    - [ ] Click on the `hamburger-menu home button` to see the `home page`
-    - [ ] Click on the `hamburger-menu articles button` to see the `articles page`
-    - [ ] Click on the `hamburger-menu home button` to see the `analyses page`
-    - [ ] Click on the `hamburger-menu home button` to see the `data page`
+    - [x] Click on the `hamburger-menu home button` to see the `home page`
+    - [x] Click on the `hamburger-menu articles button` to see the `articles page`
+    - [x] Click on the `hamburger-menu analyses button` to see the `analyses page`
+    - [x] Click on the `hamburger-menu data button` to see the `data page`
     - [ ] If you are not logged in, click on the `hamburger-menu log in button` to see the `log in page`.
     - [ ] If you are logged in, click on the `hamburger-menu log out button` to see the `log out page`.
 - For viewports >= _horizontal-menu break-point pixel-width_:
@@ -136,7 +140,7 @@ As an end-user of the software, you can:
   - [ ] If you are logged in, click on the `horizontal-menu log out button` to see the `log out page`.
 - [x] Except from the `home page`, see the `navigational breadcrumb`
   - [ ] Use the `navigational breadcrumb` to see your current position in the page hierarchy [Issue #296](https://github.com/wtchg-kwiatkowski/observatory-web/issues/296)
-  - [ ] Use the `navigational breadcrumb` to navigate to parent pages [Issue #286](https://github.com/wtchg-kwiatkowski/observatory-web/issues/286)
+  - [x] Use the `navigational breadcrumb` to navigate to parent pages
 
 ### From the `home page`
 
@@ -180,7 +184,7 @@ As an end-user of the software, you can:
   - [x] See the `article date`
   - [x] See the `article excerpt`
   - [ ] See the `article categories` [Issue #288](https://github.com/wtchg-kwiatkowski/observatory-web/issues/288)
-  - [x] Click on the `read-more button` to see that `article page` [Issue #290](https://github.com/wtchg-kwiatkowski/observatory-web/issues/290)
+  - [x] Click on the `read-more button` to see that `article page`
 - [x] See the `article featured image` for at least one `article`
 
 ### From an `article page`
@@ -188,7 +192,7 @@ As an end-user of the software, you can:
 - [x] See the `article author`
 - [x] See the `article date`
 - [x] See the `article full-content`
-  - [ ] See `article featured image` [Issue #291](https://github.com/wtchg-kwiatkowski/observatory-web/issues/291)
+  - [x] See `article featured image`
   - [x] See `article content with separated paragraphs`
   - [x] See `article content with larger and bolder headings`
   - [x] See `article content with italics where intended`
@@ -196,12 +200,12 @@ As an end-user of the software, you can:
   - [ ] Click on any `internal link` to see the corresponding `internal page` [Issue #292](https://github.com/wtchg-kwiatkowski/observatory-web/issues/292)
 
 ### From the `analyses page`
-- [ ] See content that is consistent with the `home page` [Issue #293](https://github.com/wtchg-kwiatkowski/observatory-web/issues/293)
+- [x] See content that is consistent with the `home page`
 - [x] See a summary of the `analyses`
 - [x] Click on the `antimalarial-drugs button` to see the `antimalarial-drugs page`
 - [x] Click on the `geographical-regions button` to see the `geographical-regions page`
 - [x] Click on the `antimalarial-drug-resistance genes button` to see the `antimalarial-drug-resistance genes page`
-- [ ] Click on the `resistance-map button` to see the `resistance-map page`
+- [x] Click on the `resistance-map button` to see the `resistance-map page`
 
 ### From the `data page`
 - [x] See content that is consistent with the `home page`
@@ -212,23 +216,20 @@ As an end-user of the software, you can:
 
 ### From the `about MalariaGEN Analytics page`
 - [x] Click on the `about dataset button` to go to the `MalariaGEN website data page`
-- [x] Click on the `about metrics button` to see the `?? page`
+- [x] Click on the `about metrics button` to see the scientific publications and technical reports page`
 - [ ] Click on the `about webapps button` to see the `?? page` [Issue #294](https://github.com/wtchg-kwiatkowski/observatory-web/issues/294)
 - [x] Click on the `about MalariaGEN button` to go to the `MalariaGEN website home page`
 - [x] Click on the `scientific publications and technical reports button` to see the `scientific publications and technical reports page`
 
 ### From the `scientific publications and technical reports page`
-- [ ] See the `navigational breadcrumb` [Issue #295](https://github.com/wtchg-kwiatkowski/observatory-web/issues/295)
-- [ ] See the `page title` [Issue #295](https://github.com/wtchg-kwiatkowski/observatory-web/issues/295)
-- [ ] See a summary of the `publications/reports`
+- [x] See the `navigational breadcrumb`
+- [x] See the `page title`
+- [x] See a summary of the `publications/reports`
 - For each `publication/report`:
   - [ ] Click on the `publication/report button` to download the `publication/report file` [Issue #295](https://github.com/wtchg-kwiatkowski/observatory-web/issues/295)
 - [x] See a summary of the `technical documents`
 - For each `technical document`:
   - [x] Click on the `publication/report button` to download the `publication/report file`
-- [ ] See a summary of the `FAQs`
-- For each `FAQ`:
-  - [ ] See the `FAQ` [Issue #295](https://github.com/wtchg-kwiatkowski/observatory-web/issues/295)
 
 ### From the `antimalarial-drugs page`
 - [x] See the `antimalarial-drugs that MalariaGEN Analytics predicts the resistance status for`
@@ -249,7 +250,7 @@ As an end-user of the software, you can:
 - [x] See the `antimalarial-drug resistance description`
 - For each `antimalarial-drug resistance gene` associated with the `antimalarial-drug`:
   - [x] Click on the `antimalarial-drug resistance gene button` to see the `antimalarial-drug-resistance gene page`
-- [ ] See a `geographic-map`
+- [x] See a `geographic-map`
   - [x] See the `legend for the antimalarial-drug-resistance-status colour-gradation`
     - For each `geographic-site`:
       - [ ] See a `circular geographic-marker` for the `geographic-site` that has: [Issue #254](https://github.com/wtchg-kwiatkowski/observatory-web/issues/254)
@@ -266,7 +267,7 @@ As an end-user of the software, you can:
   - [x] Click on the `antimalarial-drug geographic-map button` to see the `antimalarial-drug geographic-map page` for the `antimalarial-drug`
 - [x] See the `antimalarial-drug resistance by geographic-region barchart`
   - [x] See the `antimalarial-drug resistance by geographic-region barchart introduction`
-  - [x] See the `antimalarial-drug resistance by geographic-region barchart total counts explanation` [Issue #297](https://github.com/wtchg-kwiatkowski/observatory-web/issues/297)
+  - [x] See the `antimalarial-drug resistance by geographic-region barchart total counts explanation`
   - [x] See a `barchart bar` for every `geographic-region`
   - For each `geographic-region`:
     - [x] See the `predicted proportion of antimalarial-drug-resistance` for that `geographic-region`, expressed as:
@@ -290,7 +291,7 @@ As an end-user of the software, you can:
         - [x] the `number and type of samples collected from the geographic-site`
         - [x] the `study-origin of samples collected from the geographic-site`
         - [x] the `antimalarial-drug-resistance-status colour-gradation` for every `antimalarial-drug` at the `geographic-site`
-        - [ ] the `geographic-site button` [Issue #301](https://github.com/wtchg-kwiatkowski/observatory-web/issues/301)
+        - [ ] the `geographic-site button`
           - [x] Click on the `geographic-site button` to see the `geographic-site page`
 - [x] See the `all antimalarial-drugs geographic-site marker legend`
 - [ ] See the `legend for the antimalarial-drug-resistance-status colour-gradation` [Issue #249](https://github.com/wtchg-kwiatkowski/observatory-web/issues/249)
@@ -300,19 +301,14 @@ As an end-user of the software, you can:
 ### From a `antimalarial-drug geographic-map page`
 - [x] See the `antimalarial-drug geographic-map introduction`
 - [x] See the `antimalarial-drug geographic-map`
-  - [ ] See the `geographic-site markers` [Issue #253](https://github.com/wtchg-kwiatkowski/observatory-web/issues/253)
+  - [x] See the `geographic-site markers`
     - For each `geographic-site marker`
-    - [ ] Click on the `geographic-site marker` to see a `geographic-map popup`, showing: [Issue #298](https://github.com/wtchg-kwiatkowski/observatory-web/issues/298)
+    - [x] Click on the `geographic-site marker` to see a `geographic-map popup`, showing:
       - [x] the `geographic-site name`
       - [x] the `predicted percentage of antimalarial-drug-resistance` in the `geographic-site`
       - [x] a `geographic-site button`
         - [x] Click on the `geographic-site button` to see the `geographic-site page`
-  - [ ] See the `geographic-region polygons`[Issue #299](https://github.com/wtchg-kwiatkowski/observatory-web/issues/299)
-    - [ ] Click on the `geographic-region polygon` to see a `geographic-map popup`, showing: [Issue #256](https://github.com/wtchg-kwiatkowski/observatory-web/issues/256)
-      - [x] the `geographic-region name`
-      - [x] the `predicted percentage of antimalarial-drug-resistance` in the `geographic-region`
-      - [x] an `antimalarial-drug resistance in geographic-region button`
-        - [x] Click on the `antimalarial-drug resistance in geographic-region button` to see the `antimalarial-drug resistance in geographic-region page`
+  - [x] See the `geographic-region polygons`
 - [x] See the `list of antimalarial-drugs`
   - [x] Click on an `antimalarial-drug` to see the `antimalarial-drug geographic-map page` for the `antimalarial-drug`
 
@@ -332,10 +328,10 @@ As an end-user of the software, you can:
   - [x] Click on the `geographic-map zoom buttons` to zoom in and out
   - [x] If you have a `pointer` and a `scroll-wheel`, scroll up and down while hovering over the `geographic-map` to zoom in and out
   - [x] See the `all antimalarial-drugs geographic-site marker`
-  - [ ] See the `all antimalarial-drugs geographic-site marker legend` [Issue #302](https://github.com/wtchg-kwiatkowski/observatory-web/issues/302)
+  - [x] See the `all antimalarial-drugs geographic-site marker legend`
 - [x] See the `antimalarial-drug resistance by geographic-site barchart`
   - [x] See the `antimalarial-drug resistance by geographic-site barchart introduction`
-  - [x] See the `antimalarial-drug resistance by geographic-site barchart total counts explanation` [Issue #297](https://github.com/wtchg-kwiatkowski/observatory-web/issues/297)
+  - [x] See the `antimalarial-drug resistance by geographic-site barchart total counts explanation`
   - [x] See a `barchart bar` for every `antimalarial-drug`
   - For each `antimalarial-drug`:
     - [x] See the `predicted proportion of antimalarial-drug-resistance` for the `geographic-site`, expressed as:
@@ -343,7 +339,7 @@ As an end-user of the software, you can:
       - [x] `percentage`
       - [x] `barchart bar-width of total-width`
       - [x] `colour-gradation`
-    - [ ] Click on a `antimalarial-drug` to see the `antimalarial-drug page` [Issue #303](https://github.com/wtchg-kwiatkowski/observatory-web/issues/303)
+    - [x] Click on a `antimalarial-drug` to see the `antimalarial-drug page`
     - [ ] If you have a `pointer`, see the `tooltip` when you hover over the `numerator bar`, showing `predicted percentage of antimalarial-drug-resistance`
 - [x] Click on the `site-samples table button` to see the `site-samples table page`
 
@@ -353,12 +349,12 @@ As an end-user of the software, you can:
 - [x] If no `table-filter` is in effect, click on the `add table-filter button` to add a `table-filter` to the `table` using the `construct-and-apply-table-filter modal-dialog`
 - [x] If a `table-filter` is in effect, click on the `change table-filter button` to change the `table-filter` using the `construct-and-apply-table-filter modal-dialog`
 - [x] Click on the `select columns button` to toggle the `columns` for the `table` using the `column-selector modal-dialog`
-- [ ] Specify the `search-text` for the `table text-search` to see only the rows that contain the `search-text` in `text-searchable columns`  [Issue #263](https://github.com/wtchg-kwiatkowski/observatory-web/issues/263) [Issue #213](https://github.com/wtchg-kwiatkowski/observatory-web/issues/213) [Issue #305](https://github.com/wtchg-kwiatkowski/observatory-web/issues/305)
+- [ ] Specify the `search-text` for the `table text-search` to see only the rows that contain the `search-text` in `text-searchable columns` [Issue #213](https://github.com/wtchg-kwiatkowski/observatory-web/issues/213) [Issue #305](https://github.com/wtchg-kwiatkowski/observatory-web/issues/305)
 - [ ] If a `table text-search` is in effect, see the current `search-text` [Issue #212](https://github.com/wtchg-kwiatkowski/observatory-web/issues/212)
 - [ ] Click on the `table-data-download button` to receive the current `table-data as a tab-delimited file` [Issue #304](https://github.com/wtchg-kwiatkowski/observatory-web/issues/304)
 - [x] Click on the `table-pivot button` to see the `table-pivot page` for the `table`
 - [x] Click on the `table-plot button` to see the `table-plot page` for the `table`
-- [ ] Click on the `collapse side-menu button` to collapse the `side-menu` [Issue #126](https://github.com/wtchg-kwiatkowski/observatory-web/issues/126) [Issue #174](https://github.com/wtchg-kwiatkowski/observatory-web/issues/174) [Issue #264](https://github.com/wtchg-kwiatkowski/observatory-web/issues/264) [Issue #268](https://github.com/wtchg-kwiatkowski/observatory-web/issues/268)
+- [ ] Click on the `collapse side-menu button` to collapse the `side-menu` [Issue #174](https://github.com/wtchg-kwiatkowski/observatory-web/issues/174) [Issue #268](https://github.com/wtchg-kwiatkowski/observatory-web/issues/268)
 - [ ] If a `table-filter` is in effect, see the current `table-filter` [Issue #144](https://github.com/wtchg-kwiatkowski/observatory-web/issues/144)
 - [ ] If a `table-data column-sort` is in effect, see the current `table-data column-sort` [Issue #216](https://github.com/wtchg-kwiatkowski/observatory-web/issues/216)
 - [x] See the `cardinal number of columns currently being shown`
@@ -486,7 +482,7 @@ As an end-user of the software, you can:
   - [ ] If the selected `table-pivot column-column` has a `column description`, click on the `column information icon-button` in the `heading for the table-pivot column-columns` to see the `column description` [Issue #233](https://github.com/wtchg-kwiatkowski/observatory-web/issues/233)
   - [ ] If the selected `table-pivot row-column` has a `column description`, click on the `column information icon-button` in the `heading for the table-pivot row-columns` to see the `column description` [Issue #233](https://github.com/wtchg-kwiatkowski/observatory-web/issues/233)
   - [ ] Click on any `table-data cell` to see a `table page` with a `table-filter` corresponding to the `aggregate value` [Issue #232](https://github.com/wtchg-kwiatkowski/observatory-web/issues/232)
-- [ ] Click on the `collapse side-menu button` to collapse the `side-menu` [Issue #126](https://github.com/wtchg-kwiatkowski/observatory-web/issues/126) [Issue #174](https://github.com/wtchg-kwiatkowski/observatory-web/issues/174) [Issue #264](https://github.com/wtchg-kwiatkowski/observatory-web/issues/264) [Issue #268](https://github.com/wtchg-kwiatkowski/observatory-web/issues/268)
+- [ ] Click on the `collapse side-menu button` to collapse the `side-menu` [Issue #174](https://github.com/wtchg-kwiatkowski/observatory-web/issues/174) [Issue #174](https://github.com/wtchg-kwiatkowski/observatory-web/issues/174) [Issue #268](https://github.com/wtchg-kwiatkowski/observatory-web/issues/268) [Issue #268](https://github.com/wtchg-kwiatkowski/observatory-web/issues/268)
 - [ ] If a `table-filter` is in effect, see the current `table-filter` [Issue #144](https://github.com/wtchg-kwiatkowski/observatory-web/issues/144)
 - [ ] If a `table-data column-sort` is in effect, see the current `table-data column-sort` [Issue #216](https://github.com/wtchg-kwiatkowski/observatory-web/issues/216)
 - [ ] If a `table-data row-sort` is in effect, see the current `table-data row-sort` [Issue #216](https://github.com/wtchg-kwiatkowski/observatory-web/issues/216)
@@ -582,7 +578,7 @@ As an end-user of the software, you can:
 - [x] See the `genome-browser introduction`
 - [x] Click on the `add genome-browser channels button` to see the `genome-browser channel-adder modal-dialog`
 - [x] See a button to view the `variants-table page`
-- [ ] Click on the `collapse side-menu button` to collapse the `side-menu` [Issue #126](https://github.com/wtchg-kwiatkowski/observatory-web/issues/126) [Issue #174](https://github.com/wtchg-kwiatkowski/observatory-web/issues/174) [Issue #264](https://github.com/wtchg-kwiatkowski/observatory-web/issues/264) [Issue #268](https://github.com/wtchg-kwiatkowski/observatory-web/issues/268)
+- [ ] Click on the `collapse side-menu button` to collapse the `side-menu` [Issue #174](https://github.com/wtchg-kwiatkowski/observatory-web/issues/174) [Issue #174](https://github.com/wtchg-kwiatkowski/observatory-web/issues/174) [Issue #268](https://github.com/wtchg-kwiatkowski/observatory-web/issues/268) [Issue #268](https://github.com/wtchg-kwiatkowski/observatory-web/issues/268)
 - [x] See the `genome-browser chromosome being displayed`
 - [x] Select a `genome-browser chromosome` using the `genome-browser chromosome selector` to change the `genome-browser chromosome being displayed`
 - [x] See the `genome-browser chromosome being displayed`
@@ -724,7 +720,7 @@ As an end-user of the software, you can:
         - [x] the `number and type of samples collected from the geographic-site`
         - [x] the `study-origin of samples collected from the geographic-site`
         - [x] the `antimalarial-drug-resistance-status colour-gradation` for every `antimalarial-drug` at the `geographic-site`
-        - [ ] the `geographic-site button` [Issue #301](https://github.com/wtchg-kwiatkowski/observatory-web/issues/301)
+        - [x] the `geographic-site button`
           - [x] Click on the `geographic-site button` to see the `geographic-site page`
   - [x] See the `all antimalarial-drugs geographic-site marker legend`
   - [ ] See the `legend for the antimalarial-drug-resistance-status colour-gradation` [Issue #249](https://github.com/wtchg-kwiatkowski/observatory-web/issues/249)
@@ -739,7 +735,7 @@ As an end-user of the software, you can:
       - [x] `percentage`
       - [x] `barchart bar-width of total-width`
       - [x] `colour-gradation`
-    - [ ] Click on a `antimalarial-drug` to see the `antimalarial-drug page` [Issue #303](https://github.com/wtchg-kwiatkowski/observatory-web/issues/303)
+    - [x] Click on a `antimalarial-drug` to see the `antimalarial-drug in geographic-region page`
     - [ ] If you have a `pointer`, see the `tooltip` when you hover over the `numerator bar`, showing `predicted percentage of antimalarial-drug-resistance`
 - [x] Click on the `technical document about antimalarial-drug-resistance prediction button` to see the `technical document about antimalarial-drug-resistance prediction`
 
@@ -755,13 +751,10 @@ As an end-user of the software, you can:
       - [x] the `predicted percentage of antimalarial-drug-resistance` in the `geographic-site`
       - [x] a `geographic-site button`
         - [x] Click on the `geographic-site button` to see the `geographic-site page`
-  - [ ] See the `geographic-region polygons`
-    - [ ] Click on the `geographic-region polygon` to see a `geographic-map popup`, showing: [Issue #256](https://github.com/wtchg-kwiatkowski/observatory-web/issues/256)
-      - [ ] the `geographic-region name`
-      - [ ] the `predicted percentage of antimalarial-drug-resistance` in the `geographic-region`
+  - [x] See the `geographic-region polygons`
 - [x] See the `antimalarial-drug resistance by geographic-site barchart`
   - [x] See the `antimalarial-drug resistance by geographic-site barchart introduction`
-  - [x] See the `antimalarial-drug resistance by geographic-site barchart total counts explanation` [Issue #297](https://github.com/wtchg-kwiatkowski/observatory-web/issues/297)
+  - [x] See the `antimalarial-drug resistance by geographic-site barchart total counts explanation`
   - [x] See a `barchart bar` for every `geographic-site`
   - For each `geographic-site`:
     - [x] See which `country` the `geographic-site` belongs to
