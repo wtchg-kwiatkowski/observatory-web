@@ -56,7 +56,7 @@ let CookieConsentBanner = createReactClass({
 
       // Initialize Google Analytics.
       ReactGA.initialize(this.config.settings.googleAnalyticsId, {
-        debug: true,
+        //debug: true, // "Boolean. Optional. If set to true, will output additional feedback to the console."
         // The default titleCase is true, oddly. https://github.com/react-ga/react-ga/issues/231
         titleCase: false, // "Boolean. Optional. Defaults to true. If set to false, strings will not be converted to title case before sending to GA."
       });
@@ -68,15 +68,64 @@ let CookieConsentBanner = createReactClass({
       // https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference
       ReactGA.set({allowAdFeatures: false});
 
-      // Compose the function for logging each PageView.
+      // Compose the function for logging each virtual pageview.
+      // See "Modifying page URLs" https://developers.google.com/analytics/devguides/collection/analyticsjs/pages
+      // See "Single Page Application Tracking" https://developers.google.com/analytics/devguides/collection/analyticsjs/single-page-applications
+      // TODO: Consider implementing https://github.com/googleanalytics/autotrack
       const logPageView = () => {
+
+        // "it's usually best to choose a canonical URL and only ever send that page value to Google Analytics."
+
         const state = this.getFlux().store('SessionStore').getState();
         const selectedTabComponentKey = state.get('tabs').get('selectedTab');
         const selectedTabComponentType = state.get('components').get(selectedTabComponentKey).get('type');
         const selectedTabComponentProps = state.get('components').get(selectedTabComponentKey).get('props').toObject();
-        const selectedTabComponentPropsAsQueryString = Object.entries(selectedTabComponentProps).map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`).join('&');
-        const pageViewPath = `${selectedTabComponentType}?${selectedTabComponentPropsAsQueryString}`;
-        ReactGA.pageview(pageViewPath);
+
+        // NB: If we tried to create a query-string containing all the prop-names and their values, some props would be problematic, such as list-types and children.
+        //const selectedTabComponentPropsAsQueryString = Object.entries(selectedTabComponentProps).map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`).join('&');
+        //const pageViewPath = `${selectedTabComponentType}?${selectedTabComponentPropsAsQueryString}`;
+
+        // Default to just logging the selected-tab component-type
+        let pageViewPath = selectedTabComponentType;
+
+        // For specific component-types, include key prop-names and values
+        // TODO: keep in sync with index.js (abstract and centralize)
+        if (selectedTabComponentType === 'ListWithActions') {
+          // props: {table, selectedPrimKey}
+          const table = selectedTabComponentProps.table;
+          pageViewPath += `?table=${encodeURIComponent(table)}`;
+        } else if (selectedTabComponentType === 'DataItem') {
+          // props: {table, primKey: selectedPrimKey, children}
+          const table = selectedTabComponentProps.table;
+          const primKey = selectedTabComponentProps.primKey;
+          pageViewPath += `?table=${encodeURIComponent(table)}&primKey=${encodeURIComponent(primKey)}`;
+        } else if (selectedTabComponentType === 'DataTableWithActions') {
+          // props: {table}
+          const table = selectedTabComponentProps.table;
+          pageViewPath += `?table=${encodeURIComponent(table)}`;
+        } else if (selectedTabComponentType === 'FeedItem') {
+          // props: {feedId: datasetURLPathParts[1], itemId: datasetURLPathParts[2]}
+          const feedId = selectedTabComponentProps.feedId;
+          const itemId = selectedTabComponentProps.itemId;
+          pageViewPath += `?feedId=${encodeURIComponent(feedId)}&itemId=${encodeURIComponent(itemId)}`;
+        } else if (selectedTabComponentType === 'FeedIndex') {
+          // props: {id: datasetURLPathParts[1]}
+          const id = selectedTabComponentProps.id;
+          pageViewPath += `?id=${encodeURIComponent(id)}`;
+        } else if (selectedTabComponentType === 'DocPage') {
+          // props: {path: remainingPath}
+          const path = selectedTabComponentProps.path;
+          pageViewPath += `?path=${encodeURIComponent(path)}`;
+        }
+
+        // "If the current page is sending other hits (like events), you'll want to make sure every hit gets sent with the correct URL. In such cases, you should update the page field on the tracker instead of passing it in the send command."
+        // So, instead of using ReactGA.pageview(pageViewPath);
+        // "Sets the page value on the tracker."
+        // "After you've set the new page value, all subsequents hits sent will use that new value. To record a pageview, send a pageview hit immediately after updating the tracker."
+        ReactGA.ga('set', 'page', pageViewPath);
+        // "Sending the pageview no longer requires passing the page value since it's now stored on the tracker object."
+        // "While technically the send command for pageview hits accepts an optional page field as the third parameter, passing the page field that way is not recommended when tracking single page applications. This is because fields passed via the send command are not set on the tracker—they apply to the current hit only. Not updating the tracker will cause problems if your application sends any non-pageview hits (e.g. events or social interactions), as those hits will be associated with whatever page value the tracker had when it was created."
+        ReactGA.ga('send', 'pageview');
       };
 
       // Log this PageView.
