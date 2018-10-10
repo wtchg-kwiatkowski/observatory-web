@@ -1,17 +1,10 @@
 DRAFT
 
-TODO: resolve all non-assured features (marked as `[ ]`) and all undetermined queries (marked as `??`)
+TODO: resolve all intended-but-not-QA'd features (marked as `[ ]`), and answer all queries (marked as `??`)
 
 Currently based on pre-milestone1 sub-versions:
 - Panoptes core: observatory branch, commit ca669b7341f4150b0b7f9208235818f2a11e5289
 - Observatory-web configuration: master branch, commit 90a4371084952d6e4316528e4e62de82b36ce2c8
-
-TODO: include administrative features?
-
-Summary:
-- 434 verified features
-- 112 broken/missing features
-- 110 related bugs
 
 ___________________________________________
 
@@ -31,6 +24,7 @@ ____________________________________________
 About this document
 -------------------
 
+### About the software
 This document asserts the intended functionality and compatibility of features relating to the following software:
 
 - **Name:** MalariaGEN Analytics
@@ -38,15 +32,24 @@ This document asserts the intended functionality and compatibility of features r
 - **Version:** milestone 1
 - **Access Level:** anonymous users, i.e. `.*, .*, read` (Authorisation is controlled by the `server/responders/PanoptesAuthDb` file. Authentication is controlled by the `MalariaGEN SSO`.)
 
+Summary:
+- 434 quality-assured features
+- 112 flawed features
+- 110 related issues
+- 489 user-interface components
+
+### About the scope
+Administrative features are considered out-of-scope for this document. (See the QAFs for the Panopte core software for that.)
+
 ### About the checkboxes
-- [x] Checked items have been checked by the checker (the designated human) and found to be working.
-- [ ] Unchecked items are expected to work, i.e. they are intended features or support, but either they haven't been checked yet, or they have known issues, which should be noted.
+- [x] Checked items have been checked by a designated human, and found to be satisfactory.
+- [ ] Unchecked items are supppose to work, but either they haven't been checked yet, or they have known issues. Known issues should be noted next to each unchecked item.
 
 ### About the "compatibilities" and "features"
 To track bugs, features and other issues, please use the issue tracker in the associated [GitHub project](https://github.com/wtchg-kwiatkowski/observatory-web/issues).
 
 ### About the "components"
-At the end of this document, there is a list of user-interface components. These are all the user-interface components that are referred to in the **Features** section, loosely organised into a sort of hierarchy.
+At the end of this document, there is a list of user-interface components. These are all the user-interface components that are referred to in the **Features** section, and they have been loosely organised into a sort of hierarchy.
 
 
 Compatibilities
@@ -58,8 +61,8 @@ Compatibilities
 
 ### Client machine specifications:
 - Internet connection
-  - [ ] 26 Mbps download speed (UK average[^1])
-  - [ ] 11 Mbps upload speed (UK average[^1])
+  - [x] 26 Mbps download speed (UK average[^1])
+  - [x] 11 Mbps upload speed (UK average[^1])
   - [x] 900 Mbps download speed
   - [x] 935 Mbps upload speed
 - CPU
@@ -72,22 +75,22 @@ Compatibilities
 
 ### Client operating systems and web browsers:
 - Desktop and laptop
-  - Canonical Ubuntu  18.04.1 (Bionic Beaver)
-    - [ ] Google Chrome v69
-    - [ ] Mozilla Firefox v62
+  - Canonical Ubuntu 18.04.1 (Bionic Beaver)
+    - [x] Google Chrome 69
+    - [ ] Mozilla Firefox 62
   - Canonical Ubuntu 16.04.5 LTS (Xenial Xerus)
-    - [ ] Google Chrome v69
-    - [ ] Mozilla Firefox v62
+    - [x] Google Chrome 69
+    - [ ] Mozilla Firefox 62
   - Microsoft Windows 10
-    - [ ] Google Chrome v69
-    - [ ] Mozilla Firefox v62
-    - [ ] Microsoft Edge v??
+    - [x] Google Chrome 69
+    - [ ] Mozilla Firefox 62
+    - [ ] Microsoft Edge 42
   - Apple macOS 10.12
     - [ ] Apple Safari v??
-    - [ ] Google Chrome v69
-    - [ ] Mozilla Firefox v62
+    - [ ] Google Chrome 69
+    - [ ] Mozilla Firefox 62
 - Tablet and mobile
-  - Apple iOS v10
+  - Apple iOS 10
     - [ ] Apple Safari v??
 
 
@@ -108,7 +111,7 @@ Terminology:
 - "button" is interchangeable with "link"
 - "click" is interchangeable with the "tap" action on touch-screen devices
 
-The use of a control implies that the control itself can be seen, and that the specified effect of its use also occurs. For example, "Click on the red button to see the green box" implies that a red button can be seen, and can be clicked on, and that clicking on that red button causes a green box to become visible. If the control cannot be seen, or clicked on, or if no green box becomes visible after clicking on it, then it does not pass that QA.
+The use of a control implies that the control itself can be seen, and that the specified effect of its use also occurs. For example, "Click on the red button to see the green box" implies that a red button can be seen, and can be clicked on, and that clicking on that red button causes a green box to become visible. If the control cannot be seen, or clicked on, or if no green box becomes visible after clicking on it, then that feature is deemed to have failed QA (and the issue should be noted).
 
 For the compatible platforms, the following features of the specified release have been verified.
 
@@ -119,7 +122,7 @@ As an end-user of the software, you can:
   - [x] Click on the `cookies consent button` to hide the `cookie consent request`
   - [x] Don't see the `cookies consent request` after previously clicking on the `cookies consent button` and reloading the page with normal settings.
   - [x] Click on the `cookies statement button` to see the `cookies statement`
-  
+
 ### From anywhere in the webapp
 - [x] Click on the `MalariaGEN Analytics logo` to see the webapp's `home page`
 - [x] If your viewport > _horizontal-menu break-point pixel-width_, see the `horizontal-menu buttons`
@@ -129,15 +132,11 @@ As an end-user of the software, you can:
     - [x] Click on the `hamburger-menu articles button` to see the `articles page`
     - [x] Click on the `hamburger-menu analyses button` to see the `analyses page`
     - [x] Click on the `hamburger-menu data button` to see the `data page`
-    - [ ] If you are not logged in, click on the `hamburger-menu log in button` to see the `log in page`.
-    - [ ] If you are logged in, click on the `hamburger-menu log out button` to see the `log out page`.
 - For viewports >= _horizontal-menu break-point pixel-width_:
   - [x] Click on the `horizontal-menu home button` to see the `home page`
   - [x] Click on the `horizontal-menu articles button` to see the `articles page`
   - [x] Click on the `horizontal-menu home button` to see the `analyses page`
   - [x] Click on the `horizontal-menu home button` to see the `data page`
-  - [ ] If you are not logged in, click on the `horizontal-menu log in button` to see the `log in page`.
-  - [ ] If you are logged in, click on the `horizontal-menu log out button` to see the `log out page`.
 - [x] Except from the `home page`, see the `navigational breadcrumb`
   - [ ] Use the `navigational breadcrumb` to see your current position in the page hierarchy [Issue #296](https://github.com/wtchg-kwiatkowski/observatory-web/issues/296)
   - [x] Use the `navigational breadcrumb` to navigate to parent pages
@@ -291,7 +290,7 @@ As an end-user of the software, you can:
         - [x] the `number and type of samples collected from the geographic-site`
         - [x] the `study-origin of samples collected from the geographic-site`
         - [x] the `antimalarial-drug-resistance-status colour-gradation` for every `antimalarial-drug` at the `geographic-site`
-        - [ ] the `geographic-site button`
+        - [x] the `geographic-site button`
           - [x] Click on the `geographic-site button` to see the `geographic-site page`
 - [x] See the `all antimalarial-drugs geographic-site marker legend`
 - [ ] See the `legend for the antimalarial-drug-resistance-status colour-gradation` [Issue #249](https://github.com/wtchg-kwiatkowski/observatory-web/issues/249)
@@ -383,7 +382,6 @@ As an end-user of the software, you can:
 - [x] See the `list of recently applied table-filters`
   - [x] Click on a `recently applied table-filter` to see the `table-filter diagram` and the `table-filter string-representation` for that `table-filter`
 - [x] See the `table-filter diagram` of the `table-filter in construction`
-
 - [x] If there are no `table-filter-criterion` in the `table-filter diagram`, click on the `add table-filter-criterion button` to add a `table-filter-criterion` using the `table-filter-criterion editor`
 - [x] If there are `table-filter-criterion` in the `table-filter diagram`, change any `table-filter-criterion` using the `table-filter-criterion editor` for any of the `table-filter criteria`
 - [ ] Click on the `apply table-filter button` to set the `table-filter in construction` (represented by the `table-filter diagram` and the `table-filter string-representation`) as the `table-filter`
@@ -396,18 +394,18 @@ As an end-user of the software, you can:
 - [x] Select a `column` from the `column selector` to use in the `table-filter-criterion`
   - [ ] Select a `comparison operator` from the `comparison operator selector` to use in the `table-filter-criterion` [Issue #309](https://github.com/wtchg-kwiatkowski/observatory-web/issues/309)
     - If a `column with categorized-values` has been selected:
-      - [x] If the `value-is-equal-to-categorized-value operator` is selected, select the `categorized-value` [Issue #196](https://github.com/wtchg-kwiatkowski/observatory-web/issues/196)
-      - [x] If the `value-is-not-equal-to-categorized-value operator` is selected, select the `categorized-value` [Issue #196](https://github.com/wtchg-kwiatkowski/observatory-web/issues/196)
+      - [ ] If the `value-is-equal-to-categorized-value operator` is selected, select the `categorized-value` [Issue #196](https://github.com/wtchg-kwiatkowski/observatory-web/issues/196)
+      - [ ] If the `value-is-not-equal-to-categorized-value operator` is selected, select the `categorized-value` [Issue #196](https://github.com/wtchg-kwiatkowski/observatory-web/issues/196)
     - If a `column without categorized-values` has been selected:
-      - [x] If the `value-is-equal-to-comparison-text operator` is selected, enter the `comparison-text` [Issue #196](https://github.com/wtchg-kwiatkowski/observatory-web/issues/196)
-      - [x] If the `value-is-not-equal-to-comparison-text operator` is selected, enter the `comparison-text` [Issue #196](https://github.com/wtchg-kwiatkowski/observatory-web/issues/196)
+      - [ ] If the `value-is-equal-to-comparison-text operator` is selected, enter the `comparison-text` [Issue #196](https://github.com/wtchg-kwiatkowski/observatory-web/issues/196)
+      - [ ] If the `value-is-not-equal-to-comparison-text operator` is selected, enter the `comparison-text` [Issue #196](https://github.com/wtchg-kwiatkowski/observatory-web/issues/196)
     - If a `string-type column` has been selected:
       - [x] If the `value-contains-text operator` is selected, enter the `comparison-text`
       - [x] If the `value-does-not-contain-text operator` is selected, enter the `comparison-text`
       - [x] If the `value-starts-with-text operator` is selected, enter the `comparison-text`
       - [ ] If the `value-ends-with-text operator` is selected, enter the `comparison-text`
-      - [x] If the `value-is-empty operator` is selected, the `table-filter-criterion` TODO
-      - [x] If the `value-is-not-empty operator` is selected, the `table-filter-criterion` TODO
+      - [x] If the `value-is-empty operator` is selected, the `table-filter-criterion`
+      - [x] If the `value-is-not-empty operator` is selected, the `table-filter-criterion`
       - [x] If the `value-is-equal-to-another-column-value` is selected, select the `other column` from the `other column selector`
       - [x] If the `value-is-not-equal-to-another-column-value` is selected, select the `other column` from the `other column selector`
     - If a `number-type column` has been selected:
@@ -416,20 +414,20 @@ As an end-user of the software, you can:
       - [x] If the `value-is-less-than-or-equal-to-comparison-text operator` is selected, enter the `comparison-text`
       - [x] If the `value-is-greater-than-or-equal-to-comparison-text operator` is selected, enter the `comparison-text`
       - [x] If the `value-is-between-text-and-other-text` is selected, enter the `comparison-text` and `other comparison-text`
-      - [x] If the `value-is-empty operator` is selected, the `table-filter-criterion` TODO
-      - [x] If the `value-is-not-empty operator` is selected, the `table-filter-criterion` TODO
+      - [x] If the `value-is-empty operator` is selected, the `table-filter-criterion`
+      - [x] If the `value-is-not-empty operator` is selected, the `table-filter-criterion`
       - [x] If the `value-is-equal-to-another-column-value` is selected, select the `other column` from the `other column selector`
       - [x] If the `value-is-not-equal-to-another-column-value` is selected, select the `other column` from the `other column selector`
-      - [x] If the `value-is-less-than-another-column-value operator` is selected, select the `other column` from the `other column selector` and specify the `other column linear coefficient` and the `other column constant coefficient` [Issue #310](https://github.com/wtchg-kwiatkowski/observatory-web/issues/310)
-      - [x] If the `value-is-greater-than-another-column operator` is selected, select the `other column` from the `other column selector` and specify the `other column linear coefficient` and the `other column constant coefficient` [Issue #310](https://github.com/wtchg-kwiatkowski/observatory-web/issues/310)
+      - [x] If the `value-is-less-than-another-column-value operator` is selected, select the `other column` from the `other column selector` and specify the `other column linear coefficient` and the `other column constant coefficient`
+      - [x] If the `value-is-greater-than-another-column operator` is selected, select the `other column` from the `other column selector` and specify the `other column linear coefficient` and the `other column constant coefficient` 
 - [x] Click on the `add or-criterion-relationship button` to add an `or-criterion-relationship` to the `table-filter in construction`
 - [x] Click on the `add and-criterion-relationship button` to add an `and-criterion-relationship` to the `table-filter in construction`
 - [ ] Click on the `delete table-filter-criterion button` to delete the `table-filter-criterion` [Issue #311](https://github.com/wtchg-kwiatkowski/observatory-web/issues/311)
 
 ### From the `column-selector modal-dialog`
-- [ ] See the `modal-dialog title` [Issue #281](https://github.com/wtchg-kwiatkowski/observatory-web/issues/281)
+- [x] See the `modal-dialog title`
 - [x] See a `column-selector search textbox`
-  - [x] Type into `column-selector search textbox` to restrict the list of `table columns` to those that match 
+  - [x] Type into `column-selector search textbox` to restrict the list of `table columns` to those that match
     - [ ] See the matching text highlighted in the list of `table columns` [Issue #258](https://github.com/wtchg-kwiatkowski/observatory-web/issues/258)
 - [x] See the `list of columns available`
   - For each `available column`:
@@ -478,11 +476,11 @@ As an end-user of the software, you can:
   - [ ] See the `table-pivot aggregate-type heading for all row-columns` [Issue #230](https://github.com/wtchg-kwiatkowski/observatory-web/issues/230)
   - [x] See the `table-pivot aggregate-type values for all row-columns`
   - [ ] See the `column name` of the selected `table-pivot column-column` in the `heading for the table-pivot column-columns` [Issue #231](https://github.com/wtchg-kwiatkowski/observatory-web/issues/231)
-  - [ ] See the `column name` of the selected `table-pivot row-column` in the `heading for the table-pivot row-columns`
+  - [x] See the `column name` of the selected `table-pivot row-column` in the `heading for the table-pivot row-columns`
   - [ ] If the selected `table-pivot column-column` has a `column description`, click on the `column information icon-button` in the `heading for the table-pivot column-columns` to see the `column description` [Issue #233](https://github.com/wtchg-kwiatkowski/observatory-web/issues/233)
   - [ ] If the selected `table-pivot row-column` has a `column description`, click on the `column information icon-button` in the `heading for the table-pivot row-columns` to see the `column description` [Issue #233](https://github.com/wtchg-kwiatkowski/observatory-web/issues/233)
   - [ ] Click on any `table-data cell` to see a `table page` with a `table-filter` corresponding to the `aggregate value` [Issue #232](https://github.com/wtchg-kwiatkowski/observatory-web/issues/232)
-- [ ] Click on the `collapse side-menu button` to collapse the `side-menu` [Issue #174](https://github.com/wtchg-kwiatkowski/observatory-web/issues/174) [Issue #174](https://github.com/wtchg-kwiatkowski/observatory-web/issues/174) [Issue #268](https://github.com/wtchg-kwiatkowski/observatory-web/issues/268) [Issue #268](https://github.com/wtchg-kwiatkowski/observatory-web/issues/268)
+- [ ] Click on the `collapse side-menu button` to collapse the `side-menu` [Issue #174](https://github.com/wtchg-kwiatkowski/observatory-web/issues/174) [Issue #268](https://github.com/wtchg-kwiatkowski/observatory-web/issues/268)
 - [ ] If a `table-filter` is in effect, see the current `table-filter` [Issue #144](https://github.com/wtchg-kwiatkowski/observatory-web/issues/144)
 - [ ] If a `table-data column-sort` is in effect, see the current `table-data column-sort` [Issue #216](https://github.com/wtchg-kwiatkowski/observatory-web/issues/216)
 - [ ] If a `table-data row-sort` is in effect, see the current `table-data row-sort` [Issue #216](https://github.com/wtchg-kwiatkowski/observatory-web/issues/216)
@@ -493,7 +491,7 @@ As an end-user of the software, you can:
 - [x] Select a `table` from the `table selector` to use as the `table-plot table` in the `table-plot`
 - [x] If no `table-filter` is in effect, click on the `add table-filter button` to add a `table-filter` to the `table` using the `construct-and-apply-table-filter modal-dialog`
 - [x] If a `table-filter` is in effect, click on the `change table-filter button` to change the `table-filter` using the `construct-and-apply-table-filter modal-dialog`
-- [ ] If a `table-filter` is in effect, see the current `table-filter` [Issue #144](https://github.com/wtchg-kwiatkowski/observatory-web/issues/330) [Issue #144](https://github.com/wtchg-kwiatkowski/observatory-web/issues/330)
+- [ ] If a `table-filter` is in effect, see the current `table-filter` [Issue #144](https://github.com/wtchg-kwiatkowski/observatory-web/issues/330) [Issue #330](https://github.com/wtchg-kwiatkowski/observatory-web/issues/330)
 - [x] Select a `random sample-subset size` from the `random sample-subset size selector` to use in the `table-plot`
 - [x] Select a `table-plot plot-type` from the `table-plot plot-type selector` to use in the `table-plot`
 - [x] If the `table-plot plot-type bar` is selected, see the `table-plot horizontal-axis-column selector` and the `table-plot vertical-axis-column selector`
@@ -578,11 +576,11 @@ As an end-user of the software, you can:
 - [x] See the `genome-browser introduction`
 - [x] Click on the `add genome-browser channels button` to see the `genome-browser channel-adder modal-dialog`
 - [x] See a button to view the `variants-table page`
-- [ ] Click on the `collapse side-menu button` to collapse the `side-menu` [Issue #174](https://github.com/wtchg-kwiatkowski/observatory-web/issues/174) [Issue #174](https://github.com/wtchg-kwiatkowski/observatory-web/issues/174) [Issue #268](https://github.com/wtchg-kwiatkowski/observatory-web/issues/268) [Issue #268](https://github.com/wtchg-kwiatkowski/observatory-web/issues/268)
+- [ ] Click on the `collapse side-menu button` to collapse the `side-menu` [Issue #174](https://github.com/wtchg-kwiatkowski/observatory-web/issues/174) [Issue #268](https://github.com/wtchg-kwiatkowski/observatory-web/issues/268)
 - [x] See the `genome-browser chromosome being displayed`
 - [x] Select a `genome-browser chromosome` using the `genome-browser chromosome selector` to change the `genome-browser chromosome being displayed`
 - [x] See the `genome-browser chromosome being displayed`
-- [ ] See and edit the `genome-browser chromosome-region being displayed` [Issue #332](https://github.com/wtchg-kwiatkowski/observatory-web/issues/332)
+- [x] See and edit the `genome-browser chromosome-region being displayed`
 - [x] See and edit the `genome-browser base-position-midpoint of the chromosome-region being displayed`
 - [x] See and edit the `genome-browser width-in-base-positions of the chromosome-region being displayed`
 - [x] See the `genome-browser base-position-ticks of the chromosome-region being displayed`
@@ -595,7 +593,7 @@ As an end-user of the software, you can:
       - [ ] Click on the `genome-browser reference-sequence display-sequence button` to display the `genome-browser reference-sequence being displayed` as a `string of text` inside a `tooltip` [Issue #192](https://github.com/wtchg-kwiatkowski/observatory-web/issues/192) [Issue #156](https://github.com/wtchg-kwiatkowski/observatory-web/issues/156)
 - [x] See the `genome-browser genes channel`
   - If there is a `gene` within the `chromosome-region being displayed`:
-    - [ ] See the `genome-browser genes-channel gene` [Issue #158](https://github.com/wtchg-kwiatkowski/observatory-web/issues/158) [Issue #159](https://github.com/wtchg-kwiatkowski/observatory-web/issues/159) 
+    - [ ] See the `genome-browser genes-channel gene` [Issue #158](https://github.com/wtchg-kwiatkowski/observatory-web/issues/158) [Issue #159](https://github.com/wtchg-kwiatkowski/observatory-web/issues/159)
       - [x] See the `genome-browser genes-channel gene coding-sequence regions`
   - [ ] Click on the `genome-browser-channel information icon-button` to toggle the appearance of the `genome-browser-channel information` for the `genome-browser genes channel` [Issue #139](https://github.com/wtchg-kwiatkowski/observatory-web/issues/139)
     - If the `genome-browser-channel information` is showing:
@@ -625,7 +623,7 @@ As an end-user of the software, you can:
         - [ ] See whether the `genome-browser-channel auto-y-scale feature` is `enabled` [Issue #145](https://github.com/wtchg-kwiatkowski/observatory-web/issues/145) [Issue #186](https://github.com/wtchg-kwiatkowski/observatory-web/issues/186)
         - [x] Click on the `genome-browser-channel auto-y-scale feature-checkbox` to toggle the `genome-browser-channel auto-y-scale feature`
         - [x] If the `genome-browser-channel auto-y-scale feature` is `enabled`, see that the `genome-browser-channel track-area` has an `automatically scaled y-axis`
-        - If the `genome-browser-channel auto-y-scale feature` is `disabled`: 
+        - If the `genome-browser-channel auto-y-scale feature` is `disabled`:
           - [ ] Specify the `y-axis minimum value` for the `genome-browser-channel track-area` [Issue #340](https://github.com/wtchg-kwiatkowski/observatory-web/issues/340)
           - [x] Specify the `y-axis maximum value` for the `genome-browser-channel track-area`
     - [x] See the selected `genome-browser channel-tracks` for the `genome-browser channel`
@@ -655,7 +653,7 @@ As an end-user of the software, you can:
         - [ ] See whether the `genome-browser-channel auto-y-scale feature` is `enabled` [Issue #145](https://github.com/wtchg-kwiatkowski/observatory-web/issues/145) [Issue #186](https://github.com/wtchg-kwiatkowski/observatory-web/issues/186)
         - [x] Click on the `genome-browser-channel auto-y-scale feature-checkbox` to toggle the `genome-browser-channel auto-y-scale feature`
         - [x] If the `genome-browser-channel auto-y-scale feature` is `enabled`, see that the `genome-browser-channel track-area` has an `automatically scaled y-axis`
-        - If the `genome-browser-channel auto-y-scale feature` is `disabled`: 
+        - If the `genome-browser-channel auto-y-scale feature` is `disabled`:
           - [ ] Specify the `y-axis minimum value` for the `genome-browser-channel track-area` [Issue #340](https://github.com/wtchg-kwiatkowski/observatory-web/issues/340)
           - [x] Specify the `y-axis maximum value` for the `genome-browser-channel track-area`
     - If the `genome-browser channel being displayed` contains `genome-browser channel-tracks` relating to `number-type columns` that contain `categorical values`:
@@ -672,7 +670,7 @@ As an end-user of the software, you can:
 
 ### From the `genome-browser-channel-track-selector modal-dialog`
 - [x] See a `genome-browser channel-track-selector search textbox`
-  - [x] Type into `genome-browser channel-track-selector search textbox` to restrict the `list of genome-browser channel-tracks` to those that match the specified `search-text` 
+  - [x] Type into `genome-browser channel-track-selector search textbox` to restrict the `list of genome-browser channel-tracks` to those that match the specified `search-text`
     - [ ] See the matching text highlighted in the `list of genome-browser channel-tracks` [Issue #258](https://github.com/wtchg-kwiatkowski/observatory-web/issues/258)
 - [x] See the `list of genome-browser channel-tracks`
   - For each `genome-browser channel-track`:
@@ -685,7 +683,7 @@ As an end-user of the software, you can:
 
 ### From the `genome-browser channel-adder modal-dialog`
 - [x] See a `genome-browser channel-adder search textbox`
-  - [x] Type into `genome-browser channel-adder search textbox` to restrict the `list of genome-browser channels` to those that match the specified `search-text` 
+  - [x] Type into `genome-browser channel-adder search textbox` to restrict the `list of genome-browser channels` to those that match the specified `search-text`
     - [ ] See the matching text highlighted in the `list of genome-browser channels` [Issue #258](https://github.com/wtchg-kwiatkowski/observatory-web/issues/258)
 - [x] See the `list of genome-browser channels`
   - For each `genome-browser channel`:
