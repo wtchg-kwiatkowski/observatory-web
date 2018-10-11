@@ -9,6 +9,7 @@ import ConfigMixin from 'mixins/ConfigMixin';
 import FeedIndex from 'panoptes/FeedIndex';
 import TextButton from 'panoptes/TextButton';
 import DocPage from 'panoptes/DocPage';
+import DataItem from 'DataItem';
 
 import DataTableWithActions from 'containers/DataTableWithActions';
 
@@ -129,6 +130,7 @@ let StateBreadCrumb = createReactClass({
               analysis,
               pf60Resistance,
               regions,
+              [this.config.cachedTablesByPrimKey['pf_regions']['WAF'].name, <DataItem table="pf_regions" primKey="WAF"/>],
               [this.config.cachedTablesByPrimKey[table][primKey].name, null]
             ],
           }[table] || (() => null))()),
