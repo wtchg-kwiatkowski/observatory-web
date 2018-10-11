@@ -66,6 +66,7 @@ properties:
 - id: af_SAM
   dataType: Float
   name: South America
+  isCategorical: false
 #  description: The proportion of samples that have the non-reference form of this variant in South America
 - id: af_WAF
   dataType: Float
