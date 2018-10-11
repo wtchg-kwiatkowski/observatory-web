@@ -33,10 +33,9 @@ This document asserts the intended functionality and compatibility of features r
 - **Access Level:** anonymous users, i.e. `.*, .*, read` (Authorisation is controlled by the `server/responders/PanoptesAuthDb` file. Authentication is controlled by the `MalariaGEN SSO`.)
 
 Summary:
-- 434 quality-assured features
-- 112 flawed features
-- 110 related issues
-- 489 user-interface components
+- 432 quality-assured features
+- 101 flawed features
+-  95 related issues
 
 ### About the scope
 Administrative features are considered out-of-scope for this document. (See the QAFs for the Panopte core software for that.)
@@ -607,7 +606,7 @@ As an end-user of the software, you can:
         - If a `table-filter` is in effect:
           - [ ] See the current `table-filter` [Issue #144](https://github.com/wtchg-kwiatkowski/observatory-web/issues/144)
           - [x] Click on the `change table-filter button` to change the `table-filter` using the `construct-and-apply-table-filter modal-dialog`
-        - [x] Select a `colour-by-column column` from the `colour-by-column column-selector` to show a `categorical colour` for each of the `genome-browser-channel track-items` corresponding to the `distinct column values` in the selected `colour-by-column column` [Issue #337](https://github.com/wtchg-kwiatkowski/observatory-web/issues/337)
+        - [ ] Select a `colour-by-column column` from the `colour-by-column column-selector` to show a `categorical colour` for each of the `genome-browser-channel track-items` corresponding to the `distinct column values` in the selected `colour-by-column column` [Issue #337](https://github.com/wtchg-kwiatkowski/observatory-web/issues/337)
     - [x] See the `genome-browser track-items`
     - [x] Click on a `genome-browser variants-channel track-item` to see the `variant page` for that `variant`
     - [ ] If you have a `pointer`, hover over the `genome-browser variants-channel track-item` to see the `genomic position` of that `variant` [Issue #339](https://github.com/wtchg-kwiatkowski/observatory-web/issues/339)
@@ -656,9 +655,6 @@ As an end-user of the software, you can:
         - If the `genome-browser-channel auto-y-scale feature` is `disabled`:
           - [ ] Specify the `y-axis minimum value` for the `genome-browser-channel track-area` [Issue #340](https://github.com/wtchg-kwiatkowski/observatory-web/issues/340)
           - [x] Specify the `y-axis maximum value` for the `genome-browser-channel track-area`
-    - If the `genome-browser channel being displayed` contains `genome-browser channel-tracks` relating to `number-type columns` that contain `categorical values`:
-      - [ ] FIXME: This scenario shouldn't happen in staging! [Issue #344](https://github.com/wtchg-kwiatkowski/observatory-web/issues/344)
-      - [x] See `plotted bars`
     - If you have a `pointer`:
       - [x] If you have a `scroll-wheel`, scroll up and down while hovering over the `genome-browser-channel plotted area` to zoom in and out
       - [x] Drag left and right while hovering over the `genome-browser-channel plotted area` to scroll left and right
@@ -725,7 +721,7 @@ As an end-user of the software, you can:
 - [x] Click on the `resistance-map button` to see the `resistance-map page`
 - [x] See the `antimalarial-drug resistance in geographic-region barchart`
   - [x] See the `antimalarial-drug resistance in geographic-region barchart introduction`
-  - [x] See the `antimalarial-drug resistance in geographic-region barchart total counts explanation` [Issue #297](https://github.com/wtchg-kwiatkowski/observatory-web/issues/297)
+  - [x] See the `antimalarial-drug resistance in geographic-region barchart total counts explanation`
   - [x] See a `barchart bar` for every `antimalarial-drug`
   - For each `antimalarial-drug`:
     - [x] See the `predicted proportion of antimalarial-drug-resistance` for the `geographic-region`, expressed as:
