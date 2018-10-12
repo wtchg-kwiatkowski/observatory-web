@@ -10,6 +10,7 @@ import FeedIndex from 'panoptes/FeedIndex';
 import TextButton from 'panoptes/TextButton';
 import DocPage from 'panoptes/DocPage';
 import DataItem from 'DataItem';
+import DataItemViews from 'panoptes/DataItemViews';
 
 import DataTableWithActions from 'containers/DataTableWithActions';
 
@@ -130,7 +131,7 @@ let StateBreadCrumb = createReactClass({
               analysis,
               pf60Resistance,
               regions,
-              [this.config.cachedTablesByPrimKey['pf_regions']['WAF'].name, <DataItem table="pf_regions" primKey="WAF"/>],
+              [this.config.cachedTablesByPrimKey['pf_regions'][this.config.cachedTablesByPrimKey[table][primKey].pf_region_id].name, <DataItem table="pf_regions" primKey={this.config.cachedTablesByPrimKey[table][primKey].pf_region_id}>{DataItemViews.getViews(this.config.tablesById['pf_regions'].dataItemViews, this.config.tablesById['pf_regions'].hasGeoCoord)}</DataItem>],
               [this.config.cachedTablesByPrimKey[table][primKey].name, null]
             ],
           }[table] || (() => null))()),
