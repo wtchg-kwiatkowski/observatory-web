@@ -1,5 +1,4 @@
 $card-max-width: 650px;
-$text-side-padding: 16px;
 $usual-text-size: 14px;
 
 .obs-page-backdrop {
@@ -65,9 +64,8 @@ $usual-text-size: 14px;
   width: 100%;
   position: relative;
   .obs-breadcrumb-inner {
-    width: 100%;
-    padding-left: $text-side-padding;
-    padding-right: $text-side-padding;
+    margin-left: 25px; // To line up home-icon with hamburger-icon.
+    margin-right: 10px;
     display: flex;
     flex-wrap: wrap;
     //justify-content: center;
