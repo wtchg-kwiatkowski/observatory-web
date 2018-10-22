@@ -1,5 +1,15 @@
 $card-max-width: 650px;
 $usual-text-size: 14px;
+$grey-background-color: #F7F7F7;
+$white-background-color: #FFFFFF;
+
+// Used in StateBreadCrumb, depending on page type.
+.grey-background {
+  background-color: $grey-background-color;
+}
+.white-background {
+  background-color: $white-background-color;
+}
 
 .obs-page-backdrop {
   background-size: cover;
@@ -19,7 +29,7 @@ $usual-text-size: 14px;
 }
 
 .obs-page-container {
-  background-color: #F7F7F7;
+  background-color: $grey-background-color;
   position: relative;
   height: 100%;
   div.paragraph, p {
@@ -60,11 +70,10 @@ $usual-text-size: 14px;
 .obs-breadcrumb {
   padding-top: 10px;
   padding-bottom: 10px;
-  background-color: #f7f7f7;
   width: 100%;
   position: relative;
   .obs-breadcrumb-inner {
-    margin-left: 25px; // To line up home-icon with hamburger-icon.
+    margin-left: 18px; // Matches button-icon-to-edge white-space.
     margin-right: 10px;
     display: flex;
     flex-wrap: wrap;
@@ -92,7 +101,7 @@ $usual-text-size: 14px;
 }
 
 .doc-page {
-  background-color: #F7F7F7;
+  background-color: $grey-background-color;
 }
 
 .site-marker {
