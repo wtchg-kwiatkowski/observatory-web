@@ -34,7 +34,7 @@ propertyGroups:
 #- id: Selection
 #  name: Selection
 
-quickFindFields: mutation, position
+quickFindFields: mutation, position, chrom, mutation, gene_id
 
 properties:
 - id: position
