@@ -9,6 +9,8 @@ externalLinks:
 - url: http://www.ebi.ac.uk/ena/data/view/{run_accessions}
   name: European Nucleotide Archive
 
+quickFindFields: sample_id, site_id, country_id, region_id, run_accessions
+
 properties: 
 - id: sample_id
   dataType: Text
