@@ -98,6 +98,17 @@ properties:
   name: Sampling Year
   dataType: Int16
 
+- id: qc_pass
+  name: QC Pass
+  dataType: Boolean
+
+- id: mean_coverage
+  name: Coverage
+  dataType: Double
+- id: pc_genome_callable
+  name: "% Callable"
+  dataType: Double
+
 - id: CQresistant
   name: CQ
   dataType: Text
@@ -117,7 +128,32 @@ properties:
   name: PPQ
   dataType: Text
 
-- id: CQresistant, PYRresistant, SDXresistant, MQresistant, ARTresistant, PPQresistant
+- id: SPresistant
+  name: SP
+  dataType: Text
+- id: SPIPTpresistant
+  name: SPIPTp
+  dataType: Text
+- id: ASMQresistant
+  name: ASMQ
+  dataType: Text
+- id: DHAPPQresistant
+  name: ASMQ
+  dataType: Text
+
+- id: HRP2deletion
+  name: HRP2
+  dataType: Text
+- id: HRP3deletion
+  name: HRP3
+  dataType: Text
+- id: HRP23deletion
+  name: HRP2
+  dataType: Text
+
+
+
+- id: CQresistant, PYRresistant, SDXresistant, MQresistant, ARTresistant, PPQresistant, SPresistant, SPIPTpresistant, ASMQresistant, DHAPPQresistant
   valueDisplays:
     resistant: Resistant
     sensitive: Sensitive
@@ -126,5 +162,14 @@ properties:
     resistant: rgb(214, 39, 40)
     sensitive: rgb(44, 160, 44)
     undetermined: #777777
+    _TRANSPARENT_: rgba(255,255,255,0.0)
+
+- id: HRP2deletion, HRP3deletion, HRP23deletion
+  valueDisplays:
+    del: Deleted
+    nodel: Present
+  valueColours:
+    del: rgb(214, 39, 40)
+    nodel: rgb(44, 160, 44)
     _TRANSPARENT_: rgba(255,255,255,0.0)
 
