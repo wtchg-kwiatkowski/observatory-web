@@ -37,7 +37,7 @@ properties:
 - id: web_colour
   dataType: Text
 
-- id: CQresistance, SDXresistance, PYRresistance, MQresistance, ARTresistance, PPQresistance
+- id: CQresistance, SDXresistance, PYRresistance, MQresistance, ARTresistance, PPQresistance, SPresistance, SPIPTpresistance, ASMQresistance, DHAPPQresistance, HRP2deletion, HRP3deletion, HRP23deletion
   dataType: Float
   isCategorical: False
   scaleColours:
@@ -56,8 +56,21 @@ properties:
   name: "% Mefloquine Resistance"
 - id: ARTresistance
   name: "% Artemisinin Resistance"
-- id: PPQresistance
-  name: "% Piperaquine Resistance"
+- id: SPresistance
+  name: "% Sulfadoxine-pyrimethamine Resistance"
+- id: SPIPTpresistance
+  name: "% Sulfadoxine-pyrimethamine for IPTp resistance"
+- id: ASMQresistance
+  name: "% Artesunate-mefloquine Resistance"
+- id: DHAPPQresistance
+  name: "% Dihydroartemisinin-piperaquine Resistance"
+
+- id: HRP2deletion
+  name: "HRPII deleted"
+- id: HRP3deletion
+  name: "HRPIII deleted"
+- id: HRP23deletion
+  name: "HRPII and III deleted"
 
 
 dataItemViews:              # Lists the custom views that should appear in the popup for an individual data table item
