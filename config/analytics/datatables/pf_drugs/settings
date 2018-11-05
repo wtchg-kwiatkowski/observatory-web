@@ -18,6 +18,8 @@ properties:
   dataType: Text
 - id: name
   dataType: Text
+- id: is_combination
+  dataType: Boolean
 
 
 dataItemViews:              # Lists the custom views that should appear in the popup for an individual data table item
