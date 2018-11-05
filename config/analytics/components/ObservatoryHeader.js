@@ -145,7 +145,7 @@ let ObservatoryHeader = createReactClass({
                   this.config.cas.service ?
                     (this.config.user.id === "anonymous" ?
                       [
-                        <Divider key="Divider1"/>,
+                        <Divider key="Divider2"/>,
                         <ListItem button key="ListItemLogin"
                                   onClick={() => (this.handleCloseDrawer(), window.location.href = `${this.config.cas.service}?service=${window.location.href}`)}>
                           <ListItemIcon>
@@ -154,7 +154,7 @@ let ObservatoryHeader = createReactClass({
                           <ListItemText primary="Login"/>
                         </ListItem>]
                       : [
-                        <Divider key="Divider1"/>,
+                        <Divider key="Divider2"/>,
                         <ListItem button key="ListItem3"
                                   onClick={() => (this.handleCloseDrawer(), window.location.href = this.config.cas.logout)}>
                           <ListItemIcon>
@@ -316,7 +316,7 @@ let HamburgerContents = createReactClass({
     const {onClose} = this.props;
 
     return _flattenDeep(sitemap.map((branch, i) => {
-        return [<MenuItem key={i}
+        return [<MenuItem key={'branch_' + i}
                          onClick={() => (onClose(), this.getFlux().actions.session.tabOpen(React.createElement(branch.component.type, branch.component.props)))}>
           {branch.icon ? <ListItemIcon>
             <Icon className="icon" name={branch.icon}/>
@@ -324,7 +324,7 @@ let HamburgerContents = createReactClass({
           <ListItemText primary={branch.label} />
         </MenuItem>,
           (branch.children || []).map((option, j) => {
-            return  [<MenuItem key={j}
+            return  [<MenuItem key={'branch_' + i + '_option_' + j}
                                style={{paddingLeft: '40px'}}
                                onClick={() => (onClose(),this.getFlux().actions.session.tabOpen(React.createElement(option.component.type, option.component.props)))}>
               {option.icon ? <ListItemIcon>
@@ -332,7 +332,7 @@ let HamburgerContents = createReactClass({
               </ListItemIcon> : null}
               <ListItemText primary={option.label} />
             </MenuItem>,
-              option.children.map((subOption, k) => <MenuItem key={j+k}
+              option.children.map((subOption, k) => <MenuItem key={'branch_' + i + '_option_' + j + '_subOption_' + k}
                                                               style={{paddingLeft: '60px'}}
                                                               onClick={() => (onClose(),this.getFlux().actions.session.tabOpen(React.createElement(subOption.component.type, subOption.component.props)))}>
                 {subOption.icon ? <ListItemIcon>
