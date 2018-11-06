@@ -3,7 +3,7 @@ import React from 'react';
 import createReactClass from 'create-react-class';
 import PureRenderMixin from 'mixins/PureRenderMixin';
 import DocTemplate from 'panoptes/DocTemplate';
-
+import _filter from 'lodash/filter';
 import {propertyColour}  from 'util/Colours.js';
 
 import {Table,
@@ -29,6 +29,7 @@ let HotspotGrid = createReactClass({
   propTypes: {
     transpose: PropTypes.bool,
     regionsOrder: PropTypes.array, // Array of string
+    combination_drugs: PropTypes.bool
   },
 
   getDefaultProps() {
@@ -45,8 +46,10 @@ let HotspotGrid = createReactClass({
   },
 
   render() {
-    const {transpose, regionsOrder} = this.props;
-    const drugs = this.config.cachedTables['pf_drugs'];
+    const {transpose, regionsOrder, combination_drugs} = this.props;
+    let drugs = this.config.cachedTables['pf_drugs'];
+
+    drugs = _filter(drugs, (drug) => drug.is_combination === (combination_drugs ? "TRUE" : "FALSE"));
     const regions = this.config.cachedTables['pf_regions'];
     const regionsInOrder = regionsOrder !== undefined ? regionsOrder.map((region_id) => regions.filter((region) => region.region_id === region_id)[0]) : regions.sort(({region_id}, b) => region_id > b.region_id);
     let colourFunc = propertyColour(this.config.tablesById['pf_sites'].propertiesById['ARTresistance']);
@@ -68,7 +71,7 @@ let HotspotGrid = createReactClass({
                       width: '5px',height:'130px',
                       paddingRight: '11px',
                     }} padding="dense" key={region_id}>
-                  <div style={{width:"5px", whiteSpace: "nowrap", transform: "rotate(-90deg) translate(-47px, 10px)"}}>{name}</div>
+                    <div style={{width:"5px", whiteSpace: "nowrap", transform: "rotate(-90deg) translate(-47px, 10px)"}}>{name}</div>
                   </TableCell>)
               }
             </TableRow>
@@ -100,10 +103,10 @@ let HotspotGrid = createReactClass({
                       onClick={(e) => this.handleClick(e, 'pf_drug_regions', `${drug_id}_${region_id}`)}
                       padding="dense" key={region_id}>
                       <div style={{
-                          width: "22px",
-                          height: "22px",
-                          borderRadius: "50%",
-                          background: colourFunc(data[drug_id+'resistance'])
+                        width: "22px",
+                        height: "22px",
+                        borderRadius: "50%",
+                        background: colourFunc(data[drug_id+'resistance'])
                       }}/>
                     </TableCell>
                   )

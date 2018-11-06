@@ -13,7 +13,7 @@
                 <Typography >
                  We predict the resistance status of <strong><QueryResult table="pf_drugs"/></strong> major antimalarial drugs based on the presence of genetic mutations in parasite samples.</Typography>
                 <List>
-                {{#query 'drug_id' 'name' 'short_description' table='pf_drugs'}}
+                {{#query 'drug_id' 'name' 'short_description' table='pf_drugs' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"is_combination","CompValue":false,"isRoot":true,"Tpe":"="}'}}
                 <ObsListItem table="pf_drugs" primKey="{{drug_id}}">
                     <ListItemIcon><Icon class="icon" name='docimage:icons/drug02.svg'/></ListItemIcon>
                     <ListItemText>
@@ -35,6 +35,43 @@
                 </Typography>
                 <Typography component="div" className="paragraph">
                     <HotspotGrid transpose="true" regionsOrder='["SAM", "WAF", "CAF", "EAF", "SAS", "WSEA", "ESEA", "OCE"]'/>
+                </Typography>
+            </CardContent>
+        </Card>
+        <Card>
+            <CardContent>
+                <Typography variant="headline">
+                  Combination therapy resistance
+                </Typography>
+                <Typography variant="subheading" color="secondary">
+                  Parasites are evolving resistance to combinations of antimalarial drugs
+                </Typography>
+
+                <Typography >
+                 We predict the resistance status of <strong><QueryResult table="pf_drugs"/></strong> major antimalarial drugs based on the presence of genetic mutations in parasite samples.</Typography>
+                <List>
+                {{#query 'drug_id' 'name' 'short_description' table='pf_drugs' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"is_combination","CompValue":true,"isRoot":true,"Tpe":"="}'}}
+                <ObsListItem table="pf_drugs" primKey="{{drug_id}}">
+                    <ListItemIcon><Icon class="icon" name='docimage:icons/drug02.svg'/></ListItemIcon>
+                    <ListItemText>
+                      <div>{{name}}</div>
+                      <span>{{{short_description}}}</span>
+                    </ListItemText>
+                </ObsListItem>
+                {{/query}}
+              </List>
+            </CardContent>
+          </Card>
+        <Card>
+            <CardContent>
+                <Typography variant="headline">
+                    Resistance status
+                </Typography>
+                <Typography variant="subheading" color="secondary">
+                    Click a circle for details
+                </Typography>
+                <Typography component="div" className="paragraph">
+                    <HotspotGrid combination_drugs="true" transpose="true" regionsOrder='["SAM", "WAF", "CAF", "EAF", "SAS", "WSEA", "ESEA", "OCE"]'/>
                 </Typography>
             </CardContent>
         </Card>

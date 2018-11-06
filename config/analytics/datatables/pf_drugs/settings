@@ -58,8 +58,8 @@ dataItemViews:              # Lists the custom views that should appear in the p
                         name="name"
                         lat="lat"
                         lng="lng"
-                        colour="ARTresistance"
-                        resistance="ARTresistance"
+                        colour="{{drug_id}}resistance"
+                        resistance="{{drug_id}}resistance"
                         primKey="site_id"
                         num_samples="num_samples"
                       >
