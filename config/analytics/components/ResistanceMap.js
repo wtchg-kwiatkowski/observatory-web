@@ -81,6 +81,19 @@ let ResistanceMap = createReactClass({
                 <FormControlLabel value="PYR" control={<Radio/>} label="Pyrimethamine"/>
                 <FormControlLabel value="SDX" control={<Radio/>} label="Sulfadoxine"/>
               </RadioGroup>
+              <RadioGroup
+                aria-label="drug"
+                name="drug"
+                // className={classes.group}
+                value={drug}
+                onChange={this.handleChange}
+                style={{flexDirection: 'row'}}
+              >
+                <FormControlLabel value="SP" control={<Radio/>} label="Sulfadoxine-pyrimethamine"/>
+                <FormControlLabel value="SPIPTp" control={<Radio/>} label="Sulfadoxine-pyrimethamine for IPTp"/>
+                <FormControlLabel value="ASMQ" control={<Radio/>} label="Artesunate-mefloquine"/>
+                <FormControlLabel value="DHAPPQ" control={<Radio/>} label="Dihydro-artemisinin-piperaquine"/>
+              </RadioGroup>
             </FormControl>
 
             <div style={{width: '80vw', height: '60vh'}}>
