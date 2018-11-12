@@ -139,7 +139,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
             <Card>
                 <CardContent>
                     <Typography variant="headline">
-                    Predicted antimalarial drug resistance in {{name}}
+                    Drug resistance predictions in {{name}}
                     </Typography>
 
                     <DocTemplate path="templates/proportionPlotTitle.html"/>
@@ -175,6 +175,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
             </Card>
 
 
+            <div>
             <Card>
               <CardContent>
 
@@ -206,7 +207,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                 </CardContent>
             </Card>
 
-            <Card>
+            <Card style="margin-top:25px">
               <CardContent>
                 <Typography variant="headline">
                    Full sample data
@@ -219,6 +220,49 @@ dataItemViews:              # Lists the custom views that should appear in the p
                 </CardContent>
             </Card>
 
+            <div style="margin-top:25px">
+                <DocTemplate path="templates/sop.html"/>
+            </div>
+
+            </div>
+
+            <Card>
+                <CardContent>
+                    <Typography variant="headline">
+                    Combination therapy resistance predictions in {{name}}
+                    </Typography>
+
+                    <DocTemplate path="templates/proportionPlotTitle.html"/>
+
+                    <Typography >
+
+                        <div style="padding-top: 20px">
+                          <ProportionBarChartWrap
+                            numberOfTickLabels="5"
+                          >
+                            {{#query 'drug_id' 'name' table='pf_drugs' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"is_combination","CompValue":false,"isRoot":true,"ColName2":"qc_pass","Tpe":"="}'}}
+                              <ProportionBarChartRow
+                                rowTable="pf_drugs"
+                                rowPrimKeyValue="{{drug_id}}"
+                                rowLabel="{{name}}"
+                                proportionTable="pf_samples"
+                                numeratorBarColour="{{constant 'numeratorBar'}}"
+                                numeratorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{../site_id}}","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"resistant","Tpe":"="}],"Tpe":"AND"}'
+                                denominatorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{../site_id}}","Tpe":"="},{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"resistant","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"sensitive","Tpe":"="}],"Tpe":"OR"}],"Tpe":"AND"}'
+                                remainderTextColour="inherit"
+                                onClickBehaviour="ItemLink"
+                                onClickTable="pf_drugs"
+                                onClickPrimKey="{}"
+                                colourProperty="pf_regions.{{drug_id}}resistance"
+                                rawNumerator="true"
+                              />
+                            {{/query}}
+                          </ProportionBarChartWrap>
+                        </div>
+                    </Typography>
+                    <DocTemplate path="templates/proportionPlotLegend.html"/>
+                </CardContent>
+            </Card>
 
 
         </CardStack>
