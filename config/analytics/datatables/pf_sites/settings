@@ -35,7 +35,7 @@ properties:
     forwardName: is in    # Display name of the relation from child to parent
     reverseName: contains           # Display name of the relation from parent to child
 
-- id: CQresistance, SDXresistance, PYRresistance, MQresistance, ARTresistance, PPQresistance, SPresistance, SPIPTpresistance, ASMQresistance, DHAPPQresistance, HRP2deletion, HRP3deletion, HRP23deletion
+- id: CQresistance, SDXresistance, PYRresistance, MQresistance, ARTresistance, PPQresistance, SPresistance, SPIPTpresistance, ASMQresistance, DHAPPQresistance, HRP2deletion, HRP3deletion, HRP23deletion, AnyHRPdeletion
   dataType: Float
   isCategorical: False
   scaleColours:
@@ -43,6 +43,10 @@ properties:
     colours: ["green", "rgb(247, 230, 0)", "...", "...", "...", "rgb(212, 41, 41)"]
     nullColour: "#F2EFE9"
     interpolate: False
+
+- id: AnyHRPdeletion
+  showInTable: false
+
 
 - id: CQresistance
   name: "% Chloroquine Resistance"

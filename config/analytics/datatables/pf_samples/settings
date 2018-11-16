@@ -148,7 +148,7 @@ properties:
   name: HRP3
   dataType: Text
 - id: HRP23deletion
-  name: HRP2
+  name: HRP23
   dataType: Text
 
 
