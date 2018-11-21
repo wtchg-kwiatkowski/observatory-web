@@ -43,6 +43,7 @@ let StateBreadCrumb = createReactClass({
     const genes = ['Genes', <DocPage path="pf60/genes.html"/>];
     const regions = ['Geographic Regions', <DocPage path="pf60/regions.html"/>];
     const drugs = ['Drugs', <DocPage path="pf60/drugs.html"/>];
+    const rdts = ['RDT Evasion', <DocPage path="pf60/drugs.html"/>];
 
     const data = ['Data', <DocPage path="data.html"/>];
     const about = ['About', <DocPage path="about.html"/>];
@@ -82,6 +83,11 @@ let StateBreadCrumb = createReactClass({
             analysis,
             pf60Resistance,
             [drugs[0], null]
+          ],
+          'pf60/hrp.html': [
+            analysis,
+            pf60Resistance,
+            [rdts[0], null]
           ],
           'pf60/genes.html': [
             analysis,

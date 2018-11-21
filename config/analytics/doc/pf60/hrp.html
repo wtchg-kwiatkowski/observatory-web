@@ -1,0 +1,76 @@
+<PageTemplate bgurl="drugs.jpg">
+    <CardStack>
+
+        <div>
+            <Card>
+            <CardContent>
+                <Typography variant="headline">
+                    Rapid Diagnostic Test Evasion
+                </Typography>
+                <Typography variant="subheading" color="secondary">
+                    Parasites are evolving to evade detection by Rapid Diagnostic Tests (RDTs)
+                </Typography>
+
+                <Typography>
+                    We predict the test evasion status of <em>P. Falciparum</em> samples by the absence of the genes <em>HRPII</em> and <em>HRPIII</em>.
+                    Globally <PercentMatching table="pf_samples" numQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"HRP2deletion","CompValue":"del","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"HRP3deletion","CompValue":"del","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"HRP23deletion","CompValue":"del","Tpe":"="}],"Tpe":"OR"}'/> of samples in this dataset have deletions of either of these genes.
+                </Typography>
+            </CardContent>
+        </Card>
+            <div style="margin-top:20px" ><Card>
+                <CardContent>
+                    <Typography variant="headline">
+                        Evasion status
+                    </Typography>
+                    <Typography component="div" className="paragraph">
+                        <HRPHotspotGrid transpose="true" regionsOrder='["SAM", "WAF", "CAF", "EAF", "SAS", "WSEA", "ESEA", "OCE"]'/>
+                    </Typography>
+                </CardContent>
+            </Card></div>
+        </div>
+            <Card>
+                <CardContent>
+                    <Typography variant="headline">
+                        Evasion across sample sites
+                    </Typography>
+                    <Typography >
+                        The area of the circle below is proportional to the total number of samples collected at a site.
+                    </Typography>
+                    <Typography component="div" style="margin-top: 20px;">
+                        <div class="auto-half-height-container">
+                            <div class="auto-height-inner">
+                                <Map>
+                                    <TileLayer />
+                                    <TableData
+                                            table="pf_sites"
+                                            area='["sql_max",[200,["*", [6, "num_samples"]]]]'
+                                            name="name"
+                                            lat="lat"
+                                            lng="lng"
+                                            colour="AnyHRPdeletion"
+                                            resistance="AnyHRPdeletion"
+                                            primKey="site_id"
+                                            num_samples="num_samples"
+                                    >
+                                        <AttributeToColour table="pf_sites" property="AnyHRPdeletion">
+                                            <MarkerLayer>
+                                                <MarkerLayerMarker>
+                                                    <DocTemplate hideEditButton adjective="evading" path="templates/circleMapMarker.html"/>
+                                                </MarkerLayerMarker>
+                                                <MarkerLayerPopup>
+                                                    <DocTemplate hideEditButton adjective="evading" path="templates/drugResistanceInRegionSiteSamplesOnClickClusterTooltip.html"/>
+                                                </MarkerLayerPopup>
+
+                                            </MarkerLayer>
+                                        </AttributeToColour>
+                                    </TableData>
+                                </Map>
+                            </div>
+                        </div>
+                        <DocTemplate adjective="evading" path="templates/resistanceMapLegend.html"/>
+                    </Typography>
+                </CardContent>
+            </Card>
+
+    </CardStack>
+</PageTemplate>

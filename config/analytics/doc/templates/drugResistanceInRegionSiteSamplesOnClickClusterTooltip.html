@@ -1,6 +1,6 @@
 <div>
   {{#gt resistance -1}}
-    <div>{{round resistance}}% {{drug}} resistance in {{name}}</div>
+    <div>{{round resistance}}% {{drug}} {{#if adjective}} {{adjective}} {{else}}resistance {{/if}}in {{name}}</div>
   {{else}}
     <div> No data for {{drug}} in {{name}}</div>
   {{/gt}}

@@ -1,6 +1,6 @@
 <svg style="overflow: visible;" width="1" height="1" preserveAspectRatio="xMidYMin slice">
   <!-- slightly larger ghost circle prevents stroke clipping: --><circle r="{{add radius 1}}" fillOpacity="0"/>
-  <MuiTooltip title="{{round resistance}}% {{drug}} resistance in {{name}}">
+  <MuiTooltip title="{{round resistance}}% {{drug}} {{#if adjective}} {{adjective}} {{else}}resistance {{/if}} in {{name}}">
     <circle r="{{radius}}" fill="{{./colour}}" stroke="#111111" strokeWidth="1"/>
   </MuiTooltip>
 </svg>
