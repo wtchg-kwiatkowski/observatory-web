@@ -61,7 +61,7 @@ constants:
         props:
           path: analysis.html
       children:
-      - label: Anti-malarial drugs
+      - label: Antimalarial drugs
         icon: docimage:icons/big/drug.svg
         component:
           type: DocPage
