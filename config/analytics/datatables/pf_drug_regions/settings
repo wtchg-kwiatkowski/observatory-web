@@ -99,7 +99,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                       <TableData
                               query='{"whcClass":"comparefixed","isCompound":false,"ColName":"pf_region_id","CompValue":"{{region_id}}","isRoot":true,"Tpe":"="}'
                               table="pf_sites"
-                              area='["sql_max",[200,["*", [6, "num_samples"]]]]'
+                              area='["sql_max",[100,["*", [3, "num_samples"]]]]'
                               name="name"
                               lat="lat"
                               lng="lng"
