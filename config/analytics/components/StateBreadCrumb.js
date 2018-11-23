@@ -160,19 +160,19 @@ let StateBreadCrumb = createReactClass({
           pf_samples: [
             data,
             pf60DataRelease,
-            ['Samples Table', null],
+            ['Samples', null],
           ],
           pf_variants: [
             data,
             pf60DataRelease,
-            ['Variants Table', null],
+            ['Variants', null],
           ],
         }[table]),
         PivotTableWithActions: ({table}) => ({
           pf_samples: [
             data,
             pf60DataRelease,
-            ['Samples Table', <DataTableWithActions table={table} />],
+            ['Samples', <DataTableWithActions table={table} />],
             ['Pivot', null],
           ],
           pf_variants: [
@@ -186,20 +186,20 @@ let StateBreadCrumb = createReactClass({
           pf_samples: [
             data,
             pf60DataRelease,
-            ['Samples Table', <DataTableWithActions table={table} />],
+            ['Samples', <DataTableWithActions table={table} />],
             ['Plot', null],
           ],
           pf_variants: [
             data,
             pf60DataRelease,
-            ['Variants Table', <DataTableWithActions table={table} />],
+            ['Variants', <DataTableWithActions table={table} />],
             ['Plot', null],
           ],
         }[table]),
         GenomeBrowserWithActions: () => [
           data,
           pf60DataRelease,
-          ['Genome Browser', null]
+          ['Genome', null]
         ],
         ResistanceMap: ({feedId, itemId}) => [
           analysis,
