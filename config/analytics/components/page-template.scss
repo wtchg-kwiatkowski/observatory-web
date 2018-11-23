@@ -261,6 +261,24 @@ li {
 
 }
 
+.blog-article {
+  h1 {
+    margin-bottom: 0;
+  }
+  h2 {
+    margin-top: 35px;
+  }
+  h3 {
+    margin-top: 0;
+  }
+}
+
+.blog-content {
+  p:first-child:first-letter {
+    color: #33419E !important; // FIXME: page-template.scss is overridden by the core blog.scss
+  }
+}
+
 a:visited, a:active {
   color: inherit;
 }
