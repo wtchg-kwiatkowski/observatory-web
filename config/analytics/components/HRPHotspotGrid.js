@@ -89,7 +89,7 @@ let HRPHotspotGrid = createReactClass({
                     className="hover"
                     style={{
                       width: '10px',
-                      // cursor: 'pointer'
+                      cursor: 'pointer'
                     }}
                     // onClick={(e) => this.handleClick(e, 'pf_drugs', `${drug_id}`)}
                   >
@@ -100,7 +100,7 @@ let HRPHotspotGrid = createReactClass({
                       title={`${Math.round(data[drug_id + 'deletion'])}% ${drug_name} evasion in ${name}`}
                       className="hover"
                       style={{
-                        // cursor: 'pointer',
+                        cursor: 'pointer',
                         paddingRight: '11px'
                       }}
                       // onClick={(e) => this.handleClick(e, 'pf_drug_regions', `${drug_id}_${region_id}`)}
