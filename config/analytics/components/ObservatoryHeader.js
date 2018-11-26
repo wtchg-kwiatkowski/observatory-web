@@ -314,12 +314,13 @@ let HamburgerContents = createReactClass({
   render() {
     const {sitemap} = this.config.constants;
     const {onClose} = this.props;
+    const iconStyle = {marginRight: '0', color: '#69B1E3'};
 
     return _flattenDeep(sitemap.map((branch, i) => {
         return [<MenuItem key={'branch_' + i}
                          onClick={() => (onClose(), this.getFlux().actions.session.tabOpen(React.createElement(branch.component.type, branch.component.props)))}>
           {branch.icon ? <ListItemIcon>
-            <Icon className="icon" name={branch.icon}/>
+            <Icon className="icon" name={branch.icon} style={iconStyle}/>
           </ListItemIcon> : null}
           <ListItemText primary={branch.label} />
         </MenuItem>,
@@ -328,7 +329,7 @@ let HamburgerContents = createReactClass({
                                style={{paddingLeft: '40px'}}
                                onClick={() => (onClose(),this.getFlux().actions.session.tabOpen(React.createElement(option.component.type, option.component.props)))}>
               {option.icon ? <ListItemIcon>
-                <Icon className="icon" name={option.icon}/>
+                <Icon className="icon" name={option.icon} style={iconStyle}/>
               </ListItemIcon> : null}
               <ListItemText primary={option.label} />
             </MenuItem>,
@@ -336,7 +337,7 @@ let HamburgerContents = createReactClass({
                                                               style={{paddingLeft: '60px'}}
                                                               onClick={() => (onClose(),this.getFlux().actions.session.tabOpen(React.createElement(subOption.component.type, subOption.component.props)))}>
                 {subOption.icon ? <ListItemIcon>
-                  <Icon className="icon" name={subOption.icon}/>
+                  <Icon className="icon" name={subOption.icon} style={iconStyle}/>
                 </ListItemIcon> : null}
                 <ListItemText primary={subOption.label} />
               </MenuItem>)

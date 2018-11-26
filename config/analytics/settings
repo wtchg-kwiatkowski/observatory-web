@@ -37,6 +37,7 @@ constants:
   mapNoData: '#F2EFE9'
   sitemap:
   - label: Home
+    icon: mui:home
     component:
       type: DocPage
       props:
