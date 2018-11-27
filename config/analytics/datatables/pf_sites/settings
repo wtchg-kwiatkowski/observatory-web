@@ -244,7 +244,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
                           <ProportionBarChartWrap
                             numberOfTickLabels="5"
                           >
-                            {{#query 'drug_id' 'name' table='pf_drugs' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"is_combination","CompValue":false,"isRoot":true,"ColName2":"qc_pass","Tpe":"="}'}}
+                            {{#query 'drug_id' 'name' table='pf_drugs' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"is_combination","CompValue":true,"isRoot":true,"ColName2":"qc_pass","Tpe":"="}'}}
                               <ProportionBarChartRow
                                 rowTable="pf_drugs"
                                 rowPrimKeyValue="{{drug_id}}"
