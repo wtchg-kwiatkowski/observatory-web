@@ -68,6 +68,12 @@ constants:
           type: DocPage
           props:
             path: pf60/drugs.html
+      - label: RDT evasion
+        icon: docimage:icons/site-samples.svg
+        component:
+          type: DocPage
+          props:
+            path: pf60/hrp.html
       - label: Geographical regions
         icon: docimage:icons/big/geography.svg
         component:
