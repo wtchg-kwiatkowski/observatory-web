@@ -50,6 +50,7 @@ properties:
   description: Identifier of the study that contributed the samples
   dataType: Text
   hideLink: True
+  tableDefaultVisible: False
   relation:                         # This block defines a many-to-one foreign relation to a parent table
     tableId: studies           # Data table id of the parent table
     forwardName: is contributed by  # Display name of the relation from child to parent
@@ -63,6 +64,7 @@ properties:
 
 - id: region
   name: Region Name
+  tableDefaultVisible: False
   dataType: Text
 
 - id: site_lat
@@ -76,21 +78,27 @@ properties:
   minVal: 9999
   maxVal: 99999
 - id: country_lat
+  tableDefaultVisible: False
   name: Country Latitude
   dataType: Double
 - id: country_lng
+  tableDefaultVisible: False
   name: Country Longitude
   dataType: Double
 - id: region_lat
+  tableDefaultVisible: False
   name: Region Latitude
   dataType: Double
 - id: region_lng
+  tableDefaultVisible: False
   name: Region Longitude
   dataType: Double
 - id: site
+  tableDefaultVisible: False
   name: Site Name
   dataType: Text
 - id: country
+  tableDefaultVisible: False
   name: Country Name
   dataType: Text
 
@@ -103,9 +111,11 @@ properties:
   dataType: Boolean
 
 - id: mean_coverage
+  tableDefaultVisible: False
   name: Coverage
   dataType: Double
 - id: pc_genome_callable
+  tableDefaultVisible: False
   name: "% Callable"
   dataType: Double
 

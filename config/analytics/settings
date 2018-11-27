@@ -106,9 +106,6 @@ constants:
           type: DataTableWithActions
           props:
             table: pf_samples
-            columns: [sample_id, site_id, country_id, region_id, run_accessions, year,
-              site_lat, site_lng, CQresistant, PYRresistant, SDXresistant, MQresistant,
-              ARTresistant, PPQresistant]
       - label: Variants
         icon: docimage:icons/table01.svg
         component:
