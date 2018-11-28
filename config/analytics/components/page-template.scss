@@ -282,3 +282,21 @@ li {
 a:visited, a:active {
   color: inherit;
 }
+
+table.sop-loci {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  width: 100%;
+  tbody tr:nth-child(even) {
+    background-color: #f5f5f5;
+  }
+  thead tr th {
+    text-align: left;
+  }
+  td {
+    padding: 10px;
+  }
+  th {
+    padding: 10px;
+  }
+}
