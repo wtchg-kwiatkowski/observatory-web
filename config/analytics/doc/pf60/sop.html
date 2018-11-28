@@ -1,0 +1,377 @@
+<PageTemplate bgurl="sporozoites.jpg">
+
+    <CardStack thin>
+        <Card>
+            <CardContent>
+                <Typography variant="headline">
+                    How we determine resistance
+                </Typography>
+                <Typography>
+                    <p>To determine if a sample is labelled as "resistant" to a certain drug we look at particular points of the genome. These are summarised in the tables below. To prevent ambiguity the rules in the tables are applied in order and the first matching row used.</p>
+
+                </Typography>
+            </CardContent>
+        </Card>
+        <Card>
+            <CardContent>
+                <Typography variant="headline">
+                    Chloroquine
+                </Typography>
+                <Typography>
+                    <p>PF3D7_0709000 (CRT), codon 76</p>
+                    <table class="sop-loci">
+                        <thead>
+                            <tr><th>Amino acid change</th><th>Interpretation</th><th>Phenotype</th><th>Result</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>76-Heterozygous</td><td>Heterozygous</td><td>Resistant/het</td><td>Resistant</td></tr>
+                            <tr><td>76-Missing</td><td>Missing</td><td>Undetermined/missing</td><td>Undetermined</td></tr>
+                            <tr><td>K76</td><td>Wild-type</td><td>Sensitive</td><td>Sensitive</td></tr>
+                            <tr><td>76T</td><td>Mutant</td><td>Resistant[1]</td><td>Resistant</td></tr>
+                            <tr><td>76-nonT</td><td>Unknown mutant</td><td>Undetermined</td><td>Undetermined</td></tr>
+                        </tbody>
+                    </table>
+                    References:
+                    <ol>
+                        <li>
+                            <strong>Djimdé et al</strong>
+                            <em>Application of a molecular marker for surveillance of chloroquine-resistant falciparum malaria</em> 2001 <a href="https://doi.org/10.1016/S0140-6736(01)06040-8">https://doi.org/10.1016/S0140-6736(01)06040-8</a>
+                        </li>
+                    </ol>
+                    Notes:
+                    <ul>
+                        <li>
+                            There are evidences linking SNPs in the gene mdr1 with some level of chloroquine resistance. However their impact on clinical phenotypes and the interactions with crt mutations is not fully understood hence the decision to not use that in the phenotype determination.
+                        </li>
+                        <li>
+                            Work in progress from <em>Rutledge et al.</em> shows the effect of other mutations on the level or resistance (super-resistance lineages). This information could be incorporated in future versions.
+                        </li>
+                    </ul>
+                </Typography>
+            </CardContent>
+        </Card>
+        <Card>
+            <CardContent>
+                <Typography variant="headline">
+                    Artemisinin
+                </Typography>
+                <Typography>
+                    <p>PF3D7_1343700 (kelch13), codons 349-726</p>
+                    <table class="sop-loci">
+                        <thead>
+                        <tr><th>Amino acid change</th><th>Interpretation</th><th>Phenotype</th><th>Result</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Missing</td><td>Missing</td><td>Undetermined/missing</td><td>Undetermined</td></tr>
+                            <tr><td>None</td><td>Wild-type</td><td>Sensitive</td><td>Sensitive</td></tr>
+                            <tr><td>458Y, 493H, 539T, 543T, 561H, 580Y</td><td>Mutant - validated</td><td>Resistant [1]</td><td>Resistant</td></tr>
+                            <tr><td>441L, 446I, 449A, 538V, 553L, 568G, 574L, 675V</td><td>Mutant - candidate</td><td>Resistant/candidate</td><td>Resistant</td></tr>
+                            <tr><td>476I, 469Y, 469F, 476I, 479I, 481V, 515K, 522C, 527L, 537I, 537D, 538V, 575K, 579I, 584V, 667T, 673I, 719N</td><td>Mutant - associated</td><td>Resistant/associated</td><td>Resistant</td></tr>
+                            <tr><td>458Y, 493H, 539T, 543T, 561H, 580Y, 441L, 446I, 449A, 538V, 553L, 568G, 574L, 675V, 476I, 469Y, 469F, 476I, 479I, 481V, 515K, 522C, 527L, 537I, 537D, 538V, 575K, 579I, 584V, 667T, 673I, 719N</td><td>Mutant - heterozygous</td><td>Resistant/het</td><td>Resistant</td></tr>
+                            <tr><td>252Q, 578S</td><td>Mutant - not associated</td><td>Sensitive/mutant [1]</td><td>Sensitive</td></tr>
+                            <tr><td>otherwise</td><td>Mutant - not in WHO list</td><td>Undetermined</td><td>Undetermined</td></tr>
+                        </tbody>
+                    </table>
+                    References:
+                    <ol>
+                        <li>
+                            <strong>WHO Global Malaria Programme</strong>
+                            <em>Artemisinin and artemisinin-based combination therapy resistance</em> 2017
+                            <a href="http://apps.who.int/iris/bitstream/10665/255213/1/WHO-HTM-GMP-2017.9-eng.pdf">http://apps.who.int/iris/bitstream/10665/255213/1/WHO-HTM-GMP-2017.9-eng.pdf</a>
+                        </li>
+                    </ol>
+                    Notes:
+                    <ul>
+                        <li>
+                            A sample is “Missing” if one or more of the listed variants has a missing genotype and there are no variants leading to non-synonymous mutations.
+                        </li>
+                    </ul>
+                </Typography>
+            </CardContent>
+        </Card>
+        <Card>
+            <CardContent>
+                <Typography variant="headline">
+                    Piperaquine
+                </Typography>
+                <Typography>
+                    <p>PF3D7_1408000 (plasmepsin 2) and PF3D7_1408100 (plasmepsin 3)</p>
+                    <table class="sop-loci">
+                        <thead>
+                        <tr><th>Change</th><th>Interpretation</th><th>Phenotype</th><th>Result</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Missing</td><td>Missing</td><td>Undetermined/missing</td><td>Undetermined</td></tr>
+                            <tr><td>Single copy</td><td>Wild-type</td><td>Sensitive</td><td>Sensitive</td></tr>
+                            <tr><td>Multiple copies</td><td>Mutant</td><td>Resistant [1,2]</td><td>Resistant</td></tr>
+                        </tbody>
+                    </table>
+                    References:
+                    <ol>
+                        <li>
+                            <strong>
+                                Amato et al
+                            </strong>
+                            <em>
+                                Genetic markers associated with dihydroartemisinin–piperaquine failure in Plasmodium falciparum malaria in Cambodia: a genotype–phenotype association study
+                            </em> 2017
+                            <a href="http://dx.doi.org/10.1016/S1473-3099(16)30409-1">http://dx.doi.org/10.1016/S1473-3099(16)30409-1</a>
+                        </li>
+                        <li>
+                            <strong>
+                                Witkowski et al
+                            </strong>
+                            <em>
+                                A surrogate marker of piperaquine-resistant Plasmodium falciparum malaria: a phenotype–genotype association study
+                            </em> 2017
+                            <a href="https://doi.org/10.1016/S1473-3099(16)30415-7">https://doi.org/10.1016/S1473-3099(16)30415-7</a>
+                        </li>
+                    </ol>
+                </Typography>
+            </CardContent>
+        </Card>
+        <Card>
+            <CardContent>
+                <Typography variant="headline">
+                    Mefloquine
+                </Typography>
+                <Typography>
+                    <p>PF3D7_0523000 (mdr1)</p>
+                    <table class="sop-loci">
+                        <thead>
+                            <tr><th>Change</th><th>Interpretation</th><th>Phenotype</th><th>Result</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Missing</td><td>Missing</td><td>Undetermined/missing</td><td>Undetermined</td></tr>
+                            <tr><td>Single copy</td><td>Wild-type</td><td>Sensitive</td><td>Sensitive</td></tr>
+                            <tr><td>Multiple copies</td><td>Mutant</td><td>Resistant [1]</td><td>Resistant</td></tr>
+                        </tbody>
+                    </table>
+                    References:
+                    <ol>
+                        <li>
+                            <strong>Price et al</strong>
+                            <em>Mefloquine resistance in Plasmodium falciparum and increased pfmdr1 gene copy number</em> 2004
+                            <a href="https://doi.org/10.1016/S0140-6736(04)16767-6">https://doi.org/10.1016/S0140-6736(04)16767-6</a>
+                        </li>
+                    </ol>
+                </Typography>
+            </CardContent>
+        </Card>
+
+        <Card>
+            <CardContent>
+                <Typography variant="headline">
+                    Pyrimethamine
+                </Typography>
+                <Typography>
+                    <p>PF3D7_0417200 (dhfr), codon 108  </p>
+                    <table class="sop-loci">
+                        <thead>
+                        <tr><th>Amino acid change</th><th>Interpretation</th><th>Phenotype</th><th>Result</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>108-Heterozygous</td><td>Heterozygous</td><td>Resistant/het</td><td>Resistant</td></tr>
+                            <tr><td>108-Missing</td><td>Missing</td><td>Undetermined/missing</td><td>Undetermined</td></tr>
+                            <tr><td>S108</td><td>Wild-type</td><td>Sensitive</td><td>Sensitive</td></tr>
+                            <tr><td>108N</td><td>Mutant</td><td>Resistant [1]</td><td>Resistant</td></tr>
+                            <tr><td>108-nonN</td><td>Unknown mutant</td><td>Undetermined]</td><td>Undetermined</td></tr>
+                        </tbody>
+                    </table>
+                    References:
+                    <ol>
+                        <li>
+                            <strong>Cowman et al</strong>
+                            <em>Amino acid changes linked to pyrimethamine resistance in the dihydrofolate reductase-thymidylate synthase gene of Plasmodium falciparum</em> 1998
+                            <a href="https://www.ncbi.nlm.nih.gov/pubmed/3057499">https://www.ncbi.nlm.nih.gov/pubmed/3057499</a>
+                        </li>
+                    </ol>
+                    Notes:
+                    <ul>
+                        <li>
+                            Greater number of mutations in DHFR leads to greater drug resistance, but we are not considering that for the moment since it appears that 108N is necessary and sufficient.
+                        </li>
+                    </ul>
+                </Typography>
+            </CardContent>
+        </Card>
+
+        <Card>
+            <CardContent>
+                <Typography variant="headline">
+                    Sulfadoxine
+                </Typography>
+                <Typography>
+                    <p>PF3D7_0810800 (dhps), codons 437  </p>
+                    <table class="sop-loci">
+                        <thead>
+                        <tr><th>Amino acid change</th><th>Interpretation</th><th>Phenotype</th><th>Result</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>437-Heterozygous</td><td>Heterozygous</td><td>Resistant/het</td><td>Resistant</td></tr>
+                            <tr><td>437-Missing</td><td>Missing</td><td>Undetermined/missing</td><td>Undetermined</td></tr>
+                            <tr><td>A437</td><td>Wild-type</td><td>Sensitive</td><td>Sensitive</td></tr>
+                            <tr><td>437G</td><td>Mutant</td><td>Resistant [1]</td><td>Resistant</td></tr>
+                            <tr><td>otherwise</td><td>Missing or unknown combination</td><td>Undetermined</td><td>Undetermined</td></tr>
+                        </tbody>
+                    </table>
+                    References:
+                    <ol>
+                        <li>
+                            <strong>Triglia et al</strong>
+                            <em>Allelic exchange at the endogenous genomic locus in Plasmodium falciparum proves the role of dihydropteroate synthase in sulfadoxine‐resistant malaria </strong></em> 1998
+                            <a href="https://doi.org/10.1093/emboj/17.14.3807">https://doi.org/10.1093/emboj/17.14.3807</a>
+                        </li>
+                    </ol>
+                    Notes:
+                    <ul>
+                        <li>
+                            Although the 3D7 reference sequence translates as a G at 437, this is thought to be the mutant allele, i.e. 3D7 does not have the wild type allele.
+                        </li>
+                    </ul>
+                </Typography>
+            </CardContent>
+        </Card>
+        <Card>
+            <CardContent>
+                <Typography variant="headline">
+                    Sulfadoxine-Pyrimethamine (treatment)
+                </Typography>
+                <Typography>
+                    <p>  PF3D7_0417200 (dhfr), codon 51, 59, 108 </p>
+                    <table class="sop-loci">
+                        <thead>
+                        <tr><th>Amino acid change</th><th>Interpretation</th><th>Phenotype</th><th>Result</th></tr>
+                        </thead>
+                        <tbody>
+                        <tr><td>dhfr: N51 or C59 or
+                            S108</td><td>Wild-type</td><td>Sensitive</td><td>Sensitive</td></tr>
+                        <tr><td>dhfr: 51I + 59R + 108N</td><td>Mutant</td><td>Resistant [1]</td><td>Resistant</td></tr>
+                        <tr><td>otherwise</td><td>Missing or unknown combination</td><td>Undetermined</td><td>Undetermined</td></tr>
+
+
+                        </tbody>
+                    </table>
+                    References:
+                    <ol>
+                        <li>
+                            <strong>Nzila et al</strong>
+                            <em>Towards an understanding of the mechanism of pyrimethamine-sulfadoxine resistance in Plasmodium falciparum: genotyping of dihydrofolate reductase and dihydropteroate synthase of Kenyan parasites</em> 2000
+                            <a href="https://doi.org/10.1128/AAC.44.4.991-996.2000">https://doi.org/10.1128/AAC.44.4.991-996.2000</a>
+                        </li>
+                    </ol>
+                    Notes:
+                    <ul>
+                        <li>
+                            Also known as the “triple mutant” associated with “partial resistance”
+                        </li>
+                        <li>
+                            Only need one wild-type allele to determine sample is “Sensitive”, even if other alleles are mutant or missing
+                        </li>
+                        <li>
+                            Heterozygous calls are considered mutant
+                        </li>
+                    </ul>
+                </Typography>
+            </CardContent>
+        </Card>
+        <Card>
+            <CardContent>
+                <Typography variant="headline">
+                    Sulfadoxine-Pyrimethamine (IPTp)
+                </Typography>
+                <Typography>
+                    <p> PF3D7_0417200 (dhfr), codon 51, 59, 108, 164 and PF3D7_0810800 (dhps), codons 437, 540, 581, 613 </p>
+                    <table class="sop-loci">
+                        <thead>
+                        <tr><th>Amino acid change</th><th>Interpretation</th><th>Phenotype</th><th>Result</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>dhfr: N51 or C59 or S108 or dhps: A437 or K540 or all of (dhfr:I164 + dhps:A581 + dhps:A613)</td><td>Not sextuple mutant (at least one allele is wild-type)</td><td>Sensitive</td><td>Sensitive</td></tr>
+                            <tr><td>dhfr: 51I + 59R + 108N + dhps: 437G + 540E + one of (dhfr:164L, dhps:581G, dhps:613S) or dhps:613T</td><td>Sextuple mutant</td><td>Resistant [1]</td><td>Resistant</td></tr>
+                            <tr><td>otherwise</td><td>Missing or unknown combination</td><td>Undetermined</td><td>Undetermined</td></tr>
+                        </tbody>
+                    </table>
+                    References:
+                    <ol>
+                        <li>
+                            <strong>Naidoo, Roper</strong>
+                            <em>Mapping 'partially resistant', 'fully resistant', and 'super resistant' malaria </em> 2013
+                            <a href="https://doi.org/10.1016/j.pt.2013.08.002">https://doi.org/10.1016/j.pt.2013.08.002</a>
+                        </li>
+                    </ol>
+                    Notes:
+                    <ul>
+                        <li>
+                            Also known as the “sextuple mutant” associated with “super resistance”
+                        </li>
+                        <li>
+                            Associated with reduced IPTp efficacy: (https://doi.org/10.1186/s12936-015-0909-7, https://doi.org/10.3201/eid1909.130133)
+                        </li>
+                        <li>
+                            Only need one wild-type allele to determine sample is “Sensitive”, even if other alleles are mutant or missing
+                        </li>
+                        <li>
+                            Heterozygous calls are considered mutant
+                        </li>
+                    </ul>
+                </Typography>
+            </CardContent>
+        </Card>
+        <Card>
+            <CardContent>
+                <Typography variant="headline">
+                    Artesunate-mefloquine
+                </Typography>
+                <Typography>
+                    <p>PF3D7_1343700 (kelch13), codons 349-726 and PF3D7_0523000 (mdr1)  </p>
+                    <table class="sop-loci">
+                        <thead>
+                        <tr><th>Change</th><th>Interpretation</th><th>Phenotype</th><th>Result</th></tr>
+                        </thead>
+                        <tbody>
+                        <tr><td>Lack of WHO K13 mutant or single copy of mdr1</td><td>Wild-type for at least one component</td><td>Sensitive</td><td>Sensitive</td></tr>
+                        <tr><td>WHO K13 mutant and multiple copies of mdr1</td><td>Mutant</td><td>Resistant</td><td>Resistant</td></tr>
+                        <tr><td>otherwise</td><td>Missing or unknown combination</td><td>Undetermined</td><td>Undetermined</td></tr>
+                        </tbody>
+                    </table>
+                    Notes:
+                    <ul>
+                        <li>
+                            Only need one wild-type allele to determine sample is “Sensitive”, even if other allele is mutant or missing
+                        </li>
+                    </ul>
+                </Typography>
+            </CardContent>
+        </Card>
+        <Card>
+            <CardContent>
+                <Typography variant="headline">
+                    Dihydroartemisinin-piperaquine
+                </Typography>
+                <Typography>
+                    <p>PF3D7_1343700 (kelch13), codons 349-726 and both PF3D7_1408000 (plasmepsin 2) and PF3D7_1408100 (plasmepsin 3) </p>
+                    <table class="sop-loci">
+                        <thead>
+                        <tr><th>Change</th><th>Interpretation</th><th>Phenotype</th><th>Result</th></tr>
+                        </thead>
+                        <tbody>
+                        <tr><td>Lack of WHO K13 mutant or single copy of pm2/3</td><td>Wild-type for at least one component</td><td>Sensitive</td><td>Sensitive</td></tr>
+                        <tr><td>WHO K13 mutant and multiple copies of pm2/3</td><td>Mutant</td><td>Resistant</td><td>Resistant</td></tr>
+                        <tr><td>otherwise</td><td>Missing or unknown combination</td><td>Undetermined</td><td>Undetermined</td></tr>
+                        </tbody>
+                    </table>
+                    Notes:
+                    <ul>
+                        <li>
+                            Only need one wild-type allele to determine sample is “Sensitive”, even if other allele is mutant or missing
+                        </li>
+                    </ul>
+                </Typography>
+            </CardContent>
+        </Card>
+
+
+    </CardStack>
+
+</PageTemplate>
