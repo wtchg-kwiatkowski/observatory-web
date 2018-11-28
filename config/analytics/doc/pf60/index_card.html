@@ -1,9 +1,8 @@
 <Card>
     <CardContent>
-        <Typography class="home-headline" variant="headline">Drug resistance in <em>Plasmodium
-            falciparum</em> malaria</Typography>
-        <Typography variant="subheading" color="textSecondary" paragraph="true">Analysis of the
-            occurrence and spread of resistance to antimalaria drugs, using genome sequence data from
+        <Typography class="home-headline" variant="headline">Metrics derived from <em>Plasmodium falciparum </em> genetic data </Typography>
+        <Typography variant="subheading" color="textSecondary" paragraph="true">
+          Analyses of the emergence and spread of antimalarial drug resistance and diagnostic test failure based on genomic data from
             <QueryResult table="pf_samples"/>
             <em>P. falciparum</em> samples from
             <QueryResult table="pf_sites"/>
@@ -21,24 +20,7 @@
                     <span>Compare resistance across drugs</span>
                 </ListItemText>
             </ObsListItem>
-            <ObsListItem href="pf60/hrp.html">
-                <ListItemIcon>
-                    <Icon class="icon" name='docimage:icons/site-samples.svg' size="2x"/>
-                </ListItemIcon>
-                <ListItemText>
-                    <span>Diagnostic test evasion</span>
-                    <span>View the spread of test evasion variants</span>
-                </ListItemText>
-            </ObsListItem>
-            <ObsListItem href="pf60/regions.html">
-                <ListItemIcon>
-                    <Icon class="icon" name='docimage:icons/big/geography.svg' size="2x"/>
-                </ListItemIcon>
-                <ListItemText>
-                    <span>Geographical regions</span>
-                    <span>See how drug resistance varies across the world</span>
-                </ListItemText>
-            </ObsListItem>
+
             <ObsListItem href="pf60/genes.html">
                 <ListItemIcon>
                     <Icon class="icon" name='docimage:icons/big/gene.svg' size="2x"/>
@@ -48,6 +30,29 @@
                     <span>Explore the genetic variants causing drug resistance</span>
                 </ListItemText>
             </ObsListItem>
+
+
+
+            <ObsListItem href="pf60/hrp.html">
+                <ListItemIcon>
+                    <Icon class="icon" name='docimage:icons/site-samples.svg' size="2x"/>
+                </ListItemIcon>
+                <ListItemText>
+                    <span>Diagnostic
+                      test evasion</span>
+                    <span>View where parasites have evolved to evade RDTs</span>
+                </ListItemText>
+            </ObsListItem>
+
+            <ObsListItem href="pf60/regions.html">
+                <ListItemIcon>
+                    <Icon class="icon" name='docimage:icons/big/geography.svg' size="2x"/>
+                </ListItemIcon>
+                <ListItemText>
+                    <span>Geographical regions</span>
+                    <span>Explore the geography of drug resistanced</span>
+                </ListItemText>
+            </ObsListItem>
             <CustomButton>
                 <Anchor>
                     <ListItem button="true">
@@ -55,8 +60,8 @@
                             <Icon name="docimage:icons/map.svg" size="2x"/>
                         </ListItemIcon>
                         <ListItemText>
-                            <div>Resistance map</div>
-                            <span>Visualise and explore global drug resistance</span>
+                            <div>View resistance map</div>
+                            <span>Go straight to a world map of resistance</span>
                         </ListItemText>
                     </ListItem>
                 </Anchor>

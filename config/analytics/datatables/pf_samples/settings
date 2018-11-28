@@ -1,7 +1,7 @@
 nameSingle: sample
 namePlural: samples
 
-description: This table shows all the information for the samples included. Click column header to sort, and use the buttons below to filter or download the data.
+description: This table shows information on samples used in MalariaGEN Analytics. <p> Sort the columns to the right by clicking their header. <p> Filter samples to display those with specific features, and download or visualise the data for yourself using the buttons below.
 icon: fa-flask
 primKey: sample_id
 
@@ -11,10 +11,10 @@ externalLinks:
 
 quickFindFields: sample_id, site_id, country_id, region_id, run_accessions
 
-properties: 
+properties:
 - id: sample_id
   dataType: Text
-  name: Sample ID                 
+  name: Sample ID
   dataType: Text
   hideLink: True
   search: StartPattern
@@ -27,7 +27,7 @@ properties:
     tableId: pf_sites          # Datatable id of the parent table
     forwardName: is sampled from    # Display name of the relation from child to parent
     reverseName: contains           # Display name of the relation from parent to child
-  
+
 - id: country_id
   name: Country
   dataType: Text
@@ -182,4 +182,3 @@ properties:
     del: rgb(214, 39, 40)
     nodel: rgb(44, 160, 44)
     _TRANSPARENT_: rgba(255,255,255,0.0)
-

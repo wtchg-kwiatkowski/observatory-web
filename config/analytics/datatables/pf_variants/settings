@@ -1,9 +1,7 @@
 nameSingle: variant
 namePlural: variants
 
-description: A catalogue of the variants which were discovered, with properties including
-  reference and alternate alleles, variant filter annotations, mutation effects, and
-  quality metrics including total depth and mapping quality.
+description: This table shows information on the genetic variants used in MalariaGEN Analytics. <p> Sort the columns yo the right by clicking their header. <p> Filter variants to display those with specific features, and download or visualise the data for yourself using the buttons below.
 
 icon: fa-bookmark
 

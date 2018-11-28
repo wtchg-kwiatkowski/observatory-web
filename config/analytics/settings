@@ -112,12 +112,15 @@ constants:
           type: DataTableWithActions
           props:
             table: pf_samples
-      - label: Variants
+            filter: null
+      - label: Variant Table
         icon: docimage:icons/table01.svg
         component:
           type: DataTableWithActions
           props:
             table: pf_variants
+            columns: null
+            filter: null
 
 
 feeds:
