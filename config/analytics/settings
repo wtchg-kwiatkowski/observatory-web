@@ -74,7 +74,7 @@ constants:
           type: DocPage
           props:
             path: pf60/hrp.html
-      - label: Geographical regions
+      - label: Geographic regions
         icon: docimage:icons/big/geography.svg
         component:
           type: DocPage
