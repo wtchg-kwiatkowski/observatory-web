@@ -1,11 +1,20 @@
+{{#query
+  'site_id'
+  'name'
+  'countries.name'
+  table='pf_sites'
+  distinct='true'
+  query='{"whcClass":"comparefixed","isCompound":false,"ColName":"pf_sites.site_id","CompValue":"{{primKey}}","isRoot":true,"Tpe":"="}'
+}}
 <div>
-  {{#gt resistance -1}}
-    <div>{{round resistance}}% {{drug}} {{#if adjective}} {{adjective}} {{else}}resistance {{/if}}in {{name}}</div>
+  {{#gt @root/resistance -1}}
+    <div>{{round @root/resistance}}% {{@root/drug}} {{#if @root/adjective}} {{@root/adjective}} {{else}}resistance {{/if}}in {{name}}, {{{countries.name}}}</div>
   {{else}}
-    <div> No data for {{drug}} in {{name}}</div>
+    <div> No data for {{@root/drug}} in {{name}}</div>
   {{/gt}}
   <div style="margin-top: 10px">
-    <ItemLink table="pf_sites" primKey="{{primKey}}"><Button color="primary" raised="true" label="Site info"/></ItemLink>
+    <ItemLink table="pf_sites" primKey="{{@root/primKey}}"><Button color="primary" raised="true" label="Site info"/></ItemLink>
   </div>
 
 </div>
+{{/query}}
