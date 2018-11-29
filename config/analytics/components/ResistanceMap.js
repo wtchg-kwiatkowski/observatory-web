@@ -105,9 +105,7 @@ let ResistanceMap = createReactClass({
                   {drug !== 'sites' ?
                     <FeatureGroup>
                         <TableGeoJSONsLayer
-                          onClickBehaviour="tooltip"
-                          onClickComponent="DocTemplate"
-                          onClickComponentProps={{drug_id:drug, dynamicSize: true, path: "templates/regionCloroplethTooltip.html"}}
+                          disableClick
                           table="pf_regions"
                           geoJsonProperty="geojson"
                           max={100}
