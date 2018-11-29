@@ -1,8 +1,0 @@
-{{#query 'region_id' 'name' (concat drug_id 'resistance') table='pf_regions' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"region_id","CompValue":"{{primKey}}","Tpe":"="}'}}
-<div>
-  <div>{{toInt (lookup . (concat ../drug_id 'resistance'))}}% {{../drug_name}} resistance in {{name}}</div>
-  <div style="margin-top: 10px">
-  <ItemLink table="pf_drug_regions" primKey="{{concat ../drug_id '_' region_id}}"><Button color="primary" raised="true" label="region info"/></ItemLink>
-</div>
-</div>
-{{/query}}
