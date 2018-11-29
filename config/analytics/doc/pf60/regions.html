@@ -58,13 +58,26 @@
         <Card>
             <CardContent>
                 <Typography variant="headline">
-                    Resistance status
+                    Antimalarial drug resistance status
                 </Typography>
                 <Typography variant="subheading" color="secondary">
                     Click a circle for details
                 </Typography>
                 <Typography component="div" className="paragraph">
                     <HotspotGrid transpose="true" regionsOrder='["SAM", "WAF", "CAF", "EAF", "SAS", "WSEA", "ESEA", "OCE"]'/>
+                </Typography>
+            </CardContent>
+        </Card>
+        <Card>
+            <CardContent>
+                <Typography variant="headline">
+                    Combination therapy resistance status
+                </Typography>
+                <Typography variant="subheading" color="secondary">
+                    Click a circle for details
+                </Typography>
+                <Typography component="div" className="paragraph">
+                    <HotspotGrid combination_drugs="true" transpose="true" regionsOrder='["SAM", "WAF", "CAF", "EAF", "SAS", "WSEA", "ESEA", "OCE"]'/>
                 </Typography>
             </CardContent>
         </Card>
