@@ -10,6 +10,7 @@ primKey: country_id
 quickFindFields: country_id, name
 sortDefault: name
 listView: true
+cacheTableInConfig: true
 
 itemTitle: "{{#isnt country_id 'Lab'}}<img style='width:20px; padding-right:5px' src='https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.8.0/flags/4x3/{{lowercase country_id}}.svg'/>{{country_id}}, {{/isnt}}{{name}}"
 
