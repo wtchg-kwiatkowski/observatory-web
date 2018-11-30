@@ -138,7 +138,7 @@ let StateBreadCrumb = createReactClass({
               pf60Resistance,
               regions,
               [this.config.cachedTablesByPrimKey['pf_regions'][this.config.cachedTablesByPrimKey[table][primKey].pf_region_id].name, <DataItem table="pf_regions" primKey={this.config.cachedTablesByPrimKey[table][primKey].pf_region_id}>{DataItemViews.getViews(this.config.tablesById['pf_regions'].dataItemViews, this.config.tablesById['pf_regions'].hasGeoCoord)}</DataItem>],
-              [this.config.cachedTablesByPrimKey[table][primKey].name, null]
+              [`${this.config.cachedTablesByPrimKey[table][primKey].name}, ${this.config.cachedTablesByPrimKey['countries'][this.config.cachedTablesByPrimKey[table][primKey].country_id].name}`, null]
             ],
           }[table] || (() => null))()),
         ItemTemplate: ({table, primKey}) => ({
@@ -218,7 +218,7 @@ let StateBreadCrumb = createReactClass({
         {path.map(([title, target]) => {
           return [<span key={title + 'arrow'}>&#160;&#160;&#62;&#160;&#160;</span>,
             <div key={title + 'text'} className="obs-breadcrumb-component">
-              {target ? <TextButton label={title}> {target} </TextButton> : title}
+              {target ? <TextButton label={title}> {target} </TextButton> : <span dangerouslySetInnerHTML={{__html: title}} />}
             </div>
           ];
         })
