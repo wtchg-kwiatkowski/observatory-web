@@ -38,7 +38,8 @@ Summary:
 - 109 flawed desktop-and-tablet features
 - 207 features have pocket-problems
 - 205 noted issues (includes duplicates)
-- 704 total feature count (QA'd + flawed)
+- 704 total desktop-and-tablet features (QA'd + flawed)
+- 548 total pocket-candidate features (friendly + problems)
 
 ### About the scope
 Administrative features are considered out-of-scope for this document. (See the QAFs for the Panopte core software for that.)
