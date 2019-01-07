@@ -211,8 +211,7 @@ let StateBreadCrumb = createReactClass({
       }
     ;
     let path = (convertersByType[type] || (() => null))(props);
-    const backgroundColorClass = (type === 'DataTableWithActions' || type === 'PivotTableWithActions' ) ? 'white-background ' : 'grey-background ';
-    return path ? <div className={`obs-breadcrumb ${backgroundColorClass}`}>
+    return path ? <div className={`obs-breadcrumb grey-background`}>
       <div className="obs-breadcrumb-inner">
         <div className="obs-breadcrumb-component"><DocLink href="index.html"><Home/></DocLink></div>
         {path.map(([title, target]) => {
