@@ -143,7 +143,7 @@ let Observatory = createReactClass({
                 components={components}
                 onTabChange={this.handleChangeTab}
               />
-              <div ref={(node) => { this.scrollContainer = node; }} className="body scroll-within">
+              <div ref={(node) => { this.scrollContainer = node; }} className="body scroll-within grey-background">
                 <div style={{position: 'relative', height: '100%'}}>
                   <div className="vertical stack">
                     <StateBreadCrumb compId={tabs.selectedTab}/>
