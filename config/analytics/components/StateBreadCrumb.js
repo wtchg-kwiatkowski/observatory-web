@@ -55,6 +55,10 @@ let StateBreadCrumb = createReactClass({
           'about.html': [
             [about[0], null]
           ],
+          'pf60/sop.html': [
+            data,
+            ['How we determine resistance', null]
+          ],
           'data.html': [
             ["Data", null]
           ],
