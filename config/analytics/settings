@@ -24,6 +24,7 @@ dataTables:
 - pf_drug_regions
 #- strains
 - pf_variants
+- pf_drug_gene
 
 topLevelComponent: Observatory
 
