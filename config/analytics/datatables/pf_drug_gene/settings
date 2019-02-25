@@ -1,0 +1,20 @@
+nameSingle: drug_gene
+namePlural: drug_genes
+
+primKey: AutoKey
+
+isHidden: true
+
+properties:
+- id: drug_id
+  dataType: Text
+  relation:                         # This block defines a many-to-one foreign relation to a parent table
+      tableId: pf_drugs             # Datatable id of the parent table
+      forwardName: blank
+      reverseName: blank
+- id: gene_id
+  dataType: Text
+  relation:                         # This block defines a many-to-one foreign relation to a parent table
+      tableId: pf_resgenes             # Datatable id of the parent table
+      forwardName: blank
+      reverseName: blank
