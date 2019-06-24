@@ -284,7 +284,7 @@ let HorizontalSiteNav = createReactClass({
                   </ListItemIcon> : null}
                   <ListItemText primary={option.label} />
                 </MenuItem>,
-                option.children.map((subOption, k) => <MenuItem key={j+k}
+                option.children.map((subOption, k) => <MenuItem key={j+k+9999}
                                                                 style={{paddingLeft: '40px'}}
                                                                 onClick={() => this.getFlux().actions.session.tabOpen(React.createElement(subOption.component.type, subOption.component.props))}>
                   {subOption.icon ? <ListItemIcon>

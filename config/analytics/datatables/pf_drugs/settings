@@ -37,9 +37,11 @@ dataItemViews:              # Lists the custom views that should appear in the p
                       {{{description}}}
                   </Typography>
                   <Typography component="div" align="center">
-                      {{#each pf_resgenes}}
-                          <ItemLink table="pf_resgenes" primKey="{{gene_id}}" button> Gene: {{name}} </ItemLink>
-                      {{/each}}
+                      {{#query 'gene_id' 'pf_resgenes.name' table='pf_drug_gene' query='{"whcClass":"comparefixed","isCompond":false,"isTrivial":false,"isRoot":true,"ColName":"drug_id","CompValue":"{{drug_id}}","Tpe":"="}' }}
+                          <Typography component="div" align="center" style="padding-bottom: 10px; padding-top: 10px">
+                              <ItemLink table="pf_resgenes" primKey="{{gene_id}}" button> Gene: {{pf_resgenes.name}} </ItemLink>
+                          </Typography>
+                      {{/query}}
                   </Typography>
 
                   <Typography>

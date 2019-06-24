@@ -16,9 +16,9 @@ isPositionOnGenome: true          # Tells Panoptes that this should be interpret
 chromosome: chrom            # Speficies the table column ID that contains the chromosome
 position: pos                # Specifies the table column ID that contains the position on the chromosome
 
-propertyGroups:
-- id: Properties
-  name: Properties
+#propertyGroups:
+#- id: Properties
+#  name: Properties          # Note: when there are propertyGroups, ungrouped properties will be automatically grouped under the heading "Properties"
 
 #- id: Effect
 #  name: Effect

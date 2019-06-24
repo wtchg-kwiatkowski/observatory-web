@@ -24,6 +24,7 @@ dataTables:
 - pf_drug_regions
 #- strains
 - pf_variants
+- pf_drug_gene
 
 topLevelComponent: Observatory
 
@@ -113,6 +114,7 @@ constants:
           props:
             table: pf_samples
             filter: null
+            columns: null
       - label: Variant Table
         icon: docimage:icons/table01.svg
         component:

@@ -22,13 +22,6 @@ properties:
   dataType: Text
 - id: marker_name
   dataType: Text
-- id: related_drug_id
-  dataType: Text
-  relation:                         # This block defines a many-to-one foreign relation to a parent table
-      tableId: pf_drugs             # Datatable id of the parent table
-      forwardName: blank
-      reverseName: blank
-
 
 dataItemViews:              # Lists the custom views that should appear in the popup for an individual data table item
 - type: Template                                       # Add a template based view
@@ -47,10 +40,12 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     <Typography >
                       {{{description}}}
                     </Typography>
+                    {{#query 'gene_id' 'drug_id' 'pf_drugs.name' table='pf_drug_gene' query='{"whcClass":"comparefixed","isCompond":false,"isTrivial":false,"isRoot":true,"ColName":"gene_id","CompValue":"{{gene_id}}","Tpe":"="}' }}
+                        <Typography component="div" align="center" style="padding-bottom: 10px; padding-top: 10px">
+                            <ItemLink table="pf_drugs" primKey="{{drug_id}}" button> Drug: {{pf_drugs.name}} </ItemLink>
+                        </Typography>
+                    {{/query}}
 
-                    <Typography component="div" align="center" style="padding-bottom: 10px; padding-top: 10px">
-                            <ItemLink table="pf_drugs" primKey="{{related_drug_id}}" button> Drug: {{pf_drugs.name}} </ItemLink>
-                    </Typography>
 
                 </CardContent>
             </Card>
@@ -90,33 +85,37 @@ dataItemViews:              # Lists the custom views that should appear in the p
                     </Typography>
                 </CardContent>
             </Card>
-            <Card>
-                <CardContent>
-                    <Typography variant="h5">
-                    Predicted {{lowercase pf_drugs.name}} resistance by region
-                    </Typography>
-                    <DocTemplate path="templates/proportionPlotTitle.html"/>
-                    <Typography component="div">
-                        <div style="padding-top: 20px">
-                          <ProportionBarChart
-                            rowTable="pf_regions"
-                            rowTableOrder='[["asc", "region_id"]]'
-                            proportionTable="pf_samples"
-                            numeratorQuery='{"whcClass":"comparefixed","isCompound":false,"ColName":"{{pf_drugs.drug_id}}resistant","CompValue":"resistant","Tpe":"="}'
-                            denominatorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"{{pf_drugs.drug_id}}resistant","CompValue":"resistant","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{pf_drugs.drug_id}}resistant","CompValue":"sensitive","Tpe":"="}],"Tpe":"OR"}'
-                            remainderTextColour="inherit"
-                            numberOfTickLabels="5"
-                            onClickBehaviour="ItemLink"
-                            onClickTable="pf_drug_regions"
-                            onClickPrimKey="{{pf_drugs.drug_id}}_{}"
-                            colourProperty="pf_regions.{{pf_drugs.drug_id}}resistance"
-                            rawNumerator="true"
-                          />
-                        </div>
-                    </Typography>
-                    <DocTemplate path="templates/proportionPlotLegend.html"/>
-                </CardContent>
-            </Card>
+            {{#query 'gene_id' 'drug_id' 'pf_drugs.name' table='pf_drug_gene' query='{"whcClass":"comparefixed","isCompond":false,"isTrivial":false,"isRoot":true,"ColName":"gene_id","CompValue":"{{gene_id}}","Tpe":"="}' }}
+                <Card>
+                    <CardContent>
+                        <Typography variant="h5">
+                        Predicted {{lowercase pf_drugs.name}} resistance by region
+                        </Typography>
+                        <DocTemplate path="templates/proportionPlotTitle.html"/>
+                        <Typography component="div">
+                            <div style="padding-top: 20px">
+                              <ProportionBarChart
+                                rowTable="pf_regions"
+                                rowTableOrder='[["asc", "region_id"]]'
+                                proportionTable="pf_samples"
+                                numeratorQuery='{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"resistant","Tpe":"="}'
+                                denominatorQuery='{"whcClass":"compound","isCompound":true,"isRoot":true,"Components":[{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"resistant","Tpe":"="},{"whcClass":"comparefixed","isCompound":false,"ColName":"{{drug_id}}resistant","CompValue":"sensitive","Tpe":"="}],"Tpe":"OR"}'
+                                remainderTextColour="inherit"
+                                numberOfTickLabels="5"
+                                onClickBehaviour="ItemLink"
+                                onClickTable="pf_drug_regions"
+                                onClickPrimKey="{{drug_id}}_{}"
+                                colourProperty="pf_regions.{{drug_id}}resistance"
+                                rawNumerator="true"
+                              />
+                            </div>
+                        </Typography>
+                        <DocTemplate path="templates/proportionPlotLegend.html"/>
+                    </CardContent>
+                </Card>
+            {{/query}}
+
+
             <DocTemplate path="templates/sop.html"/>
         </CardStack>
     </PageTemplate>

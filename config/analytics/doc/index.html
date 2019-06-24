@@ -1,7 +1,7 @@
 <PageTemplate bgurl="machines.jpg">
     <div className="obs-leader">
         Welcome to MalariaGEN Analytics
-        <p>Read about our how genomics is used in malaria research. Explore our analyses and visualisations of genomic data. Browse and download genomics datasets.</p>
+        <p>Read about how our genomics is used in malaria research. Explore our analyses and visualisations of genomic data. Browse and download genomics datasets.</p>
     </div>
 
 
@@ -104,7 +104,7 @@
                                     </ListItem>
                                 </Anchor>
                                 <Content>
-                                    <GenomeBrowserWithActions>
+                                    <GenomeBrowserWithActions disableAnnotationChannelClick>
                                         <PerRowIndicatorChannel table="pf_variants"/>
                                         <NumericalTrackGroupChannel table="pf_variants" autoYScale="true">
                                             <NumericalSummaryTrack table="pf_variants" track="fst_global"/>
