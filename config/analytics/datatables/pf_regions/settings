@@ -81,10 +81,10 @@ dataItemViews:              # Lists the custom views that should appear in the p
         <CardStack>
             <Card>
                 <CardContent>
-                    <Typography variant="headline">
+                    <Typography variant="h5">
                         Sample sites in {{name}}
                     </Typography>
-                    <Typography variant="subheading" color="secondary">
+                    <Typography variant="subtitle1" color="secondary">
 
                     </Typography>
                     <Typography component="div">
@@ -130,7 +130,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
             </Card>
             <Card>
                 <CardContent>
-                  <Typography variant="headline">
+                  <Typography variant="h5">
                    Drug resistance predictions in {{name}}
                   </Typography>
                   <DocTemplate path="templates/proportionPlotTitle.html"/>
@@ -167,7 +167,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
 
             <Card>
                 <CardContent>
-                  <Typography variant="headline">
+                  <Typography variant="h5">
                    Combination therapy resistance predictions in {{name}}
                   </Typography>
                   <DocTemplate path="templates/proportionPlotTitle.html"/>

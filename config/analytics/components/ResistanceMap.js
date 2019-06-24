@@ -54,15 +54,15 @@ let ResistanceMap = createReactClass({
         <div className="centering-container">
           <Card>
             <CardContent>
-              <Typography variant="headline">
+              <Typography variant="h5">
                   Global resistance status
               </Typography>
               {drug !== 'sites' ?
-                <Typography variant="subheading" color="textSecondary">
+                <Typography variant="subtitle1" color="textSecondary">
                   Each marker represents a site with parasite genome data. The area of the circle is proportional to the total number of samples collected at that site. Click on a different drug or site for further details.
                 </Typography>
                 :
-                <Typography variant="subheading" color="textSecondary">
+                <Typography variant="subtitle1" color="textSecondary">
                   Each marker represents a site with parasite genome data. This summary shows the proportion of resistant parasites at six  antimalarial drugs. Click a drug or site for further details.
                 </Typography>
               }

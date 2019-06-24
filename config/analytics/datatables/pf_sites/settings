@@ -85,10 +85,10 @@ dataItemViews:              # Lists the custom views that should appear in the p
         <CardStack>
             <Card>
                 <CardContent>
-                    <Typography variant="headline">
+                    <Typography variant="h5">
                         {{name}}
                     </Typography>
-                    <Typography variant="subheading" color="secondary">
+                    <Typography variant="subtitle1" color="secondary">
                         A site in {{{countries.name}}}
                     </Typography>
                     <Typography component="div">
@@ -142,7 +142,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
             </Card>
             <Card>
                 <CardContent>
-                    <Typography variant="headline">
+                    <Typography variant="h5">
                     Drug resistance predictions in {{name}}
                     </Typography>
 
@@ -183,7 +183,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
             <Card>
               <CardContent>
 
-            <Typography variant="headline">
+            <Typography variant="h5">
                Where the {{name}} samples come from
             </Typography>
 
@@ -191,7 +191,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
             {{#query 'studies.study_number' 'studies.webTitle' 'studies.description' 'study_id' table='pf_samples' distinct='true' query='{"whcClass":"comparefixed","isCompound":false,"ColName":"site_id","CompValue":"{{site_id}}","isRoot":true,"Tpe":"="}'}}
 
                           <!--
-                            <Typography variant="headline">
+                            <Typography variant="h5">
                                 <strong>{{studies.study_number}}</strong>:{{{studies.webTitle}}}
                             </Typography>
                           -->
@@ -213,7 +213,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
 
             <Card style="margin-top:25px">
               <CardContent>
-                <Typography variant="headline">
+                <Typography variant="h5">
                    Full sample data
                 </Typography>
                 <Typography>
@@ -232,7 +232,7 @@ dataItemViews:              # Lists the custom views that should appear in the p
 
             <Card>
                 <CardContent>
-                    <Typography variant="headline">
+                    <Typography variant="h5">
                     Combination therapy resistance predictions in {{name}}
                     </Typography>
 

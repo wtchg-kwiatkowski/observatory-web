@@ -166,7 +166,7 @@ let Observatory = createReactClass({
   },
 });
 
-Observatory = withTheme()(Observatory);
+Observatory = withTheme(Observatory);
 Observatory.displayName = 'Observatory';
 
 export default Observatory;
